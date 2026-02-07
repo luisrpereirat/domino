@@ -8,8 +8,10 @@
       "Step 3: Verify a Phaser canvas element exists in the DOM",
       "Step 4: Verify the canvas has a visible rendered game scene"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test0-app-loads.png"
+    ]
   },
   {
     "category": "functional",
@@ -21,8 +23,10 @@
       "Step 4: Verify the canvas scales to fit while maintaining aspect ratio",
       "Step 5: Verify letterboxing (black bars) appears if aspect ratio differs"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test0-app-loads.png"
+    ]
   },
   {
     "category": "functional",
@@ -33,8 +37,10 @@
       "Step 3: Verify 'Quarzen's Domino' title text is visible",
       "Step 4: Take screenshot to confirm title rendering"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test0-app-loads.png"
+    ]
   },
   {
     "category": "functional",
@@ -46,8 +52,10 @@
       "Step 4: Verify 'Hard' button is visible",
       "Step 5: Verify buttons are vertically stacked at center"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test0-app-loads.png"
+    ]
   },
   {
     "category": "functional",
@@ -58,8 +66,10 @@
       "Step 3: Verify scene transitions to GameScene",
       "Step 4: Verify the game state has difficulty set to 0"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "functional",
@@ -70,7 +80,7 @@
       "Step 3: Verify scene transitions to GameScene",
       "Step 4: Verify the game state has difficulty set to 1"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -82,7 +92,7 @@
       "Step 3: Verify scene transitions to GameScene",
       "Step 4: Verify the game state has difficulty set to 2"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -94,8 +104,10 @@
       "Step 3: Verify the screen fades to black over approximately 0.5 seconds",
       "Step 4: Verify the GameScene appears after the fade"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "functional",
@@ -105,8 +117,10 @@
       "Step 2: Verify a 'Rules' button is visible",
       "Step 3: Verify it is positioned below the difficulty buttons"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test0-app-loads.png"
+    ]
   },
   {
     "category": "functional",
@@ -126,8 +140,10 @@
       "Step 12: Verify the modal text is readable with proper font size and line spacing",
       "Step 13: Take screenshot of rules modal"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test9-rules-modal.png"
+    ]
   },
   {
     "category": "functional",
@@ -138,7 +154,7 @@
       "Step 3: Verify the modal closes",
       "Step 4: Verify the MenuScene is fully visible again"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -150,7 +166,7 @@
       "Step 3: Verify the modal closes",
       "Step 4: Verify the MenuScene is fully visible again"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -161,7 +177,7 @@
       "Step 2: Verify the modal content is scrollable",
       "Step 3: Scroll down to verify more content is accessible"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -173,8 +189,10 @@
       "Step 3: Click the mute icon to toggle mute state",
       "Step 4: Verify the icon changes to reflect the new state"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test13-mute-toggled.png"
+    ]
   },
   {
     "category": "functional",
@@ -186,8 +204,10 @@
       "Step 4: Verify the mute state is still muted",
       "Step 5: Click to unmute, reload, verify unmuted"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test14-mute-persists.png"
+    ]
   },
   {
     "category": "functional",
@@ -198,8 +218,10 @@
       "Step 3: Verify all tiles have valid topIndex and bottomIndex (0-6)",
       "Step 4: Verify doubles exist (0-0, 1-1, 2-2, 3-3, 4-4, 5-5, 6-6)"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "functional",
@@ -209,8 +231,10 @@
       "Step 2: Verify a maxPip parameter controls tile set size",
       "Step 3: Verify no hardcoded references to 28 tiles or IDs 0-27 as constants"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "functional",
@@ -227,8 +251,10 @@
       "Step 9: Verify no duplicate tile IDs exist in the full set of 28 tiles",
       "Step 10: Verify every combination of (topIndex, bottomIndex) where topIndex <= bottomIndex appears exactly once"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "functional",
@@ -238,8 +264,10 @@
       "Step 2: Verify tiles appear at the center of the board before distribution",
       "Step 3: Take screenshot showing tiles at deck position"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test18-dealing-animation.png"
+    ]
   },
   {
     "category": "functional",
@@ -256,8 +284,10 @@
       "Step 9: Verify deal animation timing (~1.0s per tile, 0.2s stagger)",
       "Step 10: Take screenshot after distribution completes"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "functional",
@@ -268,8 +298,10 @@
       "Step 3: Verify player tiles flip to show faces after arriving in hand",
       "Step 4: Take screenshot showing player tiles face-up"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "functional",
@@ -281,8 +313,10 @@
       "Step 4: Verify Right AI tiles show backs (face-down)",
       "Step 5: Take screenshot confirming AI tiles are face-down"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "functional",
@@ -293,7 +327,7 @@
       "Step 3: Verify 'Game Started' message appears on screen",
       "Step 4: Verify the message disappears after approximately 1 second"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -305,7 +339,7 @@
       "Step 3: Verify that all 4 players can be selected as the starter",
       "Step 4: Verify the selection appears random"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -317,8 +351,10 @@
       "Step 3: Verify 'Your Turn' shows when it's the player's turn",
       "Step 4: Verify '{AI Name}'s Turn' shows during AI turns"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "functional",
@@ -335,8 +371,10 @@
       "Step 9: Verify player tiles become interactive only during 'Your Turn'",
       "Step 10: Verify AI thinking indicators appear for each AI during their respective turns"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-first-placement.png"
+    ]
   },
   {
     "category": "functional",
@@ -347,8 +385,10 @@
       "Step 3: Verify the glow uses the theme's highlightColor",
       "Step 4: Verify the pulse cycle is approximately 0.5 seconds"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "functional",
@@ -359,8 +399,10 @@
       "Step 3: Verify dimmed tiles have alpha reduced to approximately 0.4",
       "Step 4: Verify dimmed tiles are non-interactive (cannot be dragged)"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-first-placement.png"
+    ]
   },
   {
     "category": "functional",
@@ -389,8 +431,10 @@
       "Step 10: Verify haptic feedback fires on mobile (navigator.vibrate(20))",
       "Step 11: Take screenshot showing tile mid-drag with ghost slots visible"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-first-placement.png"
+    ]
   },
   {
     "category": "functional",
@@ -408,8 +452,10 @@
       "Step 10: Release the tile and verify ghost slots disappear immediately",
       "Step 11: Take screenshot showing ghost slots during drag"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test30-ghost-slots.png"
+    ]
   },
   {
     "category": "functional",
@@ -428,8 +474,10 @@
       "Step 11: Verify the tile placement sound plays",
       "Step 12: Take screenshot showing tile snapped to board position"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-first-placement.png"
+    ]
   },
   {
     "category": "functional",
@@ -441,7 +489,7 @@
       "Step 4: Verify the tile animates (0.5s tween) back to its original hand position",
       "Step 5: Verify the tile remains in the player's hand"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -453,8 +501,10 @@
       "Step 3: Verify the tile is placed at the center of the board (0,0)",
       "Step 4: Take screenshot showing first tile at center"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-first-placement.png"
+    ]
   },
   {
     "category": "functional",
@@ -465,8 +515,10 @@
       "Step 3: Verify only tiles matching those numbers can be placed",
       "Step 4: Attempt to drag a non-matching tile and verify it cannot be placed"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-first-placement.png"
+    ]
   },
   {
     "category": "functional",
@@ -478,8 +530,10 @@
       "Step 4: Place a tile that matches the left branch",
       "Step 5: Verify it is placed to the left of center"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-first-placement.png"
+    ]
   },
   {
     "category": "functional",
@@ -490,8 +544,10 @@
       "Step 3: Verify the double tile is rendered in standing/vertical orientation",
       "Step 4: Take screenshot showing standing double tile"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/drag-test-second-placement.png"
+    ]
   },
   {
     "category": "functional",
@@ -502,8 +558,10 @@
       "Step 3: Verify the tile is rendered in lying/horizontal orientation (rotated 90 degrees)",
       "Step 4: Take screenshot showing lying tile"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-first-placement.png"
+    ]
   },
   {
     "category": "functional",
@@ -527,8 +585,10 @@
       "Step 4: Place tiles on the left branch",
       "Step 5: Verify they expand horizontally to the left"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-first-placement.png"
+    ]
   },
   {
     "category": "functional",
@@ -578,8 +638,10 @@
       "Step 5: Place a tile on the left branch",
       "Step 6: Verify leftBranchNum updates correctly"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-first-placement.png"
+    ]
   },
   {
     "category": "functional",
@@ -591,8 +653,10 @@
       "Step 4: Verify remaining tiles re-center with adjusted spacing",
       "Step 5: Take screenshot showing re-centered hand"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-first-placement.png"
+    ]
   },
   {
     "category": "functional",
@@ -614,8 +678,10 @@
       "Step 2: Verify the Pass button is not visible or is disabled",
       "Step 3: Verify valid tiles can be dragged"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "functional",
@@ -763,7 +829,7 @@
       "Step 3: Verify delay varies between approximately 0.5 and 3.0 seconds",
       "Step 4: Verify delay feels natural and not instant"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -796,8 +862,10 @@
       "Step 2: Verify a hamburger menu icon (three horizontal lines) is visible in the top-right",
       "Step 3: Verify it has at least 50x50px touch target"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "functional",
@@ -815,8 +883,10 @@
       "Step 10: Verify the game is visible but dimmed behind the overlay",
       "Step 11: Take screenshot of the pause menu overlay"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test60-pause-menu.png"
+    ]
   },
   {
     "category": "functional",
@@ -828,8 +898,10 @@
       "Step 4: Verify no AI moves occur while paused",
       "Step 5: Resume and verify AI continues its turn"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test60-pause-menu.png"
+    ]
   },
   {
     "category": "functional",
@@ -840,8 +912,10 @@
       "Step 3: Verify the overlay closes",
       "Step 4: Verify the game continues from exactly where it was paused"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test60-pause-menu.png"
+    ]
   },
   {
     "category": "functional",
@@ -852,8 +926,10 @@
       "Step 3: Verify the overlay closes (same as Resume)",
       "Step 4: Verify the game continues"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test60-pause-menu.png"
+    ]
   },
   {
     "category": "functional",
@@ -870,8 +946,10 @@
       "Step 9: Verify the difficulty remains Hard (AI behavior consistent with Hard mode)",
       "Step 10: Verify 'Game Started' message appears after distribution completes"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test60-pause-menu.png"
+    ]
   },
   {
     "category": "functional",
@@ -883,8 +961,10 @@
       "Step 4: Verify game state is fully destroyed",
       "Step 5: Verify MenuScene displays correctly"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test60-pause-menu.png"
+    ]
   },
   {
     "category": "functional",
@@ -894,8 +974,10 @@
       "Step 2: After distribution completes, verify all 4 score displays show 'Score: 0'",
       "Step 3: Verify score displays are positioned near each player's hand"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "functional",
@@ -918,7 +1000,7 @@
       "Step 4: Verify colors match theme.json color definitions",
       "Step 5: Verify no hardcoded asset paths in code"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -929,7 +1011,7 @@
       "Step 2: Verify all asset references go through ThemeManager",
       "Step 3: Verify changing theme.json paths would change loaded assets"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -976,7 +1058,7 @@
       "Step 4: Verify no error occurs - the action plays silently",
       "Step 5: Verify the game continues to function normally"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1000,7 +1082,7 @@
       "Step 3: Reconstruct the state using fromJSON()",
       "Step 4: Verify the reconstructed state matches the original"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1014,7 +1096,7 @@
       "Step 5: Verify pass events fire when players pass",
       "Step 6: Verify gameOver event fires at game end"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1027,7 +1109,7 @@
       "Step 4: Verify remaining tiles re-center with adjusted spacing",
       "Step 5: Place more tiles and verify continued adjustment"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1039,7 +1121,7 @@
       "Step 3: Release the tile above the threshold",
       "Step 4: Verify the tile snaps to the nearest slot (by distance)"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1052,7 +1134,7 @@
       "Step 4: Drag again and place successfully",
       "Step 5: Verify ghost slots disappear after placement"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
