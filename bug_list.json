@@ -33,5 +33,24 @@
     ],
     "reported_session": "Manual testing",
     "resolved_session": "Session 4: fixed rotation from CW to CCW and added flip logic"
+  },
+  {
+    "id": "BUG-003",
+    "status": "verified",
+    "feature_index": null,
+    "description": "Tiles placed on the board have inconsistent spacing and visible gaps between them. Instead of forming a continuous contiguous chain, tiles appear fragmented with breaks between groups. This occurs from the very first tile placements and affects all difficulty levels.",
+    "evidence": [
+      "docs/screenshots/bug-003-tile-spacing-gaps.png",
+      "docs/screenshots/bug003-fix-full-game.png",
+      "docs/screenshots/bug003-fix-game2.png"
+    ],
+    "steps_to_reproduce": [
+      "Step 1: Start a new game on any difficulty level",
+      "Step 2: Play begins and tiles are placed on the board",
+      "Step 3: Observe gaps and inconsistent spacing between placed tiles immediately from the first placements",
+      "Step 4: The tile chain appears fragmented rather than forming a continuous connected layout"
+    ],
+    "reported_session": "Manual testing",
+    "resolved_session": "Session 5: fixed halfWidth formula and first-tile hor initialization"
   }
 ]

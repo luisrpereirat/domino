@@ -67,9 +67,12 @@ export class SlotHelper {
       return { x, y, rotation, standing, branch, flipped: false };
     }
 
+    // halfWidth: distance from tile center to its edge, in tileOffset units
+    const halfWidth = standing ? 0.5 : 1;
+
     switch (phase) {
       case 0: // Horizontal expansion
-        x = centerX + (hor + (standing ? 1 : 2)) * this.tileOffset * direction;
+        x = centerX + (hor + halfWidth) * this.tileOffset * direction;
         y = centerY + ver * this.tileOffset;
         rotation = standing ? 0 : -90;
         break;
@@ -81,7 +84,7 @@ export class SlotHelper {
         break;
 
       case 2: // Cross-direction
-        x = centerX + (hor - (standing ? 1 : 2)) * this.tileOffset * direction;
+        x = centerX + (hor - halfWidth) * this.tileOffset * direction;
         y = centerY + ver * this.tileOffset * (branch === 'right' ? 1 : -1);
         rotation = standing ? 0 : -90;
         break;
@@ -93,7 +96,7 @@ export class SlotHelper {
         break;
 
       default: // Phase 4+: Reversed horizontal
-        x = centerX + (hor + (standing ? 1 : 2)) * this.tileOffset * direction * -1;
+        x = centerX + (hor + halfWidth) * this.tileOffset * direction * -1;
         y = centerY + ver * this.tileOffset * (branch === 'right' ? 1 : -1);
         rotation = standing ? 0 : -90;
         break;
@@ -134,6 +137,26 @@ export class SlotHelper {
       branch === 'right' ? board.rightPhase : board.leftPhase
     );
     const moveAmount = standing ? 1 : 2;
+
+    // First tile: it sits at center and occupies space on BOTH sides.
+    // Set both branches' hor to the edge distance (in tileOffset units)
+    // so subsequent tiles on either branch are positioned flush.
+    const isFirstTile = board.rightHor === 0 && board.leftHor === 0
+      && board.rightPhase === 0 && board.leftPhase === 0;
+    if (isFirstTile) {
+      if (domino.isDouble) {
+        // Double at exact center: symmetric, half-width = 0.5 units each side
+        board.rightHor = 0.5;
+        board.leftHor = 0.5;
+      } else {
+        // Non-double shifted right by lyingOffset*0.5 (15px = 0.25 units).
+        // Half-width = 1 unit (60px). Right edge = 0.25 + 1 = 1.25, left edge = 1 - 0.25 = 0.75.
+        const shiftUnits = (this.lyingOffset * 0.5) / this.tileOffset;
+        board.rightHor = 1 + shiftUnits;
+        board.leftHor = 1 - shiftUnits;
+      }
+      return;
+    }
 
     if (branch === 'right') {
       this.updateBranchPosition(board, 'right', moveAmount);

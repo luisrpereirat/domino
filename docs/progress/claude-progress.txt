@@ -165,3 +165,34 @@ FILES MODIFIED:
 - src/scenes/GameScene.ts: Apply flip rotation in placeTile() and finalizePlacement()
 - bug_list.json: BUG-002 verified
 - feature_list.json: test #38 passing
+
+Session 5 - Fix tile spacing gaps (BUG-003)
+=============================================
+Date: 2026-02-07
+
+COMPLETED:
+1. Fixed BUG-003: Tiles placed on the board had inconsistent spacing and visible gaps
+   - Root cause: Two problems in SlotHelper position calculation:
+     a) The position formula used full tile width instead of half-width for centering.
+        Formula was `(hor + fullWidth) * tileOffset` but should be `(hor + halfWidth)`.
+        Standing (double) halfWidth = 0.5 units, lying (non-double) halfWidth = 1 unit.
+     b) When the first tile was placed, confirmMoving only updated one branch's hor value.
+        Since the first tile sits at center and occupies space on BOTH sides, both branches
+        need their hor initialized to the first tile's edge distance from center.
+   - Fix part 1: Changed getSlotPosition formula from `(hor + (standing ? 1 : 2))` to
+     `(hor + halfWidth)` where halfWidth = 0.5 for standing, 1 for lying. Applied to
+     phases 0, 2, and 4+ (horizontal expansion phases).
+   - Fix part 2: Added first-tile detection in confirmMoving. When both hor values are 0,
+     sets both branches' hor to the first tile's edge distances:
+     - Double at center: symmetric, both hor = 0.5
+     - Non-double (shifted right by 15px): rightHor = 1.25, leftHor = 0.75
+   - Verified with two full games (23 and 25 tiles), including both double and non-double
+     first tiles. All adjacent tile edges have exactly 0px gap.
+   - Zero console errors
+
+2. Updated bug_list.json: BUG-003 status -> verified
+3. Feature list: 241/241 tests passing (100%), all 3 bugs verified fixed
+
+FILES MODIFIED:
+- src/managers/SlotHelper.ts: halfWidth formula in getSlotPosition, first-tile hor init
+- bug_list.json: BUG-003 verified
