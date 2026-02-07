@@ -1,0 +1,1272 @@
+<project_specification>
+  <!-- OUT OF SCOPE FOR MVP (do not build these):
+    - Multiplayer online play (turn-based or real-time)
+    - WebSocket presence layer (emojis, pre-made comments, thinking time indicators)
+    - User accounts / authentication / profiles
+    - Leaderboards / rankings
+    - Persistent statistics or game history
+    - Double-nine (55 tiles) or double-twelve (91 tiles) tile sets
+    - Team play or partner modes
+    - Scoring variants (Muggins/All Fives, spinner rules)
+    - Draw-game variant (drawing from boneyard)
+    - In-app tutorial or guided onboarding walkthrough
+    - Chat or messaging between players
+    - Undo/redo functionality
+    - Game replay or recording
+
+    These features ARE planned for future versions. The MVP architecture MUST
+    include hooks and abstractions that make adding them straightforward:
+    - Tile generation parameterized by set size (not hardcoded to double-six)
+    - Game state serializable to JSON (for future network sync and persistence)
+    - Event-driven architecture (for future WebSocket integration)
+    - Player identity abstracted (human vs AI vs remote, for future multiplayer)
+    - Score system extensible (for future scoring variants)
+  -->
+
+  <project_name>Quarzen's Domino</project_name>
+
+  <overview>
+    A mobile-first Progressive Web Application (PWA -- a web application that can be installed
+    on a device's home screen and works offline like a native app) domino game where a human
+    player competes against 3 AI (Artificial Intelligence -- computer-controlled) opponents
+    around a virtual table. The game uses a standard double-six domino set (28 tiles) with
+    drag-and-drop tile placement, animated tile distribution, and three AI difficulty levels
+    (Easy, Random, Hard).
+
+    The application is built as a single-page web app using Phaser 3 (a 2D game rendering
+    engine for HTML5 (HyperText Markup Language version 5) browsers) with a JSON (JavaScript
+    Object Notation -- a lightweight data format)-based theme system that allows creative
+    contributors to easily swap tile designs, sounds, backgrounds, and color schemes without
+    touching code. The game targets mobile devices as the primary platform while maintaining
+    full desktop browser support.
+
+    The architecture is designed for future expansion: multiplayer online play, larger tile sets
+    (double-nine with 55 tiles, double-twelve with 91 tiles), leaderboards, and player statistics.
+    None of these are built in the MVP (Minimum Viable Product -- the first functional version),
+    but the code structure must make adding them straightforward.
+
+    This project ports an existing Unity prototype (Domino-5) to a web-based platform for
+    improved content creator accessibility and broader device reach.
+  </overview>
+
+  <technology_stack>
+    <api_key>
+      No API (Application Programming Interface) key required. This is a fully client-side
+      application with no backend server.
+    </api_key>
+    <frontend>
+      <framework>Phaser 3.80+ with TypeScript 5.x (strict mode), bundled with Vite 6.x</framework>
+      <styling>Minimal CSS (Cascading Style Sheets) for HTML overlay elements only. All game
+        UI (User Interface) is rendered inside the Phaser canvas. CSS is used only for the
+        PWA install prompt, orientation lock message, and any HTML-based modals.</styling>
+      <state_management>Phaser scene data combined with a central GameState TypeScript class.
+        No external state library needed. Game state is designed to be serializable to JSON
+        for future network sync and persistence capabilities.</state_management>
+      <routing>No routing needed. Single-page app with Phaser scene transitions
+        (MenuScene, GameScene). PWA navigation handled by the service worker.</routing>
+      <port>Only launch on port {frontend_port}</port>
+      <additional_libraries>
+        - Phaser 3.80+ (game engine: rendering, input, tweens, audio)
+        - Workbox 7.x (Google's service worker library for PWA offline caching)
+        - vite-plugin-pwa (Vite integration for PWA manifest and service worker generation)
+        - No other runtime dependencies needed
+      </additional_libraries>
+    </frontend>
+    <backend>
+      <runtime>None. Fully client-side application.</runtime>
+      <database>None. Game state is ephemeral (temporary, lost when the page closes) per
+        session. Theme configuration loaded from static JSON files. Architecture supports
+        future addition of localStorage or IndexedDB for persistence.</database>
+      <api_integration>None for MVP. Architecture uses an event bus pattern that can emit
+        game events to a future WebSocket (a protocol for real-time two-way communication
+        between browser and server) layer without modifying game logic.</api_integration>
+      <streaming>None for MVP.</streaming>
+    </backend>
+    <communication>
+      <api>None. All logic runs client-side.</api>
+      <streaming>None for MVP. Future: WebSocket for multiplayer presence.</streaming>
+    </communication>
+  </technology_stack>
+
+  <prerequisites>
+    <environment_setup>
+      Development can run either directly on the host or inside a Docker container.
+      The containerized approach is recommended for testing and CI/CD to ensure
+      environment consistency.
+
+      Option A -- Direct host (development):
+      - Node.js 18+ and npm (Node Package Manager) installed on the host
+      - All dependencies are project-local (installed into ./node_modules/ via
+        npm install). Unlike Python, Node.js does not pollute global packages --
+        node_modules is the equivalent of a virtual environment and is already
+        isolated per project by default
+      - Modern browser with HTML5 Canvas/WebGL (Web Graphics Library) support
+        (last 2 years of Chrome, Firefox, Safari, Edge)
+      - iOS Safari 14.5+ for PWA home screen install
+
+      Option B -- Docker container (testing, CI/CD, clean environments):
+      - Only Docker (and optionally Docker Compose) required on the host machine.
+        No Node.js or npm installation needed
+      - A Dockerfile is provided at the project root:
+        - Based on node:18-alpine (lightweight Linux image with Node.js pre-installed)
+        - Copies package.json and package-lock.json, runs npm ci (clean install
+          for reproducible builds)
+        - Copies project source files
+        - Exposes port 5173 for the Vite dev server or serves the production build
+          via a lightweight static server (e.g., nginx or serve)
+      - A docker-compose.yml is provided for convenience:
+        - Service "dev": runs Vite dev server with hot reload, mounts source files
+          as a volume for live editing. Exposes port 5173
+        - Service "build": runs npm run build, outputs production files to a
+          dist/ volume
+        - Service "preview": serves the production build for testing. Exposes port 4173
+      - Usage:
+        - docker compose up dev       -- start development server
+        - docker compose run build     -- create production build
+        - docker compose up preview    -- serve production build for testing
+
+      Common requirements (both options):
+      - No external services or API keys required
+      - Project directory: domino-web/
+      - Asset directory convention: public/assets/themes/{theme-name}/ for swappable content
+      - Sprite sheet per theme containing all domino tile face images
+      - A tile-back image per theme
+      - A theme.json configuration file per theme defining colors, sounds, and layout overrides
+      - PWA manifest.json and service worker for offline support and home screen install
+    </environment_setup>
+  </prerequisites>
+
+  <core_features>
+    <game_board_and_tile_system>
+      - Standard double-six domino set: 28 tiles (0-0 through 6-6)
+      - Tile generation is PARAMETERIZED: a factory function accepts the maximum pip value
+        (6 for double-six, 9 for double-nine, 12 for double-twelve) and produces the correct
+        number of tiles. MVP uses maxPip=6 only, but the code must not hardcode 28 tiles or
+        IDs 0-27 as constants
+      - Each tile has a topIndex and bottomIndex representing the two halves (pip values)
+      - Tile ID mapping for double-six: IDs 0-6 have topIndex=0, IDs 7-12 have topIndex=1,
+        IDs 13-17 have topIndex=2, IDs 18-21 have topIndex=3, IDs 22-24 have topIndex=4,
+        IDs 25-26 have topIndex=5, ID 27 is 6-6
+      - Double tiles (same number on both halves: 0-0, 1-1, 2-2, 3-3, 4-4, 5-5, 6-6)
+        display standing (vertical orientation) in horizontal placement phases
+      - Non-double tiles display lying (horizontal, rotated 90 degrees) in horizontal phases
+      - Tiles are rendered as sprites extracted from the active theme's sprite sheet
+      - Each tile has a front face (showing pips/dots) and a back face (hidden from player,
+        used for AI hands)
+      - Tile dimensions: 60x120 pixels at base scale; AI hand tiles rendered at 0.5x scale
+    </game_board_and_tile_system>
+
+    <board_placement_algorithm>
+      - Two-branch system: tiles grow outward from the center in right and left branches
+      - First tile placed at board center (0,0)
+      - Subsequent tiles must match an open end number on the chosen branch
+      - 5-phase placement system per branch:
+        - Phase 0: Horizontal expansion outward (right branch goes right, left branch goes left)
+        - Phase 1: First corner -- tile turns downward/upward at board edge
+          (side limit = 13 tile units from center)
+        - Phase 2: Cross-direction turn -- tile goes horizontal in the opposite direction
+        - Phase 3: End corner -- final turn continuing in new direction
+        - Phase 4+: Continued horizontal expansion in the reversed direction
+      - Standing tiles (doubles) offset by 1 tile unit horizontally
+      - Lying tiles (non-doubles) offset by 2 tile units horizontally
+      - Vertical shifts of 1.5 tile units during corner phase transitions
+      - Automatic tile rotation: tiles flip 180 degrees when the matching pip value is on
+        the wrong half (ensures the matching end connects to the branch)
+      - Position offsets: tileOffset = 60px for standing tiles, lyingOffset = 30px for lying tiles
+      - Branch numbers track the open end pip value on each side: rightBranchNum and leftBranchNum
+      - On the very first tile, if it is a non-double (lying tile), the initial position
+        shifts by 0.5 units to center the tile visually
+      - Side limit and offset values should be configurable (not magic numbers) to support
+        future larger tile sets that may need different board proportions
+    </board_placement_algorithm>
+
+    <drag_and_drop_interaction>
+      - Player drags tiles from their hand area toward the game board
+      - On drag start: valid placement slots (ghost positions) appear on the board
+      - Up to 2 slots appear per drag: one for the right branch end, one for the left branch end
+      - Slot visibility: slots are visible to the player during their turn, hidden during AI turns
+      - On drag end: tile snaps to the nearest valid slot if dragged above 1/3 screen height
+        threshold (measured from bottom of screen)
+      - If tile is below threshold or no valid slots exist, tile animates back to hand
+        position (0.5s tween)
+      - Smooth movement animation using Phaser tweens (0.5 second duration, Power2 easing)
+      - Nearest slot detection: calculates Euclidean distance from tile center to all valid
+        slot centers, picks the closest
+      - After successful placement: tile is reparented to the game board container, scales
+        to 1.0, rotates to match slot orientation
+      - Touch and mouse input both supported seamlessly via Phaser's unified input system
+      - Subtle haptic feedback (device vibration, ~20ms) on successful tile placement on
+        mobile devices that support the Vibration API
+    </drag_and_drop_interaction>
+
+    <player_hand_management>
+      - Player hand displayed at bottom of screen with tiles standing upright (face visible)
+      - AI hands displayed on left, top, and right sides with tiles at 0.5x scale showing
+        tile backs (face hidden)
+      - Left AI and Right AI tiles displayed lying (rotated 90 degrees from vertical)
+      - Top AI and Player tiles displayed standing (0 degree rotation, vertical)
+      - Only valid tiles are interactive during player's turn (tiles whose pip values match
+        an open branch number)
+      - Non-matching tiles appear locked/dimmed during player's turn (reduced opacity)
+      - Pass button appears and is enabled when player has no valid moves
+      - All tiles locked (non-interactive, dimmed) during AI turns
+      - 7 tiles dealt to each player at game start (for double-six set;
+        future sets may deal different counts based on tile count / player count)
+      - Hand layout auto-adjusts spacing based on number of remaining tiles
+    </player_hand_management>
+
+    <tile_distribution_and_game_start>
+      - All 28 tiles created at a central deck area (center of game board)
+      - Random distribution: tiles randomly assigned to 4 hands (7 each)
+      - Animated distribution: tiles fly from deck position to hand positions with 1.0s
+        tween duration, 0.2s stagger delay between each tile
+      - Distribution order: first 7 to Player (bottom), next 7 to Left AI, next 7 to
+        Top AI, last 7 to Right AI
+      - After distribution completes, a random starting player is selected (equal 1-in-4
+        probability for each player)
+      - "Game Started" message displayed for 1 second after distribution animation completes
+      - 1 second delay before distribution animation begins (lets the player see the board)
+      - Tiles dealt face-down initially, player's tiles flip to face-up after arriving in hand
+    </tile_distribution_and_game_start>
+
+    <turn_management>
+      - Fixed turn order: Player -> Left AI -> Top AI -> Right AI -> Player (cyclic)
+      - Random first player at game start (equal probability for all 4)
+      - Player identity abstracted via a Player interface that supports human, AI, and
+        (future) remote player types
+      - Turn transitions with timed messages showing whose turn it is
+      - Turn tracking: only one player active at a time
+      - After a player places a tile or passes, the turn advances to the next player
+        in the cycle
+      - Last active player (the most recent player who successfully placed a tile) is
+        tracked for pass scoring
+      - Game emits turn events (turnStart, turnEnd, tilePlace, pass) through an event
+        bus for future network sync capability
+    </turn_management>
+
+    <pass_mechanics_and_scoring>
+      - A player passes when they have no tiles whose pip values match either open
+        branch number
+      - Pass is automatic for AI players; manual via Pass button for the human player
+      - Pass button is only enabled when the human player has zero valid tiles to play
+      - When a player passes, the LAST player who successfully placed a tile earns 1 point
+      - If the same player who last placed a tile comes back around to their own turn
+        again (meaning all other players passed in sequence), the game ends as "Fish"
+        (a blocked/stalemate game)
+      - Score display: each player has a visible score counter showing "Score: X"
+      - Scores update immediately on pass with a brief pulse animation
+      - Score system uses a ScoreManager class that can be extended with alternative
+        scoring rules in future versions
+    </pass_mechanics_and_scoring>
+
+    <ai_system>
+      - Three difficulty levels controlled by a difficulty parameter (0, 1, or 2):
+        - Easy (difficulty 0): Plays tiles that help the human player win; avoids tiles
+          that would block the player; uses pass-forcing analysis to avoid moves that
+          force the human player to pass
+        - Random (difficulty 1): Picks a random valid matching tile with no strategy;
+          serves as a baseline difficulty
+        - Hard (difficulty 2): Strategic play that analyzes the next player's hand to
+          classify tiles as "good" (helpful) or "bad" (blocking)
+      - AI thinking delay: random 0.5 to 3.0 seconds before making a move (simulates
+        human thinking time; visible as a subtle animated indicator near the AI's name)
+      - AI tile selection for Hard mode:
+        - All valid matching tiles are classified as "good" or "bad" relative to the
+          NEXT player in turn order
+        - Good tile: after placement, the new open end pip value matches at least one
+          tile in the next player's hand
+        - Bad tile: after placement, the new open end pip value matches NONE of the
+          next player's tiles
+        - When the AI is NOT the player immediately before the human (nextPlayer=false):
+          prefer playing good tiles (helps the intervening player, indirectly)
+        - When the AI IS the player immediately before the human (nextPlayer=true):
+          prefer playing bad tiles (blocks the human)
+        - Fallback to a random valid tile when no strategic choice is available
+      - Easy mode special logic:
+        - Classifies tiles as good/bad relative to the HUMAN player's hand
+          (not the next AI in order)
+        - Prefers non-double good tiles
+        - Analyzes whether a move would force the human player to pass (CausePass logic)
+        - If all available moves force a pass: checks if passing itself would also force
+          a pass -- if yes, plays a random tile; if no, passes voluntarily
+      - AI moves are animated: tile flips from back to face, then tweens from the AI
+        hand position to the board slot
+      - AI strategy logic is separated from the AI controller for testability; the
+        strategy receives game state and returns a tile choice without side effects
+    </ai_system>
+
+    <game_over_conditions>
+      - Win condition: the first player to place all their tiles wins.
+        Message: "You win!" (if human) or "{AI Name} wins!" (if AI)
+      - Fish/blocked condition: when all players must pass consecutively and the turn
+        cycles back to the last player who placed a tile, the game ends as a blocked
+        game. Message: "Fish - Game Over"
+      - On game over: all tiles are locked (non-interactive), Pass button is disabled,
+        and the end message is displayed permanently on screen
+      - Player hands are tracked by removing placed tiles from hand arrays after each
+        successful placement
+      - Game over state is final -- no further moves are processed until Restart or
+        Main Menu is selected
+    </game_over_conditions>
+
+    <menu_system>
+      - Main Menu screen (MenuScene) with game title "Quarzen's Domino" and "Play" button
+      - Difficulty selection: 3 buttons labeled Easy, Random, Hard -- each starts a new
+        game with the corresponding AI difficulty level
+      - Game rules modal: a button labeled "Rules" that opens an in-app modal overlay
+        displaying the rules of classic domino in readable text format. The modal includes
+        a close button and clicking outside the modal also closes it
+      - In-game hamburger/menu button (top-right corner) to toggle pause menu overlay
+      - Pause menu overlay contains:
+        - "Resume" button -- closes overlay, resumes the game
+        - "Restart" button -- restarts the game with the same difficulty level
+        - "Main Menu" button -- returns to the MenuScene
+      - Clean transitions between scenes (0.5s fade to black)
+      - Game state is fully destroyed and re-created on restart (no stale state)
+      - Theme selector in menu (dropdown or button row) if multiple themes are available
+      - Mute/unmute toggle icon in top-right corner of MenuScene
+    </menu_system>
+
+    <theme_system>
+      - JSON-based theme configuration at public/assets/themes/{theme-name}/theme.json
+      - Theme defines:
+        - name: human-readable display name of the theme
+        - spriteSheet: path to the sprite sheet image containing all tile faces
+        - spriteSheetData: path to the sprite sheet JSON atlas (frame definitions)
+        - tileBack: path to tile back image
+        - tableBackground: path to table/board background image
+        - menuBackground: path to menu background image
+        - gameBackground: path to game scene background image
+        - sounds: object mapping sound event names to audio file paths
+          (keys: tilePlace, tilePickup, pass, gameStart, gameOver, buttonClick, tileDeal)
+        - colors: object with hex color values
+          (keys: tableColor, highlightColor, validSlotColor, textColor, scoreColor,
+          buttonColor, buttonHoverColor, passButtonColor)
+        - avatarImage: path to player/AI avatar image (optional)
+      - Default "classic" theme ships with the game and serves as a reference
+        implementation for theme creators
+      - Theme selection is available from the main menu
+      - Themes are self-contained folders: a non-developer creates a new theme by
+        copying the classic/ folder, renaming it, replacing image and sound files,
+        and editing theme.json to adjust colors and paths
+      - Game reloads theme assets on selection without full page refresh (Phaser
+        texture and audio cache clearing and reloading)
+      - ALL asset references in game code go through the ThemeManager -- no hardcoded
+        image or sound paths anywhere in the codebase
+    </theme_system>
+
+    <audio_system>
+      - Sound effects triggered on game events:
+        - Tile pickup: when the player begins dragging a tile
+        - Tile placement: when a tile snaps to a valid board slot
+        - Tile dealing: during the distribution animation (one sound per tile dealt)
+        - Pass turn: when any player passes
+        - Game start: after tile distribution completes
+        - Game over: when a win or fish condition is reached (distinct sounds for
+          win vs loss, if provided by theme)
+        - Button click: on any menu or UI button press
+      - Audio files loaded from the active theme folder via the ThemeManager
+      - Volume control: mute toggle at minimum (persisted in localStorage)
+      - Realistic wood click sounds as the default audio direction
+      - Graceful handling of missing audio files: try-catch around audio loading and
+        playback -- missing files result in silence, not errors or crashes
+      - Audio context (Web Audio API) initialized on first user interaction (tap or
+        click) to comply with browser autoplay policies
+      - Audio system is extensible: new sound events can be added by adding keys to
+        the theme.json sounds object without modifying audio system code
+    </audio_system>
+
+    <pwa_and_offline>
+      - PWA manifest file (manifest.json) with:
+        - App name: "Quarzen's Domino"
+        - Short name: "Domino"
+        - Theme color and background color matching the classic theme
+        - Icons at required sizes (192x192, 512x512 PNG)
+        - Display mode: standalone (runs without browser chrome)
+        - Orientation: landscape
+        - Start URL: /
+      - Service worker powered by Workbox for offline caching:
+        - Precaches all game assets (HTML, JS, CSS, sprites, sounds, theme files)
+        - Cache-first strategy for static assets
+        - Network-first strategy for theme.json (allows theme updates when online)
+        - Offline fallback: game is fully playable without an internet connection
+          after the first load
+      - Install prompt: a subtle "Add to Home Screen" banner or button shown on
+        first visit (dismissible, does not block gameplay)
+      - App is shareable via URL -- visiting the URL on any device opens the game,
+        with an option to install as a PWA
+      - Total cached bundle should stay under 20MB (well within iOS PWA storage limits
+        of 50MB per origin)
+    </pwa_and_offline>
+
+    <responsive_design>
+      - Mobile-first design: optimized for phones held in landscape orientation
+      - Primary resolution: 960x600 (16:10 landscape aspect ratio)
+      - Phaser ScaleManager set to FIT mode: game scales to fill the viewport while
+        maintaining the aspect ratio, with letterboxing (black bars) if needed
+      - Touch input is the primary input method; mouse/keyboard also supported
+      - Touch drag-and-drop works with Phaser's unified pointer input (no separate
+        touch vs mouse code paths)
+      - Minimum supported viewport: 480px width (mobile portrait). When the viewport
+        is in portrait orientation, display a full-screen "Rotate your device" message
+        with a rotation icon instead of the game
+      - All interactive elements sized for touch targets: minimum 44x44px tap area
+        (Apple Human Interface Guidelines)
+      - Game board auto-centers within available canvas space
+      - UI text scales proportionally with the canvas
+    </responsive_design>
+
+    <visual_feedback>
+      - Valid tiles glow with a pulsing highlight effect when it is the player's turn
+        (0.5s cycle, using the theme's highlightColor)
+      - Invalid/locked tiles appear dimmed (alpha reduced to 0.4) and are non-interactive
+      - Placement ghost slots rendered as semi-transparent tile outlines at valid board
+        positions (alpha 0.3-0.5, tinted with the theme's validSlotColor)
+      - Smooth tween animations for all tile movements:
+        - 0.5s for tile placement (hand/drag to board slot)
+        - 1.0s for tile dealing (deck to hand)
+        - 0.5s for tile return to hand (cancelled drag)
+      - Turn indicator text showing whose turn it is (centered near top of screen)
+      - Score counters update with a brief scale-pulse animation (0.3s, scale to 1.2x
+        then back to 1.0x)
+      - End-of-game message overlay with dramatic entrance animation (1.0s scale from
+        0 to 1 with bounce easing)
+      - AI thinking indicator: subtle animated dots (...) near the active AI's name
+        during their thinking delay
+    </visual_feedback>
+
+    <accessibility>
+      - High contrast between tile faces (ivory/white) and table background (dark green)
+      - Text uses readable font sizes: minimum 16px equivalent at base resolution
+      - Color is never the sole indicator of state: locked tiles have both reduced
+        opacity AND a darkening overlay; valid tiles have both a glow AND are the only
+        interactive elements
+      - All interactive elements meet minimum 44x44px touch target size
+      - Game state messages are displayed as visible text overlays (not communicated
+        solely through color changes or animations)
+      - Turn indicator and score updates are clearly visible against all theme backgrounds
+    </accessibility>
+
+    <rules_modal>
+      - Accessible from the main menu via a "Rules" button
+      - Displays the rules of classic dominoes in a scrollable text modal:
+        - How tiles work (double-six set, pip values, doubles vs non-doubles)
+        - How to play (matching pip values, placing on branches)
+        - Passing rules (when and why a player passes)
+        - Scoring (points awarded on opponent passes)
+        - Win conditions (empty hand wins, Fish/blocked game)
+        - AI difficulty descriptions (Easy helps you, Random is neutral, Hard blocks you)
+      - Modal has a visible close button (X) in the top-right corner
+      - Clicking/tapping outside the modal also closes it
+      - Modal content is static text, no interactive elements inside
+      - Styled consistently with the game's design system (dark panel, white text,
+        theme-matching colors)
+    </rules_modal>
+  </core_features>
+
+  <database_schema>
+    <tables>
+      No database for MVP. All game state lives in-memory as TypeScript objects.
+      Theme configuration is loaded from static JSON files in public/assets/themes/.
+
+      Architecture note: all game state classes implement a toJSON() method and can be
+      reconstructed from JSON via static fromJSON() factory methods. This serialization
+      capability is not used in the MVP but is required for future features (game save/load,
+      multiplayer state sync, statistics persistence).
+
+      <theme_json_structure>
+        - name (string, required): Display name for the theme
+        - spriteSheet (string, required): Relative path to tile sprite sheet image (PNG)
+        - spriteSheetData (string, required): Relative path to sprite sheet atlas JSON
+        - tileBack (string, required): Relative path to tile back image
+        - tableBackground (string, required): Relative path to table background image
+        - menuBackground (string, required): Relative path to menu background image
+        - gameBackground (string, required): Relative path to game scene background image
+        - sounds (object, optional): Keys are sound event names, values are relative
+          audio file paths. Known keys: tilePlace, tilePickup, pass, gameStart,
+          gameOver, gameWin, gameLose, buttonClick, tileDeal
+        - colors (object, required): Hex color string values
+          - tableColor: board/felt background color
+          - highlightColor: active/valid tile glow color
+          - validSlotColor: ghost slot tint color
+          - textColor: primary text color
+          - scoreColor: score display text color
+          - buttonColor: button background color
+          - buttonHoverColor: button hover state color
+          - passButtonColor: pass button background color
+        - avatarImage (string, optional): Relative path to avatar image
+      </theme_json_structure>
+
+      <game_state_model>
+        Core data models (all serializable to JSON):
+
+        - TileConfig: { maxPip: number }
+          Determines the tile set size. maxPip=6 produces 28 tiles (double-six),
+          maxPip=9 produces 55 tiles (double-nine), maxPip=12 produces 91 tiles
+          (double-twelve). MVP uses maxPip=6 only.
+
+        - Domino: { id: number, topIndex: number, bottomIndex: number, available: boolean }
+          Represents a single domino tile. ID is auto-assigned during generation.
+
+        - PlayerHand: { tiles: Domino[], score: number, playerType: 'human'|'ai'|'remote',
+          position: 'bottom'|'left'|'top'|'right', name: string }
+          Represents one player's hand and score. playerType supports future multiplayer.
+
+        - BoardState: {
+            rightBranchNum: number, leftBranchNum: number,
+            rightPhase: number, leftPhase: number,
+            rightHor: number, rightVer: number,
+            leftHor: number, leftVer: number,
+            started: boolean,
+            placedTiles: Array of { domino: Domino, x: number, y: number, rotation: number,
+              branch: 'right'|'left' }
+          }
+          Tracks board layout state for both branches. placedTiles array enables
+          future replay and state reconstruction.
+
+        - GameState: {
+            currentTurn: number (index into players array),
+            lastActivePlayer: number,
+            gameOver: boolean,
+            difficulty: number,
+            tileConfig: TileConfig,
+            players: PlayerHand[],
+            board: BoardState
+          }
+          Central game state container. Fully serializable.
+      </game_state_model>
+    </tables>
+  </database_schema>
+
+  <api_endpoints_summary>
+    No API endpoints for MVP. This is a fully client-side application.
+    All game logic runs in the browser. Theme configuration and static assets are
+    loaded via standard HTTP GET requests served by Vite (development) or any
+    static file server (production).
+
+    <static_assets>
+      - GET /assets/themes/{name}/theme.json - Theme configuration
+      - GET /assets/themes/{name}/tiles-spritesheet.png - Tile sprite sheet image
+      - GET /assets/themes/{name}/tiles-spritesheet.json - Sprite sheet atlas data
+      - GET /assets/themes/{name}/tile-back.png - Tile back image
+      - GET /assets/themes/{name}/table-bg.png - Table background
+      - GET /assets/themes/{name}/menu-bg.png - Menu background
+      - GET /assets/themes/{name}/game-bg.png - Game scene background
+      - GET /assets/themes/{name}/sounds/{event}.mp3 - Audio files
+        (event names: tilePlace, tilePickup, pass, gameStart, gameOver, gameWin,
+        gameLose, buttonClick, tileDeal)
+      - GET /manifest.json - PWA manifest
+      - GET /sw.js - Service worker (generated by vite-plugin-pwa)
+    </static_assets>
+
+    Future API hooks (not implemented in MVP):
+    - WebSocket endpoint for multiplayer game state synchronization
+    - REST API for leaderboard submission and retrieval
+    - REST API for user account management
+    - REST API for game statistics persistence
+  </api_endpoints_summary>
+
+  <ui_layout>
+    <main_structure>
+      - Single Phaser canvas fills the viewport (960x600 base, FIT scaling with
+        letterboxing)
+      - Two main Phaser scenes: MenuScene and GameScene
+      - HTML overlay used only for: PWA install prompt, orientation lock message,
+        and the rules modal (rendered as an HTML element overlaying the canvas for
+        proper text scrolling)
+      - All in-game UI rendered within Phaser using text objects, sprites, and containers
+      - Landscape orientation enforced. Portrait displays a "Rotate your device" message
+    </main_structure>
+
+    <menu_scene>
+      - Full-screen background image loaded from theme (menuBackground)
+      - Game title "Quarzen's Domino" centered at top third of screen
+        (large decorative text, Georgia font, 48px, drop shadow)
+      - Three vertically stacked difficulty buttons at center:
+        - "Easy" -- starts game with difficulty 0
+        - "Random" -- starts game with difficulty 1
+        - "Hard" -- starts game with difficulty 2
+      - "Rules" button below difficulty buttons -- opens the rules modal
+      - Theme selector below the Rules button (visible if multiple themes are
+        detected in the assets folder)
+      - Mute/unmute icon in top-right corner (persists preference in localStorage)
+      - Buttons have hover effect (scale to 1.05x, color shifts to buttonHoverColor)
+        and play a click sound on press
+    </menu_scene>
+
+    <game_scene_layout>
+      - Table background image fills the entire scene (from theme gameBackground)
+      - Game board: centered rectangular area (~700x400px) where domino tiles are
+        placed. This area scrolls or scales if the tile chain grows beyond its bounds
+        (relevant for future larger tile sets)
+      - Player hand: bottom center, horizontal row of up to 7 standing tiles (face up,
+        full scale). Tiles are evenly spaced and re-center as tiles are played
+      - Left AI hand: left side of screen, vertical column of up to 7 lying tiles
+        (face down, 0.5x scale, rotated 90 degrees)
+      - Top AI hand: top center of screen, horizontal row of up to 7 standing tiles
+        (face down, 0.5x scale)
+      - Right AI hand: right side of screen, vertical column of up to 7 lying tiles
+        (face down, 0.5x scale, rotated 90 degrees)
+      - Score displays: positioned near each player's hand area. Format: "Score: 0"
+        in gold text on a semi-transparent dark rounded rectangle
+      - Turn indicator: centered text near the top of the screen showing
+        "Your Turn" / "Left AI's Turn" / "Top AI's Turn" / "Right AI's Turn"
+      - Pass button: bottom-right area near the player's hand. Red background, white
+        text "Pass". Visible and enabled ONLY when the player has no valid moves
+      - Menu button: top-right corner (hamburger icon -- three horizontal lines).
+        50x50px touch target
+      - Center message area: used for timed notifications ("Game Started", "Pass",
+        turn announcements) and permanent game over messages
+    </game_scene_layout>
+
+    <pause_menu_overlay>
+      - Semi-transparent dark overlay (black at 70% opacity) covering the entire scene
+      - Centered popup panel (dark brown background with lighter brown border):
+        - "Resume" button -- closes the overlay, resumes the game exactly where it
+          was paused
+        - "Restart" button -- destroys the current game and starts a new one with
+          the same difficulty level
+        - "Main Menu" button -- destroys the current game, transitions back to MenuScene
+      - Clicking/tapping outside the popup panel also closes it (same as Resume)
+      - Game logic is paused while the overlay is visible (no AI moves, no timers advance)
+    </pause_menu_overlay>
+
+    <placement_slots>
+      - Ghost/phantom tile sprites shown at valid placement positions on the board
+        during a drag operation
+      - Rendered as semi-transparent (alpha 0.3-0.5) with the theme's validSlotColor
+        as a tint overlay
+      - Up to 2 slots shown simultaneously: one at the right branch end, one at the
+        left branch end (only the slots where the dragged tile can legally play)
+      - Slot positions and rotations are calculated by the board placement algorithm
+        (SlotHelper) based on the current board state
+      - Slots appear when the player begins dragging a valid tile
+      - Slots disappear when the drag ends (whether placed or returned to hand)
+    </placement_slots>
+  </ui_layout>
+
+  <design_system>
+    <color_palette>
+      Default "classic" theme colors. All colors are overridable via theme.json.
+
+      - Table/board background: #1B5E20 (dark green, felt table aesthetic)
+      - Menu background: #0D2818 (darker green)
+      - Tile face background: #FFFFF0 (ivory white)
+      - Tile pips/dots: #1A1A1A (near black)
+      - Tile back: #8B4513 (saddle brown with decorative pattern)
+      - Valid slot highlight: #FFD700 (gold) at 40% opacity
+      - Locked tile overlay: #000000 (black) at 50% opacity
+      - Active tile glow: #4FC3F7 (light blue)
+      - Text primary: #FFFFFF (white)
+      - Text score: #FFD700 (gold)
+      - Button background: #4E342E (dark brown)
+      - Button hover: #6D4C41 (lighter brown)
+      - Button text: #FFFFFF (white)
+      - Pass button: #D32F2F (red)
+      - Popup overlay: #000000 (black) at 70% opacity
+      - Popup panel background: #3E2723 (dark brown)
+      - Popup panel border: #5D4037 (medium brown)
+    </color_palette>
+
+    <typography>
+      - Heading font: "Georgia" serif (classic, traditional feel for a domino game)
+      - UI/body font: "Arial" or system sans-serif stack for scores, messages, and buttons
+      - Title text: 48px, bold, Georgia, with a 2px drop shadow offset
+      - Button text: 24px, bold, Arial
+      - Score text: 18px, regular, Arial
+      - Turn indicator messages: 28px, bold, Arial, centered
+      - Game over text: 36px, bold, Georgia, with outer glow effect
+      - Rules modal text: 16px, regular, Arial, with 1.5 line height for readability
+      - All in-game text rendered via Phaser.GameObjects.Text
+    </typography>
+
+    <components>
+      <buttons>
+        - Primary (difficulty selection, menu): 200x60px, rounded corners (12px radius),
+          dark brown background (#4E342E), white text (#FFFFFF), scale to 1.05x on
+          hover/touch, 0.95x on press. 0.15s tween for scale transitions
+        - Pass button: 120x50px, red background (#D32F2F), white text "Pass", visible
+          only when the player has no valid moves
+        - Menu button (hamburger): 50x50px, icon-based (three horizontal lines), positioned
+          in the top-right corner of the game scene
+        - Rules button: same style as primary buttons, positioned below difficulty buttons
+        - Disabled state: 50% opacity, no hover effect, non-interactive
+        - All buttons play the theme's buttonClick sound on press
+      </buttons>
+
+      <tiles>
+        - Base sprite size: 60x120px (portrait/standing) or 120x60px (landscape/lying)
+        - Player tiles: full scale (1.0x), face visible (sprite sheet frame), interactive
+          glow highlight when the tile is a valid play
+        - AI tiles: half scale (0.5x), back image visible, non-interactive
+        - Board tiles: full scale (1.0x), face visible, non-interactive (placed permanently)
+        - Locked tiles: dark overlay at 50% opacity applied on top of the tile sprite
+        - Dragging tile: slight scale increase to 1.1x, rendered above all other game
+          objects (highest depth), subtle drop shadow effect
+        - Tiles are contained in a Phaser Container (sprite + optional overlay + glow)
+          for clean grouping and transformation
+      </tiles>
+
+      <score_display>
+        - Positioned near each player's hand area
+        - Format: "Score: {n}" in gold text (#FFD700) on a semi-transparent dark
+          rounded rectangle background
+        - Brief pulse animation on score change: scale to 1.2x then back to 1.0x
+          over 0.3s with Power2 easing
+      </score_display>
+
+      <message_banner>
+        - Centered horizontally and vertically on the game scene
+        - Large text on a semi-transparent dark rounded rectangle background
+        - Fade in (0.3s alpha 0 to 1), hold for configured duration (1-3 seconds),
+          fade out (0.3s alpha 1 to 0)
+        - Auto-dismiss after hold time, or can be set to persist (for game over messages)
+      </message_banner>
+    </components>
+
+    <animations>
+      - Tile dealing: 1.0s tween from deck center to hand position, Power2 easing
+      - Deal stagger: 0.2s delay between each tile's deal animation start
+      - Tile placement: 0.5s tween from hand/drag position to board slot, Power2 easing
+      - Tile return to hand: 0.5s tween back to original hand position when the drag
+        is cancelled (dropped below threshold or on an invalid position)
+      - AI thinking indicator: subtle animated dots (...) cycling near the active AI's
+        name during their thinking delay
+      - Score pulse: 0.3s scale to 1.2x then back to 1.0x on score change, Power2 easing
+      - Message banner: 0.3s fade in, configurable hold, 0.3s fade out
+      - Button hover: 0.15s scale tween to 1.05x
+      - Button press: 0.1s scale tween to 0.95x, then release back to 1.0x
+      - Scene transition: 0.5s fade to black between MenuScene and GameScene
+      - Valid tile highlight: subtle pulsing glow (0.5s cycle, alpha oscillates 0.3 to 0.8)
+      - Game over text: 1.0s entrance animation (scale from 0 to 1 with Bounce easing)
+      - Tile flip (AI play): 0.2s horizontal scale to 0 (shows back), swap texture, 0.2s
+        horizontal scale back to 1 (shows face)
+    </animations>
+  </design_system>
+
+  <key_interactions>
+    <start_new_game>
+      1. User opens the application URL or launches the installed PWA
+      2. MenuScene loads with the title "Quarzen's Domino", difficulty buttons (Easy,
+         Random, Hard), Rules button, theme selector, and mute toggle
+      3. User selects a difficulty level by tapping/clicking one of the three buttons
+      4. Scene transitions to GameScene with a 0.5s fade-to-black animation
+      5. 28 domino tiles appear stacked at the center of the board (deck position)
+      6. After a 1-second pause, tiles animate flying to each player's hand:
+         7 tiles to Player (bottom), 7 to Left AI, 7 to Top AI, 7 to Right AI.
+         Each tile takes 1.0s to fly, with 0.2s stagger between tiles (~6 seconds total)
+      7. Player's tiles flip from back to face after arriving in hand
+      8. "Game Started" message appears centered on screen for 1 second
+      9. A random starting player is selected (equal 1-in-4 chance)
+      10. If the human player starts: their valid tiles highlight with a pulsing glow,
+          awaiting drag input
+      11. If an AI starts: the AI thinking indicator appears, followed by the AI's move
+    </start_new_game>
+
+    <player_places_tile>
+      1. It is the player's turn -- valid tiles glow with a pulsing highlight,
+         invalid tiles are dimmed (alpha 0.4)
+      2. Player begins dragging a valid tile from their hand
+      3. Haptic feedback fires briefly (20ms vibration) on drag start
+      4. Ghost slot(s) appear on the board showing valid placement positions
+         (up to 2: one per branch end)
+      5. Player drags the tile upward past the 1/3 screen height threshold
+      6. Player releases the tile (lifts finger or releases mouse button)
+      7. System calculates the nearest valid slot by Euclidean distance
+      8. Tile animates (0.5s tween) to the slot position, rotating to the correct
+         orientation. Tile placement sound plays
+      9. Tile is reparented to the board container, slots are destroyed
+      10. Board state updates: branch numbers, phase, horizontal/vertical offsets
+      11. Tile is removed from the player's hand array; hand re-centers remaining tiles
+      12. If the player has 0 tiles remaining: game over (player wins)
+      13. Otherwise: turn advances to Left AI
+    </player_places_tile>
+
+    <player_must_pass>
+      1. It is the player's turn but no tiles in hand match either open branch number
+      2. All tiles appear dimmed (alpha 0.4). The Pass button appears and is enabled
+      3. Player taps/clicks the Pass button
+      4. Pass sound plays
+      5. The last active player (who most recently placed a tile) earns 1 point.
+         Their score display updates with a pulse animation
+      6. "Pass" message appears briefly (1 second)
+      7. Turn advances to Left AI
+      8. If the last active player IS the current player (meaning all other players
+         also passed in the intervening turns), the game ends as "Fish"
+    </player_must_pass>
+
+    <ai_takes_turn>
+      1. Turn indicator updates to show "{AI Name}'s Turn"
+      2. AI "thinks" for a random duration between 0.5 and 3.0 seconds. An animated
+         dots indicator (...) appears near the AI's name during this time
+      3. AI selects a tile based on the current difficulty setting:
+         - Random (difficulty 1): picks any valid matching tile at random
+         - Easy (difficulty 0): analyzes the human player's hand, avoids forcing
+           the human to pass, prefers non-double good tiles
+         - Hard (difficulty 2): classifies tiles as good/bad relative to the next
+           player in turn order, plays strategically based on position
+      4. If the AI has a valid move:
+         a. The selected tile flips from back to face (0.4s flip animation)
+         b. Tile animates from the AI hand to the board slot (0.5s tween)
+         c. Tile placement sound plays
+         d. Board state updates, tile removed from AI hand
+         e. If AI has 0 tiles remaining: game over (AI wins)
+      5. If the AI must pass:
+         a. "Pass" message appears, pass sound plays
+         b. Last active player earns 1 point
+         c. Fish detection runs (same logic as player pass)
+      6. Turn advances to the next player in the cycle
+    </ai_takes_turn>
+
+    <game_ends>
+      1. A player places their last tile (win) OR all players pass consecutively
+         back to the last active player (Fish/blocked game)
+      2. All remaining tiles are locked (non-interactive, dimmed)
+      3. Pass button is disabled and hidden
+      4. Game over message appears with dramatic entrance animation (1.0s bounce):
+         - "You win!" if the human player won
+         - "{AI Name} wins!" if an AI won
+         - "Fish - Game Over" if the game is blocked
+      5. Game over sound plays (win sound if human won, lose sound if AI won)
+      6. Message persists on screen permanently
+      7. Player can open the pause menu (menu button still active) to select
+         Restart or Main Menu
+    </game_ends>
+
+    <pause_and_resume>
+      1. Player taps/clicks the menu button (top-right corner) during gameplay
+      2. Game logic pauses (AI timers stop, no turns advance)
+      3. Semi-transparent dark overlay appears over the entire scene
+      4. Centered popup panel slides in or fades in with three buttons:
+         Resume, Restart, Main Menu
+      5. Resume: overlay fades out, game continues from exactly where it was paused
+      6. Restart: game state is fully destroyed. A new GameScene is created with
+         the same difficulty level. Fresh tile distribution begins
+      7. Main Menu: game state is fully destroyed. Scene transitions back to MenuScene
+      8. Tapping outside the popup panel acts as Resume (closes overlay)
+    </pause_and_resume>
+
+    <view_rules>
+      1. Player taps/clicks the "Rules" button on the MenuScene
+      2. A modal overlay appears over the menu (HTML-based for proper text scrolling)
+      3. Modal displays the rules of classic dominoes in formatted text with section
+         headings (Tiles, Gameplay, Passing, Scoring, Winning, AI Difficulty)
+      4. Player scrolls through the rules if they extend beyond the visible area
+      5. Player closes the modal by tapping/clicking the X button or tapping outside
+         the modal
+      6. MenuScene resumes normally
+    </view_rules>
+
+    <install_pwa>
+      1. User visits the game URL in a mobile browser
+      2. After 30 seconds of engagement (or on second visit), a subtle install prompt
+         appears: "Add Quarzen's Domino to your home screen for the best experience"
+      3. User can dismiss the prompt (it will not reappear for 7 days) or accept it
+      4. On acceptance: the browser's native "Add to Home Screen" flow triggers
+      5. After installation, the game opens in standalone mode (no browser chrome)
+         and works fully offline
+    </install_pwa>
+  </key_interactions>
+
+  <implementation_steps>
+    <step number="1">
+      <title>Project Setup, Phaser Configuration, and PWA Foundation</title>
+      <tasks>
+        - Initialize Vite + TypeScript project with Phaser 3.80+ dependency
+        - Install and configure vite-plugin-pwa with Workbox for service worker generation
+        - Create PWA manifest.json (app name, icons, display standalone, landscape orientation)
+        - Configure Vite for static asset serving from public/ directory
+        - Create Dockerfile (node:18-alpine base, npm ci, expose 5173, multi-stage build
+          with nginx for production serving)
+        - Create docker-compose.yml with three services:
+          - dev: mounts source as volume, runs Vite dev server on port 5173
+          - build: runs npm run build, outputs to dist/ volume
+          - preview: serves production build on port 4173 via nginx or serve
+        - Create .dockerignore (exclude node_modules, dist, .git)
+        - Add npm scripts: "docker:dev", "docker:build", "docker:preview" as shortcuts
+        - Create Phaser game configuration:
+          - Resolution: 960x600
+          - Scale mode: Phaser.Scale.FIT
+          - Renderer: AUTO (WebGL with Canvas fallback)
+          - Parent: a full-viewport div element
+        - Create two empty Phaser scenes: MenuScene and GameScene
+        - Set up the ThemeManager class: loads and parses theme.json, provides asset
+          paths to all other systems. All asset references go through ThemeManager
+        - Create the default "classic" theme folder structure:
+          public/assets/themes/classic/theme.json
+          public/assets/themes/classic/tiles-spritesheet.png
+          public/assets/themes/classic/tiles-spritesheet.json
+          public/assets/themes/classic/tile-back.png
+          public/assets/themes/classic/table-bg.png
+          public/assets/themes/classic/menu-bg.png
+          public/assets/themes/classic/game-bg.png
+          public/assets/themes/classic/sounds/ (empty directory, sounds added in step 9)
+        - Create sprite sheet containing all 28 tile faces and accompanying atlas JSON
+        - Create tile back image for the classic theme
+        - Add portrait orientation detection: show "Rotate your device" HTML overlay
+          when viewport is portrait
+        - Verify: Phaser boots, canvas fills viewport, FIT scaling works, service worker
+          registers, theme.json loads successfully
+      </tasks>
+    </step>
+
+    <step number="2">
+      <title>Core Data Models and Game State</title>
+      <tasks>
+        - Implement TileConfig interface: { maxPip: number } -- parameterizes tile set size
+        - Implement tile generation factory: generateTileSet(config: TileConfig) -> Domino[]
+          Must produce the correct tile count for any maxPip value (28 for 6, 55 for 9, 91 for 12)
+        - Implement Domino data class: { id, topIndex, bottomIndex, available }
+          with isDouble getter and toJSON/fromJSON methods
+        - Implement DeckManager class: creates tile set from TileConfig, manages 4 player
+          hand arrays, handles tile distribution and removal
+        - Implement GameState class: tracks currentTurn (index), lastActivePlayer, scores,
+          gameOver flag, difficulty, tileConfig. Includes toJSON/fromJSON for serialization
+        - Implement BoardState class: tracks rightBranchNum, leftBranchNum, phase and
+          position offsets for both branches, placedTiles array. Includes toJSON/fromJSON
+        - Implement PlayerHand class: { tiles, score, playerType, position, name }
+          with methods for adding/removing tiles, checking valid moves
+        - Implement EventBus: simple publish/subscribe system for game events
+          (turnStart, turnEnd, tilePlace, pass, gameOver, scoreChange). Decouples
+          game logic from rendering and future network layer
+        - Write unit tests for: tile generation (correct count, correct pip values),
+          tile matching logic, ID-to-pip-value mapping, serialization round-trip
+      </tasks>
+    </step>
+
+    <step number="3">
+      <title>Board Placement Algorithm (SlotHelper Port)</title>
+      <tasks>
+        - Port the SlotHelper placement algorithm from C# (Domino-5 prototype) to TypeScript
+        - Implement the 5-phase positioning system for both right and left branches:
+          - Phase 0: Horizontal outward expansion
+          - Phase 1: First corner turn (at side limit)
+          - Phase 2: Cross-direction turn
+          - Phase 3: End corner
+          - Phase 4+: Reversed horizontal expansion
+        - Implement ConfirmMoving: updates branch position (hor, ver, phase) after a tile
+          is placed. Handles phase transitions and direction changes
+        - Implement SetSlotPosition: calculates (x, y) pixel coordinates and rotation
+          angle for a new tile at each valid branch end
+        - Implement CheckStanding: determines if a tile should display standing (vertical)
+          or lying (horizontal) based on whether it is a double and the current phase
+        - Implement ConfirmOccupation: updates branch end numbers after a tile is placed
+          (the open end becomes the new branch number)
+        - Implement TellBranchNums: returns current open pip values for both branches
+          (used by AI and drag system to determine valid moves)
+        - Extract side limit and offset constants into a BoardConfig object (not magic
+          numbers) so future tile sets can adjust proportions
+        - Write comprehensive unit tests: first tile placement, multiple sequential
+          placements, phase transitions at side limits, corner placements, tile rotation
+          logic, double vs non-double positioning
+      </tasks>
+    </step>
+
+    <step number="4">
+      <title>Game Board Rendering and Tile Distribution</title>
+      <tasks>
+        - Create DominoSprite class extending Phaser.GameObjects.Container:
+          - Contains: face sprite (from sprite sheet frame), back sprite, lock overlay,
+            glow effect sprite
+          - Methods: showFace(), showBack(), setLocked(), setGlow(), setDraggable()
+        - Implement ThemeManager asset loading in Phaser preload: load sprite sheet,
+          tile back image, background images using paths from theme.json
+        - Render all 28 tiles at deck position (center of game board) showing backs
+        - Implement animated tile distribution:
+          - Tween tiles from deck position to hand positions
+          - 1.0s per tile, 0.2s stagger between tiles
+          - Player tiles flip to face after arriving
+          - AI tiles remain face-down
+        - Render player hand at bottom of screen: standing tiles (0 degree rotation),
+          face up, full scale (1.0x), evenly spaced horizontally
+        - Render AI hands:
+          - Left AI: left side, vertical column, lying (90 degree rotation), face down, 0.5x
+          - Top AI: top center, horizontal row, standing (0 degree), face down, 0.5x
+          - Right AI: right side, vertical column, lying (90 degree rotation), face down, 0.5x
+        - Implement tile lock/unlock visual states:
+          - Locked: dark overlay at 50% opacity on top of tile, non-interactive
+          - Valid/unlocked: pulsing glow effect (0.5s cycle), interactive (draggable)
+        - Display table background from theme (gameBackground)
+        - Display score text near each player's hand position
+      </tasks>
+    </step>
+
+    <step number="5">
+      <title>Drag and Drop System</title>
+      <tasks>
+        - Enable Phaser drag input on player tile containers (setInteractive + scene
+          input.setDraggable)
+        - On pointerdown/dragstart:
+          - Verify tile is valid for current board state (matches a branch number)
+          - Calculate valid placement slots using SetSlotPosition
+          - Create ghost slot sprites at valid positions (semi-transparent, tinted)
+          - Scale dragged tile to 1.1x, set depth to top
+          - Trigger haptic feedback (navigator.vibrate(20)) if supported
+        - On drag: update tile position to follow pointer/touch coordinates
+        - On dragend:
+          - If tile center is above 1/3 screen height threshold AND valid slots exist:
+            find nearest slot by Euclidean distance, tween tile to slot position (0.5s),
+            rotate to correct orientation, play placement sound
+          - If below threshold or no valid slots: tween tile back to hand position (0.5s)
+        - After successful placement:
+          - Call ConfirmOccupation and ConfirmMoving to update board state
+          - Remove tile from player hand array, re-center remaining hand tiles
+          - Destroy ghost slot sprites
+          - Emit tilePlace event through EventBus
+          - Check game over condition (player hand empty)
+        - Implement slot rendering: ghost tile sprites at valid positions using
+          validSlotColor from theme at alpha 0.3-0.5
+        - Both mouse and touch input work identically (Phaser unified pointer)
+      </tasks>
+    </step>
+
+    <step number="6">
+      <title>Turn Management and Pass Mechanics</title>
+      <tasks>
+        - Implement turn cycle manager:
+          - Player order: Player (index 0) -> Left AI (1) -> Top AI (2) -> Right AI (3)
+          - Cyclic: after index 3, returns to index 0
+          - Emits turnStart and turnEnd events through EventBus
+        - Implement random starting player selection (Math.random, equal 1-in-4 probability)
+        - On player turn start:
+          - Check which tiles match open branch numbers (TellBranchNums)
+          - Highlight valid tiles (setGlow), dim invalid tiles (setLocked)
+          - If zero valid tiles: show and enable Pass button, hide drag interaction
+          - Display "Your Turn" message
+        - On AI turn start:
+          - Lock all player tiles, hide Pass button
+          - Display "{AI Name}'s Turn" message
+          - Start AI thinking delay and animated indicator
+        - Implement Pass button behavior:
+          - On click/tap: award 1 point to lastActivePlayer, play pass sound,
+            show "Pass" message for 1 second, advance turn
+        - Implement Fish detection:
+          - After a pass, check if currentTurn has cycled back to lastActivePlayer
+          - If yes: all intervening players passed, game is blocked -> game over "Fish"
+        - Implement win detection:
+          - After each tile placement, check if the placing player's hand is empty
+          - If yes: game over with that player as winner
+        - Display game over message: "You win!" / "{AI Name} wins!" / "Fish - Game Over"
+        - On game over: lock all tiles, disable Pass button, emit gameOver event
+      </tasks>
+    </step>
+
+    <step number="7">
+      <title>AI System</title>
+      <tasks>
+        - Implement AIStrategy interface: { selectTile(gameState, playerIndex): Domino | null }
+          Pure function, no side effects, testable in isolation
+        - Implement GetMatchingTiles: returns all tiles in a hand that match either
+          open branch number. Returns array of { tile, matchingBranch } pairs
+        - Implement RandomStrategy: picks a random tile from GetMatchingTiles result
+        - Port SeparateTiles logic from AICheater.cs:
+          - For each valid tile, simulate placement and check if the resulting open end
+            matches any tile in the target player's hand
+          - Classify as "good" (matches at least one) or "bad" (matches none)
+        - Implement HardStrategy:
+          - Determine if AI is the player immediately before the human in turn order
+          - If before human (nextPlayer=true): prefer "bad" tiles (block the human)
+          - If not before human (nextPlayer=false): prefer "good" tiles
+          - Fallback: random valid tile
+        - Implement EasyStrategy (GoodBot):
+          - Classify tiles relative to the HUMAN player's hand (not next AI)
+          - Prefer non-double "good" tiles
+          - CausePass analysis: check if each valid move would force the human to pass
+          - If all moves force a pass: check if passing voluntarily would also force
+            a pass. If yes, play random. If no, return null (pass voluntarily)
+        - Implement AIController:
+          - Accepts difficulty parameter, selects appropriate strategy
+          - Adds random thinking delay (0.5-3.0 seconds) via Phaser timer
+          - After delay: gets strategy result, executes tile placement or pass
+          - Triggers tile flip animation (back to face) and placement tween
+        - Write unit tests for each strategy with known hand configurations
+      </tasks>
+    </step>
+
+    <step number="8">
+      <title>Menu System, Rules Modal, and Game Flow</title>
+      <tasks>
+        - Build MenuScene:
+          - Load and display menu background from theme
+          - Render title "Quarzen's Domino" (Georgia, 48px, bold, drop shadow)
+          - Create difficulty buttons: Easy, Random, Hard (vertically stacked)
+          - Create "Rules" button below difficulty buttons
+          - Create theme selector (visible only if multiple themes exist)
+          - Create mute toggle icon (top-right corner). Save preference to localStorage
+        - Implement scene transitions:
+          - MenuScene to GameScene: 0.5s fade to black, pass difficulty as scene data
+          - GameScene to MenuScene: 0.5s fade to black
+        - Build rules modal:
+          - HTML/CSS overlay positioned on top of Phaser canvas (for native text scrolling)
+          - Contains formatted text: Tiles, Gameplay, Passing, Scoring, Winning,
+            AI Difficulty sections
+          - Close button (X) in top-right of modal
+          - Click/tap outside modal to close
+          - Styled to match game design system (dark background, white text, brown accents)
+        - Build pause menu overlay (in GameScene):
+          - Dark semi-transparent background (black, 70% opacity)
+          - Centered popup panel with Resume, Restart, Main Menu buttons
+          - Resume: hide overlay, resume game timers
+          - Restart: destroy GameScene, create new GameScene with same difficulty
+          - Main Menu: destroy GameScene, transition to MenuScene
+          - Click outside popup = Resume
+        - Implement game restart flow: full GameScene teardown, fresh GameState creation,
+          new tile distribution
+        - Add button hover/press animations and click sounds to all buttons
+      </tasks>
+    </step>
+
+    <step number="9">
+      <title>Audio System and Theme Hot-Swap</title>
+      <tasks>
+        - Implement AudioManager class:
+          - Loads all sound files defined in theme.json sounds object
+          - Provides playSound(eventName) method used by all game systems
+          - Handles missing audio gracefully: if a sound file fails to load or is not
+            defined in theme.json, the method returns silently (no error, no crash)
+          - Manages mute state (reads/writes localStorage)
+        - Create or source default "classic" theme sounds (realistic wood clicks):
+          - tilePlace: wood clack on tile placement
+          - tilePickup: light wood tap on drag start
+          - tileDeal: softer wood click for dealing animation
+          - pass: subtle notification sound
+          - gameStart: short positive chime
+          - gameOver/gameWin: victory fanfare (short)
+          - gameLose: subtle defeat sound (short)
+          - buttonClick: soft click for menu buttons
+        - Initialize Web Audio API context on first user interaction (tap/click on menu)
+          to comply with browser autoplay policies on iOS and Chrome
+        - Connect AudioManager to game events via EventBus:
+          - tilePlace event -> play tilePlace sound
+          - pass event -> play pass sound
+          - gameOver event -> play gameWin or gameLose based on winner
+          - turnStart for player -> play subtle notification (optional)
+        - Implement theme hot-swap in MenuScene:
+          - When user selects a different theme, clear Phaser texture cache and
+            audio cache for theme-specific assets
+          - Reload new theme's theme.json, sprite sheet, backgrounds, and sounds
+          - Update ThemeManager with new theme data
+          - MenuScene re-renders with new theme's background and colors
+        - Audio system is extensible: adding a new sound event requires only adding
+          a key to theme.json sounds and calling playSound() with that key
+      </tasks>
+    </step>
+
+    <step number="10">
+      <title>PWA Finalization, Mobile Polish, and End-to-End Testing</title>
+      <tasks>
+        - Finalize PWA configuration:
+          - Verify manifest.json has correct icons, colors, orientation, display mode
+          - Verify Workbox service worker precaches all game assets
+          - Test offline play: load game, go offline, verify full gameplay works
+          - Test "Add to Home Screen" flow on iOS Safari and Android Chrome
+          - Verify cached bundle size is under 20MB
+        - Implement install prompt:
+          - Listen for beforeinstallprompt event (Android Chrome)
+          - Show a subtle custom banner after 30 seconds of engagement
+          - Dismissible, respects 7-day cooldown (stored in localStorage)
+        - Mobile polish:
+          - Fine-tune all tween animations (easing curves, timing feels right on touch)
+          - Verify touch drag-and-drop is smooth at 60fps on mid-range mobile devices
+          - Verify "Rotate your device" message appears in portrait orientation
+          - Verify all tap targets are at least 44x44px
+          - Test haptic feedback (navigator.vibrate) on supported devices
+        - Desktop polish:
+          - Verify mouse hover effects work on all buttons
+          - Verify drag-and-drop works with mouse input
+          - Test at various browser window sizes (FIT scaling, letterboxing)
+        - End-to-end gameplay testing:
+          - Full flow: URL -> menu -> select difficulty -> deal -> play -> win/lose -> restart
+          - Full flow: URL -> menu -> select difficulty -> deal -> play -> Fish -> main menu
+          - Test all 3 difficulty levels produce observably different AI behavior
+          - Test pause menu: Resume, Restart, Main Menu all work correctly
+          - Test theme selection (if multiple themes exist)
+          - Test mute toggle persists across sessions
+          - Test rules modal opens, scrolls, and closes correctly
+        - Performance:
+          - Profile with Chrome DevTools: ensure 60fps during animations
+          - Optimize sprite sheet size if needed (compress PNG)
+          - Verify no memory leaks on game restart (Phaser scene cleanup)
+        - Verify theme system:
+          - Duplicate classic/ folder, rename to test-theme/
+          - Modify theme.json colors and swap a background image
+          - Verify the game loads the modified theme correctly
+        - Zero console errors or warnings during all test scenarios
+      </tasks>
+    </step>
+  </implementation_steps>
+
+  <success_criteria>
+    <functionality>
+      - Tile generation factory produces correct tile count for maxPip=6 (28 tiles)
+        with correct topIndex/bottomIndex values for each tile
+      - Tiles are randomly distributed (7 per player) with smooth staggered animation
+      - Player can drag valid tiles from hand to board; tiles snap to correct positions
+        with proper orientation and rotation
+      - Board placement algorithm correctly handles all 5 phases for both branches,
+        including corner transitions and direction reversals
+      - Double tiles display standing (vertical) in horizontal phases; non-doubles
+        display lying (horizontal/rotated)
+      - Turn cycle works correctly: Player -> Left AI -> Top AI -> Right AI -> Player
+      - Pass button appears only when the player has zero valid moves
+      - Pass scoring works: the last player who placed a tile earns 1 point per pass
+      - All 3 AI difficulty levels produce observably different behaviors:
+        Easy helps the player, Random is neutral, Hard strategically blocks the player
+      - Hard AI correctly classifies tiles as good/bad relative to the next player
+      - Easy AI avoids moves that force the human player to pass
+      - Game ends correctly on both win (empty hand) and Fish (all pass) conditions
+      - Menu system works: start game at any difficulty, pause, resume, restart,
+        return to main menu
+      - Rules modal displays complete rules text and closes correctly
+      - Theme system loads all assets (sprite sheet, backgrounds, sounds, colors)
+        from theme.json configuration without any hardcoded paths
+    </functionality>
+
+    <user_experience>
+      - Smooth 60fps animations for all tile movements, dealing, and UI transitions
+      - Drag-and-drop feels responsive with no perceptible input lag on mobile
+      - Touch input works reliably on iOS Safari and Android Chrome
+      - Haptic feedback fires on tile placement on supported mobile devices
+      - AI turns have a natural-feeling random delay (0.5-3.0 seconds)
+      - Clear visual feedback at all times: which tiles are valid, whose turn it is,
+        current scores for all players
+      - Game state is always clear: the player never has to guess what to do next
+      - Menu navigation is intuitive: maximum 2 taps from app launch to active gameplay
+      - Game is installable as a PWA and works fully offline after first load
+      - Game is shareable via URL: anyone with the link can play immediately
+    </user_experience>
+
+    <technical_quality>
+      - TypeScript strict mode with zero type errors
+      - Clean architectural separation: game logic is pure TypeScript (framework-agnostic,
+        unit-testable), rendering is Phaser-specific and isolated
+      - Tile generation is parameterized by maxPip (not hardcoded to 28 tiles or double-six)
+      - All game state classes are serializable to JSON and reconstructable from JSON
+      - Event bus decouples game logic from rendering and future network layers
+      - Player identity is abstracted (human/ai/remote types) for future multiplayer
+      - Theme system fully decouples all asset paths from game code
+      - No hardcoded asset references anywhere in the game logic or rendering code
+      - Service worker correctly precaches all assets for offline use
+      - Build produces an optimized production bundle via Vite (tree-shaking, minification)
+      - Zero console errors or warnings during normal gameplay
+      - Phaser scenes clean up properly on restart/transition (no memory leaks)
+    </technical_quality>
+
+    <design_polish>
+      - Table background creates an authentic, inviting domino-playing atmosphere
+      - Tile sprites (from sprite sheet) are crisp and legible at both full and half scale
+      - AI hand tiles are clearly distinguishable from player tiles (face down, smaller,
+        positioned on sides/top of the table)
+      - Score displays are readable and update with a satisfying pulse animation
+      - Turn transitions feel natural with clear messages and appropriate timing
+      - Game over presentation is dramatic and satisfying (bounce entrance animation,
+        appropriate sound)
+      - Menus have a consistent visual style that matches the game theme
+      - Rules modal is well-formatted, readable, and easy to navigate
+      - A non-developer can create a new theme by copying the classic/ folder, swapping
+        images and sounds, and editing theme.json -- no code changes required
+      - The installed PWA looks and feels like a native mobile game (no browser chrome,
+        proper app icon, landscape orientation)
+    </design_polish>
+  </success_criteria>
+</project_specification>

@@ -1,0 +1,29 @@
+{
+  "name": "Classic",
+  "tileImages": "tiles/{id}.png",
+  "tileBack": "tile-back.png",
+  "tableBackground": "table-bg.png",
+  "menuBackground": "menu-bg.png",
+  "gameBackground": "game-bg.png",
+  "buttonImage": "button.png",
+  "popupImage": "popup.png",
+  "closeBtnImage": "close-btn.png",
+  "avatarImage": "avatar.png",
+  "iconImage": "icon.png",
+  "sounds": {
+    "tilePlace": "sounds/tile-place.mp3",
+    "tilePickup": "sounds/tile-pickup.mp3",
+    "tileDeal": "sounds/tile-deal.mp3",
+    "pass": "sounds/pass.mp3",
+    "gameStart": "sounds/game-start.mp3",
+    "gameOver": "sounds/game-over.mp3",
+    "buttonClick": "sounds/button-click.mp3"
+  },
+  "colors": {
+    "tableColor": "#1B5E20",
+    "highlightColor": "#4FC3F7",
+    "validSlotColor": "#FFD700",
+    "textColor": "#FFFFFF",
+    "scoreColor": "#FFD700"
+  }
+}

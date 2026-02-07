@@ -1,0 +1,231 @@
+<project_specification>
+  <project_name>{PROJECT_NAME}</project_name>
+
+  <overview>
+    <!-- 2-4 sentences: What is this application? What problem does it solve?
+         What is the target user experience? -->
+  </overview>
+
+  <technology_stack>
+    <api_key>
+        <!-- Where the API key is stored or how it's provided at runtime.
+             Example: "API key located at /tmp/api-key" or "Provided via ANTHROPIC_API_KEY env var" -->
+    </api_key>
+    <frontend>
+      <framework><!-- e.g., React with Vite, Next.js, Vue, Svelte --></framework>
+      <styling><!-- e.g., Tailwind CSS (via CDN), CSS Modules, styled-components --></styling>
+      <state_management><!-- e.g., React hooks and context, Redux, Zustand --></state_management>
+      <routing><!-- e.g., React Router, file-based routing --></routing>
+      <port><!-- e.g., Only launch on port {frontend_port} --></port>
+      <!-- Add any additional frontend-specific libraries below -->
+    </frontend>
+    <backend>
+      <runtime><!-- e.g., Node.js with Express, Python with FastAPI, Go --></runtime>
+      <database><!-- e.g., SQLite with better-sqlite3, PostgreSQL, MongoDB --></database>
+      <api_integration><!-- e.g., Claude API, OpenAI API, third-party services --></api_integration>
+      <streaming><!-- e.g., Server-Sent Events, WebSockets, polling --></streaming>
+    </backend>
+    <communication>
+      <api><!-- e.g., RESTful endpoints, GraphQL --></api>
+      <streaming><!-- e.g., SSE for real-time streaming, WebSocket --></streaming>
+    </communication>
+  </technology_stack>
+
+  <prerequisites>
+    <environment_setup>
+      <!-- Bullet list: What must exist before the agent starts coding?
+           - Pre-installed dependencies
+           - Environment variables
+           - Directory structure conventions
+           - External services needed -->
+    </environment_setup>
+  </prerequisites>
+
+  <core_features>
+    <!-- Define each major feature area as its own XML block.
+         Inside each block, use a bullet list of specific capabilities.
+         Order features by importance: foundational features first.
+         Be exhaustive -- every feature the agent should build goes here.
+
+         Example structure for one feature area:
+
+         <feature_area_name>
+           - Capability 1
+           - Capability 2
+           - Capability 3 with specific detail
+         </feature_area_name>
+
+         Typical feature areas to consider:
+         - Primary UI / main interaction surface
+         - Data management (CRUD)
+         - User settings / preferences
+         - Search / filtering
+         - Import / export
+         - Notifications / feedback
+         - Accessibility
+         - Responsive design
+         - Authentication (if applicable)
+         - Collaboration features (if applicable)
+         - Analytics / tracking (if applicable)
+    -->
+  </core_features>
+
+  <database_schema>
+    <tables>
+      <!-- Define each table as its own XML block.
+           List columns as bullets with types and constraints.
+
+           Example:
+           <table_name>
+             - id (primary key, auto-increment)
+             - user_id (foreign key -> users.id)
+             - title (text, not null)
+             - created_at (datetime, default now)
+             - metadata (JSON, nullable)
+           </table_name>
+      -->
+    </tables>
+  </database_schema>
+
+  <api_endpoints_summary>
+    <!-- Group endpoints by resource/domain.
+         Each group is an XML block with bullet-listed routes.
+
+         Example:
+         <resource_name>
+           - GET /api/resource - List all
+           - POST /api/resource - Create new
+           - GET /api/resource/:id - Get by ID
+           - PUT /api/resource/:id - Update
+           - DELETE /api/resource/:id - Delete
+         </resource_name>
+    -->
+  </api_endpoints_summary>
+
+  <ui_layout>
+    <!-- Describe the visual structure of the application.
+         Break into logical regions (header, sidebar, main area, panels, modals).
+         Each region gets its own XML block with bullet-listed contents.
+
+         Example:
+         <main_structure>
+           - Overall layout pattern (e.g., three-column, single page, dashboard grid)
+           - Responsive breakpoints
+           - Persistent vs collapsible regions
+         </main_structure>
+
+         <region_name>
+           - Element 1 and its behavior
+           - Element 2 and its behavior
+         </region_name>
+
+         <modals_overlays>
+           - Modal 1 purpose and content
+           - Modal 2 purpose and content
+         </modals_overlays>
+    -->
+  </ui_layout>
+
+  <design_system>
+    <color_palette>
+      <!-- Define colors with hex values for both light and dark modes.
+           - Primary accent color
+           - Background colors
+           - Surface/card colors
+           - Text colors
+           - Border colors
+           - Semantic colors (error, success, warning, info) -->
+    </color_palette>
+
+    <typography>
+      <!-- Font families, weights, sizes, and line heights.
+           - Heading styles
+           - Body text
+           - Code/monospace
+           - Small/caption text -->
+    </typography>
+
+    <components>
+      <!-- Define the visual style for reusable UI components.
+           Each component gets its own XML block.
+
+           Example:
+           <buttons>
+             - Primary: background, text color, border radius
+             - Secondary: border style, hover behavior
+             - Disabled state
+           </buttons>
+      -->
+    </components>
+
+    <animations>
+      <!-- Transition durations, easing functions, and specific animations.
+           - Page transitions
+           - Element enter/exit
+           - Loading states
+           - Micro-interactions -->
+    </animations>
+  </design_system>
+
+  <key_interactions>
+    <!-- Describe the most important user workflows step-by-step.
+         Each workflow gets its own XML block with numbered steps.
+
+         Example:
+         <workflow_name>
+           1. User does X
+           2. System responds with Y
+           3. User sees Z
+           4. Optional: User can then do W
+         </workflow_name>
+
+         Cover at minimum:
+         - The primary happy-path workflow
+         - The most common secondary workflow
+         - Error/edge case handling for critical paths
+    -->
+  </key_interactions>
+
+  <implementation_steps>
+    <!-- Break the build into 5-10 ordered steps.
+         Each step should be a coherent unit of work that results in
+         something testable. Order by dependency: foundational first.
+
+         <step number="N">
+           <title>Step Title</title>
+           <tasks>
+             - Task 1
+             - Task 2
+             - Task 3
+           </tasks>
+         </step>
+    -->
+  </implementation_steps>
+
+  <success_criteria>
+    <!-- Define what "done" looks like across multiple dimensions.
+         Each dimension gets its own XML block with bullet criteria.
+
+         Recommended dimensions:
+         <functionality>
+           - Criterion 1
+           - Criterion 2
+         </functionality>
+
+         <user_experience>
+           - Criterion 1
+           - Criterion 2
+         </user_experience>
+
+         <technical_quality>
+           - Criterion 1
+           - Criterion 2
+         </technical_quality>
+
+         <design_polish>
+           - Criterion 1
+           - Criterion 2
+         </design_polish>
+    -->
+  </success_criteria>
+</project_specification>
