@@ -70,16 +70,21 @@ set up and run the development environment. The script should:
 
 Base the script on the technology stack specified in `app_spec.txt`.
 
-### THIRD TASK: Initialize Git
+### THIRD TASK: Create bug_list.json
+
+Create an empty `bug_list.json` at the project root containing `[]`. This file will be used by future coding agents to track bugs and regressions discovered during verification testing.
+
+### FOURTH TASK: Initialize Git
 
 Create a git repository and make your first commit with:
 - feature_list.json (complete with all 200+ features)
+- bug_list.json (empty bug tracker -- `[]`)
 - init.sh (environment setup script)
 - README.md (project overview and setup instructions)
 
-Commit message: "Initial setup: feature_list.json, init.sh, and project structure"
+Commit message: "Initial setup: feature_list.json, bug_list.json, init.sh, and project structure"
 
-### FOURTH TASK: Create Project Structure
+### FIFTH TASK: Create Project Structure
 
 Set up the basic project structure based on what's specified in `app_spec.txt`.
 This typically includes directories for frontend, backend, and any other
@@ -98,7 +103,7 @@ the highest-priority features from feature_list.json. Remember:
 All agents must follow these conventions:
 
 - **Screenshots**: Save to `docs/screenshots/`. Name format: `{feature-slug}-{step}.png` (e.g., `menu-title-visible.png`). These are gitignored -- ephemeral verification artifacts, not committed.
-- **Progress notes**: Save to `docs/progress/`. The file `docs/progress/claude-progress.txt` is the primary session log. These are committed.
+- **Progress notes**: Save to `docs/progress/`. The file `docs/progress/progress.txt` is the primary session log. These are committed.
 - **Feature documentation**: If needed, create under `docs/` with a descriptive name.
 - **feature_list.json `screenshots` field**: Store relative paths from project root, e.g., `"docs/screenshots/menu-title-visible.png"`.
 - **Never** place screenshots or progress files at the project root.
@@ -107,7 +112,7 @@ All agents must follow these conventions:
 
 Before your context fills up:
 1. Commit all work with descriptive messages
-2. Create/update `docs/progress/claude-progress.txt` with a summary of what you accomplished
+2. Create/update `docs/progress/progress.txt` with a summary of what you accomplished
 3. Ensure feature_list.json is complete and saved
 4. Leave the environment in a clean, working state
 
