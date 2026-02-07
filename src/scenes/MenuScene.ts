@@ -16,11 +16,7 @@ export class MenuScene extends Phaser.Scene {
       this.load.image('menu-bg', themeManager.getBackgroundPath('menu'));
       this.load.image('button-img', themeManager.getAssetPath('button.png'));
 
-      // Load sounds (graceful handling)
-      const clickSound = themeManager.getSoundPath('buttonClick');
-      if (clickSound) {
-        this.load.audio('sound_buttonClick', clickSound);
-      }
+      // Sounds loaded when files exist in theme sounds/ directory
     } catch (err) {
       console.error('Failed to load theme:', err);
     }

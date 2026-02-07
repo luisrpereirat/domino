@@ -21,7 +21,7 @@ cat app_spec.txt
 cat feature_list.json | head -50
 
 # 5. Read progress notes from previous sessions
-cat claude-progress.txt
+cat docs/progress/claude-progress.txt
 
 # 6. Check recent git history
 git log --oneline -20
@@ -53,7 +53,7 @@ new, you MUST run verification tests.
 Run 1-2 of the feature tests marked as `"passes": true` that are most core to
 the app's functionality to verify they still work. If the test includes a UI
 verification, add the tag "screenshots" with an array pointing to the image
-path(s) supporting the result.
+path(s) under `docs/screenshots/` supporting the result.
 
 For example, if this were a chat app, you should perform a test that logs into
 the app, sends a message, and gets a response.
@@ -98,7 +98,8 @@ Implement the chosen feature thoroughly:
 Use browser automation tools:
 - Navigate to the app in a real browser
 - Interact like a human user (click, type, scroll)
-- Take screenshots at each step
+- Take screenshots at each step, saving to `docs/screenshots/`
+- Name screenshots: `{feature-slug}-{step}.png` (e.g., `drag-drop-tile-placed.png`)
 - Verify both functionality AND visual appearance
 
 **DO:**
@@ -145,13 +146,13 @@ git commit -m "Implement [feature name] - verified end-to-end
 - Added [specific changes]
 - Tested with browser automation
 - Updated feature_list.json: marked test #X as passing
-- Screenshots in verification/ directory
+- Screenshots in docs/screenshots/
 "
 ```
 
 ### STEP 9: UPDATE PROGRESS NOTES
 
-Update `claude-progress.txt` with:
+Update `docs/progress/claude-progress.txt` with:
 - What you accomplished this session
 - Which test(s) you completed
 - Any issues discovered or fixed
@@ -162,10 +163,22 @@ Update `claude-progress.txt` with:
 
 Before context fills up:
 1. Commit all working code
-2. Update claude-progress.txt
+2. Update docs/progress/claude-progress.txt
 3. Update feature_list.json if tests verified
 4. Ensure no uncommitted changes
 5. Leave app in working state (no broken features)
+
+---
+
+## FILE PLACEMENT RULES
+
+All agents must follow these conventions:
+
+- **Screenshots**: Save to `docs/screenshots/`. Name format: `{feature-slug}-{step}.png` (e.g., `menu-title-visible.png`). These are gitignored -- ephemeral verification artifacts, not committed.
+- **Progress notes**: Save to `docs/progress/`. The file `docs/progress/claude-progress.txt` is the primary session log. These are committed.
+- **Feature documentation**: If needed, create under `docs/` with a descriptive name.
+- **feature_list.json `screenshots` field**: Store relative paths from project root, e.g., `"docs/screenshots/menu-title-visible.png"`.
+- **Never** place screenshots or progress files at the project root.
 
 ---
 

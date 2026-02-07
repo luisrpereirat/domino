@@ -66,24 +66,15 @@ export class GameScene extends Phaser.Scene {
       }
     }
 
-    // Load tile back
-    if (!this.textures.exists('tile-back')) {
-      this.load.image('tile-back', themeManager.getTileBackPath());
-    }
+    // Tile back loaded in create() - procedural fallback if file missing
 
     // Load backgrounds
     if (!this.textures.exists('game-bg')) {
       this.load.image('game-bg', themeManager.getBackgroundPath('game'));
     }
 
-    // Load sounds
-    const soundKeys = ['tilePlace', 'tilePickup', 'tileDeal', 'pass', 'gameStart', 'gameOver', 'gameWin', 'gameLose'];
-    for (const key of soundKeys) {
-      const path = themeManager.getSoundPath(key);
-      if (path && !this.cache.audio.exists(`sound_${key}`)) {
-        this.load.audio(`sound_${key}`, path);
-      }
-    }
+    // Sound loading is deferred - sounds directory may be empty.
+    // AudioManager handles missing sounds gracefully.
   }
 
   create(): void {
@@ -96,6 +87,25 @@ export class GameScene extends Phaser.Scene {
 
     // Initialize audio
     audioManager.init(this);
+
+    // Generate tile-back texture if missing
+    if (!this.textures.exists('tile-back')) {
+      const gfx = this.make.graphics({ x: 0, y: 0 });
+      gfx.fillStyle(0x8B4513, 1);
+      gfx.fillRoundedRect(0, 0, TILE_WIDTH, TILE_HEIGHT, 4);
+      gfx.lineStyle(2, 0x654321, 1);
+      gfx.strokeRoundedRect(1, 1, TILE_WIDTH - 2, TILE_HEIGHT - 2, 4);
+      // Diamond pattern
+      gfx.lineStyle(1, 0x6B3410, 0.5);
+      for (let i = 0; i < 5; i++) {
+        const cx = TILE_WIDTH / 2;
+        const cy = TILE_HEIGHT / 2;
+        const s = 8 + i * 8;
+        gfx.strokeRect(cx - s / 2, cy - s / 2, s, s);
+      }
+      gfx.generateTexture('tile-back', TILE_WIDTH, TILE_HEIGHT);
+      gfx.destroy();
+    }
 
     // Background
     if (this.textures.exists('game-bg')) {
@@ -681,15 +691,16 @@ export class GameScene extends Phaser.Scene {
     const { height } = this.scale;
     const threshold = height * (2 / 3); // 1/3 from top = 2/3 from bottom
 
-    this.clearGhostSlots();
-
-    if (tileSprite.container.y < threshold && this.ghostSlots.length >= 0) {
-      // Try to place tile
+    if (tileSprite.container.y < threshold && this.ghostSlots.length > 0) {
+      // Try to place tile (find nearest before clearing)
       const slot = this.findNearestSlot(tileSprite);
+      this.clearGhostSlots();
       if (slot) {
         this.placeTile(tileSprite, slot);
         return;
       }
+    } else {
+      this.clearGhostSlots();
     }
 
     // Return to hand

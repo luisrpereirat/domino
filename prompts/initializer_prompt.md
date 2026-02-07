@@ -93,11 +93,21 @@ the highest-priority features from feature_list.json. Remember:
 - Test thoroughly before marking "passes": true
 - Commit your progress before session ends
 
+### FILE PLACEMENT RULES
+
+All agents must follow these conventions:
+
+- **Screenshots**: Save to `docs/screenshots/`. Name format: `{feature-slug}-{step}.png` (e.g., `menu-title-visible.png`). These are gitignored -- ephemeral verification artifacts, not committed.
+- **Progress notes**: Save to `docs/progress/`. The file `docs/progress/claude-progress.txt` is the primary session log. These are committed.
+- **Feature documentation**: If needed, create under `docs/` with a descriptive name.
+- **feature_list.json `screenshots` field**: Store relative paths from project root, e.g., `"docs/screenshots/menu-title-visible.png"`.
+- **Never** place screenshots or progress files at the project root.
+
 ### ENDING THIS SESSION
 
 Before your context fills up:
 1. Commit all work with descriptive messages
-2. Create `claude-progress.txt` with a summary of what you accomplished
+2. Create/update `docs/progress/claude-progress.txt` with a summary of what you accomplished
 3. Ensure feature_list.json is complete and saved
 4. Leave the environment in a clean, working state
 

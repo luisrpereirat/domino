@@ -28,7 +28,7 @@ npm run build        # production build
 npm run preview      # preview production build
 ```
 
-## Project Structure (Target)
+## Project Structure
 
 ```
 public/assets/themes/classic/   # pre-built theme assets (tiles, backgrounds, sounds)
@@ -36,12 +36,28 @@ public/assets/themes/classic/   # pre-built theme assets (tiles, backgrounds, so
   tiles/0-27.png                # 28 domino tile face images
   tile-back.png, table-bg.png, menu-bg.png, game-bg.png, button.png, popup.png, etc.
   sounds/                       # audio files (empty -- to be created)
-src/                            # game source code (to be created)
+src/                            # game source code
+  main.ts                       # Phaser game bootstrap
+  scenes/                       # MenuScene, GameScene
+  models/                       # Domino, BoardState, GameState, PlayerHand, TileConfig
+  managers/                     # DeckManager, ThemeManager, AudioManager, ScoreManager, SlotHelper
+  ai/                           # AIStrategy (Easy, Random, Hard)
+  utils/                        # EventBus
+docs/                           # all documentation and session artifacts
+  progress/                     # session continuity notes (committed)
+    claude-progress.txt         # cumulative progress across sessions
+  screenshots/                  # test verification screenshots (gitignored)
 app_spec.txt                    # complete specification (read-only contract)
 feature_list.json               # 200+ test cases with pass/fail tracking
-claude-progress.txt             # session continuity notes
 init.sh                         # environment setup script
 ```
+
+### File Placement Rules
+
+- **Screenshots**: Always save to `docs/screenshots/`. Name format: `{feature-slug}-{step}.png` (e.g., `drag-drop-tile-placed.png`). These are gitignored -- ephemeral verification artifacts.
+- **Progress notes**: Save to `docs/progress/`. The file `claude-progress.txt` is the primary session log. These are committed.
+- **Feature documentation**: If needed, create under `docs/` with a descriptive name.
+- **feature_list.json `screenshots` field**: Store relative paths from project root, e.g., `"docs/screenshots/menu-title-visible.png"`.
 
 ## Autonomous Session Workflow
 
@@ -53,7 +69,7 @@ This project uses a multi-session autonomous build process defined in `prompts/`
 ## Critical Rules
 
 - **feature_list.json is append-only.** Only modify `passes` and `screenshots` fields. Never remove, reorder, or edit test descriptions or steps.
-- **Verify via browser automation.** All features must be tested through actual UI interaction (click, type, drag) with screenshots. Not curl, not JS evaluation.
+- **Verify via browser automation.** All features must be tested through actual UI interaction (click, type, drag) with screenshots saved to `docs/screenshots/`. Not curl, not JS evaluation.
 - **One feature per session.** Implement completely, verify, commit. Depth over breadth.
 - **Regression before new work.** Re-test 1-2 passing features each session before starting new implementation.
 - **Clean exits.** Every session ends committed, progress updated, app working.

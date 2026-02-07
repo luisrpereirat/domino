@@ -1,0 +1,98 @@
+Session 1 - Initializer Agent
+==============================
+Date: 2026-02-07
+
+COMPLETED:
+1. Read and analyzed app_spec.txt (complete game specification)
+2. Created feature_list.json with 241 test cases (181 functional, 60 style)
+   - 31 tests have 10+ steps
+   - All tests start with passes: false
+   - Ordered by priority (foundational features first)
+3. Created init.sh for environment setup
+4. Set up project structure:
+   - Vite 6 + TypeScript 5 (strict mode) + Phaser 3.80+
+   - package.json with dependencies
+   - tsconfig.json with strict mode
+   - vite.config.ts
+   - index.html with orientation detection, rules modal HTML
+5. Created core data models:
+   - Domino (id, topIndex, bottomIndex, available, isDouble, toJSON/fromJSON)
+   - TileConfig (maxPip parameter, getTileCount)
+   - PlayerHand (tiles, score, playerType, position, name)
+   - BoardState (branch nums, phases, offsets, placedTiles, config)
+   - GameState (central state container, serializable)
+6. Created managers:
+   - DeckManager (tile generation, shuffling, distribution)
+   - ThemeManager (JSON theme loading, asset path resolution)
+   - AudioManager (sound playback, mute toggle, localStorage persistence)
+   - ScoreManager (pass point scoring, EventBus integration)
+   - SlotHelper (5-phase board placement algorithm, position calculation)
+7. Created AI system:
+   - AIStrategy interface
+   - RandomStrategy (picks random valid tile)
+   - HardStrategy (classifies tiles as good/bad relative to next player)
+   - EasyStrategy (helps human, CausePass analysis, prefers non-double good tiles)
+8. Created scenes:
+   - MenuScene (title, difficulty buttons, rules button, mute toggle, scene transitions)
+   - GameScene (full gameplay: dealing, drag-and-drop, AI turns, pass, game over, pause menu)
+9. All TypeScript compiles with zero errors in strict mode
+10. Vite dev server starts and serves the game correctly
+
+ARCHITECTURE NOTES:
+- Tile generation is parameterized by maxPip (not hardcoded to 28)
+- All game state classes have toJSON/fromJSON serialization
+- EventBus decouples game logic from rendering
+- Player identity abstracted (human/ai/remote types)
+- Theme system fully decouples asset paths from code
+- AI strategies separated from controller for testability
+
+Session 2 - Bug Fixes and Project Organization
+================================================
+Date: 2026-02-07
+
+COMPLETED:
+1. Fixed tile-back.png 404 error:
+   - Added procedural texture generation in GameScene.create() (brown rounded rect
+     with diamond pattern) as fallback when tile-back.png is missing from theme
+   - Removed broken preload attempt
+2. Fixed audio 404 errors:
+   - Removed sound loading from preload in both MenuScene and GameScene
+   - AudioManager already handles missing sounds gracefully
+3. Fixed critical drag-and-drop bug (GameScene.ts:690-716):
+   - Bug: clearGhostSlots() destroyed ghost slot graphics BEFORE findNearestSlot()
+     could read their stored slotPosition data
+   - Fix: moved clearGhostSlots() after findNearestSlot()
+   - Also fixed always-true condition (ghostSlots.length >= 0 -> > 0)
+   - Verified with 2 successful drag-and-drop placements via Playwright
+4. Organized project file structure:
+   - Created docs/progress/ for session progress notes (committed)
+   - Created docs/screenshots/ for test verification screenshots (gitignored)
+   - Moved claude-progress.txt to docs/progress/
+   - Updated .gitignore, CLAUDE.md, prompts/initializer_prompt.md,
+     prompts/coding_prompt.md with file placement rules
+5. Added window.__PHASER_GAME__ debug reference in main.ts
+
+BUGS FOUND AND FIXED:
+- tile-back.png missing from theme -> procedural fallback
+- Sound files missing from sounds/ -> removed preload, AudioManager handles gracefully
+- Drag-and-drop broken -> ghost slots destroyed before being read
+
+VERIFIED WORKING:
+- MenuScene renders: title, Easy/Random/Hard buttons, Rules button, Sound toggle
+- GameScene renders: all 4 hands, tile backs, board, turn indicator, scores
+- Tile dealing animation with stagger
+- AI turns execute (flip animation + placement)
+- Human drag-and-drop tile placement (2 successful placements confirmed)
+- Turn cycling (human -> AI -> AI -> AI -> human)
+- Pass point scoring
+- Valid/invalid tile highlighting (glow for valid, dimmed for invalid)
+- Double tiles placed standing (vertical orientation)
+
+NEXT STEPS (Session 3):
+- Begin working through feature_list.json test cases systematically
+- Test pause menu (Resume, Restart, Main Menu)
+- Test Rules modal overlay
+- Test game over conditions (win and Fish)
+- Create actual tile-back.png asset for the classic theme
+- Create/source sound files for the sounds/ directory
+- Address board layout issues (tiles extending off-screen on left side)
