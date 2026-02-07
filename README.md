@@ -1,56 +1,82 @@
 # Quarzen's Domino
 
-A mobile-first Progressive Web Application (PWA) domino game where a human player competes against 3 AI opponents around a virtual table. Built with Phaser 3, TypeScript, and Vite.
+Una aplicacion web progresiva (PWA) de domino donde un jugador humano compite contra 3 oponentes controlados por IA alrededor de una mesa virtual. Desarrollado con Phaser 3, TypeScript y Vite.
 
-## Features
+## Caracteristicas
 
-- Standard double-six domino set (28 tiles) with drag-and-drop placement
-- Three AI difficulty levels: Easy (helps you), Random (neutral), Hard (blocks you)
-- JSON-based theme system for swappable tile designs, sounds, and color schemes
-- PWA support for offline play and home screen installation
-- Smooth animations with 60fps target
-- Mobile-first with full desktop support
+- Juego de domino estandar doble-seis (28 fichas) con colocacion mediante arrastrar y soltar
+- Tres niveles de dificultad de IA: Facil (te ayuda), Aleatorio (neutral), Dificil (te bloquea)
+- Sistema de temas basado en JSON para intercambiar disenos de fichas, sonidos y esquemas de colores
+- Soporte PWA para juego sin conexion e instalacion en pantalla de inicio
+- Animaciones fluidas con objetivo de 60fps
+- Disenado para movil con soporte completo de escritorio
 
-## Quick Start
+## Inicio Rapido
 
 ```bash
-# Option 1: Use init.sh
+# Opcion 1: Usar init.sh
 chmod +x init.sh
 ./init.sh
 
-# Option 2: Manual
+# Opcion 2: Manual
 npm install
 npm run dev
 ```
 
-Then open http://localhost:5173 in your browser.
+Luego abre http://localhost:5173 en tu navegador.
 
-## Commands
+## Comandos
 
 ```bash
-npm install          # Install dependencies
-npm run dev          # Start Vite dev server (port 5173)
-npm run build        # Production build
-npm run preview      # Preview production build
+npm install          # Instalar dependencias
+npm run dev          # Iniciar servidor de desarrollo Vite (puerto 5173)
+npm run build        # Compilacion para produccion
+npm run preview      # Vista previa de la compilacion de produccion
 ```
 
-## Project Structure
+## Despliegue
+
+El juego se despliega mediante Docker + Cloudflare Tunnel en **domino.5ps.tech**.
+
+**Credenciales de demo:**
+
+| Campo    | Valor      |
+|----------|------------|
+| Usuario  | `demo`     |
+| Contrasena | `test1234` |
+
+### Comandos de despliegue
+
+```bash
+# Iniciar el despliegue (compila y sirve en el puerto 7847)
+cd deploy && docker compose up -d
+
+# Establecer credenciales personalizadas
+./deploy/setup.sh miusuario micontrasena
+
+# Detener el despliegue
+cd deploy && docker compose down
+```
+
+Apunta tu tunel de Cloudflare `domino.5ps.tech` a `http://localhost:7847`.
+
+## Estructura del Proyecto
 
 ```
 src/
-  main.ts                 # Phaser game config and boot
-  models/                 # Data models (Domino, GameState, BoardState, PlayerHand)
-  managers/               # Game managers (DeckManager, ThemeManager, AudioManager, SlotHelper, ScoreManager)
-  scenes/                 # Phaser scenes (MenuScene, GameScene)
-  ai/                     # AI strategies (Easy, Random, Hard)
-  utils/                  # Utilities (EventBus)
+  main.ts                 # Configuracion y arranque de Phaser
+  models/                 # Modelos de datos (Domino, GameState, BoardState, PlayerHand)
+  managers/               # Gestores del juego (DeckManager, ThemeManager, AudioManager, SlotHelper, ScoreManager)
+  scenes/                 # Escenas de Phaser (MenuScene, GameScene)
+  ai/                     # Estrategias de IA (Facil, Aleatorio, Dificil)
+  utils/                  # Utilidades (EventBus)
 public/
-  assets/themes/classic/  # Default theme (tiles, backgrounds, sounds, theme.json)
+  assets/themes/classic/  # Tema por defecto (fichas, fondos, sonidos, theme.json)
 ```
 
-## Technology Stack
+## Stack Tecnologico
 
-- **Engine:** Phaser 3.80+
-- **Language:** TypeScript 5.x (strict mode)
-- **Bundler:** Vite 6.x
-- **State:** Phaser scene data + central GameState class
+- **Motor:** Phaser 3.80+
+- **Lenguaje:** TypeScript 5.x (modo estricto)
+- **Empaquetador:** Vite 6.x
+- **Estado:** Datos de escena Phaser + clase central GameState
