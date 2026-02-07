@@ -14,6 +14,7 @@ interface TileSprite {
   backSprite: Phaser.GameObjects.Image;
   lockOverlay: Phaser.GameObjects.Rectangle;
   glowGraphics: Phaser.GameObjects.Graphics;
+  shadowGraphics: Phaser.GameObjects.Rectangle;
   domino: Domino;
   handX: number;
   handY: number;
@@ -48,6 +49,8 @@ export class GameScene extends Phaser.Scene {
 
   private glowTweens: Phaser.Tweens.Tween[] = [];
   private aiTimerEvent: Phaser.Time.TimerEvent | null = null;
+  private thinkingDotsTimer: Phaser.Time.TimerEvent | null = null;
+  private thinkingDotCount = 0;
 
   constructor() {
     super({ key: 'GameScene' });
@@ -73,8 +76,14 @@ export class GameScene extends Phaser.Scene {
       this.load.image('game-bg', themeManager.getBackgroundPath('game'));
     }
 
-    // Sound loading is deferred - sounds directory may be empty.
-    // AudioManager handles missing sounds gracefully.
+    // Load sounds from theme
+    const soundKeys = ['tilePlace', 'tilePickup', 'tileDeal', 'pass', 'gameStart', 'gameOver', 'buttonClick', 'gameWin', 'gameLose'];
+    for (const key of soundKeys) {
+      const path = themeManager.getSoundPath(key);
+      if (path && !this.cache.audio.exists(`sound_${key}`)) {
+        this.load.audio(`sound_${key}`, path);
+      }
+    }
   }
 
   create(): void {
@@ -231,8 +240,19 @@ export class GameScene extends Phaser.Scene {
     this.passButton.setVisible(false);
 
     passRect.on('pointerdown', () => {
+      // Only respond if button is active (full opacity)
+      if (this.passButton.alpha < 0.9) return;
       this.handlePass();
     });
+  }
+
+  private setPassButtonEnabled(enabled: boolean): void {
+    this.passButton.setVisible(true);
+    if (enabled) {
+      this.passButton.setAlpha(1);
+    } else {
+      this.passButton.setAlpha(0.5);
+    }
   }
 
   private createMenuButton(): void {
@@ -358,6 +378,10 @@ export class GameScene extends Phaser.Scene {
     if (this.aiTimerEvent) {
       this.aiTimerEvent.destroy();
       this.aiTimerEvent = null;
+    }
+    if (this.thinkingDotsTimer) {
+      this.thinkingDotsTimer.destroy();
+      this.thinkingDotsTimer = null;
     }
     this.eventBus.removeAll();
     this.tileSprites.clear();
@@ -496,7 +520,12 @@ export class GameScene extends Phaser.Scene {
 
     const glowGraphics = this.add.graphics();
 
+    // Drop shadow (hidden by default, shown during drag)
+    const shadowGraphics = this.add.rectangle(3, 5, TILE_WIDTH, TILE_HEIGHT, 0x000000, 0.3)
+      .setVisible(false);
+
     const container = this.add.container(x, y, [
+      shadowGraphics,
       glowGraphics,
       faceSprite,
       backSprite,
@@ -511,6 +540,7 @@ export class GameScene extends Phaser.Scene {
       backSprite,
       lockOverlay,
       glowGraphics,
+      shadowGraphics,
       domino,
       handX: x,
       handY: y,
@@ -541,6 +571,7 @@ export class GameScene extends Phaser.Scene {
     } else {
       this.turnText.setText(`${player.name}'s Turn`);
       this.lockAllPlayerTiles();
+      this.passButton.setVisible(false);
       this.startAITurn();
     }
   }
@@ -551,7 +582,7 @@ export class GameScene extends Phaser.Scene {
     if (!board.started) {
       // First move: all tiles are valid
       this.enableAllPlayerTiles();
-      this.passButton.setVisible(false);
+      this.setPassButtonEnabled(false);
       return;
     }
 
@@ -563,11 +594,11 @@ export class GameScene extends Phaser.Scene {
     if (validTiles.length === 0) {
       // Must pass
       this.lockAllPlayerTiles();
-      this.passButton.setVisible(true);
+      this.setPassButtonEnabled(true);
       return;
     }
 
-    this.passButton.setVisible(false);
+    this.setPassButtonEnabled(false);
 
     // Highlight valid tiles, dim invalid ones
     for (const tile of this.gameState.humanPlayer.tiles) {
@@ -673,6 +704,7 @@ export class GameScene extends Phaser.Scene {
   private onDragStart(tileSprite: TileSprite): void {
     tileSprite.container.setDepth(500);
     tileSprite.container.setScale(1.1);
+    tileSprite.shadowGraphics.setVisible(true);
 
     audioManager.playSound('tilePickup');
 
@@ -688,6 +720,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private onDragEnd(tileSprite: TileSprite): void {
+    tileSprite.shadowGraphics.setVisible(false);
     const { height } = this.scale;
     const threshold = height * (2 / 3); // 1/3 from top = 2/3 from bottom
 
@@ -933,9 +966,24 @@ export class GameScene extends Phaser.Scene {
     const player = this.gameState.players[playerIndex]!;
     const board = this.gameState.board;
 
-    // Show thinking indicator
-    this.thinkingText.setText(`${player.name} is thinking...`);
+    // Show thinking indicator with animated dots
+    const baseName = player.name;
+    this.thinkingDotCount = 0;
+    this.thinkingText.setText(`${baseName} is thinking`);
     this.thinkingText.setAlpha(1);
+
+    if (this.thinkingDotsTimer) {
+      this.thinkingDotsTimer.destroy();
+    }
+    this.thinkingDotsTimer = this.time.addEvent({
+      delay: 400,
+      loop: true,
+      callback: () => {
+        this.thinkingDotCount = (this.thinkingDotCount + 1) % 4;
+        const dots = '.'.repeat(this.thinkingDotCount);
+        this.thinkingText.setText(`${baseName} is thinking${dots}`);
+      },
+    });
 
     const thinkTime = 500 + Math.random() * 2500; // 0.5-3.0 seconds
 
@@ -943,6 +991,10 @@ export class GameScene extends Phaser.Scene {
       if (this.paused || this.gameState.gameOver) return;
 
       this.thinkingText.setAlpha(0);
+      if (this.thinkingDotsTimer) {
+        this.thinkingDotsTimer.destroy();
+        this.thinkingDotsTimer = null;
+      }
 
       if (!board.started) {
         // First move: play a random tile
@@ -1045,6 +1097,10 @@ export class GameScene extends Phaser.Scene {
     this.lockAllPlayerTiles();
     this.passButton.setVisible(false);
     this.thinkingText.setAlpha(0);
+    if (this.thinkingDotsTimer) {
+      this.thinkingDotsTimer.destroy();
+      this.thinkingDotsTimer = null;
+    }
 
     let message: string;
     if (winnerIndex === -1) {

@@ -1,0 +1,26 @@
+{
+  "name": "Quarzen's Domino",
+  "short_name": "Domino Royale",
+  "description": "A client-side 2D domino game. Human player vs 3 AI opponents with drag-and-drop placement and multiple difficulty levels.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#0D2818",
+  "theme_color": "#1B5E20",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["games", "entertainment"]
+}

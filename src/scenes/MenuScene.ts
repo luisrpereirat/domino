@@ -2,27 +2,54 @@ import Phaser from 'phaser';
 import { themeManager } from '../managers/ThemeManager';
 import { audioManager } from '../managers/AudioManager';
 
+// Known themes - add entries here when creating new themes
+const AVAILABLE_THEMES = ['classic', 'ocean'];
+
 export class MenuScene extends Phaser.Scene {
+  private themeLoaded = false;
 
   constructor() {
     super({ key: 'MenuScene' });
   }
 
-  async preload(): Promise<void> {
-    try {
-      await themeManager.loadTheme('classic');
+  init(): void {
+    this.themeLoaded = false;
+  }
 
-      // Load background images
+  preload(): void {
+    const themeIndex = this.registry.get('themeIndex') ?? 0;
+    const themeName = AVAILABLE_THEMES[themeIndex] ?? 'classic';
+
+    // Load theme JSON, then queue Phaser asset loads
+    themeManager.loadTheme(themeName).then(() => {
+      this.themeLoaded = true;
+
+      // Remove old textures so new theme assets load fresh
+      if (this.textures.exists('menu-bg')) this.textures.remove('menu-bg');
+
       this.load.image('menu-bg', themeManager.getBackgroundPath('menu'));
       this.load.image('button-img', themeManager.getAssetPath('button.png'));
 
-      // Sounds loaded when files exist in theme sounds/ directory
-    } catch (err) {
+      const btnClickPath = themeManager.getSoundPath('buttonClick');
+      if (btnClickPath && !this.cache.audio.exists('sound_buttonClick')) {
+        this.load.audio('sound_buttonClick', btnClickPath);
+      }
+
+      this.load.start(); // Trigger the queued loads
+    }).catch((err) => {
       console.error('Failed to load theme:', err);
-    }
+      this.themeLoaded = true; // Allow create to run with fallback
+      this.load.start();
+    });
   }
 
   create(): void {
+    // If theme hasn't loaded yet, wait for it
+    if (!this.themeLoaded) {
+      this.time.delayedCall(100, () => this.create());
+      return;
+    }
+
     const { width, height } = this.scale;
 
     // Background
@@ -66,13 +93,36 @@ export class MenuScene extends Phaser.Scene {
       fontSize: '18px',
       color: '#FFFFFF',
       backgroundColor: '#4E342E',
-      padding: { x: 10, y: 6 },
+      padding: { x: 12, y: 12 },
     }).setOrigin(1, 0).setInteractive({ useHandCursor: true });
 
     muteBtn.on('pointerdown', () => {
       audioManager.toggleMute();
       muteBtn.setText(audioManager.isMuted ? 'Sound: OFF' : 'Sound: ON');
     });
+
+    // Theme selector (only shown if multiple themes exist)
+    if (AVAILABLE_THEMES.length > 1) {
+      let themeName = 'Classic';
+      try {
+        themeName = themeManager.getTheme().name;
+      } catch {
+        // Theme not loaded, use default
+      }
+      const themeLabel = this.add.text(20, 20, `Theme: ${themeName}`, {
+        fontFamily: 'Arial',
+        fontSize: '18px',
+        color: '#FFFFFF',
+        backgroundColor: '#4E342E',
+        padding: { x: 12, y: 12 },
+      }).setOrigin(0, 0).setInteractive({ useHandCursor: true });
+
+      themeLabel.on('pointerdown', () => {
+        const currentIndex = this.registry.get('themeIndex') ?? 0;
+        this.registry.set('themeIndex', (currentIndex + 1) % AVAILABLE_THEMES.length);
+        this.scene.restart();
+      });
+    }
 
     // Initialize audio manager with this scene
     audioManager.init(this);

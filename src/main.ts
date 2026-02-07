@@ -19,3 +19,17 @@ const game = new Phaser.Game(config);
 
 // Expose for debugging/testing
 (window as unknown as Record<string, unknown>).__PHASER_GAME__ = game;
+
+// Register service worker for PWA support
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('/sw.js')
+      .then((registration) => {
+        console.log('[PWA] Service worker registered, scope:', registration.scope);
+      })
+      .catch((error) => {
+        console.warn('[PWA] Service worker registration failed:', error);
+      });
+  });
+}

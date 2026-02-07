@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="theme-color" content="#1B5E20" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png" />
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
     <title>Quarzen's Domino</title>
     <style>
       * {
@@ -135,7 +139,13 @@
     <div id="game-container"></div>
 
     <div id="rotate-message">
-      <div class="icon">&#x1F4F1;</div>
+      <div class="icon">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="16" y="8" width="32" height="48" rx="4" stroke="white" stroke-width="3" fill="none"/>
+          <path d="M52 32 L58 26 M52 32 L58 38" stroke="#FFD700" stroke-width="3" stroke-linecap="round"/>
+          <path d="M52 32 C52 14 44 8 32 8" stroke="#FFD700" stroke-width="3" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
       <p>Please rotate your device to landscape mode for the best experience.</p>
     </div>
 

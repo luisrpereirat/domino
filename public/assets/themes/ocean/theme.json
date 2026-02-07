@@ -1,5 +1,5 @@
 {
-  "name": "Classic",
+  "name": "Ocean",
   "tileImages": "tiles/{id}.png",
   "tileBack": "tile-back.png",
   "tableBackground": "table-bg.png",
@@ -22,10 +22,10 @@
     "gameLose": "sounds/game-lose.wav"
   },
   "colors": {
-    "tableColor": "#1B5E20",
-    "highlightColor": "#4FC3F7",
-    "validSlotColor": "#FFD700",
+    "tableColor": "#0D47A1",
+    "highlightColor": "#80DEEA",
+    "validSlotColor": "#FFB300",
     "textColor": "#FFFFFF",
-    "scoreColor": "#FFD700"
+    "scoreColor": "#FFB300"
   }
 }
