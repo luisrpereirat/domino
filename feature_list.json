@@ -412,8 +412,10 @@
       "Step 2: During an AI's turn, verify all player tiles are locked/dimmed",
       "Step 3: Verify no player tiles can be dragged during AI turns"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-first-placement.png"
+    ]
   },
   {
     "category": "functional",
@@ -572,7 +574,7 @@
       "Step 3: Verify the tile automatically flips/rotates so the matching end connects to the branch",
       "Step 4: Verify the open end becomes the new branch number"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -624,7 +626,7 @@
       "Step 3: Place a non-double (lying) tile and measure offset",
       "Step 4: Verify lying tile offset is 2 tile units"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -667,7 +669,7 @@
       "Step 3: Verify the button text says 'Pass'",
       "Step 4: Verify all player tiles are dimmed/locked"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -693,7 +695,7 @@
       "Step 4: Verify lastActivePlayer's score increases by 1",
       "Step 5: Verify score display updates with pulse animation"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -704,7 +706,7 @@
       "Step 2: Verify a 'Pass' message appears on screen",
       "Step 3: Verify the message disappears after approximately 1 second"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -716,7 +718,7 @@
       "Step 3: Verify pass sound plays and pass message appears",
       "Step 4: Verify lastActivePlayer score increases by 1"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -781,7 +783,7 @@
       "Step 9: Verify no consistent strategic pattern across multiple games (selections vary)",
       "Step 10: Verify all three AIs follow the same random strategy (no preferential behavior)"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -799,7 +801,7 @@
       "Step 9: Verify the strategic pattern is consistent across multiple games on Hard difficulty",
       "Step 10: Take screenshot of board state showing evidence of strategic AI placement"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -817,7 +819,7 @@
       "Step 9: Verify Easy AI sometimes passes voluntarily if all moves would block the human",
       "Step 10: Compare ease of gameplay on Easy vs Hard to confirm Easy is noticeably more forgiving"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -840,7 +842,7 @@
       "Step 2: Verify animated dots (...) appear near the AI's name",
       "Step 3: Verify the indicator disappears after the AI makes its move"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -851,7 +853,7 @@
       "Step 2: Verify the AI's selected tile flips from back to face (0.4s flip animation)",
       "Step 3: Verify the tile then animates from AI hand to board slot"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -987,7 +989,7 @@
       "Step 2: Verify the scoring player's score increments by 1",
       "Step 3: Verify a scale-pulse animation plays on the score display (0.3s, 1.2x scale)"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1148,8 +1150,10 @@
       "Step 5: Verify tiles show backs (face down)",
       "Step 6: Verify tiles are rotated 90 degrees (lying)"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "functional",
@@ -1162,8 +1166,10 @@
       "Step 5: Verify tiles show backs (face down)",
       "Step 6: Verify tiles are standing (0 degree rotation)"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "functional",
@@ -1176,8 +1182,10 @@
       "Step 5: Verify tiles show backs (face down)",
       "Step 6: Verify tiles are rotated 90 degrees (lying)"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "functional",
@@ -1190,8 +1198,10 @@
       "Step 5: Verify tiles show faces (face up)",
       "Step 6: Verify tiles are standing (vertical orientation)"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "functional",
@@ -1202,7 +1212,7 @@
       "Step 3: Verify tilePlace event was emitted",
       "Step 4: Verify event includes tile data and placement info"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1214,7 +1224,7 @@
       "Step 3: Verify game over detection triggers immediately",
       "Step 4: Verify game over message appears"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1292,7 +1302,7 @@
       "Step 9: Verify turn counter resets and a new random starting player is selected",
       "Step 10: Verify the difficulty level is preserved from the previous game"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1303,7 +1313,7 @@
       "Step 2: After scene transition, verify there is approximately a 1 second pause",
       "Step 3: Verify tile dealing animation begins after the pause"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1314,7 +1324,7 @@
       "Step 2: Verify each tile takes approximately 1.0 second to fly from deck to hand",
       "Step 3: Verify there is approximately 0.2 second stagger between tile deals"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1325,7 +1335,7 @@
       "Step 2: Verify the animation takes approximately 0.5 seconds",
       "Step 3: Verify smooth Power2 easing curve (accelerate then decelerate)"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1336,7 +1346,7 @@
       "Step 2: Verify the tile animates back to its hand position",
       "Step 3: Verify the animation takes approximately 0.5 seconds"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1347,7 +1357,7 @@
       "Step 2: Move it over other tiles and board elements",
       "Step 3: Verify the dragged tile renders on top of everything else"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1360,7 +1370,7 @@
       "Step 4: Verify when all moves would force a pass, AI checks if passing itself is better",
       "Step 5: Verify Easy AI sometimes passes voluntarily to avoid forcing human to pass"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1372,7 +1382,7 @@
       "Step 3: Observe Right AI's tile selections",
       "Step 4: Verify Right AI tends to play tiles that block the human"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1383,7 +1393,7 @@
       "Step 2: Observe Left AI and Top AI tile selections",
       "Step 3: Verify they tend to play tiles that help the next player in order"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1419,7 +1429,7 @@
       "Step 3: Click it and verify pause menu opens",
       "Step 4: Verify Restart and Main Menu options work from game over state"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1431,7 +1441,7 @@
       "Step 3: Start another game where first tile is a double",
       "Step 4: Verify no shift for doubles"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1442,7 +1452,7 @@
       "Step 2: Start a game and drag a tile to place it",
       "Step 3: Verify brief haptic feedback (20ms vibration) fires on drag start"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1455,7 +1465,7 @@
       "Step 4: Verify drag-and-drop works with touch",
       "Step 5: Verify no separate touch vs mouse code paths"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1467,7 +1477,7 @@
       "Step 3: Verify playerType field supports 'human', 'ai', and 'remote' values",
       "Step 4: Verify game logic uses the interface, not concrete types"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1479,7 +1489,7 @@
       "Step 3: Verify scoring logic is separated from game flow",
       "Step 4: Verify the design allows alternative scoring rules in future"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1491,7 +1501,7 @@
       "Step 3: Verify strategies receive game state and return tile choice without side effects",
       "Step 4: Verify strategies can be tested independently"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1503,7 +1513,7 @@
       "Step 3: Verify turnStart fires at the beginning of each turn",
       "Step 4: Verify turnEnd fires after each turn completes"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1515,7 +1525,7 @@
       "Step 3: Verify tile offsets are configurable values",
       "Step 4: Verify these could be adjusted for future larger tile sets"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1571,7 +1581,7 @@
       "Step 3: Verify it distributes 7 tiles to each of 4 player hands",
       "Step 4: Verify distribution is random (different each game)"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1582,7 +1592,7 @@
       "Step 2: Verify isDouble getter returns true when topIndex === bottomIndex",
       "Step 3: Verify it returns false for non-doubles"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1594,7 +1604,7 @@
       "Step 3: Verify each entry has domino, x, y, rotation, and branch data",
       "Step 4: Verify entries match actual on-screen tile positions"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1606,7 +1616,7 @@
       "Step 3: Verify it holds for the configured duration",
       "Step 4: Verify it fades out over approximately 0.3 seconds"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1618,7 +1628,7 @@
       "Step 3: Verify it scales from 0 to 1 over approximately 1.0 second",
       "Step 4: Verify bounce easing is used"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1630,7 +1640,7 @@
       "Step 3: Verify a pulsing glow effect with approximately 0.5s cycle",
       "Step 4: Verify alpha oscillates between approximately 0.3 and 0.8"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1642,7 +1652,7 @@
       "Step 3: Verify texture swaps from back to face at midpoint",
       "Step 4: Verify horizontal scale animates back to 1 (0.2s)"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1656,7 +1666,7 @@
       "Step 5: Verify scene fades to black over 0.5 seconds",
       "Step 6: Verify MenuScene appears after fade"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1668,7 +1678,7 @@
       "Step 3: Verify the button scales to 1.05x with 0.15s tween",
       "Step 4: Move mouse away and verify button returns to 1.0x scale"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1680,7 +1690,7 @@
       "Step 3: Verify the button scales to 0.95x on press",
       "Step 4: Verify it releases back to 1.0x after release"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1691,7 +1701,7 @@
       "Step 2: Verify the score display pulses",
       "Step 3: Verify it scales to 1.2x then back to 1.0x over 0.3 seconds"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1709,7 +1719,7 @@
       "Step 9: Verify no significant increase in memory usage (no growing leak)",
       "Step 10: Verify no orphaned game objects, event listeners, or tweens in the Phaser scene"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1721,8 +1731,10 @@
       "Step 3: Verify zero console errors appear",
       "Step 4: Verify zero console warnings appear (or only expected ones)"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "functional",
@@ -1732,7 +1744,7 @@
       "Step 2: Verify zero type errors",
       "Step 3: Verify strict mode is enabled in tsconfig.json"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1825,7 +1837,7 @@
       "Step 9: Rotate back to portrait and verify the message reappears",
       "Step 10: Rotate to landscape again and verify the game resumes its previous state"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1837,7 +1849,7 @@
       "Step 3: Resize the browser window",
       "Step 4: Verify the board remains centered"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1905,7 +1917,7 @@
       "Step 3: Verify brand new game with no shared state from previous game",
       "Step 4: Verify scores, hands, and board are all fresh"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1928,7 +1940,7 @@
       "Step 2: Verify DominoSprite extends Phaser.GameObjects.Container",
       "Step 3: Verify container includes face sprite, back sprite, lock overlay, glow effect"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1940,7 +1952,7 @@
       "Step 3: Verify it scales to 1.0x on the board",
       "Step 4: Verify it is no longer interactive"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -1952,7 +1964,7 @@
       "Step 3: Verify game works in WebGL mode",
       "Step 4: Verify fallback to Canvas works in environments without WebGL"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2010,7 +2022,7 @@
       "Step 4: Verify rightPhase and position offsets update if needed",
       "Step 5: Verify board state is consistent with placed tile position"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2022,7 +2034,7 @@
       "Step 3: Drag a non-double tile and verify lying slot orientation",
       "Step 4: Verify slot rotation matches expected placement for current board phase"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2034,7 +2046,7 @@
       "Step 3: Verify that AI now shows 6 tiles in their hand area",
       "Step 4: Continue and verify count decreases with each placement"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2045,7 +2057,7 @@
       "Step 2: Verify locked tiles have a dark overlay",
       "Step 3: Verify the overlay is approximately 50% opacity black"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2058,7 +2070,7 @@
       "Step 4: Verify all fields match: currentTurn, lastActivePlayer, scores, gameOver, difficulty",
       "Step 5: Verify board state, player hands, and tile data are preserved"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2070,7 +2082,7 @@
       "Step 3: Deserialize with fromJSON()",
       "Step 4: Verify id, topIndex, bottomIndex, and available match"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2082,7 +2094,7 @@
       "Step 3: Deserialize with fromJSON()",
       "Step 4: Verify branch numbers, phases, offsets, and placedTiles match"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2096,7 +2108,7 @@
       "Step 5: Verify position is 'bottom', 'left', 'top', or 'right'",
       "Step 6: Verify name field exists for each player"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2126,7 +2138,7 @@
       "Step 9: Open pause menu and verify popup colors match theme (overlayColor, panelColor)",
       "Step 10: Verify no hardcoded color values exist in rendering code (all sourced from theme)"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2137,8 +2149,10 @@
       "Step 2: Verify dark overlay covers entire scene",
       "Step 3: Verify overlay is approximately 70% opacity black"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test60-pause-menu.png"
+    ]
   },
   {
     "category": "functional",
@@ -2148,8 +2162,10 @@
       "Step 2: Verify popup panel background is dark brown (#3E2723)",
       "Step 3: Verify popup panel border is medium brown (#5D4037)"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test60-pause-menu.png"
+    ]
   },
   {
     "category": "functional",
@@ -2159,7 +2175,7 @@
       "Step 2: Verify Pass button has red background",
       "Step 3: Verify button text is white 'Pass'"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2172,7 +2188,7 @@
       "Step 4: Verify turn announcements appear",
       "Step 5: Verify game over messages appear centered and persist"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2184,7 +2200,7 @@
       "Step 3: Verify AI tends to prefer non-double tiles that are classified as good",
       "Step 4: Verify this behavior helps the human player"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2195,7 +2211,7 @@
       "Step 2: Play until AI has only one valid tile",
       "Step 3: Verify AI plays the only available tile regardless of good/bad classification"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2207,7 +2223,7 @@
       "Step 3: Verify turn indicator shows AI name",
       "Step 4: Verify player tiles are locked during AI first turn"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2225,7 +2241,7 @@
       "Step 9: Verify setDraggable(false) disables drag interaction on the tile",
       "Step 10: Verify the container includes all required sub-objects: face sprite, back sprite, lock overlay, glow effect"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2248,7 +2264,7 @@
       "Step 3: Verify all text scales proportionally with the canvas",
       "Step 4: Verify text remains readable at all sizes"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2292,7 +2308,7 @@
       "Step 2: Verify all 28 tile face images load without errors",
       "Step 3: Verify each tile displays the correct face image matching its ID"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2303,7 +2319,7 @@
       "Step 2: Verify tile back image loads for AI tiles",
       "Step 3: Verify tile back appears correctly on face-down tiles"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2326,7 +2342,7 @@
       "Step 3: Verify the new sound plays correctly",
       "Step 4: Verify no code changes were needed beyond the theme.json edit and the playSound call"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2338,7 +2354,7 @@
       "Step 3: Verify tile generation with maxPip=9 produces 55 tiles (conceptually)",
       "Step 4: Verify the factory formula: tiles = (maxPip+1) * (maxPip+2) / 2"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2350,7 +2366,7 @@
       "Step 3: Verify slots at phase 1 are at the corner position",
       "Step 4: Verify slot calculations match the 5-phase algorithm"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2362,7 +2378,7 @@
       "Step 3: Verify it updates vertical offset during corner phases",
       "Step 4: Verify it increments phase at appropriate boundaries"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2373,7 +2389,7 @@
       "Step 2: Place a tile on the right branch",
       "Step 3: Verify the open end pip value becomes the new rightBranchNum"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2384,7 +2400,7 @@
       "Step 2: Call TellBranchNums or equivalent",
       "Step 3: Verify it returns the correct open end values for both branches"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2396,7 +2412,7 @@
       "Step 3: Verify it returns false (lying) for non-double tiles in horizontal phases",
       "Step 4: Verify correct behavior during vertical phases"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2408,7 +2424,7 @@
       "Step 3: Verify it returns all tiles that match either branch number",
       "Step 4: Verify returned data includes both tile and matchingBranch info"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2420,7 +2436,7 @@
       "Step 3: Verify good tiles leave branch numbers matching target's hand",
       "Step 4: Verify bad tiles leave branch numbers not matching target's hand"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2444,8 +2460,10 @@
       "Step 4: Verify a 2px drop shadow offset is visible",
       "Step 5: Take screenshot of title text"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test0-app-loads.png"
+    ]
   },
   {
     "category": "style",
@@ -2458,8 +2476,10 @@
       "Step 5: Verify button text is white (#FFFFFF)",
       "Step 6: Take screenshot of difficulty buttons"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test0-app-loads.png"
+    ]
   },
   {
     "category": "style",
@@ -2471,8 +2491,10 @@
       "Step 4: Verify white text 'Pass'",
       "Step 5: Take screenshot of Pass button"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "style",
@@ -2483,8 +2505,10 @@
       "Step 3: Verify the overall aesthetic is dark green felt (#1B5E20)",
       "Step 4: Take screenshot of game board area"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "style",
@@ -2495,8 +2519,10 @@
       "Step 3: Verify pip/dot patterns are easily distinguishable",
       "Step 4: Take screenshot showing player tiles at full scale"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "style",
@@ -2506,8 +2532,10 @@
       "Step 2: Verify AI tile backs are clear even at 0.5x scale",
       "Step 3: Take screenshot showing AI tiles at half scale"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "style",
@@ -2517,8 +2545,10 @@
       "Step 2: Verify tile sprite size is approximately 60x120px",
       "Step 3: Verify this is the base rendering size for player tiles"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "style",
@@ -2537,8 +2567,10 @@
       "Step 11: Verify score format changes to 'Score: 1' after the pass",
       "Step 12: Take screenshot of score displays showing updated values"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "style",
@@ -2550,8 +2582,10 @@
       "Step 4: Verify it is centered horizontally",
       "Step 5: Take screenshot of turn indicator"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "style",
@@ -2562,7 +2596,7 @@
       "Step 3: Verify approximately 24px font size, bold, Arial",
       "Step 4: Take screenshot of button text"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2573,7 +2607,7 @@
       "Step 2: Verify score text is approximately 18px regular Arial",
       "Step 3: Take screenshot of score text"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2598,8 +2632,10 @@
       "Step 4: Verify dark background with white text",
       "Step 5: Take screenshot of rules modal text"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test9-rules-modal.png"
+    ]
   },
   {
     "category": "style",
@@ -2617,8 +2653,10 @@
       "Step 10: Drag the tile again and place it successfully, verify ghost slots disappear after placement",
       "Step 11: Take screenshot showing ghost slots during an active drag"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test30-ghost-slots.png"
+    ]
   },
   {
     "category": "style",
@@ -2650,8 +2688,10 @@
       "Step 2: Verify tile back appearance matches saddle brown aesthetic",
       "Step 3: Take screenshot of tile backs"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "style",
@@ -2662,7 +2702,7 @@
       "Step 3: Verify glow color is light blue (#4FC3F7)",
       "Step 4: Take screenshot showing active tile glow"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2673,7 +2713,7 @@
       "Step 2: Verify primary text (turn indicators, messages) is white",
       "Step 3: Take screenshot of text elements"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2684,7 +2724,7 @@
       "Step 2: Verify score text color is gold (#FFD700)",
       "Step 3: Take screenshot of score text"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2696,7 +2736,7 @@
       "Step 3: Hover over button and verify color shifts to lighter brown (#6D4C41)",
       "Step 4: Take screenshot of button states"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2708,7 +2748,7 @@
       "Step 3: Verify the game is visible but dimmed behind the overlay",
       "Step 4: Take screenshot of pause overlay"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2720,7 +2760,7 @@
       "Step 3: Verify popup panel border color is medium brown (#5D4037)",
       "Step 4: Take screenshot of popup panel"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2731,7 +2771,7 @@
       "Step 2: Verify the overall menu background aesthetic uses darker green",
       "Step 3: Take screenshot of menu background"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2743,8 +2783,10 @@
       "Step 3: Verify tiles are easily distinguishable from the background",
       "Step 4: Take screenshot showing contrast"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "style",
@@ -2754,7 +2796,7 @@
       "Step 2: Verify no text is smaller than approximately 16px at base resolution",
       "Step 3: Verify all text is readable"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2767,7 +2809,7 @@
       "Step 4: Verify valid tiles have both a glow AND are the only interactive elements",
       "Step 5: Verify accessibility is maintained"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2780,8 +2822,10 @@
       "Step 4: Verify both maintain contrast against the game background",
       "Step 5: Take screenshot showing visibility"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "style",
@@ -2792,8 +2836,10 @@
       "Step 3: Verify horizontal centering",
       "Step 4: Take screenshot showing player hand position"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "style",
@@ -2803,8 +2849,10 @@
       "Step 2: Verify Left AI tiles are on the left side",
       "Step 3: Take screenshot showing Left AI hand position"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "style",
@@ -2814,8 +2862,10 @@
       "Step 2: Verify Top AI tiles are at the top center",
       "Step 3: Take screenshot showing Top AI hand position"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "style",
@@ -2825,8 +2875,10 @@
       "Step 2: Verify Right AI tiles are on the right side",
       "Step 3: Take screenshot showing Right AI hand position"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "style",
@@ -2849,7 +2901,7 @@
       "Step 3: Verify it is approximately 50x50px in the top-right corner",
       "Step 4: Take screenshot of menu icon"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2861,7 +2913,7 @@
       "Step 3: Verify it is near the player's hand",
       "Step 4: Take screenshot of pass button position"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2875,7 +2927,7 @@
       "Step 5: Verify Right AI score is near the right hand area",
       "Step 6: Take screenshot of score positions"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2898,8 +2950,10 @@
       "Step 3: Verify consistent button styling (dark brown, white text, rounded corners)",
       "Step 4: Take screenshot of pause menu buttons"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test60-pause-menu.png"
+    ]
   },
   {
     "category": "style",
@@ -2911,8 +2965,10 @@
       "Step 4: Verify theme-matching brown accent colors",
       "Step 5: Take screenshot of rules modal styling"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test9-rules-modal.png"
+    ]
   },
   {
     "category": "style",
@@ -2923,8 +2979,10 @@
       "Step 3: Verify title is horizontally centered",
       "Step 4: Take screenshot confirming title position"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test0-app-loads.png"
+    ]
   },
   {
     "category": "style",
@@ -2934,8 +2992,10 @@
       "Step 2: Verify mute icon is in the top-right corner",
       "Step 3: Take screenshot showing mute icon position"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test0-app-loads.png"
+    ]
   },
   {
     "category": "style",
@@ -2946,7 +3006,7 @@
       "Step 3: Verify dark overlay is applied on top",
       "Step 4: Take screenshot showing locked tile appearance"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2960,8 +3020,10 @@
       "Step 5: Verify AI tiles are on sides and top",
       "Step 6: Take screenshot showing all four hands"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "style",
@@ -2973,7 +3035,7 @@
       "Step 4: Verify bounce easing effect",
       "Step 5: Take screenshot of game over message"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -2993,8 +3055,10 @@
       "Step 11: Verify spacing between elements is consistent and professional",
       "Step 12: Take a full screenshot confirming the complete MenuScene layout"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test0-app-loads.png"
+    ]
   },
   {
     "category": "style",
@@ -3014,8 +3078,10 @@
       "Step 12: Verify the overall aesthetic is cohesive and professional",
       "Step 13: Take a full screenshot confirming the complete GameScene layout"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "style",
@@ -3038,8 +3104,10 @@
       "Step 2: Verify tile follows pointer/finger with no lag",
       "Step 3: Verify the interaction feels responsive and immediate"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/drag-test-after-drop.png"
+    ]
   },
   {
     "category": "style",
@@ -3062,8 +3130,10 @@
       "Step 3: Verify black bars (letterboxing) fill remaining space",
       "Step 4: Take screenshot showing letterboxing"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test0-app-loads.png"
+    ]
   },
   {
     "category": "style",
@@ -3097,7 +3167,7 @@
       "Step 2: Count taps needed to start a game: 1 tap on difficulty button",
       "Step 3: Verify gameplay starts in 2 or fewer taps from launch"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -3123,8 +3193,10 @@
       "Step 4: Verify tiles are properly aligned and not overlapping",
       "Step 5: Take screenshot of board with multiple tiles"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-first-placement.png"
+    ]
   },
   {
     "category": "style",
@@ -3143,8 +3215,10 @@
       "Step 11: Verify the hamburger menu remains accessible in game over state",
       "Step 12: Take screenshots at each distinct game state (start, player turn, AI turn, pass, game over)"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test-gamescene-overview.png"
+    ]
   },
   {
     "category": "style",
@@ -3157,7 +3231,7 @@
       "Step 5: Verify last 7 go to Right AI",
       "Step 6: Take screenshot during dealing showing animation direction"
     ],
-    "passes": false,
+    "passes": true,
     "screenshots": null
   },
   {
@@ -3183,7 +3257,9 @@
       "Step 4: Verify color shifts to buttonHoverColor (#6D4C41)",
       "Step 5: Take screenshot of hover state"
     ],
-    "passes": false,
-    "screenshots": null
+    "passes": true,
+    "screenshots": [
+      "docs/screenshots/test0-app-loads.png"
+    ]
   }
 ]
