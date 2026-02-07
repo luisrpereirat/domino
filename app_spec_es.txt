@@ -1,27 +1,5 @@
 <project_specification>
-  <!-- FUERA DEL ALCANCE PARA EL MVP (no construir esto):
-    - Juego multijugador en linea (por turnos o en tiempo real)
-    - Capa de presencia WebSocket (emojis, comentarios predefinidos, indicadores de tiempo de pensamiento)
-    - Cuentas de usuario / autenticacion / perfiles
-    - Tablas de clasificacion / rankings
-    - Estadisticas persistentes o historial de partidas
-    - Conjuntos de fichas doble nueve (55 fichas) o doble doce (91 fichas)
-    - Juego en equipo o modos de parejas
-    - Variantes de puntuacion (Muggins/All Fives, reglas de spinner)
-    - Variante de robar fichas (robar del pozo)
-    - Tutorial dentro de la aplicacion o guia de incorporacion interactiva
-    - Chat o mensajeria entre jugadores
-    - Funcionalidad de deshacer/rehacer
-    - Repeticion o grabacion de partidas
 
-    Estas funcionalidades ESTAN planificadas para versiones futuras. La arquitectura del MVP DEBE
-    incluir ganchos y abstracciones que faciliten agregarlas:
-    - Generacion de fichas parametrizada por tamano del conjunto (no codificada para doble seis)
-    - Estado del juego serializable a JSON (para futura sincronizacion en red y persistencia)
-    - Arquitectura basada en eventos (para futura integracion con WebSocket)
-    - Identidad del jugador abstraida (humano vs IA vs remoto, para futuro multijugador)
-    - Sistema de puntuacion extensible (para futuras variantes de puntuacion)
-  -->
 
   <project_name>Quarzen's Domino</project_name>
 
@@ -74,7 +52,8 @@
       <port>Solo iniciar en el puerto {frontend_port}</port>
       <additional_libraries>
         - Phaser 3.80+ (motor de juego: renderizado, entrada, tweens, audio)
-        - Workbox 7.x (biblioteca de service worker de Google para almacenamiento en cache offline de PWA)
+        - Workbox 7.x (biblioteca de service worker de Google para almacenamiento en cache offline
+        de PWA)
         - vite-plugin-pwa (integracion de Vite para manifiesto PWA y generacion de service worker)
         - No se necesitan otras dependencias en tiempo de ejecucion
       </additional_libraries>
@@ -106,42 +85,45 @@
       Opcion A -- Maquina anfitriona directa (desarrollo):
       - Node.js 18+ y npm (Gestor de Paquetes de Node) instalados en la maquina anfitriona
       - Todas las dependencias son locales al proyecto (instaladas en ./node_modules/ mediante
-        npm install). A diferencia de Python, Node.js no contamina paquetes globales --
-        node_modules es el equivalente de un entorno virtual y ya esta aislado por proyecto
-        de forma predeterminada
+      npm install). A diferencia de Python, Node.js no contamina paquetes globales --
+      node_modules es el equivalente de un entorno virtual y ya esta aislado por proyecto
+      de forma predeterminada
       - Navegador moderno con soporte para HTML5 Canvas/WebGL (Biblioteca de Graficos Web)
-        (ultimos 2 anos de Chrome, Firefox, Safari, Edge)
+      (ultimos 2 anos de Chrome, Firefox, Safari, Edge)
       - iOS Safari 14.5+ para instalacion de PWA en pantalla de inicio
 
       Opcion B -- Contenedor Docker (pruebas, CI/CD, entornos limpios):
       - Solo se requiere Docker (y opcionalmente Docker Compose) en la maquina anfitriona.
-        No se necesita instalacion de Node.js ni npm
+      No se necesita instalacion de Node.js ni npm
       - Se proporciona un Dockerfile en la raiz del proyecto:
-        - Basado en node:18-alpine (imagen ligera de Linux con Node.js preinstalado)
-        - Copia package.json y package-lock.json, ejecuta npm ci (instalacion limpia
-          para compilaciones reproducibles)
-        - Copia los archivos fuente del proyecto
-        - Expone el puerto 5173 para el servidor de desarrollo de Vite o sirve la compilacion
-          de produccion mediante un servidor estatico ligero (por ejemplo, nginx o serve)
+      - Basado en node:18-alpine (imagen ligera de Linux con Node.js preinstalado)
+      - Copia package.json y package-lock.json, ejecuta npm ci (instalacion limpia
+      para compilaciones reproducibles)
+      - Copia los archivos fuente del proyecto
+      - Expone el puerto 5173 para el servidor de desarrollo de Vite o sirve la compilacion
+      de produccion mediante un servidor estatico ligero (por ejemplo, nginx o serve)
       - Se proporciona un docker-compose.yml por conveniencia:
-        - Servicio "dev": ejecuta el servidor de desarrollo de Vite con recarga en caliente,
-          monta los archivos fuente como volumen para edicion en vivo. Expone el puerto 5173
-        - Servicio "build": ejecuta npm run build, genera archivos de produccion en un
-          volumen dist/
-        - Servicio "preview": sirve la compilacion de produccion para pruebas. Expone el puerto 4173
+      - Servicio "dev": ejecuta el servidor de desarrollo de Vite con recarga en caliente,
+      monta los archivos fuente como volumen para edicion en vivo. Expone el puerto 5173
+      - Servicio "build": ejecuta npm run build, genera archivos de produccion en un
+      volumen dist/
+      - Servicio "preview": sirve la compilacion de produccion para pruebas. Expone el puerto 4173
       - Uso:
-        - docker compose up dev       -- iniciar servidor de desarrollo
-        - docker compose run build     -- crear compilacion de produccion
-        - docker compose up preview    -- servir compilacion de produccion para pruebas
+      - docker compose up dev -- iniciar servidor de desarrollo
+      - docker compose run build -- crear compilacion de produccion
+      - docker compose up preview -- servir compilacion de produccion para pruebas
 
       Requisitos comunes (ambas opciones):
       - No se requieren servicios externos ni claves de API
       - Directorio del proyecto: domino-web/
-      - Convencion de directorio de recursos: public/assets/themes/{nombre-del-tema}/ para contenido intercambiable
+      - Convencion de directorio de recursos: public/assets/themes/{nombre-del-tema}/ para contenido
+      intercambiable
       - Hoja de sprites por tema conteniendo todas las imagenes de las caras de las fichas de domino
       - Una imagen del reverso de la ficha por tema
-      - Un archivo de configuracion theme.json por tema que define colores, sonidos y ajustes de diseno
-      - manifest.json de PWA y service worker para soporte offline e instalacion en pantalla de inicio
+      - Un archivo de configuracion theme.json por tema que define colores, sonidos y ajustes de
+      diseno
+      - manifest.json de PWA y service worker para soporte offline e instalacion en pantalla de
+      inicio
     </environment_setup>
   </prerequisites>
 
@@ -149,411 +131,493 @@
     <game_board_and_tile_system>
       - Conjunto estandar de domino doble seis: 28 fichas (0-0 hasta 6-6)
       - La generacion de fichas esta PARAMETRIZADA: una funcion fabrica acepta el valor maximo
-        de puntos (6 para doble seis, 9 para doble nueve, 12 para doble doce) y produce la
-        cantidad correcta de fichas. El MVP usa maxPip=6 unicamente, pero el codigo no debe
-        codificar 28 fichas o IDs 0-27 como constantes
+      de puntos (6 para doble seis, 9 para doble nueve, 12 para doble doce) y produce la
+      cantidad correcta de fichas. El MVP usa maxPip=6 unicamente, pero el codigo no debe
+      codificar 28 fichas o IDs 0-27 como constantes
       - Cada ficha tiene un topIndex y bottomIndex representando las dos mitades (valores de puntos)
-      - Mapeo de ID de fichas para doble seis: IDs 0-6 tienen topIndex=0, IDs 7-12 tienen topIndex=1,
-        IDs 13-17 tienen topIndex=2, IDs 18-21 tienen topIndex=3, IDs 22-24 tienen topIndex=4,
-        IDs 25-26 tienen topIndex=5, ID 27 es 6-6
+      - Mapeo de ID de fichas para doble seis: IDs 0-6 tienen topIndex=0, IDs 7-12 tienen
+      topIndex=1,
+      IDs 13-17 tienen topIndex=2, IDs 18-21 tienen topIndex=3, IDs 22-24 tienen topIndex=4,
+      IDs 25-26 tienen topIndex=5, ID 27 es 6-6
       - Las fichas dobles (mismo numero en ambas mitades: 0-0, 1-1, 2-2, 3-3, 4-4, 5-5, 6-6)
-        se muestran de pie (orientacion vertical) en fases de colocacion horizontal
-      - Las fichas no dobles se muestran acostadas (horizontal, rotadas 90 grados) en fases horizontales
+      se muestran de pie (orientacion vertical) en fases de colocacion horizontal
+      - Las fichas no dobles se muestran acostadas (horizontal, rotadas 90 grados) en fases
+      horizontales
       - Las fichas se renderizan como sprites extraidos de la hoja de sprites del tema activo
       - Cada ficha tiene una cara frontal (mostrando los puntos) y una cara trasera (oculta al
-        jugador, usada para las manos de la IA)
-      - Dimensiones de las fichas: 60x120 pixeles a escala base; fichas de manos de IA renderizadas a escala 0.5x
+      jugador, usada para las manos de la IA)
+      - Dimensiones de las fichas: 60x120 pixeles a escala base; fichas de manos de IA renderizadas
+      a escala 0.5x
     </game_board_and_tile_system>
 
     <board_placement_algorithm>
-      - Sistema de dos ramas: las fichas crecen hacia afuera desde el centro en ramas derecha e izquierda
+      - Sistema de dos ramas: las fichas crecen hacia afuera desde el centro en ramas derecha e
+      izquierda
       - La primera ficha se coloca en el centro del tablero (0,0)
       - Las fichas subsiguientes deben coincidir con un numero de extremo abierto en la rama elegida
       - Sistema de colocacion de 5 fases por rama:
-        - Fase 0: Expansion horizontal hacia afuera (la rama derecha va hacia la derecha, la rama izquierda va hacia la izquierda)
-        - Fase 1: Primera esquina -- la ficha gira hacia abajo/arriba en el borde del tablero
-          (limite lateral = 13 unidades de ficha desde el centro)
-        - Fase 2: Giro en direccion cruzada -- la ficha va horizontal en la direccion opuesta
-        - Fase 3: Esquina final -- giro final continuando en la nueva direccion
-        - Fase 4+: Expansion horizontal continua en la direccion invertida
+      - Fase 0: Expansion horizontal hacia afuera (la rama derecha va hacia la derecha, la rama
+      izquierda va hacia la izquierda)
+      - Fase 1: Primera esquina -- la ficha gira hacia abajo/arriba en el borde del tablero
+      (limite lateral = 13 unidades de ficha desde el centro)
+      - Fase 2: Giro en direccion cruzada -- la ficha va horizontal en la direccion opuesta
+      - Fase 3: Esquina final -- giro final continuando en la nueva direccion
+      - Fase 4+: Expansion horizontal continua en la direccion invertida
       - Las fichas de pie (dobles) se desplazan 1 unidad de ficha horizontalmente
       - Las fichas acostadas (no dobles) se desplazan 2 unidades de ficha horizontalmente
-      - Desplazamientos verticales de 1.5 unidades de ficha durante las transiciones de fase de esquina
+      - Desplazamientos verticales de 1.5 unidades de ficha durante las transiciones de fase de
+      esquina
       - Rotacion automatica de fichas: las fichas se voltean 180 grados cuando el valor de punto
-        coincidente esta en la mitad incorrecta (asegura que el extremo coincidente se conecte a la rama)
-      - Desplazamientos de posicion: tileOffset = 60px para fichas de pie, lyingOffset = 30px para fichas acostadas
-      - Los numeros de rama rastrean el valor de punto del extremo abierto en cada lado: rightBranchNum y leftBranchNum
+      coincidente esta en la mitad incorrecta (asegura que el extremo coincidente se conecte a la
+      rama)
+      - Desplazamientos de posicion: tileOffset = 60px para fichas de pie, lyingOffset = 30px para
+      fichas acostadas
+      - Los numeros de rama rastrean el valor de punto del extremo abierto en cada lado:
+      rightBranchNum y leftBranchNum
       - En la primera ficha, si es una ficha no doble (acostada), la posicion inicial se
-        desplaza 0.5 unidades para centrar visualmente la ficha
-      - El limite lateral y los valores de desplazamiento deben ser configurables (no numeros magicos) para soportar
-        futuros conjuntos de fichas mas grandes que puedan necesitar proporciones de tablero diferentes
+      desplaza 0.5 unidades para centrar visualmente la ficha
+      - El limite lateral y los valores de desplazamiento deben ser configurables (no numeros
+      magicos) para soportar
+      futuros conjuntos de fichas mas grandes que puedan necesitar proporciones de tablero
+      diferentes
     </board_placement_algorithm>
 
     <drag_and_drop_interaction>
       - El jugador arrastra fichas desde su area de mano hacia el tablero de juego
-      - Al inicio del arrastre: las posiciones validas de colocacion (posiciones fantasma) aparecen en el tablero
-      - Hasta 2 posiciones aparecen por arrastre: una para el extremo de la rama derecha, una para el extremo de la rama izquierda
-      - Visibilidad de las posiciones: las posiciones son visibles para el jugador durante su turno, ocultas durante los turnos de la IA
-      - Al final del arrastre: la ficha se ajusta a la posicion valida mas cercana si se arrastra por encima del
-        umbral de 1/3 de la altura de la pantalla (medido desde la parte inferior de la pantalla)
-      - Si la ficha esta debajo del umbral o no existen posiciones validas, la ficha se anima de vuelta a la
-        posicion de la mano (tween de 0.5s)
-      - Animacion de movimiento suave usando tweens de Phaser (duracion de 0.5 segundos, suavizado Power2)
-      - Deteccion de posicion mas cercana: calcula la distancia euclidiana desde el centro de la ficha hasta
-        todos los centros de posiciones validas, elige la mas cercana
-      - Despues de una colocacion exitosa: la ficha se reasigna al contenedor del tablero de juego, se escala
-        a 1.0, se rota para coincidir con la orientacion de la posicion
-      - Entrada tactil y de raton soportadas de forma transparente mediante el sistema de entrada unificado de Phaser
-      - Retroalimentacion haptica sutil (vibracion del dispositivo, ~20ms) al colocar exitosamente una ficha en
-        dispositivos moviles que soportan la API de Vibracion
+      - Al inicio del arrastre: las posiciones validas de colocacion (posiciones fantasma) aparecen
+      en el tablero
+      - Hasta 2 posiciones aparecen por arrastre: una para el extremo de la rama derecha, una para
+      el extremo de la rama izquierda
+      - Visibilidad de las posiciones: las posiciones son visibles para el jugador durante su turno,
+      ocultas durante los turnos de la IA
+      - Al final del arrastre: la ficha se ajusta a la posicion valida mas cercana si se arrastra
+      por encima del
+      umbral de 1/3 de la altura de la pantalla (medido desde la parte inferior de la pantalla)
+      - Si la ficha esta debajo del umbral o no existen posiciones validas, la ficha se anima de
+      vuelta a la
+      posicion de la mano (tween de 0.5s)
+      - Animacion de movimiento suave usando tweens de Phaser (duracion de 0.5 segundos, suavizado
+      Power2)
+      - Deteccion de posicion mas cercana: calcula la distancia euclidiana desde el centro de la
+      ficha hasta
+      todos los centros de posiciones validas, elige la mas cercana
+      - Despues de una colocacion exitosa: la ficha se reasigna al contenedor del tablero de juego,
+      se escala
+      a 1.0, se rota para coincidir con la orientacion de la posicion
+      - Entrada tactil y de raton soportadas de forma transparente mediante el sistema de entrada
+      unificado de Phaser
+      - Retroalimentacion haptica sutil (vibracion del dispositivo, ~20ms) al colocar exitosamente
+      una ficha en
+      dispositivos moviles que soportan la API de Vibracion
     </drag_and_drop_interaction>
 
     <player_hand_management>
-      - La mano del jugador se muestra en la parte inferior de la pantalla con fichas de pie (cara visible)
-      - Las manos de la IA se muestran en los lados izquierdo, superior y derecho con fichas a escala 0.5x mostrando
-        el reverso de las fichas (cara oculta)
-      - Las fichas de la IA izquierda y la IA derecha se muestran acostadas (rotadas 90 grados desde la vertical)
-      - Las fichas de la IA superior y del jugador se muestran de pie (rotacion de 0 grados, vertical)
-      - Solo las fichas validas son interactivas durante el turno del jugador (fichas cuyos valores de punto coinciden
-        con un numero de rama abierto)
-      - Las fichas no coincidentes aparecen bloqueadas/atenuadas durante el turno del jugador (opacidad reducida)
+      - La mano del jugador se muestra en la parte inferior de la pantalla con fichas de pie (cara
+      visible)
+      - Las manos de la IA se muestran en los lados izquierdo, superior y derecho con fichas a
+      escala 0.5x mostrando
+      el reverso de las fichas (cara oculta)
+      - Las fichas de la IA izquierda y la IA derecha se muestran acostadas (rotadas 90 grados desde
+      la vertical)
+      - Las fichas de la IA superior y del jugador se muestran de pie (rotacion de 0 grados,
+      vertical)
+      - Solo las fichas validas son interactivas durante el turno del jugador (fichas cuyos valores
+      de punto coinciden
+      con un numero de rama abierto)
+      - Las fichas no coincidentes aparecen bloqueadas/atenuadas durante el turno del jugador
+      (opacidad reducida)
       - El boton de pasar aparece y se habilita cuando el jugador no tiene movimientos validos
       - Todas las fichas estan bloqueadas (no interactivas, atenuadas) durante los turnos de la IA
       - Se reparten 7 fichas a cada jugador al inicio del juego (para el conjunto doble seis;
-        futuros conjuntos podrian repartir cantidades diferentes basadas en cantidad de fichas / cantidad de jugadores)
-      - El diseno de la mano ajusta automaticamente el espaciado segun la cantidad de fichas restantes
+      futuros conjuntos podrian repartir cantidades diferentes basadas en cantidad de fichas /
+      cantidad de jugadores)
+      - El diseno de la mano ajusta automaticamente el espaciado segun la cantidad de fichas
+      restantes
     </player_hand_management>
 
     <tile_distribution_and_game_start>
       - Las 28 fichas se crean en un area central de mazo (centro del tablero de juego)
       - Distribucion aleatoria: las fichas se asignan aleatoriamente a 4 manos (7 cada una)
-      - Distribucion animada: las fichas vuelan desde la posicion del mazo a las posiciones de las manos con
-        duracion de tween de 1.0s, retardo escalonado de 0.2s entre cada ficha
-      - Orden de distribucion: las primeras 7 al Jugador (abajo), las siguientes 7 a la IA Izquierda, las siguientes 7 a la
-        IA Superior, las ultimas 7 a la IA Derecha
-      - Despues de completar la distribucion, se selecciona un jugador inicial al azar (probabilidad igual de 1 en 4
-        para cada jugador)
-      - Se muestra el mensaje "Juego Iniciado" durante 1 segundo despues de completar la animacion de distribucion
-      - Retardo de 1 segundo antes de que comience la animacion de distribucion (permite al jugador ver el tablero)
-      - Las fichas se reparten boca abajo inicialmente, las fichas del jugador se voltean boca arriba al llegar a la mano
+      - Distribucion animada: las fichas vuelan desde la posicion del mazo a las posiciones de las
+      manos con
+      duracion de tween de 1.0s, retardo escalonado de 0.2s entre cada ficha
+      - Orden de distribucion: las primeras 7 al Jugador (abajo), las siguientes 7 a la IA
+      Izquierda, las siguientes 7 a la
+      IA Superior, las ultimas 7 a la IA Derecha
+      - Despues de completar la distribucion, se selecciona un jugador inicial al azar (probabilidad
+      igual de 1 en 4
+      para cada jugador)
+      - Se muestra el mensaje "Juego Iniciado" durante 1 segundo despues de completar la animacion
+      de distribucion
+      - Retardo de 1 segundo antes de que comience la animacion de distribucion (permite al jugador
+      ver el tablero)
+      - Las fichas se reparten boca abajo inicialmente, las fichas del jugador se voltean boca
+      arriba al llegar a la mano
     </tile_distribution_and_game_start>
 
     <turn_management>
-      - Orden de turnos fijo: Jugador -> IA Izquierda -> IA Superior -> IA Derecha -> Jugador (ciclico)
+      - Orden de turnos fijo: Jugador -> IA Izquierda -> IA Superior -> IA Derecha -> Jugador
+      (ciclico)
       - Primer jugador aleatorio al inicio del juego (probabilidad igual para los 4)
-      - La identidad del jugador esta abstraida mediante una interfaz Player que soporta tipos de jugador humano, IA y
-        (futuro) remoto
+      - La identidad del jugador esta abstraida mediante una interfaz Player que soporta tipos de
+      jugador humano, IA y
+      (futuro) remoto
       - Transiciones de turno con mensajes temporizados mostrando de quien es el turno
       - Seguimiento de turnos: solo un jugador activo a la vez
       - Despues de que un jugador coloca una ficha o pasa, el turno avanza al siguiente jugador
-        en el ciclo
-      - Se rastrea el ultimo jugador activo (el jugador mas reciente que coloco una ficha exitosamente)
-        para la puntuacion por pases
+      en el ciclo
+      - Se rastrea el ultimo jugador activo (el jugador mas reciente que coloco una ficha
+      exitosamente)
+      para la puntuacion por pases
       - El juego emite eventos de turno (turnStart, turnEnd, tilePlace, pass) a traves de un bus
-        de eventos para futura capacidad de sincronizacion en red
+      de eventos para futura capacidad de sincronizacion en red
     </turn_management>
 
     <pass_mechanics_and_scoring>
-      - Un jugador pasa cuando no tiene fichas cuyos valores de punto coincidan con cualquiera de los numeros
-        de rama abiertos
-      - El pase es automatico para los jugadores IA; manual mediante el boton Pasar para el jugador humano
-      - El boton de pasar solo se habilita cuando el jugador humano tiene cero fichas validas para jugar
+      - Un jugador pasa cuando no tiene fichas cuyos valores de punto coincidan con cualquiera de
+      los numeros
+      de rama abiertos
+      - El pase es automatico para los jugadores IA; manual mediante el boton Pasar para el jugador
+      humano
+      - El boton de pasar solo se habilita cuando el jugador humano tiene cero fichas validas para
+      jugar
       - Cuando un jugador pasa, el ULTIMO jugador que coloco una ficha exitosamente gana 1 punto
       - Si el mismo jugador que coloco la ultima ficha regresa a su propio turno nuevamente
-        (lo que significa que todos los demas jugadores pasaron en secuencia), el juego termina como "Fish"
-        (un juego bloqueado/empate)
-      - Visualizacion de puntuacion: cada jugador tiene un contador de puntuacion visible mostrando "Puntuacion: X"
+      (lo que significa que todos los demas jugadores pasaron en secuencia), el juego termina como
+      "Fish"
+      (un juego bloqueado/empate)
+      - Visualizacion de puntuacion: cada jugador tiene un contador de puntuacion visible mostrando
+      "Puntuacion: X"
       - Las puntuaciones se actualizan inmediatamente al pasar con una breve animacion de pulso
       - El sistema de puntuacion usa una clase ScoreManager que puede extenderse con reglas de
-        puntuacion alternativas en versiones futuras
+      puntuacion alternativas en versiones futuras
     </pass_mechanics_and_scoring>
 
     <ai_system>
       - Tres niveles de dificultad controlados por un parametro de dificultad (0, 1 o 2):
-        - Facil (dificultad 0): Juega fichas que ayudan al jugador humano a ganar; evita fichas
-          que bloquearian al jugador; usa analisis de forzar pase para evitar movimientos que
-          obliguen al jugador humano a pasar
-        - Aleatorio (dificultad 1): Elige una ficha valida coincidente al azar sin estrategia;
-          sirve como dificultad de referencia
-        - Dificil (dificultad 2): Juego estrategico que analiza la mano del siguiente jugador para
-          clasificar fichas como "buenas" (utiles) o "malas" (bloqueadoras)
-      - Retardo de pensamiento de la IA: entre 0.5 y 3.0 segundos aleatorios antes de hacer un movimiento (simula
-        tiempo de pensamiento humano; visible como un indicador animado sutil cerca del nombre de la IA)
+      - Facil (dificultad 0): Juega fichas que ayudan al jugador humano a ganar; evita fichas
+      que bloquearian al jugador; usa analisis de forzar pase para evitar movimientos que
+      obliguen al jugador humano a pasar
+      - Aleatorio (dificultad 1): Elige una ficha valida coincidente al azar sin estrategia;
+      sirve como dificultad de referencia
+      - Dificil (dificultad 2): Juego estrategico que analiza la mano del siguiente jugador para
+      clasificar fichas como "buenas" (utiles) o "malas" (bloqueadoras)
+      - Retardo de pensamiento de la IA: entre 0.5 y 3.0 segundos aleatorios antes de hacer un
+      movimiento (simula
+      tiempo de pensamiento humano; visible como un indicador animado sutil cerca del nombre de la
+      IA)
       - Seleccion de fichas de la IA para modo Dificil:
-        - Todas las fichas validas coincidentes se clasifican como "buenas" o "malas" en relacion al
-          SIGUIENTE jugador en el orden de turnos
-        - Ficha buena: despues de la colocacion, el nuevo valor de punto del extremo abierto coincide con al menos una
-          ficha en la mano del siguiente jugador
-        - Ficha mala: despues de la colocacion, el nuevo valor de punto del extremo abierto no coincide con NINGUNA de las
-          fichas del siguiente jugador
-        - Cuando la IA NO es el jugador inmediatamente antes del humano (nextPlayer=false):
-          prefiere jugar fichas buenas (ayuda al jugador intermedio, indirectamente)
-        - Cuando la IA ES el jugador inmediatamente antes del humano (nextPlayer=true):
-          prefiere jugar fichas malas (bloquea al humano)
-        - Respaldo: una ficha valida al azar cuando no hay opcion estrategica disponible
+      - Todas las fichas validas coincidentes se clasifican como "buenas" o "malas" en relacion al
+      SIGUIENTE jugador en el orden de turnos
+      - Ficha buena: despues de la colocacion, el nuevo valor de punto del extremo abierto coincide
+      con al menos una
+      ficha en la mano del siguiente jugador
+      - Ficha mala: despues de la colocacion, el nuevo valor de punto del extremo abierto no
+      coincide con NINGUNA de las
+      fichas del siguiente jugador
+      - Cuando la IA NO es el jugador inmediatamente antes del humano (nextPlayer=false):
+      prefiere jugar fichas buenas (ayuda al jugador intermedio, indirectamente)
+      - Cuando la IA ES el jugador inmediatamente antes del humano (nextPlayer=true):
+      prefiere jugar fichas malas (bloquea al humano)
+      - Respaldo: una ficha valida al azar cuando no hay opcion estrategica disponible
       - Logica especial del modo Facil:
-        - Clasifica fichas como buenas/malas en relacion a la mano del jugador HUMANO
-          (no la siguiente IA en orden)
-        - Prefiere fichas buenas no dobles
-        - Analisis de CausePass: verifica si cada movimiento valido obligaria al jugador humano a pasar
-        - Si todos los movimientos disponibles fuerzan un pase: verifica si pasar voluntariamente tambien forzaria
-          un pase -- si es asi, juega una ficha al azar; si no, devuelve null (pasa voluntariamente)
-      - Los movimientos de la IA son animados: la ficha se voltea del reverso a la cara, luego se anima con tween desde la
-        posicion de la mano de la IA a la posicion del tablero
-      - La logica de estrategia de la IA esta separada del controlador de la IA para facilitar las pruebas; la
-        estrategia recibe el estado del juego y devuelve una eleccion de ficha sin efectos secundarios
+      - Clasifica fichas como buenas/malas en relacion a la mano del jugador HUMANO
+      (no la siguiente IA en orden)
+      - Prefiere fichas buenas no dobles
+      - Analisis de CausePass: verifica si cada movimiento valido obligaria al jugador humano a
+      pasar
+      - Si todos los movimientos disponibles fuerzan un pase: verifica si pasar voluntariamente
+      tambien forzaria
+      un pase -- si es asi, juega una ficha al azar; si no, devuelve null (pasa voluntariamente)
+      - Los movimientos de la IA son animados: la ficha se voltea del reverso a la cara, luego se
+      anima con tween desde la
+      posicion de la mano de la IA a la posicion del tablero
+      - La logica de estrategia de la IA esta separada del controlador de la IA para facilitar las
+      pruebas; la
+      estrategia recibe el estado del juego y devuelve una eleccion de ficha sin efectos secundarios
     </ai_system>
 
     <game_over_conditions>
       - Condicion de victoria: el primer jugador en colocar todas sus fichas gana.
-        Mensaje: "Has ganado!" (si es humano) o "{Nombre de la IA} gana!" (si es IA)
-      - Condicion de Fish/bloqueo: cuando todos los jugadores deben pasar consecutivamente y el turno
-        vuelve al ultimo jugador que coloco una ficha, el juego termina como una partida
-        bloqueada. Mensaje: "Fish - Fin del Juego"
-      - Al terminar el juego: todas las fichas se bloquean (no interactivas), el boton de Pasar se deshabilita,
-        y el mensaje final se muestra permanentemente en pantalla
-      - Las manos de los jugadores se rastrean removiendo las fichas colocadas de los arreglos de mano despues de cada
-        colocacion exitosa
-      - El estado de fin de juego es definitivo -- no se procesan mas movimientos hasta que se seleccione
-        Reiniciar o Menu Principal
+      Mensaje: "Has ganado!" (si es humano) o "{Nombre de la IA} gana!" (si es IA)
+      - Condicion de Fish/bloqueo: cuando todos los jugadores deben pasar consecutivamente y el
+      turno
+      vuelve al ultimo jugador que coloco una ficha, el juego termina como una partida
+      bloqueada. Mensaje: "Fish - Fin del Juego"
+      - Al terminar el juego: todas las fichas se bloquean (no interactivas), el boton de Pasar se
+      deshabilita,
+      y el mensaje final se muestra permanentemente en pantalla
+      - Las manos de los jugadores se rastrean removiendo las fichas colocadas de los arreglos de
+      mano despues de cada
+      colocacion exitosa
+      - El estado de fin de juego es definitivo -- no se procesan mas movimientos hasta que se
+      seleccione
+      Reiniciar o Menu Principal
     </game_over_conditions>
 
     <menu_system>
-      - Pantalla de Menu Principal (MenuScene) con titulo del juego "Quarzen's Domino" y boton "Jugar"
-      - Seleccion de dificultad: 3 botones etiquetados Facil, Aleatorio, Dificil -- cada uno inicia una nueva
-        partida con el nivel de dificultad de IA correspondiente
-      - Modal de reglas del juego: un boton etiquetado "Reglas" que abre una superposicion modal dentro de la aplicacion
-        mostrando las reglas del domino clasico en formato de texto legible. El modal incluye
-        un boton de cerrar y hacer clic fuera del modal tambien lo cierra
-      - Boton de hamburguesa/menu en el juego (esquina superior derecha) para alternar la superposicion del menu de pausa
+      - Pantalla de Menu Principal (MenuScene) con titulo del juego "Quarzen's Domino" y boton
+      "Jugar"
+      - Seleccion de dificultad: 3 botones etiquetados Facil, Aleatorio, Dificil -- cada uno inicia
+      una nueva
+      partida con el nivel de dificultad de IA correspondiente
+      - Modal de reglas del juego: un boton etiquetado "Reglas" que abre una superposicion modal
+      dentro de la aplicacion
+      mostrando las reglas del domino clasico en formato de texto legible. El modal incluye
+      un boton de cerrar y hacer clic fuera del modal tambien lo cierra
+      - Boton de hamburguesa/menu en el juego (esquina superior derecha) para alternar la
+      superposicion del menu de pausa
       - La superposicion del menu de pausa contiene:
-        - Boton "Reanudar" -- cierra la superposicion, reanuda el juego
-        - Boton "Reiniciar" -- reinicia el juego con el mismo nivel de dificultad
-        - Boton "Menu Principal" -- regresa a la MenuScene
+      - Boton "Reanudar" -- cierra la superposicion, reanuda el juego
+      - Boton "Reiniciar" -- reinicia el juego con el mismo nivel de dificultad
+      - Boton "Menu Principal" -- regresa a la MenuScene
       - Transiciones limpias entre escenas (desvanecimiento a negro de 0.5s)
       - El estado del juego se destruye completamente y se recrea al reiniciar (sin estado residual)
-      - Selector de tema en el menu (desplegable o fila de botones) si hay multiples temas disponibles
+      - Selector de tema en el menu (desplegable o fila de botones) si hay multiples temas
+      disponibles
       - Icono de silenciar/activar sonido en la esquina superior derecha de la MenuScene
     </menu_system>
 
     <theme_system>
       - Configuracion de tema basada en JSON en public/assets/themes/{nombre-del-tema}/theme.json
       - El tema define:
-        - name: nombre de visualizacion legible del tema
-        - spriteSheet: ruta a la imagen de la hoja de sprites que contiene todas las caras de fichas
-        - spriteSheetData: ruta al JSON del atlas de la hoja de sprites (definiciones de cuadros)
-        - tileBack: ruta a la imagen del reverso de la ficha
-        - tableBackground: ruta a la imagen de fondo de la mesa/tablero
-        - menuBackground: ruta a la imagen de fondo del menu
-        - gameBackground: ruta a la imagen de fondo de la escena de juego
-        - sounds: objeto que mapea nombres de eventos de sonido a rutas de archivos de audio
-          (claves: tilePlace, tilePickup, pass, gameStart, gameOver, buttonClick, tileDeal)
-        - colors: objeto con valores de color hexadecimal
-          (claves: tableColor, highlightColor, validSlotColor, textColor, scoreColor,
-          buttonColor, buttonHoverColor, passButtonColor)
-        - avatarImage: ruta a la imagen de avatar del jugador/IA (opcional)
+      - name: nombre de visualizacion legible del tema
+      - spriteSheet: ruta a la imagen de la hoja de sprites que contiene todas las caras de fichas
+      - spriteSheetData: ruta al JSON del atlas de la hoja de sprites (definiciones de cuadros)
+      - tileBack: ruta a la imagen del reverso de la ficha
+      - tableBackground: ruta a la imagen de fondo de la mesa/tablero
+      - menuBackground: ruta a la imagen de fondo del menu
+      - gameBackground: ruta a la imagen de fondo de la escena de juego
+      - sounds: objeto que mapea nombres de eventos de sonido a rutas de archivos de audio
+      (claves: tilePlace, tilePickup, pass, gameStart, gameOver, buttonClick, tileDeal)
+      - colors: objeto con valores de color hexadecimal
+      (claves: tableColor, highlightColor, validSlotColor, textColor, scoreColor,
+      buttonColor, buttonHoverColor, passButtonColor)
+      - avatarImage: ruta a la imagen de avatar del jugador/IA (opcional)
       - El tema predeterminado "classic" se incluye con el juego y sirve como implementacion de
-        referencia para los creadores de temas
+      referencia para los creadores de temas
       - La seleccion de tema esta disponible desde el menu principal
       - Los temas son carpetas autocontenidas: un no desarrollador crea un nuevo tema copiando
-        la carpeta classic/, renombrandola, reemplazando archivos de imagen y sonido,
-        y editando theme.json para ajustar colores y rutas
-      - El juego recarga los recursos del tema al seleccionarlo sin recargar la pagina completa (limpieza
-        y recarga del cache de texturas y audio de Phaser)
-      - TODAS las referencias de recursos en el codigo del juego pasan a traves del ThemeManager -- no hay rutas
-        de imagen o sonido codificadas directamente en ninguna parte del codigo
+      la carpeta classic/, renombrandola, reemplazando archivos de imagen y sonido,
+      y editando theme.json para ajustar colores y rutas
+      - El juego recarga los recursos del tema al seleccionarlo sin recargar la pagina completa
+      (limpieza
+      y recarga del cache de texturas y audio de Phaser)
+      - TODAS las referencias de recursos en el codigo del juego pasan a traves del ThemeManager --
+      no hay rutas
+      de imagen o sonido codificadas directamente en ninguna parte del codigo
     </theme_system>
 
     <audio_system>
       - Efectos de sonido activados por eventos del juego:
-        - Tomar ficha: cuando el jugador comienza a arrastrar una ficha
-        - Colocar ficha: cuando una ficha se ajusta a una posicion valida del tablero
-        - Repartir ficha: durante la animacion de distribucion (un sonido por ficha repartida)
-        - Pasar turno: cuando cualquier jugador pasa
-        - Inicio de juego: despues de completar la distribucion de fichas
-        - Fin de juego: cuando se alcanza una condicion de victoria o fish (sonidos distintos para
-          victoria vs derrota, si los proporciona el tema)
-        - Clic de boton: al presionar cualquier boton de menu o UI
+      - Tomar ficha: cuando el jugador comienza a arrastrar una ficha
+      - Colocar ficha: cuando una ficha se ajusta a una posicion valida del tablero
+      - Repartir ficha: durante la animacion de distribucion (un sonido por ficha repartida)
+      - Pasar turno: cuando cualquier jugador pasa
+      - Inicio de juego: despues de completar la distribucion de fichas
+      - Fin de juego: cuando se alcanza una condicion de victoria o fish (sonidos distintos para
+      victoria vs derrota, si los proporciona el tema)
+      - Clic de boton: al presionar cualquier boton de menu o UI
       - Los archivos de audio se cargan desde la carpeta del tema activo a traves del ThemeManager
       - Control de volumen: al minimo un boton de silenciar (persistido en localStorage)
       - Sonidos realistas de clic de madera como direccion de audio predeterminada
       - Manejo elegante de archivos de audio faltantes: try-catch alrededor de la carga y
-        reproduccion de audio -- archivos faltantes resultan en silencio, no en errores o fallos
-      - El contexto de audio (Web Audio API) se inicializa en la primera interaccion del usuario (toque o
-        clic) para cumplir con las politicas de reproduccion automatica del navegador
-      - El sistema de audio es extensible: se pueden agregar nuevos eventos de sonido anadiendo claves al
-        objeto sounds de theme.json sin modificar el codigo del sistema de audio
+      reproduccion de audio -- archivos faltantes resultan en silencio, no en errores o fallos
+      - El contexto de audio (Web Audio API) se inicializa en la primera interaccion del usuario
+      (toque o
+      clic) para cumplir con las politicas de reproduccion automatica del navegador
+      - El sistema de audio es extensible: se pueden agregar nuevos eventos de sonido anadiendo
+      claves al
+      objeto sounds de theme.json sin modificar el codigo del sistema de audio
     </audio_system>
 
     <pwa_and_offline>
       - Archivo de manifiesto PWA (manifest.json) con:
-        - Nombre de la aplicacion: "Quarzen's Domino"
-        - Nombre corto: "Domino"
-        - Color del tema y color de fondo que coinciden con el tema clasico
-        - Iconos en tamanos requeridos (192x192, 512x512 PNG)
-        - Modo de visualizacion: standalone (se ejecuta sin interfaz del navegador)
-        - Orientacion: landscape (horizontal)
-        - URL de inicio: /
+      - Nombre de la aplicacion: "Quarzen's Domino"
+      - Nombre corto: "Domino"
+      - Color del tema y color de fondo que coinciden con el tema clasico
+      - Iconos en tamanos requeridos (192x192, 512x512 PNG)
+      - Modo de visualizacion: standalone (se ejecuta sin interfaz del navegador)
+      - Orientacion: landscape (horizontal)
+      - URL de inicio: /
       - Service worker impulsado por Workbox para almacenamiento en cache offline:
-        - Pre-almacena todos los recursos del juego (HTML, JS, CSS, sprites, sonidos, archivos de tema)
-        - Estrategia de cache primero para recursos estaticos
-        - Estrategia de red primero para theme.json (permite actualizaciones de tema cuando esta en linea)
-        - Respaldo offline: el juego es completamente jugable sin conexion a internet
-          despues de la primera carga
-      - Aviso de instalacion: un banner o boton sutil "Agregar a la Pantalla de Inicio" mostrado en la
-        primera visita (descartable, no bloquea el juego)
-      - La aplicacion es compartible via URL -- visitar la URL en cualquier dispositivo abre el juego,
-        con opcion de instalar como PWA
-      - El paquete total en cache debe mantenerse por debajo de 20MB (dentro de los limites de almacenamiento
-        de PWA de iOS de 50MB por origen)
+      - Pre-almacena todos los recursos del juego (HTML, JS, CSS, sprites, sonidos, archivos de
+      tema)
+      - Estrategia de cache primero para recursos estaticos
+      - Estrategia de red primero para theme.json (permite actualizaciones de tema cuando esta en
+      linea)
+      - Respaldo offline: el juego es completamente jugable sin conexion a internet
+      despues de la primera carga
+      - Aviso de instalacion: un banner o boton sutil "Agregar a la Pantalla de Inicio" mostrado en
+      la
+      primera visita (descartable, no bloquea el juego)
+      - La aplicacion es compartible via URL -- visitar la URL en cualquier dispositivo abre el
+      juego,
+      con opcion de instalar como PWA
+      - El paquete total en cache debe mantenerse por debajo de 20MB (dentro de los limites de
+      almacenamiento
+      de PWA de iOS de 50MB por origen)
     </pwa_and_offline>
 
     <responsive_design>
       - Diseno orientado a moviles: optimizado para telefonos sostenidos en orientacion horizontal
       - Resolucion principal: 960x600 (relacion de aspecto 16:10 horizontal)
-      - ScaleManager de Phaser configurado en modo FIT: el juego se escala para llenar la ventana de visualizacion
-        manteniendo la relacion de aspecto, con letterboxing (barras negras) si es necesario
+      - ScaleManager de Phaser configurado en modo FIT: el juego se escala para llenar la ventana de
+      visualizacion
+      manteniendo la relacion de aspecto, con letterboxing (barras negras) si es necesario
       - La entrada tactil es el metodo de entrada principal; tambien se soporta raton/teclado
-      - El arrastre y soltar tactil funciona con la entrada de puntero unificada de Phaser (sin rutas de
-        codigo separadas para tactil vs raton)
-      - Ventana de visualizacion minima soportada: 480px de ancho (retrato en movil). Cuando la ventana de visualizacion
-        esta en orientacion vertical, se muestra un mensaje de pantalla completa "Gire su dispositivo"
-        con un icono de rotacion en lugar del juego
-      - Todos los elementos interactivos dimensionados para objetivos tactiles: area de toque minima de 44x44px
-        (Guias de Interfaz Humana de Apple)
+      - El arrastre y soltar tactil funciona con la entrada de puntero unificada de Phaser (sin
+      rutas de
+      codigo separadas para tactil vs raton)
+      - Ventana de visualizacion minima soportada: 480px de ancho (retrato en movil). Cuando la
+      ventana de visualizacion
+      esta en orientacion vertical, se muestra un mensaje de pantalla completa "Gire su dispositivo"
+      con un icono de rotacion en lugar del juego
+      - Todos los elementos interactivos dimensionados para objetivos tactiles: area de toque minima
+      de 44x44px
+      (Guias de Interfaz Humana de Apple)
       - El tablero de juego se centra automaticamente dentro del espacio disponible del canvas
       - El texto de la UI se escala proporcionalmente con el canvas
     </responsive_design>
 
     <visual_feedback>
-      - Las fichas validas brillan con un efecto de resaltado pulsante cuando es el turno del jugador
-        (ciclo de 0.5s, usando el highlightColor del tema)
-      - Las fichas invalidas/bloqueadas aparecen atenuadas (alfa reducido a 0.4) y no son interactivas
-      - Las posiciones fantasma de colocacion se renderizan como contornos de fichas semitransparentes en posiciones
-        validas del tablero (alfa 0.3-0.5, tintadas con el validSlotColor del tema)
+      - Las fichas validas brillan con un efecto de resaltado pulsante cuando es el turno del
+      jugador
+      (ciclo de 0.5s, usando el highlightColor del tema)
+      - Las fichas invalidas/bloqueadas aparecen atenuadas (alfa reducido a 0.4) y no son
+      interactivas
+      - Las posiciones fantasma de colocacion se renderizan como contornos de fichas
+      semitransparentes en posiciones
+      validas del tablero (alfa 0.3-0.5, tintadas con el validSlotColor del tema)
       - Animaciones de tween suaves para todos los movimientos de fichas:
-        - 0.5s para colocacion de ficha (mano/arrastre a posicion del tablero)
-        - 1.0s para repartir ficha (mazo a mano)
-        - 0.5s para retorno de ficha a la mano (arrastre cancelado)
-      - Texto indicador de turno mostrando de quien es el turno (centrado cerca de la parte superior de la pantalla)
-      - Los contadores de puntuacion se actualizan con una breve animacion de pulso de escala (0.3s, escala a 1.2x
-        luego de vuelta a 1.0x)
+      - 0.5s para colocacion de ficha (mano/arrastre a posicion del tablero)
+      - 1.0s para repartir ficha (mazo a mano)
+      - 0.5s para retorno de ficha a la mano (arrastre cancelado)
+      - Texto indicador de turno mostrando de quien es el turno (centrado cerca de la parte superior
+      de la pantalla)
+      - Los contadores de puntuacion se actualizan con una breve animacion de pulso de escala (0.3s,
+      escala a 1.2x
+      luego de vuelta a 1.0x)
       - Mensaje de superposicion de fin de juego con animacion de entrada dramatica (1.0s escala de
-        0 a 1 con suavizado de rebote)
-      - Indicador de pensamiento de la IA: puntos animados sutiles (...) cerca del nombre de la IA activa
-        durante su retardo de pensamiento
+      0 a 1 con suavizado de rebote)
+      - Indicador de pensamiento de la IA: puntos animados sutiles (...) cerca del nombre de la IA
+      activa
+      durante su retardo de pensamiento
     </visual_feedback>
 
     <accessibility>
-      - Alto contraste entre las caras de las fichas (marfil/blanco) y el fondo de la mesa (verde oscuro)
+      - Alto contraste entre las caras de las fichas (marfil/blanco) y el fondo de la mesa (verde
+      oscuro)
       - El texto usa tamanos de fuente legibles: minimo equivalente a 16px en resolucion base
       - El color nunca es el unico indicador de estado: las fichas bloqueadas tienen tanto opacidad
-        reducida COMO una superposicion oscurecedora; las fichas validas tienen tanto un brillo COMO son los unicos
-        elementos interactivos
+      reducida COMO una superposicion oscurecedora; las fichas validas tienen tanto un brillo COMO
+      son los unicos
+      elementos interactivos
       - Todos los elementos interactivos cumplen el tamano minimo de objetivo tactil de 44x44px
-      - Los mensajes de estado del juego se muestran como superposiciones de texto visibles (no se comunican
-        unicamente a traves de cambios de color o animaciones)
-      - El indicador de turno y las actualizaciones de puntuacion son claramente visibles contra todos los fondos de tema
+      - Los mensajes de estado del juego se muestran como superposiciones de texto visibles (no se
+      comunican
+      unicamente a traves de cambios de color o animaciones)
+      - El indicador de turno y las actualizaciones de puntuacion son claramente visibles contra
+      todos los fondos de tema
     </accessibility>
 
     <rules_modal>
       - Accesible desde el menu principal mediante un boton "Reglas"
       - Muestra las reglas del domino clasico en un modal de texto desplazable:
-        - Como funcionan las fichas (conjunto doble seis, valores de puntos, dobles vs no dobles)
-        - Como jugar (coincidir valores de puntos, colocar en ramas)
-        - Reglas de pase (cuando y por que un jugador pasa)
-        - Puntuacion (puntos otorgados cuando los oponentes pasan)
-        - Condiciones de victoria (mano vacia gana, juego Fish/bloqueado)
-        - Descripciones de dificultad de la IA (Facil te ayuda, Aleatorio es neutral, Dificil te bloquea)
+      - Como funcionan las fichas (conjunto doble seis, valores de puntos, dobles vs no dobles)
+      - Como jugar (coincidir valores de puntos, colocar en ramas)
+      - Reglas de pase (cuando y por que un jugador pasa)
+      - Puntuacion (puntos otorgados cuando los oponentes pasan)
+      - Condiciones de victoria (mano vacia gana, juego Fish/bloqueado)
+      - Descripciones de dificultad de la IA (Facil te ayuda, Aleatorio es neutral, Dificil te
+      bloquea)
       - El modal tiene un boton visible de cerrar (X) en la esquina superior derecha
       - Hacer clic/tocar fuera del modal tambien lo cierra
       - El contenido del modal es texto estatico, sin elementos interactivos dentro
-      - Estilizado de forma consistente con el sistema de diseno del juego (panel oscuro, texto blanco,
-        colores marrones que coinciden con el tema)
+      - Estilizado de forma consistente con el sistema de diseno del juego (panel oscuro, texto
+      blanco,
+      colores marrones que coinciden con el tema)
     </rules_modal>
   </core_features>
 
   <database_schema>
-    <tables>
-      Sin base de datos para el MVP. Todo el estado del juego existe en memoria como objetos TypeScript.
-      La configuracion del tema se carga desde archivos JSON estaticos en public/assets/themes/.
-
-      Nota de arquitectura: todas las clases de estado del juego implementan un metodo toJSON() y pueden ser
-      reconstruidas desde JSON mediante metodos de fabrica estaticos fromJSON(). Esta capacidad de serializacion
-      no se usa en el MVP pero es requerida para funcionalidades futuras (guardar/cargar partidas,
-      sincronizacion de estado multijugador, persistencia de estadisticas).
-
-      <theme_json_structure>
+    <tables> Sin base de datos para el MVP. Todo el estado del juego existe en memoria como objetos
+      TypeScript. La configuracion del tema se carga desde archivos JSON estaticos en
+      public/assets/themes/. Nota de arquitectura: todas las clases de estado del juego implementan
+      un metodo toJSON() y pueden ser reconstruidas desde JSON mediante metodos de fabrica estaticos
+      fromJSON(). Esta capacidad de serializacion no se usa en el MVP pero es requerida para
+      funcionalidades futuras (guardar/cargar partidas, sincronizacion de estado multijugador,
+      persistencia de estadisticas). <theme_json_structure>
         - name (string, requerido): Nombre de visualizacion del tema
-        - spriteSheet (string, requerido): Ruta relativa a la imagen de la hoja de sprites de fichas (PNG)
+        - spriteSheet (string, requerido): Ruta relativa a la imagen de la hoja de sprites de fichas
+      (PNG)
         - spriteSheetData (string, requerido): Ruta relativa al JSON del atlas de la hoja de sprites
-        - tileBack (string, requerido): Ruta relativa a la imagen del reverso de la ficha
+      - tileBack (string, requerido): Ruta relativa a la imagen del reverso de la ficha
         - tableBackground (string, requerido): Ruta relativa a la imagen de fondo de la mesa
         - menuBackground (string, requerido): Ruta relativa a la imagen de fondo del menu
-        - gameBackground (string, requerido): Ruta relativa a la imagen de fondo de la escena de juego
-        - sounds (object, opcional): Las claves son nombres de eventos de sonido, los valores son rutas relativas
-          de archivos de audio. Claves conocidas: tilePlace, tilePickup, pass, gameStart,
-          gameOver, gameWin, gameLose, buttonClick, tileDeal
+        - gameBackground (string, requerido): Ruta relativa a la imagen de fondo de la escena de
+      juego
+        - sounds (object, opcional): Las claves son nombres de eventos de sonido, los valores son
+      rutas relativas
+        de archivos de audio. Claves conocidas: tilePlace, tilePickup, pass, gameStart,
+        gameOver, gameWin, gameLose, buttonClick, tileDeal
         - colors (object, requerido): Valores de cadena de color hexadecimal
-          - tableColor: color de fondo del tablero/fieltro
-          - highlightColor: color de brillo de ficha activa/valida
-          - validSlotColor: color de tinte de posicion fantasma
-          - textColor: color de texto principal
-          - scoreColor: color de texto de visualizacion de puntuacion
-          - buttonColor: color de fondo de boton
-          - buttonHoverColor: color de estado hover de boton
-          - passButtonColor: color de fondo del boton de pasar
+        - tableColor: color de fondo del tablero/fieltro
+        - highlightColor: color de brillo de ficha activa/valida
+        - validSlotColor: color de tinte de posicion fantasma
+        - textColor: color de texto principal
+        - scoreColor: color de texto de visualizacion de puntuacion
+        - buttonColor: color de fondo de boton
+        - buttonHoverColor: color de estado hover de boton
+        - passButtonColor: color de fondo del boton de pasar
         - avatarImage (string, opcional): Ruta relativa a la imagen de avatar
       </theme_json_structure>
 
       <game_state_model>
-        Modelos de datos principales (todos serializables a JSON):
+      Modelos de datos principales (todos serializables a JSON):
 
         - TileConfig: { maxPip: number }
-          Determina el tamano del conjunto de fichas. maxPip=6 produce 28 fichas (doble seis),
-          maxPip=9 produce 55 fichas (doble nueve), maxPip=12 produce 91 fichas
-          (doble doce). El MVP usa maxPip=6 unicamente.
+        Determina el tamano del conjunto de fichas. maxPip=6 produce 28 fichas (doble seis),
+        maxPip=9 produce 55 fichas (doble nueve), maxPip=12 produce 91 fichas
+        (doble doce). El MVP usa maxPip=6 unicamente.
 
         - Domino: { id: number, topIndex: number, bottomIndex: number, available: boolean }
-          Representa una sola ficha de domino. El ID se asigna automaticamente durante la generacion.
+      Representa una sola ficha de domino. El ID se asigna automaticamente durante la generacion.
 
         - PlayerHand: { tiles: Domino[], score: number, playerType: 'human'|'ai'|'remote',
-          position: 'bottom'|'left'|'top'|'right', name: string }
-          Representa la mano y puntuacion de un jugador. playerType soporta futuro multijugador.
+        position: 'bottom'|'left'|'top'|'right', name: string }
+        Representa la mano y puntuacion de un jugador. playerType soporta futuro multijugador.
 
         - BoardState: {
-            rightBranchNum: number, leftBranchNum: number,
-            rightPhase: number, leftPhase: number,
-            rightHor: number, rightVer: number,
-            leftHor: number, leftVer: number,
-            started: boolean,
-            placedTiles: Array of { domino: Domino, x: number, y: number, rotation: number,
-              branch: 'right'|'left' }
-          }
-          Rastrea el estado del diseno del tablero para ambas ramas. El arreglo placedTiles permite
-          futura repeticion y reconstruccion de estado.
+        rightBranchNum: number, leftBranchNum: number,
+        rightPhase: number, leftPhase: number,
+        rightHor: number, rightVer: number,
+        leftHor: number, leftVer: number,
+        started: boolean,
+        placedTiles: Array of { domino: Domino, x: number, y: number, rotation: number,
+        branch: 'right'|'left' }
+        }
+        Rastrea el estado del diseno del tablero para ambas ramas. El arreglo placedTiles permite
+      futura repeticion y reconstruccion de estado.
 
         - GameState: {
-            currentTurn: number (indice en el arreglo de jugadores),
-            lastActivePlayer: number,
-            gameOver: boolean,
-            difficulty: number,
-            tileConfig: TileConfig,
-            players: PlayerHand[],
-            board: BoardState
-          }
-          Contenedor central del estado del juego. Completamente serializable.
+        currentTurn: number (indice en el arreglo de jugadores),
+        lastActivePlayer: number,
+        gameOver: boolean,
+        difficulty: number,
+        tileConfig: TileConfig,
+        players: PlayerHand[],
+        board: BoardState
+        }
+        Contenedor central del estado del juego. Completamente serializable.
       </game_state_model>
     </tables>
   </database_schema>
 
-  <api_endpoints_summary>
-    Sin endpoints de API para el MVP. Esta es una aplicacion completamente del lado del cliente.
-    Toda la logica del juego se ejecuta en el navegador. La configuracion del tema y los recursos estaticos se
-    cargan mediante solicitudes HTTP GET estandar servidas por Vite (desarrollo) o cualquier
-    servidor de archivos estaticos (produccion).
-
-    <static_assets>
+  <api_endpoints_summary> Sin endpoints de API para el MVP. Esta es una aplicacion completamente del
+    lado del cliente. Toda la logica del juego se ejecuta en el navegador. La configuracion del tema
+    y los recursos estaticos se cargan mediante solicitudes HTTP GET estandar servidas por Vite
+    (desarrollo) o cualquier servidor de archivos estaticos (produccion). <static_assets>
       - GET /assets/themes/{name}/theme.json - Configuracion del tema
       - GET /assets/themes/{name}/tiles-spritesheet.png - Imagen de la hoja de sprites de fichas
       - GET /assets/themes/{name}/tiles-spritesheet.json - Datos del atlas de la hoja de sprites
@@ -562,93 +626,103 @@
       - GET /assets/themes/{name}/menu-bg.png - Fondo del menu
       - GET /assets/themes/{name}/game-bg.png - Fondo de la escena de juego
       - GET /assets/themes/{name}/sounds/{event}.mp3 - Archivos de audio
-        (nombres de eventos: tilePlace, tilePickup, pass, gameStart, gameOver, gameWin,
-        gameLose, buttonClick, tileDeal)
+      (nombres de eventos: tilePlace, tilePickup, pass, gameStart, gameOver, gameWin,
+      gameLose, buttonClick, tileDeal)
       - GET /manifest.json - Manifiesto PWA
       - GET /sw.js - Service worker (generado por vite-plugin-pwa)
     </static_assets>
-
-    Ganchos de API futuros (no implementados en el MVP):
-    - Endpoint WebSocket para sincronizacion de estado de juego multijugador
-    - API REST para envio y consulta de tablas de clasificacion
-    - API REST para gestion de cuentas de usuario
-    - API REST para persistencia de estadisticas de juego
-  </api_endpoints_summary>
+    Ganchos de API futuros (no implementados en el MVP): - Endpoint WebSocket para sincronizacion de
+    estado de juego multijugador - API REST para envio y consulta de tablas de clasificacion - API
+    REST para gestion de cuentas de usuario - API REST para persistencia de estadisticas de juego </api_endpoints_summary>
 
   <ui_layout>
     <main_structure>
       - Un unico canvas de Phaser llena la ventana de visualizacion (base 960x600, escalado FIT con
-        letterboxing)
+      letterboxing)
       - Dos escenas principales de Phaser: MenuScene y GameScene
-      - La superposicion HTML se usa solo para: aviso de instalacion de PWA, mensaje de bloqueo de orientacion,
-        y el modal de reglas (renderizado como un elemento HTML superpuesto al canvas para
-        desplazamiento de texto nativo adecuado)
-      - Toda la UI dentro del juego se renderiza en Phaser usando objetos de texto, sprites y contenedores
-      - Se fuerza orientacion horizontal. La orientacion vertical muestra un mensaje "Gire su dispositivo"
+      - La superposicion HTML se usa solo para: aviso de instalacion de PWA, mensaje de bloqueo de
+      orientacion,
+      y el modal de reglas (renderizado como un elemento HTML superpuesto al canvas para
+      desplazamiento de texto nativo adecuado)
+      - Toda la UI dentro del juego se renderiza en Phaser usando objetos de texto, sprites y
+      contenedores
+      - Se fuerza orientacion horizontal. La orientacion vertical muestra un mensaje "Gire su
+      dispositivo"
     </main_structure>
 
     <menu_scene>
       - Imagen de fondo a pantalla completa cargada desde el tema (menuBackground)
       - Titulo del juego "Quarzen's Domino" centrado en el tercio superior de la pantalla
-        (texto decorativo grande, fuente Georgia, 48px, sombra paralela)
+      (texto decorativo grande, fuente Georgia, 48px, sombra paralela)
       - Tres botones de dificultad apilados verticalmente en el centro:
-        - "Facil" -- inicia el juego con dificultad 0
-        - "Aleatorio" -- inicia el juego con dificultad 1
-        - "Dificil" -- inicia el juego con dificultad 2
+      - "Facil" -- inicia el juego con dificultad 0
+      - "Aleatorio" -- inicia el juego con dificultad 1
+      - "Dificil" -- inicia el juego con dificultad 2
       - Boton "Reglas" debajo de los botones de dificultad -- abre el modal de reglas
       - Selector de tema debajo del boton de Reglas (visible si se detectan multiples temas
-        en la carpeta de recursos)
-      - Icono de silenciar/activar sonido en la esquina superior derecha (persiste la preferencia en localStorage)
+      en la carpeta de recursos)
+      - Icono de silenciar/activar sonido en la esquina superior derecha (persiste la preferencia en
+      localStorage)
       - Los botones tienen efecto hover (escala a 1.05x, el color cambia a buttonHoverColor)
-        y reproducen un sonido de clic al presionar
+      y reproducen un sonido de clic al presionar
     </menu_scene>
 
     <game_scene_layout>
       - La imagen de fondo de la mesa llena toda la escena (del tema gameBackground)
-      - Tablero de juego: area rectangular centrada (~700x400px) donde se colocan las fichas de domino.
-        Esta area se desplaza o escala si la cadena de fichas crece mas alla de sus limites
-        (relevante para futuros conjuntos de fichas mas grandes)
+      - Tablero de juego: area rectangular centrada (~700x400px) donde se colocan las fichas de
+      domino.
+      Esta area se desplaza o escala si la cadena de fichas crece mas alla de sus limites
+      (relevante para futuros conjuntos de fichas mas grandes)
       - Mano del jugador: centro inferior, fila horizontal de hasta 7 fichas de pie (cara arriba,
-        escala completa). Las fichas estan espaciadas uniformemente y se recentran al jugar fichas
-      - Mano de la IA izquierda: lado izquierdo de la pantalla, columna vertical de hasta 7 fichas acostadas
-        (cara abajo, escala 0.5x, rotadas 90 grados)
-      - Mano de la IA superior: centro superior de la pantalla, fila horizontal de hasta 7 fichas de pie
-        (cara abajo, escala 0.5x)
-      - Mano de la IA derecha: lado derecho de la pantalla, columna vertical de hasta 7 fichas acostadas
-        (cara abajo, escala 0.5x, rotadas 90 grados)
-      - Visualizacion de puntuaciones: posicionadas cerca del area de mano de cada jugador. Formato: "Puntuacion: 0"
-        en texto dorado sobre un rectangulo redondeado oscuro semitransparente
+      escala completa). Las fichas estan espaciadas uniformemente y se recentran al jugar fichas
+      - Mano de la IA izquierda: lado izquierdo de la pantalla, columna vertical de hasta 7 fichas
+      acostadas
+      (cara abajo, escala 0.5x, rotadas 90 grados)
+      - Mano de la IA superior: centro superior de la pantalla, fila horizontal de hasta 7 fichas de
+      pie
+      (cara abajo, escala 0.5x)
+      - Mano de la IA derecha: lado derecho de la pantalla, columna vertical de hasta 7 fichas
+      acostadas
+      (cara abajo, escala 0.5x, rotadas 90 grados)
+      - Visualizacion de puntuaciones: posicionadas cerca del area de mano de cada jugador. Formato:
+      "Puntuacion: 0"
+      en texto dorado sobre un rectangulo redondeado oscuro semitransparente
       - Indicador de turno: texto centrado cerca de la parte superior de la pantalla mostrando
-        "Tu Turno" / "Turno de la IA Izquierda" / "Turno de la IA Superior" / "Turno de la IA Derecha"
+      "Tu Turno" / "Turno de la IA Izquierda" / "Turno de la IA Superior" / "Turno de la IA Derecha"
       - Boton de pasar: area inferior derecha cerca de la mano del jugador. Fondo rojo, texto
-        blanco "Pasar". Visible y habilitado SOLO cuando el jugador no tiene movimientos validos
+      blanco "Pasar". Visible y habilitado SOLO cuando el jugador no tiene movimientos validos
       - Boton de menu: esquina superior derecha (icono de hamburguesa -- tres lineas horizontales).
-        Objetivo tactil de 50x50px
+      Objetivo tactil de 50x50px
       - Area de mensaje central: usada para notificaciones temporizadas ("Juego Iniciado", "Pasa",
-        anuncios de turno) y mensajes permanentes de fin de juego
+      anuncios de turno) y mensajes permanentes de fin de juego
     </game_scene_layout>
 
     <pause_menu_overlay>
       - Superposicion oscura semitransparente (negro al 70% de opacidad) cubriendo toda la escena
       - Panel emergente centrado (fondo marron oscuro con borde marron mas claro):
-        - Boton "Reanudar" -- cierra la superposicion, reanuda el juego exactamente donde se
-          pauso
-        - Boton "Reiniciar" -- destruye el juego actual e inicia uno nuevo con
-          el mismo nivel de dificultad
-        - Boton "Menu Principal" -- destruye el juego actual, transiciona de vuelta a la MenuScene
+      - Boton "Reanudar" -- cierra la superposicion, reanuda el juego exactamente donde se
+      pauso
+      - Boton "Reiniciar" -- destruye el juego actual e inicia uno nuevo con
+      el mismo nivel de dificultad
+      - Boton "Menu Principal" -- destruye el juego actual, transiciona de vuelta a la MenuScene
       - Hacer clic/tocar fuera del panel emergente tambien lo cierra (igual que Reanudar)
-      - La logica del juego se pausa mientras la superposicion es visible (sin movimientos de IA, sin avance de temporizadores)
+      - La logica del juego se pausa mientras la superposicion es visible (sin movimientos de IA,
+      sin avance de temporizadores)
     </pause_menu_overlay>
 
     <placement_slots>
-      - Sprites de fichas fantasma/phantom mostrados en posiciones de colocacion validas en el tablero
-        durante una operacion de arrastre
+      - Sprites de fichas fantasma/phantom mostrados en posiciones de colocacion validas en el
+      tablero
+      durante una operacion de arrastre
       - Renderizados como semitransparentes (alfa 0.3-0.5) con el validSlotColor del tema
-        como superposicion de tinte
-      - Hasta 2 posiciones mostradas simultaneamente: una en el extremo de la rama derecha, una en el
-        extremo de la rama izquierda (solo las posiciones donde la ficha arrastrada puede jugar legalmente)
-      - Las posiciones y rotaciones de las posiciones se calculan por el algoritmo de colocacion del tablero
-        (SlotHelper) basado en el estado actual del tablero
+      como superposicion de tinte
+      - Hasta 2 posiciones mostradas simultaneamente: una en el extremo de la rama derecha, una en
+      el
+      extremo de la rama izquierda (solo las posiciones donde la ficha arrastrada puede jugar
+      legalmente)
+      - Las posiciones y rotaciones de las posiciones se calculan por el algoritmo de colocacion del
+      tablero
+      (SlotHelper) basado en el estado actual del tablero
       - Las posiciones aparecen cuando el jugador comienza a arrastrar una ficha valida
       - Las posiciones desaparecen cuando el arrastre termina (ya sea colocada o devuelta a la mano)
     </placement_slots>
@@ -656,7 +730,8 @@
 
   <design_system>
     <color_palette>
-      Colores predeterminados del tema "classic". Todos los colores son modificables a traves de theme.json.
+      Colores predeterminados del tema "classic". Todos los colores son modificables a traves de
+      theme.json.
 
       - Fondo de mesa/tablero: #1B5E20 (verde oscuro, estetica de mesa de fieltro)
       - Fondo del menu: #0D2818 (verde mas oscuro)
@@ -678,8 +753,10 @@
     </color_palette>
 
     <typography>
-      - Fuente de encabezados: "Georgia" serif (clasica, sensacion tradicional para un juego de domino)
-      - Fuente de UI/cuerpo: "Arial" o pila de fuentes sans-serif del sistema para puntuaciones, mensajes y botones
+      - Fuente de encabezados: "Georgia" serif (clasica, sensacion tradicional para un juego de
+      domino)
+      - Fuente de UI/cuerpo: "Arial" o pila de fuentes sans-serif del sistema para puntuaciones,
+      mensajes y botones
       - Texto del titulo: 48px, negrita, Georgia, con sombra paralela desplazada 2px
       - Texto de boton: 24px, negrita, Arial
       - Texto de puntuacion: 18px, regular, Arial
@@ -692,64 +769,82 @@
     <components>
       <buttons>
         - Primario (seleccion de dificultad, menu): 200x60px, esquinas redondeadas (radio de 12px),
-          fondo marron oscuro (#4E342E), texto blanco (#FFFFFF), escala a 1.05x al pasar el
-          cursor/tocar, 0.95x al presionar. Tween de 0.15s para transiciones de escala
+        fondo marron oscuro (#4E342E), texto blanco (#FFFFFF), escala a 1.05x al pasar el
+        cursor/tocar, 0.95x al presionar. Tween de 0.15s para transiciones de escala
         - Boton de pasar: 120x50px, fondo rojo (#D32F2F), texto blanco "Pasar", visible
-          solo cuando el jugador no tiene movimientos validos
-        - Boton de menu (hamburguesa): 50x50px, basado en icono (tres lineas horizontales), posicionado
-          en la esquina superior derecha de la escena de juego
-        - Boton de reglas: mismo estilo que los botones primarios, posicionado debajo de los botones de dificultad
+        solo cuando el jugador no tiene movimientos validos
+        - Boton de menu (hamburguesa): 50x50px, basado en icono (tres lineas horizontales),
+        posicionado
+        en la esquina superior derecha de la escena de juego
+        - Boton de reglas: mismo estilo que los botones primarios, posicionado debajo de los botones
+        de dificultad
         - Estado deshabilitado: 50% de opacidad, sin efecto hover, no interactivo
         - Todos los botones reproducen el sonido buttonClick del tema al presionar
       </buttons>
 
       <tiles>
         - Tamano base del sprite: 60x120px (retrato/de pie) o 120x60px (horizontal/acostada)
-        - Fichas del jugador: escala completa (1.0x), cara visible (cuadro de la hoja de sprites), brillo
-          interactivo de resaltado cuando la ficha es una jugada valida
+        - Fichas del jugador: escala completa (1.0x), cara visible (cuadro de la hoja de sprites),
+        brillo
+        interactivo de resaltado cuando la ficha es una jugada valida
         - Fichas de la IA: media escala (0.5x), imagen del reverso visible, no interactivas
-        - Fichas del tablero: escala completa (1.0x), cara visible, no interactivas (colocadas permanentemente)
-        - Fichas bloqueadas: superposicion oscura al 50% de opacidad aplicada sobre el sprite de la ficha
-        - Ficha arrastrada: leve aumento de escala a 1.1x, renderizada sobre todos los demas objetos del juego
-          (mayor profundidad), efecto sutil de sombra paralela
-        - Las fichas estan contenidas en un Container de Phaser (sprite + superposicion opcional + brillo)
-          para agrupacion y transformacion limpias
+        - Fichas del tablero: escala completa (1.0x), cara visible, no interactivas (colocadas
+        permanentemente)
+        - Fichas bloqueadas: superposicion oscura al 50% de opacidad aplicada sobre el sprite de la
+        ficha
+        - Ficha arrastrada: leve aumento de escala a 1.1x, renderizada sobre todos los demas objetos
+        del juego
+        (mayor profundidad), efecto sutil de sombra paralela
+        - Las fichas estan contenidas en un Container de Phaser (sprite + superposicion opcional +
+        brillo)
+        para agrupacion y transformacion limpias
       </tiles>
 
       <score_display>
         - Posicionado cerca del area de mano de cada jugador
-        - Formato: "Puntuacion: {n}" en texto dorado (#FFD700) sobre un fondo de rectangulo redondeado
-          oscuro semitransparente
+        - Formato: "Puntuacion: {n}" en texto dorado (#FFD700) sobre un fondo de rectangulo
+        redondeado
+        oscuro semitransparente
         - Breve animacion de pulso al cambiar la puntuacion: escala a 1.2x luego de vuelta a 1.0x
-          en 0.3s con suavizado Power2
+        en 0.3s con suavizado Power2
       </score_display>
 
       <message_banner>
         - Centrado horizontal y verticalmente en la escena de juego
         - Texto grande sobre un fondo de rectangulo redondeado oscuro semitransparente
-        - Aparicion gradual (0.3s alfa de 0 a 1), mantenimiento por duracion configurada (1-3 segundos),
-          desaparicion gradual (0.3s alfa de 1 a 0)
-        - Se descarta automaticamente despues del tiempo de mantenimiento, o puede configurarse para persistir (para mensajes de fin de juego)
+        - Aparicion gradual (0.3s alfa de 0 a 1), mantenimiento por duracion configurada (1-3
+        segundos),
+        desaparicion gradual (0.3s alfa de 1 a 0)
+        - Se descarta automaticamente despues del tiempo de mantenimiento, o puede configurarse para
+        persistir (para mensajes de fin de juego)
       </message_banner>
     </components>
 
     <animations>
-      - Reparto de fichas: tween de 1.0s desde el centro del mazo a la posicion de la mano, suavizado Power2
-      - Escalonamiento del reparto: retardo de 0.2s entre el inicio de la animacion de reparto de cada ficha
-      - Colocacion de ficha: tween de 0.5s desde la posicion de mano/arrastre a la posicion del tablero, suavizado Power2
-      - Retorno de ficha a la mano: tween de 0.5s de vuelta a la posicion original de la mano cuando el arrastre
-        es cancelado (soltada debajo del umbral o en una posicion invalida)
-      - Indicador de pensamiento de la IA: puntos animados sutiles (...) en ciclo cerca del nombre de la IA activa
-        durante su retardo de pensamiento
-      - Pulso de puntuacion: escala a 1.2x luego de vuelta a 1.0x en 0.3s al cambiar la puntuacion, suavizado Power2
-      - Banner de mensaje: aparicion gradual de 0.3s, mantenimiento configurable, desaparicion gradual de 0.3s
+      - Reparto de fichas: tween de 1.0s desde el centro del mazo a la posicion de la mano,
+      suavizado Power2
+      - Escalonamiento del reparto: retardo de 0.2s entre el inicio de la animacion de reparto de
+      cada ficha
+      - Colocacion de ficha: tween de 0.5s desde la posicion de mano/arrastre a la posicion del
+      tablero, suavizado Power2
+      - Retorno de ficha a la mano: tween de 0.5s de vuelta a la posicion original de la mano cuando
+      el arrastre
+      es cancelado (soltada debajo del umbral o en una posicion invalida)
+      - Indicador de pensamiento de la IA: puntos animados sutiles (...) en ciclo cerca del nombre
+      de la IA activa
+      durante su retardo de pensamiento
+      - Pulso de puntuacion: escala a 1.2x luego de vuelta a 1.0x en 0.3s al cambiar la puntuacion,
+      suavizado Power2
+      - Banner de mensaje: aparicion gradual de 0.3s, mantenimiento configurable, desaparicion
+      gradual de 0.3s
       - Hover de boton: tween de escala de 0.15s a 1.05x
       - Presion de boton: tween de escala de 0.1s a 0.95x, luego liberacion de vuelta a 1.0x
       - Transicion de escena: desvanecimiento a negro de 0.5s entre MenuScene y GameScene
       - Resaltado de ficha valida: brillo pulsante sutil (ciclo de 0.5s, alfa oscila de 0.3 a 0.8)
       - Texto de fin de juego: animacion de entrada de 1.0s (escala de 0 a 1 con suavizado Bounce)
-      - Volteo de ficha (jugada de IA): escala horizontal de 0.2s a 0 (muestra reverso), cambio de textura, escala
-        horizontal de 0.2s de vuelta a 1 (muestra cara)
+      - Volteo de ficha (jugada de IA): escala horizontal de 0.2s a 0 (muestra reverso), cambio de
+      textura, escala
+      horizontal de 0.2s de vuelta a 1 (muestra cara)
     </animations>
   </design_system>
 
@@ -757,89 +852,98 @@
     <start_new_game>
       1. El usuario abre la URL de la aplicacion o lanza la PWA instalada
       2. La MenuScene carga con el titulo "Quarzen's Domino", botones de dificultad (Facil,
-         Aleatorio, Dificil), boton de Reglas, selector de tema, y boton de silenciar
-      3. El usuario selecciona un nivel de dificultad tocando/haciendo clic en uno de los tres botones
+      Aleatorio, Dificil), boton de Reglas, selector de tema, y boton de silenciar
+      3. El usuario selecciona un nivel de dificultad tocando/haciendo clic en uno de los tres
+      botones
       4. La escena transiciona a la GameScene con una animacion de desvanecimiento a negro de 0.5s
       5. 28 fichas de domino aparecen apiladas en el centro del tablero (posicion del mazo)
       6. Despues de una pausa de 1 segundo, las fichas se animan volando a la mano de cada jugador:
-         7 fichas al Jugador (abajo), 7 a la IA Izquierda, 7 a la IA Superior, 7 a la IA Derecha.
-         Cada ficha toma 1.0s en volar, con escalonamiento de 0.2s entre fichas (~6 segundos en total)
+      7 fichas al Jugador (abajo), 7 a la IA Izquierda, 7 a la IA Superior, 7 a la IA Derecha.
+      Cada ficha toma 1.0s en volar, con escalonamiento de 0.2s entre fichas (~6 segundos en total)
       7. Las fichas del jugador se voltean del reverso a la cara despues de llegar a la mano
       8. El mensaje "Juego Iniciado" aparece centrado en la pantalla durante 1 segundo
       9. Se selecciona un jugador inicial al azar (probabilidad igual de 1 en 4)
       10. Si el jugador humano comienza: sus fichas validas se resaltan con un brillo pulsante,
-          esperando entrada de arrastre
-      11. Si una IA comienza: el indicador de pensamiento de la IA aparece, seguido del movimiento de la IA
+      esperando entrada de arrastre
+      11. Si una IA comienza: el indicador de pensamiento de la IA aparece, seguido del movimiento
+      de la IA
     </start_new_game>
 
     <player_places_tile>
       1. Es el turno del jugador -- las fichas validas brillan con un resaltado pulsante,
-         las fichas invalidas estan atenuadas (alfa 0.4)
+      las fichas invalidas estan atenuadas (alfa 0.4)
       2. El jugador comienza a arrastrar una ficha valida desde su mano
-      3. La retroalimentacion haptica se activa brevemente (vibracion de 20ms) al inicio del arrastre
+      3. La retroalimentacion haptica se activa brevemente (vibracion de 20ms) al inicio del
+      arrastre
       4. Las posiciones fantasma aparecen en el tablero mostrando posiciones de colocacion validas
-         (hasta 2: una por extremo de rama)
-      5. El jugador arrastra la ficha hacia arriba pasando el umbral de 1/3 de la altura de la pantalla
+      (hasta 2: una por extremo de rama)
+      5. El jugador arrastra la ficha hacia arriba pasando el umbral de 1/3 de la altura de la
+      pantalla
       6. El jugador suelta la ficha (levanta el dedo o suelta el boton del raton)
       7. El sistema calcula la posicion valida mas cercana por distancia euclidiana
       8. La ficha se anima (tween de 0.5s) a la posicion, rotando a la orientacion correcta.
-         Se reproduce el sonido de colocacion de ficha
+      Se reproduce el sonido de colocacion de ficha
       9. La ficha se reasigna al contenedor del tablero, las posiciones se destruyen
-      10. El estado del tablero se actualiza: numeros de rama, fase, desplazamientos horizontales/verticales
+      10. El estado del tablero se actualiza: numeros de rama, fase, desplazamientos
+      horizontales/verticales
       11. La ficha se remueve del arreglo de mano del jugador; la mano recentra las fichas restantes
       12. Si al jugador le quedan 0 fichas: fin del juego (el jugador gana)
       13. De lo contrario: el turno avanza a la IA Izquierda
     </player_places_tile>
 
     <player_must_pass>
-      1. Es el turno del jugador pero ninguna ficha en la mano coincide con ningun numero de rama abierto
+      1. Es el turno del jugador pero ninguna ficha en la mano coincide con ningun numero de rama
+      abierto
       2. Todas las fichas aparecen atenuadas (alfa 0.4). El boton de Pasar aparece y se habilita
       3. El jugador toca/hace clic en el boton de Pasar
       4. Se reproduce el sonido de pase
       5. El ultimo jugador activo (que coloco una ficha mas recientemente) gana 1 punto.
-         Su visualizacion de puntuacion se actualiza con una animacion de pulso
+      Su visualizacion de puntuacion se actualiza con una animacion de pulso
       6. El mensaje "Pasa" aparece brevemente (1 segundo)
       7. El turno avanza a la IA Izquierda
-      8. Si el ultimo jugador activo ES el jugador actual (lo que significa que todos los demas jugadores
-         tambien pasaron en los turnos intermedios), el juego termina como "Fish"
+      8. Si el ultimo jugador activo ES el jugador actual (lo que significa que todos los demas
+      jugadores
+      tambien pasaron en los turnos intermedios), el juego termina como "Fish"
     </player_must_pass>
 
     <ai_takes_turn>
       1. El indicador de turno se actualiza para mostrar "Turno de {Nombre de la IA}"
-      2. La IA "piensa" durante una duracion aleatoria entre 0.5 y 3.0 segundos. Un indicador animado
-         de puntos (...) aparece cerca del nombre de la IA durante este tiempo
+      2. La IA "piensa" durante una duracion aleatoria entre 0.5 y 3.0 segundos. Un indicador
+      animado
+      de puntos (...) aparece cerca del nombre de la IA durante este tiempo
       3. La IA selecciona una ficha basada en la configuracion de dificultad actual:
-         - Aleatorio (dificultad 1): elige cualquier ficha valida coincidente al azar
-         - Facil (dificultad 0): analiza la mano del jugador humano, evita forzar
-           al humano a pasar, prefiere fichas buenas no dobles
-         - Dificil (dificultad 2): clasifica fichas como buenas/malas en relacion al siguiente
-           jugador en el orden de turnos, juega estrategicamente segun la posicion
+      - Aleatorio (dificultad 1): elige cualquier ficha valida coincidente al azar
+      - Facil (dificultad 0): analiza la mano del jugador humano, evita forzar
+      al humano a pasar, prefiere fichas buenas no dobles
+      - Dificil (dificultad 2): clasifica fichas como buenas/malas en relacion al siguiente
+      jugador en el orden de turnos, juega estrategicamente segun la posicion
       4. Si la IA tiene un movimiento valido:
-         a. La ficha seleccionada se voltea del reverso a la cara (animacion de volteo de 0.4s)
-         b. La ficha se anima desde la mano de la IA a la posicion del tablero (tween de 0.5s)
-         c. Se reproduce el sonido de colocacion de ficha
-         d. El estado del tablero se actualiza, la ficha se remueve de la mano de la IA
-         e. Si a la IA le quedan 0 fichas: fin del juego (la IA gana)
+      a. La ficha seleccionada se voltea del reverso a la cara (animacion de volteo de 0.4s)
+      b. La ficha se anima desde la mano de la IA a la posicion del tablero (tween de 0.5s)
+      c. Se reproduce el sonido de colocacion de ficha
+      d. El estado del tablero se actualiza, la ficha se remueve de la mano de la IA
+      e. Si a la IA le quedan 0 fichas: fin del juego (la IA gana)
       5. Si la IA debe pasar:
-         a. Aparece el mensaje "Pasa", se reproduce el sonido de pase
-         b. El ultimo jugador activo gana 1 punto
-         c. Se ejecuta la deteccion de Fish (misma logica que el pase del jugador)
+      a. Aparece el mensaje "Pasa", se reproduce el sonido de pase
+      b. El ultimo jugador activo gana 1 punto
+      c. Se ejecuta la deteccion de Fish (misma logica que el pase del jugador)
       6. El turno avanza al siguiente jugador en el ciclo
     </ai_takes_turn>
 
     <game_ends>
       1. Un jugador coloca su ultima ficha (victoria) O todos los jugadores pasan consecutivamente
-         de vuelta al ultimo jugador activo (juego Fish/bloqueado)
+      de vuelta al ultimo jugador activo (juego Fish/bloqueado)
       2. Todas las fichas restantes se bloquean (no interactivas, atenuadas)
       3. El boton de Pasar se deshabilita y se oculta
       4. El mensaje de fin de juego aparece con animacion de entrada dramatica (rebote de 1.0s):
-         - "Has ganado!" si el jugador humano gano
-         - "{Nombre de la IA} gana!" si una IA gano
-         - "Fish - Fin del Juego" si el juego esta bloqueado
-      5. Se reproduce el sonido de fin de juego (sonido de victoria si gano el humano, sonido de derrota si gano la IA)
+      - "Has ganado!" si el jugador humano gano
+      - "{Nombre de la IA} gana!" si una IA gano
+      - "Fish - Fin del Juego" si el juego esta bloqueado
+      5. Se reproduce el sonido de fin de juego (sonido de victoria si gano el humano, sonido de
+      derrota si gano la IA)
       6. El mensaje persiste en pantalla permanentemente
       7. El jugador puede abrir el menu de pausa (el boton de menu sigue activo) para seleccionar
-         Reiniciar o Menu Principal
+      Reiniciar o Menu Principal
     </game_ends>
 
     <pause_and_resume>
@@ -847,33 +951,37 @@
       2. La logica del juego se pausa (los temporizadores de la IA se detienen, no avanzan turnos)
       3. Aparece una superposicion oscura semitransparente sobre toda la escena
       4. Un panel emergente centrado se desliza o aparece gradualmente con tres botones:
-         Reanudar, Reiniciar, Menu Principal
+      Reanudar, Reiniciar, Menu Principal
       5. Reanudar: la superposicion desaparece, el juego continua exactamente desde donde se pauso
       6. Reiniciar: el estado del juego se destruye completamente. Se crea una nueva GameScene con
-         el mismo nivel de dificultad. Comienza una nueva distribucion de fichas
-      7. Menu Principal: el estado del juego se destruye completamente. La escena transiciona de vuelta a la MenuScene
+      el mismo nivel de dificultad. Comienza una nueva distribucion de fichas
+      7. Menu Principal: el estado del juego se destruye completamente. La escena transiciona de
+      vuelta a la MenuScene
       8. Tocar fuera del panel emergente actua como Reanudar (cierra la superposicion)
     </pause_and_resume>
 
     <view_rules>
       1. El jugador toca/hace clic en el boton "Reglas" en la MenuScene
-      2. Aparece una superposicion modal sobre el menu (basada en HTML para desplazamiento de texto nativo adecuado)
-      3. El modal muestra las reglas del domino clasico en texto formateado con encabezados de seccion
-         (Fichas, Juego, Pase, Puntuacion, Victoria, Dificultad de la IA)
+      2. Aparece una superposicion modal sobre el menu (basada en HTML para desplazamiento de texto
+      nativo adecuado)
+      3. El modal muestra las reglas del domino clasico en texto formateado con encabezados de
+      seccion
+      (Fichas, Juego, Pase, Puntuacion, Victoria, Dificultad de la IA)
       4. El jugador se desplaza por las reglas si se extienden mas alla del area visible
       5. El jugador cierra el modal tocando/haciendo clic en el boton X o tocando fuera
-         del modal
+      del modal
       6. La MenuScene se reanuda normalmente
     </view_rules>
 
     <install_pwa>
       1. El usuario visita la URL del juego en un navegador movil
-      2. Despues de 30 segundos de interaccion (o en la segunda visita), aparece un aviso sutil de instalacion:
-         "Agrega Quarzen's Domino a tu pantalla de inicio para la mejor experiencia"
+      2. Despues de 30 segundos de interaccion (o en la segunda visita), aparece un aviso sutil de
+      instalacion:
+      "Agrega Quarzen's Domino a tu pantalla de inicio para la mejor experiencia"
       3. El usuario puede descartar el aviso (no reaparecera durante 7 dias) o aceptarlo
       4. Al aceptar: se activa el flujo nativo del navegador "Agregar a Pantalla de Inicio"
       5. Despues de la instalacion, el juego se abre en modo standalone (sin interfaz del navegador)
-         y funciona completamente sin conexion
+      y funciona completamente sin conexion
     </install_pwa>
   </key_interactions>
 
@@ -883,63 +991,75 @@
       <tasks>
         - Inicializar proyecto Vite + TypeScript con dependencia de Phaser 3.80+
         - Instalar y configurar vite-plugin-pwa con Workbox para generacion de service worker
-        - Crear manifest.json de PWA (nombre de la aplicacion, iconos, visualizacion standalone, orientacion horizontal)
+        - Crear manifest.json de PWA (nombre de la aplicacion, iconos, visualizacion standalone,
+        orientacion horizontal)
         - Configurar Vite para servir recursos estaticos desde el directorio public/
         - Crear Dockerfile (base node:18-alpine, npm ci, exponer 5173, compilacion multi-etapa
-          con nginx para servir en produccion)
+        con nginx para servir en produccion)
         - Crear docker-compose.yml con tres servicios:
-          - dev: monta el codigo fuente como volumen, ejecuta servidor de desarrollo de Vite en puerto 5173
-          - build: ejecuta npm run build, genera salida en volumen dist/
-          - preview: sirve la compilacion de produccion en puerto 4173 mediante nginx o serve
+        - dev: monta el codigo fuente como volumen, ejecuta servidor de desarrollo de Vite en puerto
+        5173
+        - build: ejecuta npm run build, genera salida en volumen dist/
+        - preview: sirve la compilacion de produccion en puerto 4173 mediante nginx o serve
         - Crear .dockerignore (excluir node_modules, dist, .git)
         - Agregar scripts npm: "docker:dev", "docker:build", "docker:preview" como atajos
         - Crear configuracion del juego Phaser:
-          - Resolucion: 960x600
-          - Modo de escala: Phaser.Scale.FIT
-          - Renderizador: AUTO (WebGL con respaldo Canvas)
-          - Padre: un elemento div que llena toda la ventana de visualizacion
+        - Resolucion: 960x600
+        - Modo de escala: Phaser.Scale.FIT
+        - Renderizador: AUTO (WebGL con respaldo Canvas)
+        - Padre: un elemento div que llena toda la ventana de visualizacion
         - Crear dos escenas vacias de Phaser: MenuScene y GameScene
-        - Configurar la clase ThemeManager: carga y analiza theme.json, proporciona rutas de recursos
-          a todos los demas sistemas. Todas las referencias de recursos pasan a traves del ThemeManager
+        - Configurar la clase ThemeManager: carga y analiza theme.json, proporciona rutas de
+        recursos
+        a todos los demas sistemas. Todas las referencias de recursos pasan a traves del
+        ThemeManager
         - Crear la estructura de carpetas del tema predeterminado "classic":
-          public/assets/themes/classic/theme.json
-          public/assets/themes/classic/tiles-spritesheet.png
-          public/assets/themes/classic/tiles-spritesheet.json
-          public/assets/themes/classic/tile-back.png
-          public/assets/themes/classic/table-bg.png
-          public/assets/themes/classic/menu-bg.png
-          public/assets/themes/classic/game-bg.png
-          public/assets/themes/classic/sounds/ (directorio vacio, sonidos agregados en el paso 9)
+        public/assets/themes/classic/theme.json
+        public/assets/themes/classic/tiles-spritesheet.png
+        public/assets/themes/classic/tiles-spritesheet.json
+        public/assets/themes/classic/tile-back.png
+        public/assets/themes/classic/table-bg.png
+        public/assets/themes/classic/menu-bg.png
+        public/assets/themes/classic/game-bg.png
+        public/assets/themes/classic/sounds/ (directorio vacio, sonidos agregados en el paso 9)
         - Crear hoja de sprites con las 28 caras de fichas y JSON de atlas acompanante
         - Crear imagen del reverso de ficha para el tema clasico
-        - Agregar deteccion de orientacion vertical: mostrar superposicion HTML "Gire su dispositivo"
-          cuando la ventana de visualizacion esta en vertical
-        - Verificar: Phaser inicia, el canvas llena la ventana de visualizacion, el escalado FIT funciona, el service worker
-          se registra, theme.json se carga exitosamente
+        - Agregar deteccion de orientacion vertical: mostrar superposicion HTML "Gire su
+        dispositivo"
+        cuando la ventana de visualizacion esta en vertical
+        - Verificar: Phaser inicia, el canvas llena la ventana de visualizacion, el escalado FIT
+        funciona, el service worker
+        se registra, theme.json se carga exitosamente
       </tasks>
     </step>
 
     <step number="2">
       <title>Modelos de Datos Principales y Estado del Juego</title>
       <tasks>
-        - Implementar interfaz TileConfig: { maxPip: number } -- parametriza el tamano del conjunto de fichas
-        - Implementar fabrica de generacion de fichas: generateTileSet(config: TileConfig) -> Domino[]
-          Debe producir la cantidad correcta de fichas para cualquier valor de maxPip (28 para 6, 55 para 9, 91 para 12)
+        - Implementar interfaz TileConfig: { maxPip: number } -- parametriza el tamano del conjunto
+        de fichas
+        - Implementar fabrica de generacion de fichas: generateTileSet(config: TileConfig) ->
+        Domino[]
+        Debe producir la cantidad correcta de fichas para cualquier valor de maxPip (28 para 6, 55
+        para 9, 91 para 12)
         - Implementar clase de datos Domino: { id, topIndex, bottomIndex, available }
-          con getter isDouble y metodos toJSON/fromJSON
-        - Implementar clase DeckManager: crea conjunto de fichas desde TileConfig, gestiona 4 arreglos de
-          manos de jugadores, maneja distribucion y remocion de fichas
+        con getter isDouble y metodos toJSON/fromJSON
+        - Implementar clase DeckManager: crea conjunto de fichas desde TileConfig, gestiona 4
+        arreglos de
+        manos de jugadores, maneja distribucion y remocion de fichas
         - Implementar clase GameState: rastrea currentTurn (indice), lastActivePlayer, puntuaciones,
-          indicador gameOver, dificultad, tileConfig. Incluye toJSON/fromJSON para serializacion
+        indicador gameOver, dificultad, tileConfig. Incluye toJSON/fromJSON para serializacion
         - Implementar clase BoardState: rastrea rightBranchNum, leftBranchNum, fase y
-          desplazamientos de posicion para ambas ramas, arreglo placedTiles. Incluye toJSON/fromJSON
+        desplazamientos de posicion para ambas ramas, arreglo placedTiles. Incluye toJSON/fromJSON
         - Implementar clase PlayerHand: { tiles, score, playerType, position, name }
-          con metodos para agregar/remover fichas, verificar movimientos validos
+        con metodos para agregar/remover fichas, verificar movimientos validos
         - Implementar EventBus: sistema simple de publicacion/suscripcion para eventos del juego
-          (turnStart, turnEnd, tilePlace, pass, gameOver, scoreChange). Desacopla la logica del juego
-          del renderizado y futura capa de red
-        - Escribir pruebas unitarias para: generacion de fichas (cantidad correcta, valores de punto correctos),
-          logica de coincidencia de fichas, mapeo de ID a valor de punto, viaje de ida y vuelta de serializacion
+        (turnStart, turnEnd, tilePlace, pass, gameOver, scoreChange). Desacopla la logica del juego
+        del renderizado y futura capa de red
+        - Escribir pruebas unitarias para: generacion de fichas (cantidad correcta, valores de punto
+        correctos),
+        logica de coincidencia de fichas, mapeo de ID a valor de punto, viaje de ida y vuelta de
+        serializacion
       </tasks>
     </step>
 
@@ -948,26 +1068,30 @@
       <tasks>
         - Portar el algoritmo de colocacion SlotHelper de C# (prototipo Domino-5) a TypeScript
         - Implementar el sistema de posicionamiento de 5 fases para ambas ramas derecha e izquierda:
-          - Fase 0: Expansion horizontal hacia afuera
-          - Fase 1: Primera esquina (en el limite lateral)
-          - Fase 2: Giro en direccion cruzada
-          - Fase 3: Esquina final
-          - Fase 4+: Expansion horizontal invertida
-        - Implementar ConfirmMoving: actualiza la posicion de la rama (hor, ver, fase) despues de colocar
-          una ficha. Maneja transiciones de fase y cambios de direccion
+        - Fase 0: Expansion horizontal hacia afuera
+        - Fase 1: Primera esquina (en el limite lateral)
+        - Fase 2: Giro en direccion cruzada
+        - Fase 3: Esquina final
+        - Fase 4+: Expansion horizontal invertida
+        - Implementar ConfirmMoving: actualiza la posicion de la rama (hor, ver, fase) despues de
+        colocar
+        una ficha. Maneja transiciones de fase y cambios de direccion
         - Implementar SetSlotPosition: calcula coordenadas de pixel (x, y) y angulo de rotacion
-          para una nueva ficha en cada extremo de rama valido
+        para una nueva ficha en cada extremo de rama valido
         - Implementar CheckStanding: determina si una ficha debe mostrarse de pie (vertical)
-          o acostada (horizontal) basado en si es doble y la fase actual
-        - Implementar ConfirmOccupation: actualiza los numeros de extremo de rama despues de colocar una ficha
-          (el extremo abierto se convierte en el nuevo numero de rama)
-        - Implementar TellBranchNums: devuelve los valores de punto abiertos actuales para ambas ramas
-          (usado por la IA y el sistema de arrastre para determinar movimientos validos)
+        o acostada (horizontal) basado en si es doble y la fase actual
+        - Implementar ConfirmOccupation: actualiza los numeros de extremo de rama despues de colocar
+        una ficha
+        (el extremo abierto se convierte en el nuevo numero de rama)
+        - Implementar TellBranchNums: devuelve los valores de punto abiertos actuales para ambas
+        ramas
+        (usado por la IA y el sistema de arrastre para determinar movimientos validos)
         - Extraer constantes de limite lateral y desplazamiento en un objeto BoardConfig (no numeros
-          magicos) para que futuros conjuntos de fichas puedan ajustar proporciones
+        magicos) para que futuros conjuntos de fichas puedan ajustar proporciones
         - Escribir pruebas unitarias completas: colocacion de primera ficha, multiples colocaciones
-          secuenciales, transiciones de fase en limites laterales, colocaciones en esquinas, logica de rotacion
-          de fichas, posicionamiento de dobles vs no dobles
+        secuenciales, transiciones de fase en limites laterales, colocaciones en esquinas, logica de
+        rotacion
+        de fichas, posicionamiento de dobles vs no dobles
       </tasks>
     </step>
 
@@ -975,26 +1099,32 @@
       <title>Renderizado del Tablero de Juego y Distribucion de Fichas</title>
       <tasks>
         - Crear clase DominoSprite que extiende Phaser.GameObjects.Container:
-          - Contiene: sprite de cara (del cuadro de la hoja de sprites), sprite de reverso, superposicion de bloqueo,
-            sprite de efecto de brillo
-          - Metodos: showFace(), showBack(), setLocked(), setGlow(), setDraggable()
-        - Implementar carga de recursos del ThemeManager en el preload de Phaser: cargar hoja de sprites,
-          imagen del reverso de ficha, imagenes de fondo usando rutas de theme.json
-        - Renderizar las 28 fichas en la posicion del mazo (centro del tablero de juego) mostrando reversos
+        - Contiene: sprite de cara (del cuadro de la hoja de sprites), sprite de reverso,
+        superposicion de bloqueo,
+        sprite de efecto de brillo
+        - Metodos: showFace(), showBack(), setLocked(), setGlow(), setDraggable()
+        - Implementar carga de recursos del ThemeManager en el preload de Phaser: cargar hoja de
+        sprites,
+        imagen del reverso de ficha, imagenes de fondo usando rutas de theme.json
+        - Renderizar las 28 fichas en la posicion del mazo (centro del tablero de juego) mostrando
+        reversos
         - Implementar distribucion animada de fichas:
-          - Animar fichas desde la posicion del mazo a las posiciones de las manos
-          - 1.0s por ficha, escalonamiento de 0.2s entre fichas
-          - Las fichas del jugador se voltean a la cara despues de llegar
-          - Las fichas de la IA permanecen boca abajo
-        - Renderizar la mano del jugador en la parte inferior de la pantalla: fichas de pie (rotacion de 0 grados),
-          cara arriba, escala completa (1.0x), espaciadas uniformemente horizontalmente
+        - Animar fichas desde la posicion del mazo a las posiciones de las manos
+        - 1.0s por ficha, escalonamiento de 0.2s entre fichas
+        - Las fichas del jugador se voltean a la cara despues de llegar
+        - Las fichas de la IA permanecen boca abajo
+        - Renderizar la mano del jugador en la parte inferior de la pantalla: fichas de pie
+        (rotacion de 0 grados),
+        cara arriba, escala completa (1.0x), espaciadas uniformemente horizontalmente
         - Renderizar manos de la IA:
-          - IA Izquierda: lado izquierdo, columna vertical, acostadas (rotacion de 90 grados), boca abajo, 0.5x
-          - IA Superior: centro superior, fila horizontal, de pie (0 grados), boca abajo, 0.5x
-          - IA Derecha: lado derecho, columna vertical, acostadas (rotacion de 90 grados), boca abajo, 0.5x
+        - IA Izquierda: lado izquierdo, columna vertical, acostadas (rotacion de 90 grados), boca
+        abajo, 0.5x
+        - IA Superior: centro superior, fila horizontal, de pie (0 grados), boca abajo, 0.5x
+        - IA Derecha: lado derecho, columna vertical, acostadas (rotacion de 90 grados), boca abajo,
+        0.5x
         - Implementar estados visuales de bloqueo/desbloqueo de fichas:
-          - Bloqueada: superposicion oscura al 50% de opacidad sobre la ficha, no interactiva
-          - Valida/desbloqueada: efecto de brillo pulsante (ciclo de 0.5s), interactiva (arrastrable)
+        - Bloqueada: superposicion oscura al 50% de opacidad sobre la ficha, no interactiva
+        - Valida/desbloqueada: efecto de brillo pulsante (ciclo de 0.5s), interactiva (arrastrable)
         - Mostrar fondo de mesa desde el tema (gameBackground)
         - Mostrar texto de puntuacion cerca de la posicion de mano de cada jugador
       </tasks>
@@ -1003,29 +1133,38 @@
     <step number="5">
       <title>Sistema de Arrastrar y Soltar</title>
       <tasks>
-        - Habilitar entrada de arrastre de Phaser en los contenedores de fichas del jugador (setInteractive + scene
-          input.setDraggable)
+        - Habilitar entrada de arrastre de Phaser en los contenedores de fichas del jugador
+        (setInteractive + scene
+        input.setDraggable)
         - Al pointerdown/dragstart:
-          - Verificar que la ficha es valida para el estado actual del tablero (coincide con un numero de rama)
-          - Calcular posiciones de colocacion validas usando SetSlotPosition
-          - Crear sprites de posicion fantasma en posiciones validas (semitransparentes, tintados)
-          - Escalar la ficha arrastrada a 1.1x, establecer profundidad al nivel mas alto
-          - Activar retroalimentacion haptica (navigator.vibrate(20)) si es soportada
-        - Al arrastrar: actualizar posicion de la ficha para seguir las coordenadas del puntero/toque
+        - Verificar que la ficha es valida para el estado actual del tablero (coincide con un numero
+        de rama)
+        - Calcular posiciones de colocacion validas usando SetSlotPosition
+        - Crear sprites de posicion fantasma en posiciones validas (semitransparentes, tintados)
+        - Escalar la ficha arrastrada a 1.1x, establecer profundidad al nivel mas alto
+        - Activar retroalimentacion haptica (navigator.vibrate(20)) si es soportada
+        - Al arrastrar: actualizar posicion de la ficha para seguir las coordenadas del
+        puntero/toque
         - Al dragend:
-          - Si el centro de la ficha esta sobre el umbral de 1/3 de la altura de la pantalla Y existen posiciones validas:
-            encontrar la posicion mas cercana por distancia euclidiana, animar la ficha a la posicion (0.5s),
-            rotar a la orientacion correcta, reproducir sonido de colocacion
-          - Si esta debajo del umbral o no hay posiciones validas: animar la ficha de vuelta a la posicion de la mano (0.5s)
+        - Si el centro de la ficha esta sobre el umbral de 1/3 de la altura de la pantalla Y existen
+        posiciones validas:
+        encontrar la posicion mas cercana por distancia euclidiana, animar la ficha a la posicion
+        (0.5s),
+        rotar a la orientacion correcta, reproducir sonido de colocacion
+        - Si esta debajo del umbral o no hay posiciones validas: animar la ficha de vuelta a la
+        posicion de la mano (0.5s)
         - Despues de una colocacion exitosa:
-          - Llamar ConfirmOccupation y ConfirmMoving para actualizar el estado del tablero
-          - Remover la ficha del arreglo de mano del jugador, recentrar las fichas restantes de la mano
-          - Destruir los sprites de posicion fantasma
-          - Emitir evento tilePlace a traves del EventBus
-          - Verificar condicion de fin de juego (mano del jugador vacia)
-        - Implementar renderizado de posiciones: sprites de fichas fantasma en posiciones validas usando
-          validSlotColor del tema a alfa 0.3-0.5
-        - Tanto la entrada de raton como la tactil funcionan de forma identica (puntero unificado de Phaser)
+        - Llamar ConfirmOccupation y ConfirmMoving para actualizar el estado del tablero
+        - Remover la ficha del arreglo de mano del jugador, recentrar las fichas restantes de la
+        mano
+        - Destruir los sprites de posicion fantasma
+        - Emitir evento tilePlace a traves del EventBus
+        - Verificar condicion de fin de juego (mano del jugador vacia)
+        - Implementar renderizado de posiciones: sprites de fichas fantasma en posiciones validas
+        usando
+        validSlotColor del tema a alfa 0.3-0.5
+        - Tanto la entrada de raton como la tactil funcionan de forma identica (puntero unificado de
+        Phaser)
       </tasks>
     </step>
 
@@ -1033,30 +1172,37 @@
       <title>Gestion de Turnos y Mecanicas de Pase</title>
       <tasks>
         - Implementar gestor del ciclo de turnos:
-          - Orden de jugadores: Jugador (indice 0) -> IA Izquierda (1) -> IA Superior (2) -> IA Derecha (3)
-          - Ciclico: despues del indice 3, regresa al indice 0
-          - Emite eventos turnStart y turnEnd a traves del EventBus
-        - Implementar seleccion aleatoria del jugador inicial (Math.random, probabilidad igual de 1 en 4)
+        - Orden de jugadores: Jugador (indice 0) -> IA Izquierda (1) -> IA Superior (2) -> IA
+        Derecha (3)
+        - Ciclico: despues del indice 3, regresa al indice 0
+        - Emite eventos turnStart y turnEnd a traves del EventBus
+        - Implementar seleccion aleatoria del jugador inicial (Math.random, probabilidad igual de 1
+        en 4)
         - Al inicio del turno del jugador:
-          - Verificar que fichas coinciden con los numeros de rama abiertos (TellBranchNums)
-          - Resaltar fichas validas (setGlow), atenuar fichas invalidas (setLocked)
-          - Si hay cero fichas validas: mostrar y habilitar el boton de Pasar, ocultar interaccion de arrastre
-          - Mostrar mensaje "Tu Turno"
+        - Verificar que fichas coinciden con los numeros de rama abiertos (TellBranchNums)
+        - Resaltar fichas validas (setGlow), atenuar fichas invalidas (setLocked)
+        - Si hay cero fichas validas: mostrar y habilitar el boton de Pasar, ocultar interaccion de
+        arrastre
+        - Mostrar mensaje "Tu Turno"
         - Al inicio del turno de la IA:
-          - Bloquear todas las fichas del jugador, ocultar boton de Pasar
-          - Mostrar mensaje "Turno de {Nombre de la IA}"
-          - Iniciar retardo de pensamiento de la IA e indicador animado
+        - Bloquear todas las fichas del jugador, ocultar boton de Pasar
+        - Mostrar mensaje "Turno de {Nombre de la IA}"
+        - Iniciar retardo de pensamiento de la IA e indicador animado
         - Implementar comportamiento del boton de Pasar:
-          - Al hacer clic/tocar: otorgar 1 punto a lastActivePlayer, reproducir sonido de pase,
-            mostrar mensaje "Pasa" durante 1 segundo, avanzar turno
+        - Al hacer clic/tocar: otorgar 1 punto a lastActivePlayer, reproducir sonido de pase,
+        mostrar mensaje "Pasa" durante 1 segundo, avanzar turno
         - Implementar deteccion de Fish:
-          - Despues de un pase, verificar si currentTurn ha regresado a lastActivePlayer
-          - Si es asi: todos los jugadores intermedios pasaron, el juego esta bloqueado -> fin del juego "Fish"
+        - Despues de un pase, verificar si currentTurn ha regresado a lastActivePlayer
+        - Si es asi: todos los jugadores intermedios pasaron, el juego esta bloqueado -> fin del
+        juego "Fish"
         - Implementar deteccion de victoria:
-          - Despues de cada colocacion de ficha, verificar si la mano del jugador que coloco esta vacia
-          - Si es asi: fin del juego con ese jugador como ganador
-        - Mostrar mensaje de fin de juego: "Has ganado!" / "{Nombre de la IA} gana!" / "Fish - Fin del Juego"
-        - Al terminar el juego: bloquear todas las fichas, deshabilitar boton de Pasar, emitir evento gameOver
+        - Despues de cada colocacion de ficha, verificar si la mano del jugador que coloco esta
+        vacia
+        - Si es asi: fin del juego con ese jugador como ganador
+        - Mostrar mensaje de fin de juego: "Has ganado!" / "{Nombre de la IA} gana!" / "Fish - Fin
+        del Juego"
+        - Al terminar el juego: bloquear todas las fichas, deshabilitar boton de Pasar, emitir
+        evento gameOver
       </tasks>
     </step>
 
@@ -1064,30 +1210,33 @@
       <title>Sistema de IA</title>
       <tasks>
         - Implementar interfaz AIStrategy: { selectTile(gameState, playerIndex): Domino | null }
-          Funcion pura, sin efectos secundarios, comprobable de forma aislada
-        - Implementar GetMatchingTiles: devuelve todas las fichas en una mano que coinciden con cualquier
-          numero de rama abierto. Devuelve arreglo de pares { tile, matchingBranch }
+        Funcion pura, sin efectos secundarios, comprobable de forma aislada
+        - Implementar GetMatchingTiles: devuelve todas las fichas en una mano que coinciden con
+        cualquier
+        numero de rama abierto. Devuelve arreglo de pares { tile, matchingBranch }
         - Implementar RandomStrategy: elige una ficha al azar del resultado de GetMatchingTiles
         - Portar logica de SeparateTiles de AICheater.cs:
-          - Para cada ficha valida, simular la colocacion y verificar si el extremo abierto resultante
-            coincide con alguna ficha en la mano del jugador objetivo
-          - Clasificar como "buena" (coincide con al menos una) o "mala" (no coincide con ninguna)
+        - Para cada ficha valida, simular la colocacion y verificar si el extremo abierto resultante
+        coincide con alguna ficha en la mano del jugador objetivo
+        - Clasificar como "buena" (coincide con al menos una) o "mala" (no coincide con ninguna)
         - Implementar HardStrategy:
-          - Determinar si la IA es el jugador inmediatamente antes del humano en el orden de turnos
-          - Si esta antes del humano (nextPlayer=true): preferir fichas "malas" (bloquear al humano)
-          - Si no esta antes del humano (nextPlayer=false): preferir fichas "buenas"
-          - Respaldo: ficha valida al azar
+        - Determinar si la IA es el jugador inmediatamente antes del humano en el orden de turnos
+        - Si esta antes del humano (nextPlayer=true): preferir fichas "malas" (bloquear al humano)
+        - Si no esta antes del humano (nextPlayer=false): preferir fichas "buenas"
+        - Respaldo: ficha valida al azar
         - Implementar EasyStrategy (GoodBot):
-          - Clasificar fichas en relacion a la mano del jugador HUMANO (no la siguiente IA)
-          - Preferir fichas "buenas" no dobles
-          - Analisis de CausePass: verificar si cada movimiento valido obligaria al humano a pasar
-          - Si todos los movimientos fuerzan un pase: verificar si pasar voluntariamente tambien forzaria
-            un pase. Si es asi, jugar al azar. Si no, devolver null (pasar voluntariamente)
+        - Clasificar fichas en relacion a la mano del jugador HUMANO (no la siguiente IA)
+        - Preferir fichas "buenas" no dobles
+        - Analisis de CausePass: verificar si cada movimiento valido obligaria al humano a pasar
+        - Si todos los movimientos fuerzan un pase: verificar si pasar voluntariamente tambien
+        forzaria
+        un pase. Si es asi, jugar al azar. Si no, devolver null (pasar voluntariamente)
         - Implementar AIController:
-          - Acepta parametro de dificultad, selecciona la estrategia apropiada
-          - Agrega retardo de pensamiento aleatorio (0.5-3.0 segundos) mediante temporizador de Phaser
-          - Despues del retardo: obtiene resultado de la estrategia, ejecuta colocacion de ficha o pase
-          - Activa animacion de volteo de ficha (reverso a cara) y tween de colocacion
+        - Acepta parametro de dificultad, selecciona la estrategia apropiada
+        - Agrega retardo de pensamiento aleatorio (0.5-3.0 segundos) mediante temporizador de Phaser
+        - Despues del retardo: obtiene resultado de la estrategia, ejecuta colocacion de ficha o
+        pase
+        - Activa animacion de volteo de ficha (reverso a cara) y tween de colocacion
         - Escribir pruebas unitarias para cada estrategia con configuraciones de mano conocidas
       </tasks>
     </step>
@@ -1096,31 +1245,35 @@
       <title>Sistema de Menus, Modal de Reglas y Flujo del Juego</title>
       <tasks>
         - Construir MenuScene:
-          - Cargar y mostrar fondo del menu desde el tema
-          - Renderizar titulo "Quarzen's Domino" (Georgia, 48px, negrita, sombra paralela)
-          - Crear botones de dificultad: Facil, Aleatorio, Dificil (apilados verticalmente)
-          - Crear boton "Reglas" debajo de los botones de dificultad
-          - Crear selector de tema (visible solo si existen multiples temas)
-          - Crear icono de silenciar (esquina superior derecha). Guardar preferencia en localStorage
+        - Cargar y mostrar fondo del menu desde el tema
+        - Renderizar titulo "Quarzen's Domino" (Georgia, 48px, negrita, sombra paralela)
+        - Crear botones de dificultad: Facil, Aleatorio, Dificil (apilados verticalmente)
+        - Crear boton "Reglas" debajo de los botones de dificultad
+        - Crear selector de tema (visible solo si existen multiples temas)
+        - Crear icono de silenciar (esquina superior derecha). Guardar preferencia en localStorage
         - Implementar transiciones de escena:
-          - MenuScene a GameScene: desvanecimiento a negro de 0.5s, pasar dificultad como datos de escena
-          - GameScene a MenuScene: desvanecimiento a negro de 0.5s
+        - MenuScene a GameScene: desvanecimiento a negro de 0.5s, pasar dificultad como datos de
+        escena
+        - GameScene a MenuScene: desvanecimiento a negro de 0.5s
         - Construir modal de reglas:
-          - Superposicion HTML/CSS posicionada sobre el canvas de Phaser (para desplazamiento nativo de texto)
-          - Contiene texto formateado: secciones de Fichas, Juego, Pase, Puntuacion, Victoria,
-            Dificultad de la IA
-          - Boton de cerrar (X) en la esquina superior derecha del modal
-          - Clic/toque fuera del modal para cerrar
-          - Estilizado para coincidir con el sistema de diseno del juego (fondo oscuro, texto blanco, acentos marrones)
+        - Superposicion HTML/CSS posicionada sobre el canvas de Phaser (para desplazamiento nativo
+        de texto)
+        - Contiene texto formateado: secciones de Fichas, Juego, Pase, Puntuacion, Victoria,
+        Dificultad de la IA
+        - Boton de cerrar (X) en la esquina superior derecha del modal
+        - Clic/toque fuera del modal para cerrar
+        - Estilizado para coincidir con el sistema de diseno del juego (fondo oscuro, texto blanco,
+        acentos marrones)
         - Construir superposicion del menu de pausa (en GameScene):
-          - Fondo oscuro semitransparente (negro, 70% de opacidad)
-          - Panel emergente centrado con botones de Reanudar, Reiniciar, Menu Principal
-          - Reanudar: ocultar superposicion, reanudar temporizadores del juego
-          - Reiniciar: destruir GameScene, crear nueva GameScene con la misma dificultad
-          - Menu Principal: destruir GameScene, transicionar a MenuScene
-          - Clic fuera del emergente = Reanudar
-        - Implementar flujo de reinicio del juego: destruccion completa de GameScene, creacion fresca de GameState,
-          nueva distribucion de fichas
+        - Fondo oscuro semitransparente (negro, 70% de opacidad)
+        - Panel emergente centrado con botones de Reanudar, Reiniciar, Menu Principal
+        - Reanudar: ocultar superposicion, reanudar temporizadores del juego
+        - Reiniciar: destruir GameScene, crear nueva GameScene con la misma dificultad
+        - Menu Principal: destruir GameScene, transicionar a MenuScene
+        - Clic fuera del emergente = Reanudar
+        - Implementar flujo de reinicio del juego: destruccion completa de GameScene, creacion
+        fresca de GameState,
+        nueva distribucion de fichas
         - Agregar animaciones de hover/presion y sonidos de clic a todos los botones
       </tasks>
     </step>
@@ -1129,35 +1282,36 @@
       <title>Sistema de Audio e Intercambio de Temas en Caliente</title>
       <tasks>
         - Implementar clase AudioManager:
-          - Carga todos los archivos de sonido definidos en el objeto sounds de theme.json
-          - Proporciona metodo playSound(eventName) usado por todos los sistemas del juego
-          - Maneja audio faltante de forma elegante: si un archivo de sonido falla al cargar o no esta
-            definido en theme.json, el metodo retorna silenciosamente (sin error, sin fallo)
-          - Gestiona el estado de silencio (lee/escribe localStorage)
+        - Carga todos los archivos de sonido definidos en el objeto sounds de theme.json
+        - Proporciona metodo playSound(eventName) usado por todos los sistemas del juego
+        - Maneja audio faltante de forma elegante: si un archivo de sonido falla al cargar o no esta
+        definido en theme.json, el metodo retorna silenciosamente (sin error, sin fallo)
+        - Gestiona el estado de silencio (lee/escribe localStorage)
         - Crear o conseguir sonidos predeterminados del tema "classic" (clics realistas de madera):
-          - tilePlace: golpe de madera al colocar ficha
-          - tilePickup: toque ligero de madera al inicio del arrastre
-          - tileDeal: clic de madera mas suave para la animacion de reparto
-          - pass: sonido sutil de notificacion
-          - gameStart: breve sonido positivo
-          - gameOver/gameWin: breve fanfarria de victoria
-          - gameLose: breve sonido sutil de derrota
-          - buttonClick: clic suave para botones del menu
-        - Inicializar el contexto de Web Audio API en la primera interaccion del usuario (toque/clic en el menu)
-          para cumplir con las politicas de reproduccion automatica del navegador en iOS y Chrome
+        - tilePlace: golpe de madera al colocar ficha
+        - tilePickup: toque ligero de madera al inicio del arrastre
+        - tileDeal: clic de madera mas suave para la animacion de reparto
+        - pass: sonido sutil de notificacion
+        - gameStart: breve sonido positivo
+        - gameOver/gameWin: breve fanfarria de victoria
+        - gameLose: breve sonido sutil de derrota
+        - buttonClick: clic suave para botones del menu
+        - Inicializar el contexto de Web Audio API en la primera interaccion del usuario (toque/clic
+        en el menu)
+        para cumplir con las politicas de reproduccion automatica del navegador en iOS y Chrome
         - Conectar AudioManager a eventos del juego mediante EventBus:
-          - evento tilePlace -> reproducir sonido tilePlace
-          - evento pass -> reproducir sonido pass
-          - evento gameOver -> reproducir gameWin o gameLose basado en el ganador
-          - turnStart para jugador -> reproducir notificacion sutil (opcional)
+        - evento tilePlace -> reproducir sonido tilePlace
+        - evento pass -> reproducir sonido pass
+        - evento gameOver -> reproducir gameWin o gameLose basado en el ganador
+        - turnStart para jugador -> reproducir notificacion sutil (opcional)
         - Implementar intercambio de temas en caliente en MenuScene:
-          - Cuando el usuario selecciona un tema diferente, limpiar el cache de texturas y
-            audio de Phaser para recursos especificos del tema
-          - Recargar theme.json, hoja de sprites, fondos y sonidos del nuevo tema
-          - Actualizar ThemeManager con los datos del nuevo tema
-          - MenuScene se re-renderiza con el fondo y colores del nuevo tema
+        - Cuando el usuario selecciona un tema diferente, limpiar el cache de texturas y
+        audio de Phaser para recursos especificos del tema
+        - Recargar theme.json, hoja de sprites, fondos y sonidos del nuevo tema
+        - Actualizar ThemeManager con los datos del nuevo tema
+        - MenuScene se re-renderiza con el fondo y colores del nuevo tema
         - El sistema de audio es extensible: agregar un nuevo evento de sonido solo requiere agregar
-          una clave al objeto sounds de theme.json y llamar a playSound() con esa clave
+        una clave al objeto sounds de theme.json y llamar a playSound() con esa clave
       </tasks>
     </step>
 
@@ -1165,41 +1319,49 @@
       <title>Finalizacion de PWA, Pulido Movil y Pruebas de Extremo a Extremo</title>
       <tasks>
         - Finalizar configuracion de PWA:
-          - Verificar que manifest.json tiene iconos, colores, orientacion y modo de visualizacion correctos
-          - Verificar que el service worker de Workbox pre-almacena todos los recursos del juego
-          - Probar juego offline: cargar juego, desconectarse, verificar que el juego completo funciona
-          - Probar flujo "Agregar a Pantalla de Inicio" en iOS Safari y Android Chrome
-          - Verificar que el tamano del paquete en cache es menor de 20MB
+        - Verificar que manifest.json tiene iconos, colores, orientacion y modo de visualizacion
+        correctos
+        - Verificar que el service worker de Workbox pre-almacena todos los recursos del juego
+        - Probar juego offline: cargar juego, desconectarse, verificar que el juego completo
+        funciona
+        - Probar flujo "Agregar a Pantalla de Inicio" en iOS Safari y Android Chrome
+        - Verificar que el tamano del paquete en cache es menor de 20MB
         - Implementar aviso de instalacion:
-          - Escuchar el evento beforeinstallprompt (Android Chrome)
-          - Mostrar un banner personalizado sutil despues de 30 segundos de interaccion
-          - Descartable, respeta enfriamiento de 7 dias (almacenado en localStorage)
+        - Escuchar el evento beforeinstallprompt (Android Chrome)
+        - Mostrar un banner personalizado sutil despues de 30 segundos de interaccion
+        - Descartable, respeta enfriamiento de 7 dias (almacenado en localStorage)
         - Pulido movil:
-          - Ajustar todas las animaciones de tween (curvas de suavizado, la sensacion debe ser correcta al tacto)
-          - Verificar que el arrastrar y soltar tactil es fluido a 60fps en dispositivos moviles de gama media
-          - Verificar que el mensaje "Gire su dispositivo" aparece en orientacion vertical
-          - Verificar que todos los objetivos de toque son al menos 44x44px
-          - Probar retroalimentacion haptica (navigator.vibrate) en dispositivos compatibles
+        - Ajustar todas las animaciones de tween (curvas de suavizado, la sensacion debe ser
+        correcta al tacto)
+        - Verificar que el arrastrar y soltar tactil es fluido a 60fps en dispositivos moviles de
+        gama media
+        - Verificar que el mensaje "Gire su dispositivo" aparece en orientacion vertical
+        - Verificar que todos los objetivos de toque son al menos 44x44px
+        - Probar retroalimentacion haptica (navigator.vibrate) en dispositivos compatibles
         - Pulido de escritorio:
-          - Verificar que los efectos de hover del raton funcionan en todos los botones
-          - Verificar que el arrastrar y soltar funciona con entrada de raton
-          - Probar en varios tamanos de ventana del navegador (escalado FIT, letterboxing)
+        - Verificar que los efectos de hover del raton funcionan en todos los botones
+        - Verificar que el arrastrar y soltar funciona con entrada de raton
+        - Probar en varios tamanos de ventana del navegador (escalado FIT, letterboxing)
         - Pruebas de juego de extremo a extremo:
-          - Flujo completo: URL -> menu -> seleccionar dificultad -> repartir -> jugar -> ganar/perder -> reiniciar
-          - Flujo completo: URL -> menu -> seleccionar dificultad -> repartir -> jugar -> Fish -> menu principal
-          - Probar que los 3 niveles de dificultad producen comportamiento de IA observablemente diferente
-          - Probar menu de pausa: Reanudar, Reiniciar, Menu Principal funcionan correctamente
-          - Probar seleccion de tema (si existen multiples temas)
-          - Probar que el boton de silenciar persiste entre sesiones
-          - Probar que el modal de reglas se abre, se desplaza y se cierra correctamente
+        - Flujo completo: URL -> menu -> seleccionar dificultad -> repartir -> jugar -> ganar/perder
+        -> reiniciar
+        - Flujo completo: URL -> menu -> seleccionar dificultad -> repartir -> jugar -> Fish -> menu
+        principal
+        - Probar que los 3 niveles de dificultad producen comportamiento de IA observablemente
+        diferente
+        - Probar menu de pausa: Reanudar, Reiniciar, Menu Principal funcionan correctamente
+        - Probar seleccion de tema (si existen multiples temas)
+        - Probar que el boton de silenciar persiste entre sesiones
+        - Probar que el modal de reglas se abre, se desplaza y se cierra correctamente
         - Rendimiento:
-          - Perfilar con Chrome DevTools: asegurar 60fps durante animaciones
-          - Optimizar tamano de la hoja de sprites si es necesario (comprimir PNG)
-          - Verificar que no hay fugas de memoria al reiniciar el juego (limpieza de escenas de Phaser)
+        - Perfilar con Chrome DevTools: asegurar 60fps durante animaciones
+        - Optimizar tamano de la hoja de sprites si es necesario (comprimir PNG)
+        - Verificar que no hay fugas de memoria al reiniciar el juego (limpieza de escenas de
+        Phaser)
         - Verificar sistema de temas:
-          - Duplicar carpeta classic/, renombrar a test-theme/
-          - Modificar colores en theme.json e intercambiar una imagen de fondo
-          - Verificar que el juego carga el tema modificado correctamente
+        - Duplicar carpeta classic/, renombrar a test-theme/
+        - Modificar colores en theme.json e intercambiar una imagen de fondo
+        - Verificar que el juego carga el tema modificado correctamente
         - Cero errores o advertencias en consola durante todos los escenarios de prueba
       </tasks>
     </step>
@@ -1208,74 +1370,115 @@
   <success_criteria>
     <functionality>
       - La fabrica de generacion de fichas produce la cantidad correcta para maxPip=6 (28 fichas)
-        con valores correctos de topIndex/bottomIndex para cada ficha
+      con valores correctos de topIndex/bottomIndex para cada ficha
       - Las fichas se distribuyen aleatoriamente (7 por jugador) con animacion escalonada suave
-      - El jugador puede arrastrar fichas validas de la mano al tablero; las fichas se ajustan a posiciones correctas
-        con orientacion y rotacion adecuadas
+      - El jugador puede arrastrar fichas validas de la mano al tablero; las fichas se ajustan a
+      posiciones correctas
+      con orientacion y rotacion adecuadas
       - El algoritmo de colocacion en el tablero maneja correctamente las 5 fases para ambas ramas,
-        incluyendo transiciones de esquina e inversiones de direccion
+      incluyendo transiciones de esquina e inversiones de direccion
       - Las fichas dobles se muestran de pie (vertical) en fases horizontales; las no dobles
-        se muestran acostadas (horizontal/rotadas)
-      - El ciclo de turnos funciona correctamente: Jugador -> IA Izquierda -> IA Superior -> IA Derecha -> Jugador
+      se muestran acostadas (horizontal/rotadas)
+      - El ciclo de turnos funciona correctamente: Jugador -> IA Izquierda -> IA Superior -> IA
+      Derecha -> Jugador
       - El boton de Pasar aparece solo cuando el jugador tiene cero movimientos validos
       - La puntuacion de pase funciona: el ultimo jugador que coloco una ficha gana 1 punto por pase
       - Los 3 niveles de dificultad de IA producen comportamientos observablemente diferentes:
-        Facil ayuda al jugador, Aleatorio es neutral, Dificil bloquea estrategicamente al jugador
-      - La IA Dificil clasifica correctamente las fichas como buenas/malas en relacion al siguiente jugador
+      Facil ayuda al jugador, Aleatorio es neutral, Dificil bloquea estrategicamente al jugador
+      - La IA Dificil clasifica correctamente las fichas como buenas/malas en relacion al siguiente
+      jugador
       - La IA Facil evita movimientos que obliguen al jugador humano a pasar
       - El juego termina correctamente tanto en victoria (mano vacia) como en Fish (todos pasan)
-      - El sistema de menus funciona: iniciar juego en cualquier dificultad, pausar, reanudar, reiniciar,
-        regresar al menu principal
+      - El sistema de menus funciona: iniciar juego en cualquier dificultad, pausar, reanudar,
+      reiniciar,
+      regresar al menu principal
       - El modal de reglas muestra el texto completo de reglas y se cierra correctamente
       - El sistema de temas carga todos los recursos (hoja de sprites, fondos, sonidos, colores)
-        desde la configuracion de theme.json sin rutas codificadas directamente
+      desde la configuracion de theme.json sin rutas codificadas directamente
     </functionality>
 
     <user_experience>
-      - Animaciones suaves a 60fps para todos los movimientos de fichas, reparto y transiciones de UI
+      - Animaciones suaves a 60fps para todos los movimientos de fichas, reparto y transiciones de
+      UI
       - El arrastrar y soltar se siente responsivo sin retraso de entrada perceptible en moviles
       - La entrada tactil funciona de forma confiable en iOS Safari y Android Chrome
       - La retroalimentacion haptica se activa al colocar fichas en dispositivos moviles compatibles
       - Los turnos de la IA tienen un retardo aleatorio de sensacion natural (0.5-3.0 segundos)
-      - Retroalimentacion visual clara en todo momento: que fichas son validas, de quien es el turno,
-        puntuaciones actuales de todos los jugadores
-      - El estado del juego siempre es claro: el jugador nunca tiene que adivinar que hacer a continuacion
-      - La navegacion del menu es intuitiva: maximo 2 toques desde el lanzamiento de la aplicacion hasta el juego activo
+      - Retroalimentacion visual clara en todo momento: que fichas son validas, de quien es el
+      turno,
+      puntuaciones actuales de todos los jugadores
+      - El estado del juego siempre es claro: el jugador nunca tiene que adivinar que hacer a
+      continuacion
+      - La navegacion del menu es intuitiva: maximo 2 toques desde el lanzamiento de la aplicacion
+      hasta el juego activo
       - El juego es instalable como PWA y funciona completamente offline despues de la primera carga
       - El juego es compartible via URL: cualquiera con el enlace puede jugar inmediatamente
     </user_experience>
 
     <technical_quality>
       - Modo estricto de TypeScript con cero errores de tipo
-      - Separacion arquitectonica limpia: la logica del juego es TypeScript puro (independiente del framework,
-        comprobable con pruebas unitarias), el renderizado es especifico de Phaser y esta aislado
-      - La generacion de fichas esta parametrizada por maxPip (no codificada para 28 fichas o doble seis)
+      - Separacion arquitectonica limpia: la logica del juego es TypeScript puro (independiente del
+      framework,
+      comprobable con pruebas unitarias), el renderizado es especifico de Phaser y esta aislado
+      - La generacion de fichas esta parametrizada por maxPip (no codificada para 28 fichas o doble
+      seis)
       - Todas las clases de estado del juego son serializables a JSON y reconstruibles desde JSON
       - El bus de eventos desacopla la logica del juego del renderizado y futuras capas de red
       - La identidad del jugador esta abstraida (tipos humano/IA/remoto) para futuro multijugador
       - El sistema de temas desacopla completamente todas las rutas de recursos del codigo del juego
-      - No hay referencias de recursos codificadas directamente en la logica del juego ni en el codigo de renderizado
+      - No hay referencias de recursos codificadas directamente en la logica del juego ni en el
+      codigo de renderizado
       - El service worker pre-almacena correctamente todos los recursos para uso offline
-      - La compilacion produce un paquete de produccion optimizado via Vite (eliminacion de codigo muerto, minificacion)
+      - La compilacion produce un paquete de produccion optimizado via Vite (eliminacion de codigo
+      muerto, minificacion)
       - Cero errores o advertencias en consola durante el juego normal
-      - Las escenas de Phaser se limpian correctamente al reiniciar/transicionar (sin fugas de memoria)
+      - Las escenas de Phaser se limpian correctamente al reiniciar/transicionar (sin fugas de
+      memoria)
     </technical_quality>
 
     <design_polish>
       - El fondo de la mesa crea una atmosfera autentica e invitadora para jugar domino
-      - Los sprites de fichas (de la hoja de sprites) son nitidos y legibles tanto a escala completa como a media escala
-      - Las fichas de mano de la IA son claramente distinguibles de las fichas del jugador (boca abajo, mas pequenas,
-        posicionadas en los lados/parte superior de la mesa)
-      - Las visualizaciones de puntuacion son legibles y se actualizan con una animacion de pulso satisfactoria
+      - Los sprites de fichas (de la hoja de sprites) son nitidos y legibles tanto a escala completa
+      como a media escala
+      - Las fichas de mano de la IA son claramente distinguibles de las fichas del jugador (boca
+      abajo, mas pequenas,
+      posicionadas en los lados/parte superior de la mesa)
+      - Las visualizaciones de puntuacion son legibles y se actualizan con una animacion de pulso
+      satisfactoria
       - Las transiciones de turno se sienten naturales con mensajes claros y temporizacion apropiada
-      - La presentacion de fin de juego es dramatica y satisfactoria (animacion de entrada con rebote,
-        sonido apropiado)
+      - La presentacion de fin de juego es dramatica y satisfactoria (animacion de entrada con
+      rebote,
+      sonido apropiado)
       - Los menus tienen un estilo visual consistente que coincide con el tema del juego
       - El modal de reglas esta bien formateado, es legible y facil de navegar
       - Un no desarrollador puede crear un nuevo tema copiando la carpeta classic/, intercambiando
-        imagenes y sonidos, y editando theme.json -- no se requieren cambios en el codigo
+      imagenes y sonidos, y editando theme.json -- no se requieren cambios en el codigo
       - La PWA instalada se ve y se siente como un juego movil nativo (sin interfaz del navegador,
-        icono de aplicacion adecuado, orientacion horizontal)
+      icono de aplicacion adecuado, orientacion horizontal)
     </design_polish>
   </success_criteria>
+    <!-- FUERA DEL ALCANCE PARA EL MVP (no construir esto):
+    - Juego multijugador en linea (por turnos o en tiempo real)
+    - Capa de presencia WebSocket (emojis, comentarios predefinidos, indicadores de tiempo de
+  pensamiento)
+    - Cuentas de usuario / autenticacion / perfiles
+    - Tablas de clasificacion / rankings
+    - Estadisticas persistentes o historial de partidas
+    - Conjuntos de fichas doble nueve (55 fichas) o doble doce (91 fichas)
+    - Juego en equipo o modos de parejas
+    - Variantes de puntuacion (Muggins/All Fives, reglas de spinner)
+    - Variante de robar fichas (robar del pozo)
+    - Tutorial dentro de la aplicacion o guia de incorporacion interactiva
+    - Chat o mensajeria entre jugadores
+    - Funcionalidad de deshacer/rehacer
+    - Repeticion o grabacion de partidas
+
+    Estas funcionalidades ESTAN planificadas para versiones futuras. La arquitectura del MVP DEBE
+    incluir ganchos y abstracciones que faciliten agregarlas:
+    - Generacion de fichas parametrizada por tamano del conjunto (no codificada para doble seis)
+    - Estado del juego serializable a JSON (para futura sincronizacion en red y persistencia)
+    - Arquitectura basada en eventos (para futura integracion con WebSocket)
+    - Identidad del jugador abstraida (humano vs IA vs remoto, para futuro multijugador)
+    - Sistema de puntuacion extensible (para futuras variantes de puntuacion)
+  -->
 </project_specification>

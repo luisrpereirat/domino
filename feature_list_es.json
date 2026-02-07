@@ -6,7 +6,7 @@
       "Paso 1: Navegar a localhost:5173",
       "Paso 2: Verificar que la página carga sin errores",
       "Paso 3: Verificar que existe un elemento canvas de Phaser en el DOM",
-      "Paso 4: Verificar el canvas tiene un visible escena de juego renderizada"
+      "Paso 4: Verificar que el canvas tiene una escena de juego renderizada visible"
     ],
     "passes": true,
     "screenshots": [
@@ -18,10 +18,10 @@
     "description": "El canvas de Phaser usa resolución base 960x600 con escalado FIT",
     "steps": [
       "Paso 1: Navegar al juego",
-      "Paso 2: Verificar the Phaser config uses 960x600 resolution",
+      "Paso 2: Verificar que el Phaser config uses 960x600 resolución",
       "Paso 3: Redimensionar la ventana del navegador",
-      "Paso 4: Verificar el canvas scales to fit while maintaining aspect ratio",
-      "Paso 5: Verificar letterboxing (black bars) appears if aspect ratio differs"
+      "Paso 4: Verificar que el canvas scales to fit while maintaining relación de aspecto",
+      "Paso 5: Verificar letterboxing (black bars) appears if relación de aspecto differs"
     ],
     "passes": true,
     "screenshots": [
@@ -33,9 +33,9 @@
     "description": "MenuScene carga como la escena inicial con el título del juego mostrado",
     "steps": [
       "Paso 1: Navegar al juego",
-      "Paso 2: Verificar the MenuScene is the active scene",
-      "Paso 3: Verificar 'Quarzen's Domino' title text es visible",
-      "Paso 4: Tomar captura de pantalla to confirm title rendering"
+      "Paso 2: Verificar que el MenuScene is the active scene",
+      "Paso 3: Verificar 'Quarzen's Domino' texto del título es visible",
+      "Paso 4: Tomar captura de pantalla para confirmar title rendering"
     ],
     "passes": true,
     "screenshots": [
@@ -50,7 +50,7 @@
       "Paso 2: Verificar 'Easy' button es visible",
       "Paso 3: Verificar 'Random' button es visible",
       "Paso 4: Verificar 'Hard' button es visible",
-      "Paso 5: Verificar botones están vertically stacked at center"
+      "Paso 5: Verificar buttons are vertically stacked at center"
     ],
     "passes": true,
     "screenshots": [
@@ -62,9 +62,9 @@
     "description": "Hacer clic en el botón Easy inicia un nuevo juego con dificultad 0",
     "steps": [
       "Paso 1: Navegar a MenuScene del juego",
-      "Paso 2: Hacer clic en el botón 'Easy'",
+      "Paso 2: Hacer clic en el 'Easy' button",
       "Paso 3: Verificar scene transitions to GameScene",
-      "Paso 4: Verificar el juego state has difficulty set to 0"
+      "Paso 4: Verificar que el game state has difficulty set to 0"
     ],
     "passes": true,
     "screenshots": [
@@ -76,9 +76,9 @@
     "description": "Hacer clic en el botón Random inicia un nuevo juego con dificultad 1",
     "steps": [
       "Paso 1: Navegar a MenuScene del juego",
-      "Paso 2: Hacer clic en el botón 'Random'",
+      "Paso 2: Hacer clic en el 'Random' button",
       "Paso 3: Verificar scene transitions to GameScene",
-      "Paso 4: Verificar el juego state has difficulty set to 1"
+      "Paso 4: Verificar que el game state has difficulty set to 1"
     ],
     "passes": true,
     "screenshots": null
@@ -88,9 +88,9 @@
     "description": "Hacer clic en el botón Hard inicia un nuevo juego con dificultad 2",
     "steps": [
       "Paso 1: Navegar a MenuScene del juego",
-      "Paso 2: Hacer clic en el botón 'Hard'",
+      "Paso 2: Hacer clic en el 'Hard' button",
       "Paso 3: Verificar scene transitions to GameScene",
-      "Paso 4: Verificar el juego state has difficulty set to 2"
+      "Paso 4: Verificar que el game state has difficulty set to 2"
     ],
     "passes": true,
     "screenshots": null
@@ -100,9 +100,9 @@
     "description": "La transición de escena de MenuScene a GameScene usa un fundido a negro de 0.5s",
     "steps": [
       "Paso 1: Navegar a MenuScene del juego",
-      "Paso 2: Hacer clic en any difficulty button",
-      "Paso 3: Verificar the screen fades to black over approximately 0.5 seconds",
-      "Paso 4: Verificar the GameScene appears after the fade"
+      "Paso 2: Hacer clic en cualquier difficulty button",
+      "Paso 3: Verificar que el screen fades to black over approximately 0.5 segundos",
+      "Paso 4: Verificar que el GameScene appears después the fade"
     ],
     "passes": true,
     "screenshots": [
@@ -114,8 +114,8 @@
     "description": "El botón Rules es visible en MenuScene debajo de los botones de dificultad",
     "steps": [
       "Paso 1: Navegar a MenuScene del juego",
-      "Paso 2: Verificar a 'Rules' button es visible",
-      "Paso 3: Verificar it is positioned below the difficulty buttons"
+      "Paso 2: Verificar que un 'Rules' button es visible",
+      "Paso 3: Verificar it is positioned below the botones de dificultad"
     ],
     "passes": true,
     "screenshots": [
@@ -127,17 +127,17 @@
     "description": "El modal Rules se abre cuando se hace clic en el botón Rules y muestra las reglas del juego",
     "steps": [
       "Paso 1: Navegar a MenuScene del juego",
-      "Paso 2: Hacer clic en el botón 'Rules'",
-      "Paso 3: Verificar a modal overlay appears with a dark semi-transparent backdrop",
-      "Paso 4: Verificar el modal contains a title/heading about domino rules",
-      "Paso 5: Verificar the Tiles section explains the double-six set with 28 tiles",
-      "Paso 6: Verificar the Gameplay section explains turn order and tile matching",
-      "Paso 7: Verificar the Passing section explains pass mechanics and scoring penalty",
-      "Paso 8: Verificar the Scoring section explains point system",
-      "Paso 9: Verificar the Winning section explains win and fish conditions",
-      "Paso 10: Verificar the AI Difficulty section explains Easy, Random, and Hard modes",
-      "Paso 11: Verificar el modal has a close button (X) in the top-right corner",
-      "Paso 12: Verificar el modal text is readable with proper font size and line spacing",
+      "Paso 2: Hacer clic en el 'Rules' button",
+      "Paso 3: Verificar que un modal overlay appears with a dark semi-transparent backdrop",
+      "Paso 4: Verificar que el modal contains a title/heading about domino rules",
+      "Paso 5: Verificar que el Tiles section explains the double-six set with 28 fichas",
+      "Paso 6: Verificar que el Gameplay section explains turn order and tile matching",
+      "Paso 7: Verificar que el Passing section explains pass mechanics and scoring penalty",
+      "Paso 8: Verificar que el Scoring section explains point system",
+      "Paso 9: Verificar que el Winning section explains win and fish conditions",
+      "Paso 10: Verificar que el AI Difficulty section explains Easy, Random, and Hard modes",
+      "Paso 11: Verificar que el modal has a close button (X) in the top-right corner",
+      "Paso 12: Verificar que el modal text is readable with proper font size and line spacing",
       "Paso 13: Tomar captura de pantalla of rules modal"
     ],
     "passes": true,
@@ -150,9 +150,9 @@
     "description": "El modal Rules se cierra cuando se hace clic en el botón X",
     "steps": [
       "Paso 1: Abrir el Rules modal from MenuScene",
-      "Paso 2: Hacer clic en el botón de cerrar X",
-      "Paso 3: Verificar el modal closes",
-      "Paso 4: Verificar the MenuScene is fully visible again"
+      "Paso 2: Hacer clic en el X close button",
+      "Paso 3: Verificar que el modal closes",
+      "Paso 4: Verificar que el MenuScene is fully visible again"
     ],
     "passes": true,
     "screenshots": null
@@ -162,9 +162,9 @@
     "description": "El modal Rules se cierra al hacer clic fuera del modal",
     "steps": [
       "Paso 1: Abrir el Rules modal from MenuScene",
-      "Paso 2: Hacer clic en outside el modal area",
-      "Paso 3: Verificar el modal closes",
-      "Paso 4: Verificar the MenuScene is fully visible again"
+      "Paso 2: Hacer clic fuera de el modal area",
+      "Paso 3: Verificar que el modal closes",
+      "Paso 4: Verificar que el MenuScene is fully visible again"
     ],
     "passes": true,
     "screenshots": null
@@ -174,7 +174,7 @@
     "description": "El contenido del modal Rules es desplazable si se extiende más allá del área visible",
     "steps": [
       "Paso 1: Abrir el Rules modal from MenuScene",
-      "Paso 2: Verificar el modal content is scrollable",
+      "Paso 2: Verificar que el modal content is scrollable",
       "Paso 3: Desplazarse hacia abajo to verify more content is accessible"
     ],
     "passes": true,
@@ -185,9 +185,9 @@
     "description": "El ícono de silenciar es visible en la esquina superior derecha de MenuScene",
     "steps": [
       "Paso 1: Navegar a MenuScene del juego",
-      "Paso 2: Verificar a mute/unmute icon es visible in the top-right corner",
-      "Paso 3: Hacer clic en the mute icon to toggle mute state",
-      "Paso 4: Verificar the icon changes to reflect the new state"
+      "Paso 2: Verificar que un mute/unmute icon es visible in the top-right corner",
+      "Paso 3: Hacer clic en el mute icon to toggle mute state",
+      "Paso 4: Verificar que el icon changes to reflect the new state"
     ],
     "passes": true,
     "screenshots": [
@@ -199,9 +199,9 @@
     "description": "La preferencia de silencio persiste a través de recargas de página via localStorage",
     "steps": [
       "Paso 1: Navegar a MenuScene del juego",
-      "Paso 2: Hacer clic en the mute toggle to mute",
+      "Paso 2: Hacer clic en el mute toggle to mute",
       "Paso 3: Recargar la página",
-      "Paso 4: Verificar the mute state is still muted",
+      "Paso 4: Verificar que el mute state is still muted",
       "Paso 5: Hacer clic en to unmute, reload, verify unmuted"
     ],
     "passes": true,
@@ -214,8 +214,8 @@
     "description": "La generación de fichas produce 28 fichas para el conjunto double-six (maxPip=6)",
     "steps": [
       "Paso 1: Iniciar un nuevo juego",
-      "Paso 2: Verificar 28 tiles are created total",
-      "Paso 3: Verificar all tiles have valid topIndex and bottomIndex (0-6)",
+      "Paso 2: Verificar 28 fichas are created total",
+      "Paso 3: Verificar que unll tiles have valid topIndex and bottomIndex (0-6)",
       "Paso 4: Verificar doubles exist (0-0, 1-1, 2-2, 3-3, 4-4, 5-5, 6-6)"
     ],
     "passes": true,
@@ -228,8 +228,8 @@
     "description": "La generación de fichas está parametrizada por maxPip, no codificada como 28",
     "steps": [
       "Paso 1: Inspeccionar tile generation code",
-      "Paso 2: Verificar a maxPip parameter controls tile set size",
-      "Paso 3: Verificar no hardcoded references to 28 tiles or IDs 0-27 as constants"
+      "Paso 2: Verificar que un maxPip parameter controls tile set size",
+      "Paso 3: Verificar no hardcoded references to 28 fichas or IDs 0-27 as constants"
     ],
     "passes": true,
     "screenshots": [
@@ -248,8 +248,8 @@
       "Paso 6: Verificar tile IDs 22-24 have topIndex=4 and bottomIndex values 4,5,6 respectively",
       "Paso 7: Verificar tile IDs 25-26 have topIndex=5 and bottomIndex values 5,6 respectively",
       "Paso 8: Verificar tile ID 27 is 6-6 (topIndex=6, bottomIndex=6)",
-      "Paso 9: Verificar no duplicate tile IDs exist in the full set of 28 tiles",
-      "Paso 10: Verificar every combination of (topIndex, bottomIndex) where topIndex <= bottomIndex appears exactly once"
+      "Paso 9: Verificar no duplicate tile IDs exist in the full set of 28 fichas",
+      "Paso 10: Verificar every combination of (topIndex, bottomIndex) donde topIndex <= bottomIndex appears exactly once"
     ],
     "passes": true,
     "screenshots": [
@@ -261,8 +261,8 @@
     "description": "Las 28 fichas aparecen apiladas en la posición central del mazo al inicio del juego",
     "steps": [
       "Paso 1: Iniciar un nuevo juego",
-      "Paso 2: Verificar tiles appear at the center of the board before distribution",
-      "Paso 3: Tomar captura de pantalla showing tiles at deck position"
+      "Paso 2: Verificar tiles appear at the center of the board antes distribution",
+      "Paso 3: Tomar captura de pantalla mostrando tiles at deck position"
     ],
     "passes": true,
     "screenshots": [
@@ -274,15 +274,15 @@
     "description": "La distribución animada de fichas reparte 7 fichas a cada uno de los 4 jugadores",
     "steps": [
       "Paso 1: Iniciar un nuevo juego",
-      "Paso 2: Esperar tile distribution animation to begin (after 1s pause)",
+      "Paso 2: Esperar tile distribution animation to begin (después 1s pause)",
       "Paso 3: Verificar tiles animate from deck center to hand positions",
-      "Paso 4: Verificar Player (bottom) receives 7 tiles",
-      "Paso 5: Verificar Left AI receives 7 tiles",
-      "Paso 6: Verificar Top AI receives 7 tiles",
-      "Paso 7: Verificar Right AI receives 7 tiles",
-      "Paso 8: Verificar distribution order: Player first, then Left, Top, Right",
+      "Paso 4: Verificar Player (bottom) recibe 7 fichas",
+      "Paso 5: Verificar Left AI recibe 7 fichas",
+      "Paso 6: Verificar Top AI recibe 7 fichas",
+      "Paso 7: Verificar Right AI recibe 7 fichas",
+      "Paso 8: Verificar distribution order: Player primero, then Left, Top, Right",
       "Paso 9: Verificar deal animation timing (~1.0s per tile, 0.2s stagger)",
-      "Paso 10: Tomar captura de pantalla after distribution completes"
+      "Paso 10: Tomar captura de pantalla después distribution completes"
     ],
     "passes": true,
     "screenshots": [
@@ -294,9 +294,9 @@
     "description": "Las fichas del jugador se voltean de reverso a frente después de llegar a la mano",
     "steps": [
       "Paso 1: Iniciar un nuevo juego and watch tile distribution",
-      "Paso 2: Verificar player tiles show backs during distribution",
-      "Paso 3: Verificar player tiles flip to show faces after arriving in hand",
-      "Paso 4: Tomar captura de pantalla showing player tiles face-up"
+      "Paso 2: Verificar player tiles show backs durante distribution",
+      "Paso 3: Verificar player tiles flip to show faces después arriving in hand",
+      "Paso 4: Tomar captura de pantalla mostrando player tiles face-up"
     ],
     "passes": true,
     "screenshots": [
@@ -307,11 +307,11 @@
     "category": "functional",
     "description": "Las fichas de AI permanecen boca abajo (mostrando reversos) después de la distribución",
     "steps": [
-      "Paso 1: Iniciar un nuevo juego and wait for distribution to complete",
+      "Paso 1: Iniciar un nuevo juego y esperar for distribution to complete",
       "Paso 2: Verificar Left AI tiles show backs (face-down)",
       "Paso 3: Verificar Top AI tiles show backs (face-down)",
       "Paso 4: Verificar Right AI tiles show backs (face-down)",
-      "Paso 5: Tomar captura de pantalla confirming AI tiles are face-down"
+      "Paso 5: Tomar captura de pantalla confirmando AI tiles are face-down"
     ],
     "passes": true,
     "screenshots": [
@@ -325,7 +325,7 @@
       "Paso 1: Iniciar un nuevo juego",
       "Paso 2: Esperar tile distribution to complete",
       "Paso 3: Verificar 'Game Started' message appears on screen",
-      "Paso 4: Verificar the message disappears after approximately 1 second"
+      "Paso 4: Verificar que el message disappears después approximately 1 segundo"
     ],
     "passes": true,
     "screenshots": null
@@ -335,9 +335,9 @@
     "description": "Se selecciona un jugador inicial aleatorio con probabilidad igual de 1 en 4",
     "steps": [
       "Paso 1: Start multiple new games",
-      "Paso 2: Registrar which player starts first each time",
-      "Paso 3: Verificar que all 4 players can be selected as the starter",
-      "Paso 4: Verificar the selection appears random"
+      "Paso 2: Registrar which player starts primero each time",
+      "Paso 3: Verificar que todos 4 players can be selected as the starter",
+      "Paso 4: Verificar que el selection appears random"
     ],
     "passes": true,
     "screenshots": null
@@ -346,10 +346,10 @@
     "category": "functional",
     "description": "El indicador de turno muestra de quién es el turno (Your Turn / AI Name's Turn)",
     "steps": [
-      "Paso 1: Iniciar un nuevo juego and wait for distribution",
+      "Paso 1: Iniciar un nuevo juego y esperar for distribution",
       "Paso 2: Verificar turn indicator text shows whose turn it is",
       "Paso 3: Verificar 'Your Turn' shows when it's the player's turn",
-      "Paso 4: Verificar '{AI Name}'s Turn' shows during AI turns"
+      "Paso 4: Verificar '{AI Name}'s Turn' shows durante AI turns"
     ],
     "passes": true,
     "screenshots": [
@@ -360,16 +360,16 @@
     "category": "functional",
     "description": "El orden de turno sigue el ciclo Player -> Left AI -> Top AI -> Right AI",
     "steps": [
-      "Paso 1: Iniciar un nuevo juego where Player goes first",
+      "Paso 1: Iniciar un nuevo juego donde Player goes primero",
       "Paso 2: Verificar turn indicator shows 'Your Turn'",
       "Paso 3: Player places a tile, verify turn indicator changes to 'Left AI's Turn'",
       "Paso 4: Left AI plays, verify turn indicator changes to 'Top AI's Turn'",
       "Paso 5: Top AI plays, verify turn indicator changes to 'Right AI's Turn'",
       "Paso 6: Right AI plays, verify turn indicator returns to 'Your Turn'",
-      "Paso 7: Complete a second full cycle to confirm turn order is stable",
-      "Paso 8: Verificar player tiles are locked during all three AI turns",
-      "Paso 9: Verificar player tiles become interactive only during 'Your Turn'",
-      "Paso 10: Verificar AI thinking indicators appear for each AI during their respective turns"
+      "Paso 7: Completar a segundo full cycle para confirmar turn order is stable",
+      "Paso 8: Verificar player tiles are locked durante all three AI turns",
+      "Paso 9: Verificar player tiles become interactive only durante 'Your Turn'",
+      "Paso 10: Verificar AI thinking indicators appear for each AI durante their respective turns"
     ],
     "passes": true,
     "screenshots": [
@@ -380,10 +380,10 @@
     "category": "functional",
     "description": "Las fichas válidas brillan con resaltado pulsante durante el turno del jugador",
     "steps": [
-      "Paso 1: Iniciar un nuevo juego and wait for player's turn",
+      "Paso 1: Iniciar un nuevo juego y esperar for player's turn",
       "Paso 2: Verificar tiles that match open branch numbers have a pulsing glow effect",
-      "Paso 3: Verificar the glow uses the theme's highlightColor",
-      "Paso 4: Verificar the pulse cycle is approximately 0.5 seconds"
+      "Paso 3: Verificar que el glow uses the theme's highlightColor",
+      "Paso 4: Verificar que el pulse cycle is approximately 0.5 segundos"
     ],
     "passes": true,
     "screenshots": [
@@ -394,7 +394,7 @@
     "category": "functional",
     "description": "Las fichas inválidas/bloqueadas aparecen atenuadas con opacidad reducida durante el turno del jugador",
     "steps": [
-      "Paso 1: Iniciar un nuevo juego and wait for player's turn (after first tile placed)",
+      "Paso 1: Iniciar un nuevo juego y esperar for player's turn (después primero tile placed)",
       "Paso 2: Verificar tiles that don't match any branch number are dimmed",
       "Paso 3: Verificar dimmed tiles have alpha reduced to approximately 0.4",
       "Paso 4: Verificar dimmed tiles are non-interactive (cannot be dragged)"
@@ -406,11 +406,11 @@
   },
   {
     "category": "functional",
-    "description": "All tiles are locked during AI turns",
+    "description": "Todas las fichas están bloqueadas durante los turnos de AI",
     "steps": [
       "Paso 1: Iniciar un nuevo juego",
       "Paso 2: During an AI's turn, verify all player tiles are locked/dimmed",
-      "Paso 3: Verificar no player tiles can be dragged during AI turns"
+      "Paso 3: Verificar no player tiles can be dragged durante AI turns"
     ],
     "passes": true,
     "screenshots": [
@@ -419,19 +419,19 @@
   },
   {
     "category": "functional",
-    "description": "Player can drag a valid tile from hand toward the board",
+    "description": "El jugador puede arrastrar una ficha válida desde la mano hacia el tablero",
     "steps": [
-      "Paso 1: Iniciar un nuevo juego and wait for player's turn",
+      "Paso 1: Iniciar un nuevo juego y esperar for player's turn",
       "Paso 2: Identify a valid (glowing) tile in the player's hand",
       "Paso 3: Press and hold the tile to initiate drag",
-      "Paso 4: Verificar the tile follows the pointer/mouse position as it is dragged upward",
-      "Paso 5: Verificar the tile scales to 1.1x while being dragged",
-      "Paso 6: Verificar the dragged tile renders at the highest depth (above all other game objects)",
-      "Paso 7: Verificar a subtle drop shadow effect appears on the dragged tile",
+      "Paso 4: Verificar que el tile follows the pointer/mouse position as it is dragged upward",
+      "Paso 5: Verificar que el tile scales to 1.1x while being dragged",
+      "Paso 6: Verificar que el dragged tile renders at the highest depth (above all other game objects)",
+      "Paso 7: Verificar que un subtle drop shadow effect appears on the dragged tile",
       "Paso 8: Verificar ghost placement slot(s) appear on the board while dragging",
-      "Paso 9: Verificar the tile pickup sound plays at drag start (if sound unmuted)",
+      "Paso 9: Verificar que el tile pickup sound plays at drag start (if sound unmuted)",
       "Paso 10: Verificar haptic feedback fires on mobile (navigator.vibrate(20))",
-      "Paso 11: Tomar captura de pantalla showing tile mid-drag with ghost slots visible"
+      "Paso 11: Tomar captura de pantalla mostrando tile mid-drag with ghost slots visible"
     ],
     "passes": true,
     "screenshots": [
@@ -440,19 +440,19 @@
   },
   {
     "category": "functional",
-    "description": "Ghost placement slots appear on the board when dragging a valid tile",
+    "description": "Aparecen ranuras de colocación fantasma en el tablero al arrastrar una ficha válida",
     "steps": [
-      "Paso 1: Iniciar un nuevo juego and wait for player's turn",
+      "Paso 1: Iniciar un nuevo juego y esperar for player's turn",
       "Paso 2: Begin dragging a valid tile that matches both branch ends",
       "Paso 3: Verificar ghost slot(s) appear on the board at valid placement positions",
       "Paso 4: Verificar slots are semi-transparent with gold tint (validSlotColor #FFD700)",
-      "Paso 5: Verificar slot alpha is between 0.3 and 0.5",
+      "Paso 5: Verificar slot alpha is entre 0.3 and 0.5",
       "Paso 6: Verificar up to 2 slots appear (one per branch end) when tile matches both branches",
       "Paso 7: Verificar only 1 slot appears when tile matches a single branch",
       "Paso 8: Verificar ghost slot orientation matches expected placement (standing for doubles, lying for non-doubles)",
       "Paso 9: Verificar ghost slots are positioned correctly according to the 5-phase board algorithm",
       "Paso 10: Release the tile and verify ghost slots disappear immediately",
-      "Paso 11: Tomar captura de pantalla showing ghost slots during drag"
+      "Paso 11: Tomar captura de pantalla mostrando ghost slots durante drag"
     ],
     "passes": true,
     "screenshots": [
@@ -461,20 +461,20 @@
   },
   {
     "category": "functional",
-    "description": "Tile snaps to nearest valid slot when dropped above 1/3 screen height threshold",
+    "description": "La ficha se ajusta a la ranura válida más cercana cuando se suelta por encima del umbral de 1/3 de altura de pantalla",
     "steps": [
-      "Paso 1: Iniciar un nuevo juego and wait for player's turn",
+      "Paso 1: Iniciar un nuevo juego y esperar for player's turn",
       "Paso 2: Drag a valid tile above the 1/3 screen height threshold",
       "Paso 3: Release the tile near the closest ghost slot",
-      "Paso 4: Verificar the tile animates (0.5s tween with Power2 easing) to the nearest slot position",
-      "Paso 5: Verificar the tile rotates to correct orientation (standing for double, lying for non-double)",
-      "Paso 6: Verificar the tile flips if needed so the matching pip connects to the branch",
-      "Paso 7: Verificar the tile is now part of the board and no longer interactive",
-      "Paso 8: Verificar the tile is reparented to the board container at 1.0x scale",
-      "Paso 9: Verificar the branch number updates to reflect the new open end",
-      "Paso 10: Verificar the player's hand re-centers with adjusted spacing (now has one fewer tile)",
-      "Paso 11: Verificar the tile placement sound plays",
-      "Paso 12: Tomar captura de pantalla showing tile snapped to board position"
+      "Paso 4: Verificar que el tile animates (0.5s tween with Power2 easing) to the nearest slot position",
+      "Paso 5: Verificar que el tile rotates to correct orientation (standing for double, lying for non-double)",
+      "Paso 6: Verificar que el tile flips if needed so the matching pip connects to the branch",
+      "Paso 7: Verificar que el tile is now part of the board and no longer interactive",
+      "Paso 8: Verificar que el tile is reparented to the board container at 1.0x scale",
+      "Paso 9: Verificar que el branch number updates to reflect the new open end",
+      "Paso 10: Verificar que el player's hand re-centers with adjusted spacing (now has one fewer tile)",
+      "Paso 11: Verificar que el tile placement sound plays",
+      "Paso 12: Tomar captura de pantalla mostrando tile snapped to board position"
     ],
     "passes": true,
     "screenshots": [
@@ -483,25 +483,25 @@
   },
   {
     "category": "functional",
-    "description": "Tile returns to hand when dropped below 1/3 screen height threshold",
+    "description": "La ficha regresa a la mano cuando se suelta por debajo del umbral de 1/3 de altura de pantalla",
     "steps": [
-      "Paso 1: Iniciar un nuevo juego and wait for player's turn",
+      "Paso 1: Iniciar un nuevo juego y esperar for player's turn",
       "Paso 2: Drag a valid tile but keep it below the 1/3 screen height threshold",
       "Paso 3: Release the tile",
-      "Paso 4: Verificar the tile animates (0.5s tween) back to its original hand position",
-      "Paso 5: Verificar the tile remains in the player's hand"
+      "Paso 4: Verificar que el tile animates (0.5s tween) back to its original hand position",
+      "Paso 5: Verificar que el tile remains in the player's hand"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "First tile placement goes to the center of the board",
+    "description": "La primera colocación de ficha va al centro del tablero",
     "steps": [
-      "Paso 1: Iniciar un nuevo juego and wait for first player's turn",
-      "Paso 2: Place the first tile (by player or observe AI)",
-      "Paso 3: Verificar the tile is placed at the center of the board (0,0)",
-      "Paso 4: Tomar captura de pantalla showing first tile at center"
+      "Paso 1: Iniciar un nuevo juego y esperar for primero player's turn",
+      "Paso 2: Place the primero tile (by player or observe AI)",
+      "Paso 3: Verificar que el tile is placed at the center of the board (0,0)",
+      "Paso 4: Tomar captura de pantalla mostrando primero tile at center"
     ],
     "passes": true,
     "screenshots": [
@@ -510,10 +510,10 @@
   },
   {
     "category": "functional",
-    "description": "Subsequent tiles must match an open end number to be placed",
+    "description": "Las fichas subsiguientes deben coincidir con un número de extremo abierto para ser colocadas",
     "steps": [
-      "Paso 1: Start a game and place the first tile",
-      "Paso 2: Verificar the board shows two open branch numbers",
+      "Paso 1: Start a game and place the primero tile",
+      "Paso 2: Verificar que el board shows two open branch numbers",
       "Paso 3: Verificar only tiles matching those numbers can be placed",
       "Paso 4: Attempt to drag a non-matching tile and verify it cannot be placed"
     ],
@@ -524,10 +524,10 @@
   },
   {
     "category": "functional",
-    "description": "Two-branch system: tiles grow outward from center in right and left branches",
+    "description": "Sistema de dos ramas: las fichas crecen hacia afuera desde el centro en ramas derecha e izquierda",
     "steps": [
-      "Paso 1: Start a game and place the first tile",
-      "Paso 2: Place a second tile that matches the right branch",
+      "Paso 1: Start a game and place the primero tile",
+      "Paso 2: Place a segundo tile that matches the right branch",
       "Paso 3: Verificar it is placed to the right of center",
       "Paso 4: Place a tile that matches the left branch",
       "Paso 5: Verificar it is placed to the left of center"
@@ -539,12 +539,12 @@
   },
   {
     "category": "functional",
-    "description": "Double tiles display standing (vertical) during horizontal phases",
+    "description": "Las fichas dobles se muestran de pie (vertical) durante las fases horizontales",
     "steps": [
       "Paso 1: Start a game",
-      "Paso 2: Place a double tile (e.g., 3-3) during phase 0",
-      "Paso 3: Verificar the double tile is rendered in standing/vertical orientation",
-      "Paso 4: Tomar captura de pantalla showing standing double tile"
+      "Paso 2: Place a double tile (e.g., 3-3) durante phase 0",
+      "Paso 3: Verificar que el double tile is renderizada in standing/vertical orientation",
+      "Paso 4: Tomar captura de pantalla mostrando standing double tile"
     ],
     "passes": true,
     "screenshots": [
@@ -553,12 +553,12 @@
   },
   {
     "category": "functional",
-    "description": "Non-double tiles display lying (horizontal) during horizontal phases",
+    "description": "Las fichas no dobles se muestran acostadas (horizontal) durante las fases horizontales",
     "steps": [
       "Paso 1: Start a game",
-      "Paso 2: Place a non-double tile (e.g., 3-4) during phase 0",
-      "Paso 3: Verificar the tile is rendered in lying/horizontal orientation (rotated 90 degrees)",
-      "Paso 4: Tomar captura de pantalla showing lying tile"
+      "Paso 2: Place a non-double tile (e.g., 3-4) durante phase 0",
+      "Paso 3: Verificar que el tile is renderizada in lying/horizontal orientation (rotated 90 degrees)",
+      "Paso 4: Tomar captura de pantalla mostrando lying tile"
     ],
     "passes": true,
     "screenshots": [
@@ -567,25 +567,25 @@
   },
   {
     "category": "functional",
-    "description": "Tile flips 180 degrees when matching pip is on the wrong half for branch connection",
+    "description": "La ficha se voltea 180 grados cuando el pip coincidente está en la mitad incorrecta para la conexión de rama",
     "steps": [
-      "Paso 1: Start a game and observe tile placement",
-      "Paso 2: Place a tile where the matching pip value is on the bottom half",
-      "Paso 3: Verificar the tile automatically flips/rotates so the matching end connects to the branch",
-      "Paso 4: Verificar the open end becomes the new branch number"
+      "Paso 1: Start a game y observar tile placement",
+      "Paso 2: Place a tile donde the matching pip value is on the bottom half",
+      "Paso 3: Verificar que el tile automatically flips/rotates so the matching end connects to the branch",
+      "Paso 4: Verificar que el open end becomes the new branch number"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Phase 0: Horizontal expansion outward from center for both branches",
+    "description": "Fase 0: Expansión horizontal hacia afuera desde el centro para ambas ramas",
     "steps": [
       "Paso 1: Start a game",
       "Paso 2: Place several tiles on the right branch",
-      "Paso 3: Verificar they expand horizontally to the right",
+      "Paso 3: Verificar que ely expand horizontally to the right",
       "Paso 4: Place tiles on the left branch",
-      "Paso 5: Verificar they expand horizontally to the left"
+      "Paso 5: Verificar que ely expand horizontally to the left"
     ],
     "passes": true,
     "screenshots": [
@@ -594,32 +594,32 @@
   },
   {
     "category": "functional",
-    "description": "Phase 1: Corner turn at board edge (side limit = 13 tile units)",
+    "description": "Fase 1: Giro en esquina en el borde del tablero (límite lateral = 13 unidades de ficha)",
     "steps": [
-      "Paso 1: Start a game and place tiles on one branch until reaching the side limit",
-      "Paso 2: Verificar the branch turns downward/upward at the edge",
+      "Paso 1: Start a game and place tiles on one branch hasta que reaching the side limit",
+      "Paso 2: Verificar que el branch turns downward/upward at the edge",
       "Paso 3: Verificar vertical shift of 1.5 tile units at the corner",
-      "Paso 4: Tomar captura de pantalla showing corner turn"
+      "Paso 4: Tomar captura de pantalla mostrando corner turn"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Phase 2-4: Cross-direction turn and reversed horizontal expansion",
+    "description": "Fases 2-4: Giro de dirección cruzada y expansión horizontal invertida",
     "steps": [
       "Paso 1: Continue placing tiles past phase 1 corner",
       "Paso 2: Verificar phase 2 cross-direction turn occurs",
       "Paso 3: Verificar phase 3 end corner",
       "Paso 4: Verificar phase 4+ reversed horizontal expansion",
-      "Paso 5: Tomar captura de pantalla showing multi-phase board layout"
+      "Paso 5: Tomar captura de pantalla mostrando multi-phase board layout"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Standing tiles offset by 1 tile unit, lying tiles offset by 2 tile units",
+    "description": "Fichas de pie desplazadas por 1 unidad de ficha, fichas acostadas desplazadas por 2 unidades de ficha",
     "steps": [
       "Paso 1: Place a double (standing) tile and measure offset",
       "Paso 2: Verificar standing tile offset is 1 tile unit (60px)",
@@ -631,9 +631,9 @@
   },
   {
     "category": "functional",
-    "description": "Board state correctly tracks rightBranchNum and leftBranchNum",
+    "description": "El estado del tablero rastrea correctamente rightBranchNum y leftBranchNum",
     "steps": [
-      "Paso 1: Start a game and place the first tile",
+      "Paso 1: Start a game and place the primero tile",
       "Paso 2: Verificar rightBranchNum and leftBranchNum are set correctly",
       "Paso 3: Place another tile on the right branch",
       "Paso 4: Verificar rightBranchNum updates to the new open end",
@@ -647,13 +647,13 @@
   },
   {
     "category": "functional",
-    "description": "After tile placement, tile is removed from player hand and hand re-centers",
+    "description": "After tile placement, tile is removed from player hand y hand re-centers",
     "steps": [
       "Paso 1: Start a game and count player's tiles (should be 7)",
       "Paso 2: Place a tile on the board",
       "Paso 3: Verificar player now has 6 tiles",
       "Paso 4: Verificar remaining tiles re-center with adjusted spacing",
-      "Paso 5: Tomar captura de pantalla showing re-centered hand"
+      "Paso 5: Tomar captura de pantalla mostrando re-centered hand"
     ],
     "passes": true,
     "screenshots": [
@@ -662,22 +662,22 @@
   },
   {
     "category": "functional",
-    "description": "Pass button appears when player has no valid moves",
+    "description": "Pass botón aparece cuando player has no valid moves",
     "steps": [
-      "Paso 1: Play until the player has no tiles matching any branch number",
-      "Paso 2: Verificar the Pass button appears and is enabled",
-      "Paso 3: Verificar el botón text says 'Pass'",
-      "Paso 4: Verificar all player tiles are dimmed/locked"
+      "Paso 1: Play hasta que the player has no tiles matching any branch number",
+      "Paso 2: Verificar que el Pass button appears and is enabled",
+      "Paso 3: Verificar que el button text says 'Pass'",
+      "Paso 4: Verificar que unll player tiles are dimmed/locked"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Pass button is hidden/disabled when player has valid moves",
+    "description": "Pass botón is hidden/disabled cuando player has valid moves",
     "steps": [
-      "Paso 1: Iniciar un nuevo juego where player has valid moves",
-      "Paso 2: Verificar the Pass button is not visible or is disabled",
+      "Paso 1: Iniciar un nuevo juego donde player has valid moves",
+      "Paso 2: Verificar que el Pass button is not visible or is disabled",
       "Paso 3: Verificar valid tiles can be dragged"
     ],
     "passes": true,
@@ -687,11 +687,11 @@
   },
   {
     "category": "functional",
-    "description": "Clicking Pass button awards 1 point to lastActivePlayer",
+    "description": "Clicking Pass botón awards 1 point a lastActivePlayer",
     "steps": [
-      "Paso 1: Play until the player must pass",
+      "Paso 1: Play hasta que the player must pass",
       "Paso 2: Note the lastActivePlayer and their score",
-      "Paso 3: Hacer clic en the Pass button",
+      "Paso 3: Hacer clic en el Pass button",
       "Paso 4: Verificar lastActivePlayer's score increases by 1",
       "Paso 5: Verificar score display updates with pulse animation"
     ],
@@ -700,21 +700,21 @@
   },
   {
     "category": "functional",
-    "description": "Pass message appears for 1 second when any player passes",
+    "description": "Pass message aparece para 1 second cuando any player passes",
     "steps": [
-      "Paso 1: Play until a pass occurs (player or AI)",
-      "Paso 2: Verificar a 'Pass' message appears on screen",
-      "Paso 3: Verificar the message disappears after approximately 1 second"
+      "Paso 1: Play hasta que a pass occurs (player or AI)",
+      "Paso 2: Verificar que un 'Pass' message appears on screen",
+      "Paso 3: Verificar que el message disappears después approximately 1 segundo"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "AI automatically passes when it has no valid moves",
+    "description": "AI automatically passes cuando it has no valid moves",
     "steps": [
-      "Paso 1: Play a game until an AI has no matching tiles",
-      "Paso 2: Verificar the AI automatically passes (no user action needed)",
+      "Paso 1: Jugar un juego hasta que an AI has no matching tiles",
+      "Paso 2: Verificar que el AI automatically passes (no user action needed)",
       "Paso 3: Verificar pass sound plays and pass message appears",
       "Paso 4: Verificar lastActivePlayer score increases by 1"
     ],
@@ -723,47 +723,47 @@
   },
   {
     "category": "functional",
-    "description": "Fish/blocked game ends when all players pass back to lastActivePlayer",
+    "description": "Fish/blocked game ends cuando all players pass back a lastActivePlayer",
     "steps": [
-      "Paso 1: Play a game until all players begin passing consecutively",
-      "Paso 2: Observe the pass count building as each player passes in succession",
+      "Paso 1: Jugar un juego hasta que all players begin passing consecutively",
+      "Paso 2: Observar the pass count building as each player passes in succession",
       "Paso 3: Verificar each pass awards 1 point to the lastActivePlayer",
-      "Paso 4: Verificar the fish condition triggers when all 4 players pass back to the lastActivePlayer",
+      "Paso 4: Verificar que el fish condition triggers when all 4 players pass back to the lastActivePlayer",
       "Paso 5: Verificar 'Fish - Game Over' message appears with bounce animation",
-      "Paso 6: Verificar all player tiles are locked and non-interactive",
-      "Paso 7: Verificar the Pass button is disabled or hidden",
-      "Paso 8: Verificar el juego over message persists permanently on screen",
-      "Paso 9: Verificar the hamburger menu button remains accessible",
-      "Paso 10: Verificar scores reflect all pass penalties accumulated during el juego"
+      "Paso 6: Verificar que unll player tiles are locked and non-interactive",
+      "Paso 7: Verificar que el Pass button is disabled or hidden",
+      "Paso 8: Verificar que el game over message persists permanently on screen",
+      "Paso 9: Verificar que el hamburger menu button remains accessible",
+      "Paso 10: Verificar scores reflect all pass penalties accumulated durante el juego"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Game ends when a player places their last tile (win condition)",
+    "description": "Game ends cuando a player places their last tile (win condition)",
     "steps": [
-      "Paso 1: Play a game until a player has only 1 tile remaining",
+      "Paso 1: Jugar un juego hasta que a player has only 1 tile remaining",
       "Paso 2: The player places their last tile on the board",
-      "Paso 3: Verificar game over check triggers immediately after the placement",
+      "Paso 3: Verificar game over check triggers immediately después the placement",
       "Paso 4: Verificar 'You win!' message appears if human wins, or '{AI Name} wins!' if AI wins",
       "Paso 5: Verificar game over message has dramatic bounce entrance animation (1.0s scale from 0 to 1)",
-      "Paso 6: Verificar el juego over sound plays (win sound for human, lose sound for AI win)",
-      "Paso 7: Verificar all remaining tiles across all hands are locked and non-interactive",
+      "Paso 6: Verificar que el game over sound plays (win sound for human, lose sound for AI win)",
+      "Paso 7: Verificar que unll remaining tiles across all hands are locked and non-interactive",
       "Paso 8: Verificar no further moves can be made (turn cycle stops)",
-      "Paso 9: Verificar el juego over message persists permanently on screen",
-      "Paso 10: Verificar the hamburger menu remains accessible in el juego over state"
+      "Paso 9: Verificar que el game over message persists permanently on screen",
+      "Paso 10: Verificar que el hamburger menu remains accessible in el juego over state"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Game over message persists permanently on screen",
+    "description": "Game over message persists permanently en screen",
     "steps": [
-      "Paso 1: Reach a game over condition (win or fish)",
-      "Paso 2: Verificar el juego over message stays on screen",
-      "Paso 3: Wait several seconds, verify message does not auto-dismiss"
+      "Paso 1: Alcanzar un game over condition (win or fish)",
+      "Paso 2: Verificar que el game over message stays on screen",
+      "Paso 3: Wait several segundos, verify message does not auto-dismiss"
     ],
     "passes": true,
     "screenshots": null
@@ -772,63 +772,63 @@
     "category": "functional",
     "description": "AI Random strategy picks any valid matching tile randomly",
     "steps": [
-      "Paso 1: Start a game on Random difficulty and wait for an AI turn",
-      "Paso 2: Observe the AI's tile selection on the first AI turn",
-      "Paso 3: Verificar the AI picks a valid tile that matches a branch number",
-      "Paso 4: Verificar the AI thinking delay is between 0.5-3.0 seconds before placing",
-      "Paso 5: Verificar the tile flip animation plays before placement",
+      "Paso 1: Start a game on Random difficulty y esperar for an AI turn",
+      "Paso 2: Observar the AI's tile selection on the primero AI turn",
+      "Paso 3: Verificar que el AI picks a valid tile that matches a branch number",
+      "Paso 4: Verificar que el AI thinking delay is entre 0.5-3.0 segundos antes placing",
+      "Paso 5: Verificar que el tile flip animation plays antes placement",
       "Paso 6: Continue observing AI tile selections for multiple turns",
-      "Paso 7: Restart el juego and observe whether AIs pick different tiles (non-deterministic)",
-      "Paso 8: Start a third game on Random difficulty and continue observing",
+      "Paso 7: Restart el juego y observar whether AIs pick different tiles (non-deterministic)",
+      "Paso 8: Start a tercero game on Random difficulty and continue observing",
       "Paso 9: Verificar no consistent strategic pattern across multiple games (selections vary)",
-      "Paso 10: Verificar all three AIs follow the same random strategy (no preferential behavior)"
+      "Paso 10: Verificar que unll three AIs follow the same random strategy (no preferential behavior)"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "AI Hard strategy classifies tiles as good/bad relative to next player",
+    "description": "AI Hard strategy classifies tiles as good/bad relative a next player",
     "steps": [
       "Paso 1: Start a game on Hard difficulty",
-      "Paso 2: Observe Right AI behavior (the AI directly before the human player)",
+      "Paso 2: Observar Right AI behavior (the AI directly antes the human player)",
       "Paso 3: Verificar Right AI tends to play tiles that leave branch numbers NOT matching the human's hand",
-      "Paso 4: Observe Left AI and Top AI behavior (not directly before human)",
+      "Paso 4: Observar Left AI and Top AI behavior (not directly antes human)",
       "Paso 5: Verificar Left AI and Top AI tend to play tiles that help the next player in cycle",
       "Paso 6: Play through several turns and track which branch numbers are left open",
       "Paso 7: Verificar Hard AI with only one valid tile plays it regardless of good/bad classification",
       "Paso 8: Restart el juego on Hard and continue observing the blocking pattern",
-      "Paso 9: Verificar the strategic pattern is consistent across multiple games on Hard difficulty",
-      "Paso 10: Tomar captura de pantalla of board state showing evidence of strategic AI placement"
+      "Paso 9: Verificar que el strategic pattern is consistent across multiple games on Hard difficulty",
+      "Paso 10: Tomar captura de pantalla of board state mostrando evidence of strategic AI placement"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "AI Easy strategy helps the human player by preferring good tiles",
+    "description": "AI Easy strategy helps el human player by preferring good tiles",
     "steps": [
       "Paso 1: Start a game on Easy difficulty",
-      "Paso 2: Observe AI behavior on the first round of turns",
+      "Paso 2: Observar AI behavior on the primero round of turns",
       "Paso 3: Verificar AIs tend to play tiles that leave branch numbers matching the human's hand",
       "Paso 4: Verificar AIs avoid moves that would force the human to pass",
       "Paso 5: Verificar Easy AIs prefer non-double good tiles over double good tiles",
-      "Paso 6: Play multiple turns and track whether the human has valid moves after each AI turn",
-      "Paso 7: Verificar the human rarely needs to pass when AIs have strategic choices available",
+      "Paso 6: Play multiple turns and track whether the human has valid moves después each AI turn",
+      "Paso 7: Verificar que el human rarely needs to pass when AIs have strategic choices available",
       "Paso 8: Restart el juego on Easy and continue observing helpful behavior",
       "Paso 9: Verificar Easy AI sometimes passes voluntarily if all moves would block the human",
-      "Paso 10: Compare ease of gameplay on Easy vs Hard to confirm Easy is noticeably more forgiving"
+      "Paso 10: Compare ease of gameplay on Easy vs Hard para confirmar Easy is noticeably more forgiving"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "AI thinking delay is random 0.5-3.0 seconds before making a move",
+    "description": "AI thinking delay is random 0.5-3.0 seconds antes de making a move",
     "steps": [
-      "Paso 1: Start a game and observe AI turns",
-      "Paso 2: Measure the delay between turn start and AI move",
-      "Paso 3: Verificar delay varies between approximately 0.5 and 3.0 seconds",
+      "Paso 1: Start a game y observar AI turns",
+      "Paso 2: Measure the delay entre turn start and AI move",
+      "Paso 3: Verificar delay varies entre approximately 0.5 and 3.0 segundos",
       "Paso 4: Verificar delay feels natural and not instant"
     ],
     "passes": true,
@@ -836,32 +836,32 @@
   },
   {
     "category": "functional",
-    "description": "AI thinking indicator shows animated dots during AI thinking delay",
+    "description": "AI thinking indicator muestra animated dots durante AI thinking delay",
     "steps": [
-      "Paso 1: Start a game and wait for an AI turn",
-      "Paso 2: Verificar animated dots (...) appear near the AI's name",
-      "Paso 3: Verificar the indicator disappears after the AI makes its move"
+      "Paso 1: Start a game y esperar for an AI turn",
+      "Paso 2: Verificar que unnimated dots (...) appear near the AI's name",
+      "Paso 3: Verificar que el indicator disappears después the AI makes its move"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "AI tile flips from back to face before placement animation",
+    "description": "AI tile flips from back a face antes de placement animation",
     "steps": [
       "Paso 1: Start a game and watch an AI turn",
-      "Paso 2: Verificar the AI's selected tile flips from back to face (0.4s flip animation)",
-      "Paso 3: Verificar the tile then animates from AI hand to board slot"
+      "Paso 2: Verificar que el AI's selected tile flips from back to face (0.4s flip animation)",
+      "Paso 3: Verificar que el tile then animates from AI hand to board slot"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Hamburger menu button visible in top-right corner during gameplay",
+    "description": "Hamburger menu botón visible en top-right corner durante gameplay",
     "steps": [
       "Paso 1: Start a game",
-      "Paso 2: Verificar a hamburger menu icon (three horizontal lines) es visible in the top-right",
+      "Paso 2: Verificar que un hamburger menu icon (three horizontal lines) es visible in the top-right",
       "Paso 3: Verificar it has at least 50x50px touch target"
     ],
     "passes": true,
@@ -873,16 +873,16 @@
     "category": "functional",
     "description": "Clicking hamburger menu opens pause menu overlay",
     "steps": [
-      "Paso 1: Start a game and wait for distribution to complete",
-      "Paso 2: Hacer clic en the hamburger menu button in the top-right corner",
-      "Paso 3: Verificar a dark semi-transparent overlay appears (black at 70% opacity)",
-      "Paso 4: Verificar the overlay covers the entire scene",
-      "Paso 5: Verificar a centered popup panel appears with dark brown background (#3E2723)",
-      "Paso 6: Verificar the popup panel has a medium brown border (#5D4037)",
-      "Paso 7: Verificar the 'Resume' button es visible with correct styling",
-      "Paso 8: Verificar the 'Restart' button es visible with correct styling",
-      "Paso 9: Verificar the 'Main Menu' button es visible with correct styling",
-      "Paso 10: Verificar el juego es visible but dimmed behind the overlay",
+      "Paso 1: Start a game y esperar for distribution to complete",
+      "Paso 2: Hacer clic en el hamburger menu button in the top-right corner",
+      "Paso 3: Verificar que un dark semi-transparent overlay appears (black at 70% opacity)",
+      "Paso 4: Verificar que el overlay covers the entire scene",
+      "Paso 5: Verificar que un centered popup panel appears with dark brown background (#3E2723)",
+      "Paso 6: Verificar que el popup panel has a medium brown border (#5D4037)",
+      "Paso 7: Verificar que el 'Resume' button es visible with correct styling",
+      "Paso 8: Verificar que el 'Restart' button es visible with correct styling",
+      "Paso 9: Verificar que el 'Main Menu' button es visible with correct styling",
+      "Paso 10: Verificar que el game es visible but dimmed behind the overlay",
       "Paso 11: Tomar captura de pantalla of the pause menu overlay"
     ],
     "passes": true,
@@ -892,11 +892,11 @@
   },
   {
     "category": "functional",
-    "description": "Game logic pauses while pause menu overlay is visible",
+    "description": "Game logic pauses while pause menu overlay es visible",
     "steps": [
-      "Paso 1: Start a game during an AI's turn",
+      "Paso 1: Start a game durante an AI's turn",
       "Paso 2: Abrir el pause menu",
-      "Paso 3: Wait several seconds",
+      "Paso 3: Wait several segundos",
       "Paso 4: Verificar no AI moves occur while paused",
       "Paso 5: Resume and verify AI continues its turn"
     ],
@@ -907,12 +907,12 @@
   },
   {
     "category": "functional",
-    "description": "Resume button closes pause overlay and resumes game exactly where paused",
+    "description": "Resume botón closes pause overlay y resumes game exactly where paused",
     "steps": [
       "Paso 1: Start a game and open the pause menu",
-      "Paso 2: Hacer clic en the 'Resume' button",
-      "Paso 3: Verificar the overlay closes",
-      "Paso 4: Verificar el juego continues from exactly where it was paused"
+      "Paso 2: Hacer clic en el 'Resume' button",
+      "Paso 3: Verificar que el overlay closes",
+      "Paso 4: Verificar que el game continues from exactly donde it was paused"
     ],
     "passes": true,
     "screenshots": [
@@ -924,9 +924,9 @@
     "description": "Clicking outside pause popup panel acts as Resume",
     "steps": [
       "Paso 1: Start a game and open the pause menu",
-      "Paso 2: Hacer clic en outside the popup panel area",
-      "Paso 3: Verificar the overlay closes (same as Resume)",
-      "Paso 4: Verificar el juego continues"
+      "Paso 2: Hacer clic fuera de the popup panel area",
+      "Paso 3: Verificar que el overlay closes (same as Resume)",
+      "Paso 4: Verificar que el game continues"
     ],
     "passes": true,
     "screenshots": [
@@ -935,18 +935,18 @@
   },
   {
     "category": "functional",
-    "description": "Restart button destroys game and starts new game with same difficulty",
+    "description": "Restart botón destroys game y starts new game con same difficulty",
     "steps": [
       "Paso 1: Start a game on Hard difficulty",
       "Paso 2: Play for several turns to place tiles, accumulate scores, and modify game state",
       "Paso 3: Open pause menu by clicking the hamburger menu button",
-      "Paso 4: Verificar Resume, Restart, Main Menu botones están visible",
-      "Paso 5: Hacer clic en the 'Restart' button",
-      "Paso 6: Verificar el juego restarts with a fresh tile distribution animation",
-      "Paso 7: Verificar all scores reset to 0",
-      "Paso 8: Verificar the board is empty with no placed tiles from the previous game",
-      "Paso 9: Verificar the difficulty remains Hard (AI behavior consistent with Hard mode)",
-      "Paso 10: Verificar 'Game Started' message appears after distribution completes"
+      "Paso 4: Verificar Resume, Restart, Main Menu buttons son visibles",
+      "Paso 5: Hacer clic en el 'Restart' button",
+      "Paso 6: Verificar que el game restarts with a fresh tile distribution animation",
+      "Paso 7: Verificar que unll scores reset to 0",
+      "Paso 8: Verificar que el board is empty with no placed tiles from the previous game",
+      "Paso 9: Verificar que el difficulty remains Hard (AI behavior consistent with Hard mode)",
+      "Paso 10: Verificar 'Game Started' message appears después distribution completes"
     ],
     "passes": true,
     "screenshots": [
@@ -955,7 +955,7 @@
   },
   {
     "category": "functional",
-    "description": "Main Menu button returns to MenuScene from pause menu",
+    "description": "Main Menu botón returns a MenuScene from pause menu",
     "steps": [
       "Paso 1: Start a game",
       "Paso 2: Open pause menu and click 'Main Menu'",
@@ -970,7 +970,7 @@
   },
   {
     "category": "functional",
-    "description": "Score display shows 'Score: 0' for all players at game start",
+    "description": "Score display muestra 'Score: 0' para all players en game start",
     "steps": [
       "Paso 1: Iniciar un nuevo juego",
       "Paso 2: After distribution completes, verify all 4 score displays show 'Score: 0'",
@@ -983,11 +983,11 @@
   },
   {
     "category": "functional",
-    "description": "Score updates immediately on pass with brief pulse animation",
+    "description": "Score updates immediately en pass con brief pulse animation",
     "steps": [
-      "Paso 1: Play until a pass occurs",
-      "Paso 2: Verificar the scoring player's score increments by 1",
-      "Paso 3: Verificar a scale-pulse animation plays on the score display (0.3s, 1.2x scale)"
+      "Paso 1: Play hasta que a pass occurs",
+      "Paso 2: Verificar que el scoring player's score increments by 1",
+      "Paso 3: Verificar que un scale-pulse animation plays on the score display (0.3s, 1.2x scale)"
     ],
     "passes": true,
     "screenshots": null
@@ -996,7 +996,7 @@
     "category": "functional",
     "description": "Theme system loads all assets from theme.json configuration",
     "steps": [
-      "Paso 1: Start el juego",
+      "Paso 1: Iniciar el juego",
       "Paso 2: Verificar tile sprites load from the theme's tile images",
       "Paso 3: Verificar background images load from theme paths",
       "Paso 4: Verificar colors match theme.json color definitions",
@@ -1010,7 +1010,7 @@
     "description": "ThemeManager provides all asset paths - no hardcoded image/sound paths",
     "steps": [
       "Paso 1: Search codebase for hardcoded asset path strings",
-      "Paso 2: Verificar all asset references go through ThemeManager",
+      "Paso 2: Verificar que unll asset references go through ThemeManager",
       "Paso 3: Verificar changing theme.json paths would change loaded assets"
     ],
     "passes": true,
@@ -1018,71 +1018,71 @@
   },
   {
     "category": "functional",
-    "description": "Tile placement sound plays when a tile snaps to a valid board slot",
+    "description": "Tile placement sound plays cuando a tile snaps a a valid board slot",
     "steps": [
       "Paso 1: Start a game with sound unmuted",
       "Paso 2: Place a tile on the board",
-      "Paso 3: Verificar a placement sound plays (wood clack)",
-      "Paso 4: Verificar the sound comes from the theme's tilePlace sound file"
+      "Paso 3: Verificar que un placement sound plays (wood clack)",
+      "Paso 4: Verificar que el sound comes from the theme's tilePlace sound file"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Pass sound plays when any player passes",
+    "description": "Pass sound plays cuando any player passes",
     "steps": [
-      "Paso 1: Play until a pass occurs with sound unmuted",
-      "Paso 2: Verificar a pass sound plays",
-      "Paso 3: Verificar the sound comes from the theme's pass sound file"
+      "Paso 1: Play hasta que a pass occurs with sound unmuted",
+      "Paso 2: Verificar que un pass sound plays",
+      "Paso 3: Verificar que el sound comes from the theme's pass sound file"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Button click sound plays on any menu or UI button press",
+    "description": "Button click sound plays en any menu or UI botón press",
     "steps": [
-      "Paso 1: Navegar a MenuScene with sound unmuted",
+      "Paso 1: Navigate to MenuScene with sound unmuted",
       "Paso 2: Hacer clic en a difficulty button",
-      "Paso 3: Verificar a button click sound plays"
+      "Paso 3: Verificar que un button click sound plays"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Audio handles missing sound files gracefully without errors",
+    "description": "Audio handles missing sound files gracefully sin errors",
     "steps": [
       "Paso 1: Remove or rename a sound file from the theme folder",
-      "Paso 2: Start el juego",
+      "Paso 2: Iniciar el juego",
       "Paso 3: Trigger the action that would play the missing sound",
       "Paso 4: Verificar no error occurs - the action plays silently",
-      "Paso 5: Verificar el juego continues to function normally"
+      "Paso 5: Verificar que el game continues to function normally"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Audio context initializes on first user interaction (autoplay policy)",
+    "description": "Audio context initializes en first user interaction (autoplay policy)",
     "steps": [
       "Paso 1: Navegar al juego (fresh load)",
-      "Paso 2: Verificar no audio plays before user interaction",
+      "Paso 2: Verificar no audio plays antes user interaction",
       "Paso 3: Hacer clic en on any game element",
-      "Paso 4: Verificar audio context is initialized and sounds can play"
+      "Paso 4: Verificar que unudio context is initialized and sounds can play"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "GameState class is serializable to JSON and reconstructable",
+    "description": "GameState class is serializable a JSON y reconstructable",
     "steps": [
       "Paso 1: Start a game and play several turns",
       "Paso 2: Serialize el juego state to JSON using toJSON()",
       "Paso 3: Reconstruct the state using fromJSON()",
-      "Paso 4: Verificar the reconstructed state matches the original"
+      "Paso 4: Verificar que el reconstructed state matches the original"
     ],
     "passes": true,
     "screenshots": null
@@ -1103,9 +1103,9 @@
   },
   {
     "category": "functional",
-    "description": "Player hand layout auto-adjusts spacing based on remaining tile count",
+    "description": "Player hand layout auto-adjusts spacing based en remaining tile count",
     "steps": [
-      "Paso 1: Start a game with 7 tiles in hand",
+      "Paso 1: Start a game with 7 fichas in hand",
       "Paso 2: Note the tile spacing",
       "Paso 3: Place 2-3 tiles",
       "Paso 4: Verificar remaining tiles re-center with adjusted spacing",
@@ -1121,29 +1121,29 @@
       "Paso 1: Ensure board has tiles on both branches (two valid slots)",
       "Paso 2: Drag a valid tile closer to one slot than the other",
       "Paso 3: Release the tile above the threshold",
-      "Paso 4: Verificar the tile snaps to the nearest slot (by distance)"
+      "Paso 4: Verificar que el tile snaps to the nearest slot (by distance)"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Ghost slots disappear when drag ends (whether placed or returned)",
+    "description": "Ghost slots disappear cuando drag ends (whether placed or returned)",
     "steps": [
       "Paso 1: Start dragging a valid tile to show ghost slots",
       "Paso 2: Drop the tile below threshold (cancel drag)",
       "Paso 3: Verificar ghost slots disappear",
       "Paso 4: Drag again and place successfully",
-      "Paso 5: Verificar ghost slots disappear after placement"
+      "Paso 5: Verificar ghost slots disappear después placement"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Left AI hand renders as vertical column on left side, 0.5x scale, face down",
+    "description": "Left AI hand renders as vertical column en left side, 0.5x scale, face down",
     "steps": [
-      "Paso 1: Iniciar un nuevo juego and wait for distribution",
+      "Paso 1: Iniciar un nuevo juego y esperar for distribution",
       "Paso 2: Verificar Left AI tiles are positioned on the left side of the screen",
       "Paso 3: Verificar tiles are in a vertical column layout",
       "Paso 4: Verificar tiles are at 0.5x scale",
@@ -1157,9 +1157,9 @@
   },
   {
     "category": "functional",
-    "description": "Top AI hand renders as horizontal row at top center, 0.5x scale, face down",
+    "description": "Top AI hand renders as horizontal row en top center, 0.5x scale, face down",
     "steps": [
-      "Paso 1: Iniciar un nuevo juego and wait for distribution",
+      "Paso 1: Iniciar un nuevo juego y esperar for distribution",
       "Paso 2: Verificar Top AI tiles are positioned at the top center of the screen",
       "Paso 3: Verificar tiles are in a horizontal row layout",
       "Paso 4: Verificar tiles are at 0.5x scale",
@@ -1173,9 +1173,9 @@
   },
   {
     "category": "functional",
-    "description": "Right AI hand renders as vertical column on right side, 0.5x scale, face down",
+    "description": "Right AI hand renders as vertical column en right side, 0.5x scale, face down",
     "steps": [
-      "Paso 1: Iniciar un nuevo juego and wait for distribution",
+      "Paso 1: Iniciar un nuevo juego y esperar for distribution",
       "Paso 2: Verificar Right AI tiles are positioned on the right side of the screen",
       "Paso 3: Verificar tiles are in a vertical column layout",
       "Paso 4: Verificar tiles are at 0.5x scale",
@@ -1189,9 +1189,9 @@
   },
   {
     "category": "functional",
-    "description": "Player hand renders at bottom center, full scale, face up, standing",
+    "description": "Player hand renders en bottom center, full scale, face up, standing",
     "steps": [
-      "Paso 1: Iniciar un nuevo juego and wait for distribution",
+      "Paso 1: Iniciar un nuevo juego y esperar for distribution",
       "Paso 2: Verificar player tiles are at the bottom center of the screen",
       "Paso 3: Verificar tiles are in a horizontal row layout",
       "Paso 4: Verificar tiles are at 1.0x (full) scale",
@@ -1217,9 +1217,9 @@
   },
   {
     "category": "functional",
-    "description": "Game over check runs after each tile placement",
+    "description": "Game over check runs después de each tile placement",
     "steps": [
-      "Paso 1: Play a game until a player has 1 tile remaining",
+      "Paso 1: Jugar un juego hasta que a player has 1 tile remaining",
       "Paso 2: Place that last tile",
       "Paso 3: Verificar game over detection triggers immediately",
       "Paso 4: Verificar game over message appears"
@@ -1229,9 +1229,9 @@
   },
   {
     "category": "functional",
-    "description": "End-to-end: full game from menu to win with Easy AI",
+    "description": "End-to-end: full game from menu a win con Easy AI",
     "steps": [
-      "Paso 1: Navegar a game URL",
+      "Paso 1: Navigate to game URL",
       "Paso 2: Verificar MenuScene loads with title and buttons",
       "Paso 3: Hacer clic en 'Easy' difficulty button",
       "Paso 4: Verificar scene transitions to GameScene",
@@ -1239,8 +1239,8 @@
       "Paso 6: Verificar 'Game Started' message appears",
       "Paso 7: Play through el juego, placing tiles when valid",
       "Paso 8: Hacer clic en Pass when no valid moves available",
-      "Paso 9: Observe AI turns with thinking delay and animations",
-      "Paso 10: Continue until game ends (win, AI win, or Fish)",
+      "Paso 9: Observar AI turns with thinking delay and animations",
+      "Paso 10: Continue hasta que game ends (win, AI win, or Fish)",
       "Paso 11: Verificar game over message displays correctly",
       "Paso 12: Open pause menu and click Restart",
       "Paso 13: Verificar new game starts fresh with same difficulty"
@@ -1252,18 +1252,18 @@
   },
   {
     "category": "functional",
-    "description": "End-to-end: full game from menu to Fish condition",
+    "description": "End-to-end: full game from menu a Fish condition",
     "steps": [
-      "Paso 1: Navegar a game URL and verify MenuScene loads",
+      "Paso 1: Navigate to game URL and verify MenuScene loads",
       "Paso 2: Hacer clic en a difficulty button to start a game",
       "Paso 3: Esperar tile distribution to complete and 'Game Started' message to appear",
       "Paso 4: Play through el juego, placing tiles or passing as needed",
-      "Paso 5: Observe consecutive passes building up toward a fish condition",
+      "Paso 5: Observar consecutive passes building up toward a fish condition",
       "Paso 6: Verificar 'Fish - Game Over' message appears with bounce animation when all players pass back to lastActivePlayer",
-      "Paso 7: Verificar all tiles are locked and no further moves can be made",
-      "Paso 8: Verificar the Pass button is disabled in el juego over state",
-      "Paso 9: Verificar score displays reflect all pass penalties accumulated during el juego",
-      "Paso 10: Open pause menu and verify Resume, Restart, Main Menu botones están accessible",
+      "Paso 7: Verificar que unll tiles are locked and no further moves can be made",
+      "Paso 8: Verificar que el Pass button is disabled in el juego over state",
+      "Paso 9: Verificar score displays reflect all pass penalties accumulated durante el juego",
+      "Paso 10: Open pause menu and verify Resume, Restart, Main Menu buttons are accessible",
       "Paso 11: Hacer clic en 'Main Menu' to return to MenuScene",
       "Paso 12: Verificar MenuScene loads with clean state (title, buttons visible)",
       "Paso 13: Iniciar un nuevo juego and verify fresh tile distribution with reset scores"
@@ -1275,7 +1275,7 @@
   },
   {
     "category": "functional",
-    "description": "End-to-end: complete game restart cycle with different difficulties",
+    "description": "End-to-end: complete game restart cycle con different difficulties",
     "steps": [
       "Paso 1: Start a game on Easy, play a few turns",
       "Paso 2: Pause and restart - verify same difficulty",
@@ -1295,50 +1295,50 @@
   },
   {
     "category": "functional",
-    "description": "Game state is fully destroyed on restart (no stale state)",
+    "description": "Game state is fully destroyed en restart (no stale state)",
     "steps": [
       "Paso 1: Start a game and play several turns to modify board state and scores",
       "Paso 2: Note which tiles are on the board, current scores, and hand contents",
       "Paso 3: Open pause menu and click 'Restart'",
-      "Paso 4: Verificar all four score displays reset to 'Score: 0'",
+      "Paso 4: Verificar que unll four score displays reset to 'Score: 0'",
       "Paso 5: Verificar new tiles are dealt via fresh distribution animation",
-      "Paso 6: Verificar the board is completely empty (no placed tiles from previous game)",
-      "Paso 7: Verificar each player receives 7 new tiles",
-      "Paso 8: Verificar 'Game Started' message appears after distribution",
+      "Paso 6: Verificar que el board is completely empty (no placed tiles from previous game)",
+      "Paso 7: Verificar each player recibe 7 new tiles",
+      "Paso 8: Verificar 'Game Started' message appears después distribution",
       "Paso 9: Verificar turn counter resets and a new random starting player is selected",
-      "Paso 10: Verificar the difficulty level is preserved from the previous game"
+      "Paso 10: Verificar que el difficulty level is preserved from the previous game"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Tile dealing animation has 1 second delay before starting",
+    "description": "Tile dealing animation has 1 second delay antes de starting",
     "steps": [
       "Paso 1: Iniciar un nuevo juego from the menu",
-      "Paso 2: After scene transition, verify there is approximately a 1 second pause",
-      "Paso 3: Verificar tile dealing animation begins after the pause"
+      "Paso 2: After scene transition, verify there is approximately a 1 segundo pause",
+      "Paso 3: Verificar tile dealing animation comienza después the pause"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Each deal animation takes 1.0s per tile with 0.2s stagger delay",
+    "description": "Each deal animation takes 1.0s per tile con 0.2s stagger delay",
     "steps": [
-      "Paso 1: Iniciar un nuevo juego and observe the dealing animation",
-      "Paso 2: Verificar each tile takes approximately 1.0 second to fly from deck to hand",
-      "Paso 3: Verificar there is approximately 0.2 second stagger between tile deals"
+      "Paso 1: Iniciar un nuevo juego y observar the dealing animation",
+      "Paso 2: Verificar each tile takes approximately 1.0 segundo to fly from deck to hand",
+      "Paso 3: Verificar que elre is approximately 0.2 segundo stagger entre tile deals"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Tile placement animation uses 0.5s tween with Power2 easing",
+    "description": "Tile placement animation uses 0.5s tween con Power2 easing",
     "steps": [
       "Paso 1: Place a tile on the board",
-      "Paso 2: Verificar the animation takes approximately 0.5 seconds",
+      "Paso 2: Verificar que el animation takes approximately 0.5 segundos",
       "Paso 3: Verificar smooth Power2 easing curve (accelerate then decelerate)"
     ],
     "passes": true,
@@ -1346,11 +1346,11 @@
   },
   {
     "category": "functional",
-    "description": "Tile return to hand uses 0.5s tween when drag is cancelled",
+    "description": "Tile return a hand uses 0.5s tween cuando drag is cancelled",
     "steps": [
       "Paso 1: Start dragging a tile but drop it below the threshold",
-      "Paso 2: Verificar the tile animates back to its hand position",
-      "Paso 3: Verificar the animation takes approximately 0.5 seconds"
+      "Paso 2: Verificar que el tile animates back to its hand position",
+      "Paso 3: Verificar que el animation takes approximately 0.5 segundos"
     ],
     "passes": true,
     "screenshots": null
@@ -1361,17 +1361,17 @@
     "steps": [
       "Paso 1: Start dragging a tile",
       "Paso 2: Move it over other tiles and board elements",
-      "Paso 3: Verificar the dragged tile renders on top of everything else"
+      "Paso 3: Verificar que el dragged tile renders on top of everything else"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Easy AI CausePass analysis: avoids moves that force human to pass",
+    "description": "Easy AI CausePass analysis: avoids moves that force human a pass",
     "steps": [
       "Paso 1: Start a game on Easy difficulty",
-      "Paso 2: Play multiple games and observe AI behavior",
+      "Paso 2: Play multiple games y observar AI behavior",
       "Paso 3: Verificar Easy AI avoids leaving branch numbers that don't match any of the human's tiles",
       "Paso 4: Verificar when all moves would force a pass, AI checks if passing itself is better",
       "Paso 5: Verificar Easy AI sometimes passes voluntarily to avoid forcing human to pass"
@@ -1381,11 +1381,11 @@
   },
   {
     "category": "functional",
-    "description": "Hard AI plays bad tiles when it's the player before the human",
+    "description": "Hard AI plays bad tiles cuando it's el player antes de el human",
     "steps": [
       "Paso 1: Start a game on Hard difficulty",
-      "Paso 2: Identify the AI that plays right before the human (Right AI)",
-      "Paso 3: Observe Right AI's tile selections",
+      "Paso 2: Identify the AI that plays right antes the human (Right AI)",
+      "Paso 3: Observar Right AI's tile selections",
       "Paso 4: Verificar Right AI tends to play tiles that block the human"
     ],
     "passes": true,
@@ -1393,20 +1393,20 @@
   },
   {
     "category": "functional",
-    "description": "Hard AI plays good tiles when not directly before the human",
+    "description": "Hard AI plays good tiles cuando not directly antes de el human",
     "steps": [
       "Paso 1: Start a game on Hard difficulty",
-      "Paso 2: Observe Left AI and Top AI tile selections",
-      "Paso 3: Verificar they tend to play tiles that help the next player in order"
+      "Paso 2: Observar Left AI and Top AI tile selections",
+      "Paso 3: Verificar que ely tend to play tiles that help the next player in order"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Game over: You win! message when human places last tile",
+    "description": "Game over: You win! message cuando human places last tile",
     "steps": [
-      "Paso 1: Play on Easy difficulty until human places last tile",
+      "Paso 1: Play on Easy difficulty hasta que human places last tile",
       "Paso 2: Verificar 'You win!' message appears",
       "Paso 3: Verificar dramatic bounce entrance animation (1.0s)",
       "Paso 4: Tomar captura de pantalla of win message"
@@ -1416,9 +1416,9 @@
   },
   {
     "category": "functional",
-    "description": "Game over: AI Name wins! message when AI places last tile",
+    "description": "Game over: AI Name wins! message cuando AI places last tile",
     "steps": [
-      "Paso 1: Play on Hard difficulty until an AI places their last tile",
+      "Paso 1: Play on Hard difficulty hasta que an AI places their last tile",
       "Paso 2: Verificar '{AI Name} wins!' message appears",
       "Paso 3: Verificar dramatic bounce entrance animation",
       "Paso 4: Tomar captura de pantalla of AI win message"
@@ -1428,10 +1428,10 @@
   },
   {
     "category": "functional",
-    "description": "Menu button remains active and accessible during game over state",
+    "description": "Menu botón remains active y accessible durante game over state",
     "steps": [
-      "Paso 1: Reach a game over condition",
-      "Paso 2: Verificar the hamburger menu button is still clickable",
+      "Paso 1: Alcanzar un game over condition",
+      "Paso 2: Verificar que el hamburger menu button is still clickable",
       "Paso 3: Hacer clic en it and verify pause menu opens",
       "Paso 4: Verificar Restart and Main Menu options work from game over state"
     ],
@@ -1440,11 +1440,11 @@
   },
   {
     "category": "functional",
-    "description": "Non-first tile on board: lying tile initial position shifts by 0.5 units if non-double",
+    "description": "Non-first tile en board: lying tile initial position shifts by 0.5 units if non-double",
     "steps": [
-      "Paso 1: Start a game where the first tile is a non-double",
-      "Paso 2: Verificar the initial position shifts by 0.5 units to center visually",
-      "Paso 3: Start another game where first tile is a double",
+      "Paso 1: Start a game donde the primero tile is a non-double",
+      "Paso 2: Verificar que el initial position shifts by 0.5 units to center visually",
+      "Paso 3: Start another game donde primero tile is a double",
       "Paso 4: Verificar no shift for doubles"
     ],
     "passes": true,
@@ -1452,7 +1452,7 @@
   },
   {
     "category": "functional",
-    "description": "Haptic feedback fires on tile placement on mobile (navigator.vibrate(20))",
+    "description": "Haptic feedback fires en tile placement en mobile (navigator.vibrate(20))",
     "steps": [
       "Paso 1: Open game on a mobile device or emulator that supports vibration API",
       "Paso 2: Start a game and drag a tile to place it",
@@ -1463,7 +1463,7 @@
   },
   {
     "category": "functional",
-    "description": "Touch and mouse input both work via Phaser unified input system",
+    "description": "Touch y mouse input both work via Phaser unified input system",
     "steps": [
       "Paso 1: Test tile dragging with mouse input",
       "Paso 2: Verificar drag-and-drop works with mouse",
@@ -1479,7 +1479,7 @@
     "description": "Player identity abstracted via Player interface (human/ai/remote types)",
     "steps": [
       "Paso 1: Inspeccionar the player model code",
-      "Paso 2: Verificar a Player interface or abstract class exists",
+      "Paso 2: Verificar que un Player interface or abstract class exists",
       "Paso 3: Verificar playerType field supports 'human', 'ai', and 'remote' values",
       "Paso 4: Verificar game logic uses the interface, not concrete types"
     ],
@@ -1488,19 +1488,19 @@
   },
   {
     "category": "functional",
-    "description": "ScoreManager class handles scoring with extensible design",
+    "description": "ScoreManager class handles scoring con extensible design",
     "steps": [
       "Paso 1: Inspeccionar scoring code",
-      "Paso 2: Verificar a ScoreManager or equivalent class exists",
+      "Paso 2: Verificar que un ScoreManager or equivalent class exists",
       "Paso 3: Verificar scoring logic is separated from game flow",
-      "Paso 4: Verificar the design allows alternative scoring rules in future"
+      "Paso 4: Verificar que el design allows alternative scoring rules in future"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "AI strategy logic is separated from AI controller for testability",
+    "description": "AI strategy logic is separated from AI controller para testability",
     "steps": [
       "Paso 1: Inspeccionar AI code structure",
       "Paso 2: Verificar strategy classes are separate from the controller",
@@ -1512,34 +1512,34 @@
   },
   {
     "category": "functional",
-    "description": "Game emits turnStart and turnEnd events through EventBus",
+    "description": "Game emits turnStart y turnEnd events through EventBus",
     "steps": [
       "Paso 1: Start a game and subscribe to event bus",
       "Paso 2: Play through several turns",
       "Paso 3: Verificar turnStart fires at the beginning of each turn",
-      "Paso 4: Verificar turnEnd fires after each turn completes"
+      "Paso 4: Verificar turnEnd fires después each turn completes"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "BoardConfig extracts side limit and offset values as configurable constants",
+    "description": "BoardConfig extracts side limit y offset values as configurable constants",
     "steps": [
       "Paso 1: Inspeccionar board placement code",
       "Paso 2: Verificar side limit (13) is a named constant, not a magic number",
       "Paso 3: Verificar tile offsets are configurable values",
-      "Paso 4: Verificar these could be adjusted for future larger tile sets"
+      "Paso 4: Verificar que else could be adjusted for future larger tile sets"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Game over sound plays: win sound for human win, lose sound for AI win",
+    "description": "Game over sound plays: win sound para human win, lose sound para AI win",
     "steps": [
-      "Paso 1: Play a game where the human wins, verify win sound plays",
-      "Paso 2: Play a game where the AI wins, verify lose sound plays",
+      "Paso 1: Jugar un juego donde the human wins, verify win sound plays",
+      "Paso 2: Jugar un juego donde the AI wins, verify lose sound plays",
       "Paso 3: Verificar distinct sounds for win vs loss scenarios"
     ],
     "passes": true,
@@ -1547,44 +1547,44 @@
   },
   {
     "category": "functional",
-    "description": "Tile pickup sound plays when player begins dragging a tile",
+    "description": "Tile pickup sound plays cuando player begins dragging a tile",
     "steps": [
       "Paso 1: Start a game with sound unmuted",
       "Paso 2: Begin dragging a valid tile from hand",
-      "Paso 3: Verificar a pickup sound plays at drag start"
+      "Paso 3: Verificar que un pickup sound plays at drag start"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Tile dealing sound plays during distribution animation (one per tile)",
+    "description": "Tile dealing sound plays durante distribution animation (one per tile)",
     "steps": [
       "Paso 1: Iniciar un nuevo juego with sound unmuted",
-      "Paso 2: Listen during tile distribution animation",
-      "Paso 3: Verificar a dealing sound plays for each tile dealt"
+      "Paso 2: Listen durante tile distribution animation",
+      "Paso 3: Verificar que un dealing sound plays for each tile dealt"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Game start sound plays after tile distribution completes",
+    "description": "Game start sound plays después de tile distribution completes",
     "steps": [
       "Paso 1: Iniciar un nuevo juego with sound unmuted",
       "Paso 2: Esperar tile distribution to complete",
-      "Paso 3: Verificar a game start sound plays"
+      "Paso 3: Verificar que un game start sound plays"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "DeckManager creates 28 tiles and distributes 7 to each of 4 players",
+    "description": "DeckManager creates 28 tiles y distributes 7 a each de 4 players",
     "steps": [
       "Paso 1: Inspeccionar DeckManager implementation",
-      "Paso 2: Verificar it creates 28 tiles for maxPip=6",
-      "Paso 3: Verificar it distributes 7 tiles to each of 4 player hands",
+      "Paso 2: Verificar it creates 28 fichas for maxPip=6",
+      "Paso 3: Verificar it distributes 7 fichas to each of 4 player hands",
       "Paso 4: Verificar distribution is random (different each game)"
     ],
     "passes": true,
@@ -1603,7 +1603,7 @@
   },
   {
     "category": "functional",
-    "description": "Placed tiles array in BoardState records all placed tiles with position data",
+    "description": "Placed tiles array en BoardState records all placed tiles con position data",
     "steps": [
       "Paso 1: Start a game and place several tiles",
       "Paso 2: Inspeccionar BoardState.placedTiles array",
@@ -1615,23 +1615,23 @@
   },
   {
     "category": "functional",
-    "description": "Message banner: fade in 0.3s, hold for configured duration, fade out 0.3s",
+    "description": "Message banner: fade en 0.3s, hold para configured duration, fade out 0.3s",
     "steps": [
       "Paso 1: Trigger a message banner (e.g., Game Started, Pass)",
-      "Paso 2: Verificar the message fades in over approximately 0.3 seconds",
+      "Paso 2: Verificar que el message fades in over approximately 0.3 segundos",
       "Paso 3: Verificar it holds for the configured duration",
-      "Paso 4: Verificar it fades out over approximately 0.3 seconds"
+      "Paso 4: Verificar it fades out over approximately 0.3 segundos"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Game over text entrance animation: 1.0s scale from 0 to 1 with Bounce easing",
+    "description": "Game over text entrance animation: 1.0s scale from 0 a 1 con Bounce easing",
     "steps": [
-      "Paso 1: Reach a game over condition",
-      "Paso 2: Verificar el juego over message has a dramatic entrance animation",
-      "Paso 3: Verificar it scales from 0 to 1 over approximately 1.0 second",
+      "Paso 1: Alcanzar un game over condition",
+      "Paso 2: Verificar que el game over message has a dramatic entrance animation",
+      "Paso 3: Verificar it scales from 0 to 1 over approximately 1.0 segundo",
       "Paso 4: Verificar bounce easing is used"
     ],
     "passes": true,
@@ -1639,22 +1639,22 @@
   },
   {
     "category": "functional",
-    "description": "Valid tile highlight pulses with 0.5s cycle between alpha 0.3 and 0.8",
+    "description": "Valid tile highlight pulses con 0.5s cycle between alpha 0.3 y 0.8",
     "steps": [
       "Paso 1: Esperar player's turn",
-      "Paso 2: Observe valid tiles",
-      "Paso 3: Verificar a pulsing glow effect with approximately 0.5s cycle",
-      "Paso 4: Verificar alpha oscillates between approximately 0.3 and 0.8"
+      "Paso 2: Observar valid tiles",
+      "Paso 3: Verificar que un pulsing glow effect with approximately 0.5s cycle",
+      "Paso 4: Verificar que unlpha oscillates entre approximately 0.3 and 0.8"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "AI tile flip animation: 0.2s scale to 0 (back), swap texture, 0.2s scale to 1 (face)",
+    "description": "AI tile flip animation: 0.2s scale a 0 (back), swap texture, 0.2s scale a 1 (face)",
     "steps": [
-      "Paso 1: Start a game and observe an AI turn",
-      "Paso 2: Verificar the selected AI tile flips: horizontal scale to 0 (0.2s)",
+      "Paso 1: Start a game y observar an AI turn",
+      "Paso 2: Verificar que el selected AI tile flips: horizontal scale to 0 (0.2s)",
       "Paso 3: Verificar texture swaps from back to face at midpoint",
       "Paso 4: Verificar horizontal scale animates back to 1 (0.2s)"
     ],
@@ -1663,25 +1663,25 @@
   },
   {
     "category": "functional",
-    "description": "Scene transition: 0.5s fade to black between MenuScene and GameScene",
+    "description": "Scene transition: 0.5s fade a black between MenuScene y GameScene",
     "steps": [
       "Paso 1: From MenuScene, click a difficulty button",
-      "Paso 2: Verificar scene fades to black over 0.5 seconds",
-      "Paso 3: Verificar GameScene appears after fade",
+      "Paso 2: Verificar scene fades to black over 0.5 segundos",
+      "Paso 3: Verificar GameScene appears después fade",
       "Paso 4: From GameScene, go to Main Menu via pause",
-      "Paso 5: Verificar scene fades to black over 0.5 seconds",
-      "Paso 6: Verificar MenuScene appears after fade"
+      "Paso 5: Verificar scene fades to black over 0.5 segundos",
+      "Paso 6: Verificar MenuScene appears después fade"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Button hover animation: 0.15s scale tween to 1.05x",
+    "description": "Button hover animation: 0.15s scale tween a 1.05x",
     "steps": [
-      "Paso 1: Navegar a MenuScene",
+      "Paso 1: Navigate to MenuScene",
       "Paso 2: Hover over a button with the mouse",
-      "Paso 3: Verificar el botón scales to 1.05x with 0.15s tween",
+      "Paso 3: Verificar que el button scales to 1.05x with 0.15s tween",
       "Paso 4: Move mouse away and verify button returns to 1.0x scale"
     ],
     "passes": true,
@@ -1689,39 +1689,39 @@
   },
   {
     "category": "functional",
-    "description": "Button press animation: 0.1s scale to 0.95x, then release to 1.0x",
+    "description": "Button press animation: 0.1s scale a 0.95x, then release a 1.0x",
     "steps": [
-      "Paso 1: Navegar a MenuScene",
+      "Paso 1: Navigate to MenuScene",
       "Paso 2: Hacer clic en/press a button",
-      "Paso 3: Verificar el botón scales to 0.95x on press",
-      "Paso 4: Verificar it releases back to 1.0x after release"
+      "Paso 3: Verificar que el button scales to 0.95x on press",
+      "Paso 4: Verificar it releases back to 1.0x después release"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Score pulse animation: 0.3s scale to 1.2x then back to 1.0x on score change",
+    "description": "Score pulse animation: 0.3s scale a 1.2x then back a 1.0x en score change",
     "steps": [
-      "Paso 1: Play until a pass occurs and a score changes",
-      "Paso 2: Verificar the score display pulses",
-      "Paso 3: Verificar it scales to 1.2x then back to 1.0x over 0.3 seconds"
+      "Paso 1: Play hasta que a pass occurs and a score changes",
+      "Paso 2: Verificar que el score display pulses",
+      "Paso 3: Verificar it scales to 1.2x then back to 1.0x over 0.3 segundos"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Phaser scene cleanup prevents memory leaks on game restart/transition",
+    "description": "Phaser scene cleanup prevents memory leaks en game restart/transition",
     "steps": [
       "Paso 1: Open DevTools Performance/Memory tab and take initial heap snapshot",
       "Paso 2: Start a game on any difficulty and play for several turns",
       "Paso 3: Open pause menu and click Restart to restart el juego",
       "Paso 4: Play a few turns in the restarted game",
-      "Paso 5: Restart again via pause menu (second restart)",
+      "Paso 5: Restart again via pause menu (segundo restart)",
       "Paso 6: Go to Main Menu via pause menu",
       "Paso 7: Iniciar un nuevo juego from the menu",
-      "Paso 8: Take a second heap snapshot and compare to initial",
+      "Paso 8: Take a segundo heap snapshot and compare to initial",
       "Paso 9: Verificar no significant increase in memory usage (no growing leak)",
       "Paso 10: Verificar no orphaned game objects, event listeners, or tweens in the Phaser scene"
     ],
@@ -1730,7 +1730,7 @@
   },
   {
     "category": "functional",
-    "description": "Zero console errors during normal gameplay",
+    "description": "Zero console errors durante normal gameplay",
     "steps": [
       "Paso 1: Open browser DevTools console",
       "Paso 2: Play through a complete game from menu to game over",
@@ -1744,7 +1744,7 @@
   },
   {
     "category": "functional",
-    "description": "TypeScript strict mode with zero type errors",
+    "description": "TypeScript strict mode con zero type errors",
     "steps": [
       "Paso 1: Run TypeScript compiler with strict mode",
       "Paso 2: Verificar zero type errors",
@@ -1755,7 +1755,7 @@
   },
   {
     "category": "functional",
-    "description": "Vite production build succeeds with tree-shaking and minification",
+    "description": "Vite production build succeeds con tree-shaking y minification",
     "steps": [
       "Paso 1: Run npm run build",
       "Paso 2: Verificar build completes sin errores",
@@ -1767,27 +1767,27 @@
   },
   {
     "category": "functional",
-    "description": "PWA manifest.json has correct app name, icons, display, and orientation",
+    "description": "PWA manifest.json has correct app name, icons, display, y orientation",
     "steps": [
-      "Paso 1: Check manifest.json existe en the public directory or project root",
-      "Paso 2: Verificar app name is 'Quarzen's Domino'",
+      "Paso 1: Check manifest.json exists in the public directory or project root",
+      "Paso 2: Verificar que unpp name is 'Quarzen's Domino'",
       "Paso 3: Verificar short name is 'Domino'",
       "Paso 4: Verificar display mode is 'standalone'",
       "Paso 5: Verificar orientation is 'landscape'",
       "Paso 6: Verificar icons array contains entry for 192x192 with correct src and type",
       "Paso 7: Verificar icons array contains entry for 512x512 with correct src and type",
       "Paso 8: Verificar start URL is '/'",
-      "Paso 9: Verificar theme_color is set to a valid color value",
+      "Paso 9: Verificar que elme_color is set to a valid color value",
       "Paso 10: Verificar background_color is set to a valid color value",
-      "Paso 11: Verificar the HTML file includes a link tag referencing manifest.json",
-      "Paso 12: Verificar the manifest is parseable JSON with no syntax errors"
+      "Paso 11: Verificar que el HTML file includes a link tag referencing manifest.json",
+      "Paso 12: Verificar que el manifest is parseable JSON with no syntax errors"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Service worker registers and precaches game assets for offline use",
+    "description": "Service worker registers y precaches game assets para offline use",
     "steps": [
       "Paso 1: Build the production version with npm run build",
       "Paso 2: Serve the production build from dist/ directory",
@@ -1806,7 +1806,7 @@
   },
   {
     "category": "functional",
-    "description": "PWA install prompt appears after engagement (beforeinstallprompt event)",
+    "description": "PWA install prompt aparece después de engagement (beforeinstallprompt event)",
     "steps": [
       "Paso 1: Visit el juego URL in a supported browser",
       "Paso 2: Interact with el juego for the configured engagement time",
@@ -1830,16 +1830,16 @@
   },
   {
     "category": "functional",
-    "description": "Portrait orientation shows Rotate your device message",
+    "description": "Portrait orientation muestra Rotate your device message",
     "steps": [
       "Paso 1: Abrir el game in a portrait-oriented viewport (e.g., 400x700)",
-      "Paso 2: Verificar a 'Rotate your device' message appears covering the full screen",
-      "Paso 3: Verificar a rotation icon is displayed alongside the message",
-      "Paso 4: Verificar el juego canvas is hidden or obscured behind the message",
+      "Paso 2: Verificar que un 'Rotate your device' message appears covering the full screen",
+      "Paso 3: Verificar que un rotation icon is displayed alongside the message",
+      "Paso 4: Verificar que el game canvas is hidden or obscured behind the message",
       "Paso 5: Tomar captura de pantalla of the portrait orientation message",
       "Paso 6: Rotate to landscape orientation (e.g., resize to 700x400)",
-      "Paso 7: Verificar the rotation message disappears",
-      "Paso 8: Verificar el juego canvas is now fully visible and functional",
+      "Paso 7: Verificar que el rotation message disappears",
+      "Paso 8: Verificar que el game canvas is now fully visible and functional",
       "Paso 9: Rotate back to portrait and verify the message reappears",
       "Paso 10: Rotate to landscape again and verify el juego resumes its previous state"
     ],
@@ -1851,20 +1851,20 @@
     "description": "Game board auto-centers within available canvas space",
     "steps": [
       "Paso 1: Start a game",
-      "Paso 2: Verificar el juego board area is centered in el canvas",
+      "Paso 2: Verificar que el game board area is centered in el canvas",
       "Paso 3: Redimensionar la ventana del navegador",
-      "Paso 4: Verificar the board remains centered"
+      "Paso 4: Verificar que el board remains centered"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Theme selector visible in menu if multiple themes exist",
+    "description": "Theme selector visible en menu if multiple themes exist",
     "steps": [
-      "Paso 1: Create a second theme folder in assets/themes/",
-      "Paso 2: Navegar a MenuScene",
-      "Paso 3: Verificar theme selector UI element es visible",
+      "Paso 1: Create a segundo theme folder in assets/themes/",
+      "Paso 2: Navigate to MenuScene",
+      "Paso 3: Verificar que elme selector UI element es visible",
       "Paso 4: Verificar it lists available themes"
     ],
     "passes": true,
@@ -1874,20 +1874,20 @@
   },
   {
     "category": "functional",
-    "description": "Theme hot-swap reloads assets without full page refresh",
+    "description": "Theme hot-swap reloads assets sin full page refresh",
     "steps": [
-      "Paso 1: Ensure a second theme folder existe en public/assets/themes/ with different assets",
-      "Paso 2: Navegar a MenuScene and verify theme selector es visible",
+      "Paso 1: Ensure a segundo theme folder exists in public/assets/themes/ with different assets",
+      "Paso 2: Navigate to MenuScene and verify theme selector es visible",
       "Paso 3: Tomar captura de pantalla of current theme appearance (background, colors)",
-      "Paso 4: Select the second theme from the theme selector",
-      "Paso 5: Verificar the menu background changes to the new theme's menu-bg image",
+      "Paso 4: Select the segundo theme from the theme selector",
+      "Paso 5: Verificar que el menu background changes to the new theme's menu-bg image",
       "Paso 6: Verificar no full page refresh occurs (URL does not reload)",
       "Paso 7: Start a game and verify el juego background uses the new theme's game-bg image",
       "Paso 8: Verificar tile sprites load from the new theme's tile images",
       "Paso 9: Verificar color values (tableColor, highlightColor, validSlotColor) match the new theme.json",
       "Paso 10: Return to menu and switch back to the original theme",
       "Paso 11: Verificar original theme assets reload correctly without page refresh",
-      "Paso 12: Tomar captura de pantalla confirming theme swap back to original"
+      "Paso 12: Tomar captura de pantalla confirmando theme swap back to original"
     ],
     "passes": true,
     "screenshots": [
@@ -1902,14 +1902,14 @@
       "Paso 2: Rename it to a new theme name",
       "Paso 3: Edit theme.json with different colors",
       "Paso 4: Load el juego and select the new theme",
-      "Paso 5: Verificar el juego uses the new theme's colors and assets"
+      "Paso 5: Verificar que el game uses the new theme's colors and assets"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Game start sound plays when distribution completes",
+    "description": "Game start sound plays cuando distribution completes",
     "steps": [
       "Paso 1: Iniciar un nuevo juego with sound enabled",
       "Paso 2: Esperar tile distribution to complete",
@@ -1932,10 +1932,10 @@
   },
   {
     "category": "functional",
-    "description": "Disabled button state shows 50% opacity and no hover effect",
+    "description": "Disabled botón state muestra 50% opacity y no hover effect",
     "steps": [
-      "Paso 1: Navegar a a state where a button is disabled (e.g., Pass button when player has valid moves)",
-      "Paso 2: Verificar el botón has 50% opacity",
+      "Paso 1: Navigate to a state donde a button is disabled (e.g., Pass button when player has valid moves)",
+      "Paso 2: Verificar que el button has 50% opacity",
       "Paso 3: Hover over it and verify no hover effect occurs",
       "Paso 4: Hacer clic en it and verify no action triggers"
     ],
@@ -1946,7 +1946,7 @@
   },
   {
     "category": "functional",
-    "description": "Tiles are contained in Phaser Container for clean grouping",
+    "description": "Tiles are contained en Phaser Container para clean grouping",
     "steps": [
       "Paso 1: Inspeccionar tile rendering code",
       "Paso 2: Verificar DominoSprite extends Phaser.GameObjects.Container",
@@ -1957,10 +1957,10 @@
   },
   {
     "category": "functional",
-    "description": "After successful placement tile is reparented to board container",
+    "description": "After successful placement tile is reparented a board container",
     "steps": [
       "Paso 1: Start a game and place a tile",
-      "Paso 2: Verificar the placed tile moves from the hand container to the board container",
+      "Paso 2: Verificar que el placed tile moves from the hand container to the board container",
       "Paso 3: Verificar it scales to 1.0x on the board",
       "Paso 4: Verificar it is no longer interactive"
     ],
@@ -1969,7 +1969,7 @@
   },
   {
     "category": "functional",
-    "description": "Phaser uses AUTO renderer (WebGL with Canvas fallback)",
+    "description": "Phaser uses AUTO renderer (WebGL con Canvas fallback)",
     "steps": [
       "Paso 1: Inspeccionar Phaser game configuration",
       "Paso 2: Verificar renderer type is Phaser.AUTO",
@@ -1981,11 +1981,11 @@
   },
   {
     "category": "functional",
-    "description": "Workbox service worker uses cache-first for static assets",
+    "description": "Workbox service worker uses cache-first para static assets",
     "steps": [
       "Paso 1: Build and serve the production version",
       "Paso 2: Load el juego to cache assets",
-      "Paso 3: Verificar subsequent loads use cached versions (cache-first strategy)",
+      "Paso 3: Verificar subsequent loads use cached versions (cache-primero strategy)",
       "Paso 4: Verificar static assets (JS, CSS, sprites) come from cache"
     ],
     "passes": true,
@@ -1993,33 +1993,33 @@
   },
   {
     "category": "functional",
-    "description": "Workbox service worker uses network-first for theme.json",
+    "description": "Workbox service worker uses network-first para theme.json",
     "steps": [
       "Paso 1: Build and serve the production version",
       "Paso 2: Load el juego to cache theme.json",
       "Paso 3: Modify theme.json on the server",
       "Paso 4: Reload el juego while online",
-      "Paso 5: Verificar the updated theme.json is used (network-first)"
+      "Paso 5: Verificar que el updated theme.json is used (network-primero)"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Game fully playable offline after first load",
+    "description": "Game fully playable offline después de first load",
     "steps": [
       "Paso 1: Build the production version with npm run build and serve it",
       "Paso 2: Load el juego online and play briefly to ensure all assets are cached",
       "Paso 3: Go offline (disconnect network or toggle DevTools offline mode)",
       "Paso 4: Recargar la página and verify el juego loads from cache sin errores",
-      "Paso 5: Verificar the MenuScene renders correctly offline (title, buttons, background)",
+      "Paso 5: Verificar que el MenuScene renders correctly offline (title, buttons, background)",
       "Paso 6: Start a game by clicking a difficulty button",
       "Paso 7: Verificar tile distribution animation plays offline",
       "Paso 8: Play several turns, placing tiles and observing AI turns",
       "Paso 9: Open pause menu and verify Resume, Restart, Main Menu buttons work",
       "Paso 10: Hacer clic en Restart and verify a fresh game starts offline",
       "Paso 11: Return to Main Menu and start a game with a different difficulty",
-      "Paso 12: Verificar all features work offline: sounds (if cached), animations, scoring, game over"
+      "Paso 12: Verificar que unll features work offline: sounds (if cached), animations, scoring, game over"
     ],
     "passes": true,
     "screenshots": null
@@ -2028,7 +2028,7 @@
     "category": "functional",
     "description": "Tile placement triggers board state update: branch numbers, phase, offsets",
     "steps": [
-      "Paso 1: Start a game and observe initial board state",
+      "Paso 1: Start a game y observar initial board state",
       "Paso 2: Place a tile on the right branch",
       "Paso 3: Verificar rightBranchNum updates",
       "Paso 4: Verificar rightPhase and position offsets update if needed",
@@ -2039,9 +2039,9 @@
   },
   {
     "category": "functional",
-    "description": "Ghost slots show correct orientations based on board phase and tile type",
+    "description": "Ghost slots show correct orientations based en board phase y tile type",
     "steps": [
-      "Paso 1: Start a game and observe slot positions in different phases",
+      "Paso 1: Start a game y observar slot positions in different phases",
       "Paso 2: Drag a double tile and verify standing slot orientation",
       "Paso 3: Drag a non-double tile and verify lying slot orientation",
       "Paso 4: Verificar slot rotation matches expected placement for current board phase"
@@ -2063,11 +2063,11 @@
   },
   {
     "category": "functional",
-    "description": "Locked tile overlay renders black at 50% opacity on tile sprite",
+    "description": "Locked tile overlay renders black en 50% opacity en tile sprite",
     "steps": [
       "Paso 1: During player's turn, observe invalid tiles",
       "Paso 2: Verificar locked tiles have a dark overlay",
-      "Paso 3: Verificar the overlay is approximately 50% opacity black"
+      "Paso 3: Verificar que el overlay is approximately 50% opacity black"
     ],
     "passes": true,
     "screenshots": null
@@ -2079,7 +2079,7 @@
       "Paso 1: Create a game state with various data",
       "Paso 2: Call toJSON() to serialize",
       "Paso 3: Call fromJSON() to deserialize",
-      "Paso 4: Verificar all fields match: currentTurn, lastActivePlayer, scores, gameOver, difficulty",
+      "Paso 4: Verificar que unll fields match: currentTurn, lastActivePlayer, scores, gameOver, difficulty",
       "Paso 5: Verificar board state, player hands, and tile data are preserved"
     ],
     "passes": true,
@@ -2111,7 +2111,7 @@
   },
   {
     "category": "functional",
-    "description": "PlayerHand tracks tiles, score, playerType, position, and name",
+    "description": "PlayerHand tracks tiles, score, playerType, position, y name",
     "steps": [
       "Paso 1: Inspeccionar PlayerHand implementation",
       "Paso 2: Verificar tiles array management",
@@ -2130,7 +2130,7 @@
       "Paso 1: Run npm run build",
       "Paso 2: Verificar dist/ directory is created",
       "Paso 3: Serve the dist/ directory",
-      "Paso 4: Verificar el juego loads and plays correctly from production build"
+      "Paso 4: Verificar que el game loads and plays correctly from production build"
     ],
     "passes": true,
     "screenshots": null
@@ -2155,7 +2155,7 @@
   },
   {
     "category": "functional",
-    "description": "Pause menu dark overlay is black at 70% opacity",
+    "description": "Pause menu dark overlay is black en 70% opacity",
     "steps": [
       "Paso 1: Start a game and open pause menu",
       "Paso 2: Verificar dark overlay covers entire scene",
@@ -2168,9 +2168,9 @@
   },
   {
     "category": "functional",
-    "description": "Pause menu popup panel has dark brown background with lighter brown border",
+    "description": "Pause menu popup panel has dark brown background con lighter brown border",
     "steps": [
-      "Paso 1: Open pause menu during a game",
+      "Paso 1: Open pause menu durante a game",
       "Paso 2: Verificar popup panel background is dark brown (#3E2723)",
       "Paso 3: Verificar popup panel border is medium brown (#5D4037)"
     ],
@@ -2181,9 +2181,9 @@
   },
   {
     "category": "functional",
-    "description": "Pass button has red background (#D32F2F) and white text",
+    "description": "Pass botón has red background (#D32F2F) y white text",
     "steps": [
-      "Paso 1: Play until player must pass",
+      "Paso 1: Play hasta que player must pass",
       "Paso 2: Verificar Pass button has red background",
       "Paso 3: Verificar button text is white 'Pass'"
     ],
@@ -2192,9 +2192,9 @@
   },
   {
     "category": "functional",
-    "description": "Center message area displays timed notifications correctly",
+    "description": "Center message area muestra timed notifications correctly",
     "steps": [
-      "Paso 1: Start a game and observe center messages",
+      "Paso 1: Start a game y observar center messages",
       "Paso 2: Verificar 'Game Started' message appears centered",
       "Paso 3: Verificar 'Pass' messages appear centered",
       "Paso 4: Verificar turn announcements appear",
@@ -2208,7 +2208,7 @@
     "description": "Easy AI prefers non-double good tiles",
     "steps": [
       "Paso 1: Start a game on Easy difficulty",
-      "Paso 2: Observe AI tile selections over multiple turns",
+      "Paso 2: Observar AI tile selections over multiple turns",
       "Paso 3: Verificar AI tends to prefer non-double tiles that are classified as good",
       "Paso 4: Verificar this behavior helps the human player"
     ],
@@ -2217,10 +2217,10 @@
   },
   {
     "category": "functional",
-    "description": "Hard AI falls back to random when no strategic choice available",
+    "description": "Hard AI falls back a random cuando no strategic choice available",
     "steps": [
       "Paso 1: Start a game on Hard difficulty",
-      "Paso 2: Play until AI has only one valid tile",
+      "Paso 2: Play hasta que AI has only one valid tile",
       "Paso 3: Verificar AI plays the only available tile regardless of good/bad classification"
     ],
     "passes": true,
@@ -2228,12 +2228,12 @@
   },
   {
     "category": "functional",
-    "description": "Game handles the case where first player is an AI correctly",
+    "description": "Game handles el case where first player is an AI correctly",
     "steps": [
-      "Paso 1: Start multiple games until an AI gets first turn",
-      "Paso 2: Verificar the AI places the first tile at center",
+      "Paso 1: Start multiple games hasta que an AI gets primero turn",
+      "Paso 2: Verificar que el AI places the primero tile at center",
       "Paso 3: Verificar turn indicator shows AI name",
-      "Paso 4: Verificar player tiles are locked during AI first turn"
+      "Paso 4: Verificar player tiles are locked durante AI primero turn"
     ],
     "passes": true,
     "screenshots": null
@@ -2251,7 +2251,7 @@
       "Paso 7: Verificar setGlow(false) disables the glow effect",
       "Paso 8: Verificar setDraggable(true) enables drag interaction on the tile",
       "Paso 9: Verificar setDraggable(false) disables drag interaction on the tile",
-      "Paso 10: Verificar the container includes all required sub-objects: face sprite, back sprite, lock overlay, glow effect"
+      "Paso 10: Verificar que el container includes all required sub-objects: face sprite, back sprite, lock overlay, glow effect"
     ],
     "passes": true,
     "screenshots": null
@@ -2262,18 +2262,18 @@
     "steps": [
       "Paso 1: Inspeccionar all interactive elements (buttons, tiles, menu items)",
       "Paso 2: Verificar each has at least 44x44px touch target area",
-      "Paso 3: Verificar botones están large enough for comfortable touch interaction"
+      "Paso 3: Verificar buttons are large enough for comfortable touch interaction"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "UI text scales proportionally with the canvas",
+    "description": "UI text scales proportionally con el canvas",
     "steps": [
-      "Paso 1: Start el juego at default resolution",
+      "Paso 1: Iniciar el juego at default resolución",
       "Paso 2: Redimensionar la ventana del navegador to various sizes",
-      "Paso 3: Verificar all text scales proportionally with el canvas",
+      "Paso 3: Verificar que unll text scales proportionally with el canvas",
       "Paso 4: Verificar text remains readable at all sizes"
     ],
     "passes": true,
@@ -2281,33 +2281,33 @@
   },
   {
     "category": "functional",
-    "description": "Game works in Chrome browser",
+    "description": "Game works en Chrome browser",
     "steps": [
       "Paso 1: Abrir el game in Google Chrome",
       "Paso 2: Play through a complete game",
-      "Paso 3: Verificar all features work correctly"
+      "Paso 3: Verificar que unll features work correctly"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Game works in Firefox browser",
+    "description": "Game works en Firefox browser",
     "steps": [
       "Paso 1: Abrir el game in Mozilla Firefox",
       "Paso 2: Play through a complete game",
-      "Paso 3: Verificar all features work correctly"
+      "Paso 3: Verificar que unll features work correctly"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Game works in Safari browser",
+    "description": "Game works en Safari browser",
     "steps": [
       "Paso 1: Abrir el game in Safari",
       "Paso 2: Play through a complete game",
-      "Paso 3: Verificar all features work correctly"
+      "Paso 3: Verificar que unll features work correctly"
     ],
     "passes": true,
     "screenshots": null
@@ -2317,7 +2317,7 @@
     "description": "Tile images 0-27 load correctly from theme tiles folder",
     "steps": [
       "Paso 1: Start a game",
-      "Paso 2: Verificar all 28 tile face images load sin errores",
+      "Paso 2: Verificar que unll 28 tile face images load sin errores",
       "Paso 3: Verificar each tile displays the correct face image matching its ID"
     ],
     "passes": true,
@@ -2349,11 +2349,11 @@
   },
   {
     "category": "functional",
-    "description": "Audio system is extensible: new sound events work by adding keys to theme.json",
+    "description": "Audio system is extensible: new sound events work by adding keys a theme.json",
     "steps": [
       "Paso 1: Add a new sound key to theme.json with a valid audio file",
       "Paso 2: Call playSound() with the new key from code",
-      "Paso 3: Verificar the new sound plays correctly",
+      "Paso 3: Verificar que el new sound plays correctly",
       "Paso 4: Verificar no code changes were needed beyond the theme.json edit and the playSound call"
     ],
     "passes": true,
@@ -2366,16 +2366,16 @@
       "Paso 1: Inspeccionar TileConfig interface",
       "Paso 2: Verificar it accepts maxPip as a parameter",
       "Paso 3: Verificar tile generation with maxPip=9 produces 55 tiles (conceptually)",
-      "Paso 4: Verificar the factory formula: tiles = (maxPip+1) * (maxPip+2) / 2"
+      "Paso 4: Verificar que el factory formula: tiles = (maxPip+1) * (maxPip+2) / 2"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "Slot positions correctly calculated by SetSlotPosition based on board state",
+    "description": "Slot positions correctly calculated by SetSlotPosition based en board state",
     "steps": [
-      "Paso 1: Start a game and observe slot positions at various phases",
+      "Paso 1: Start a game y observar slot positions at various phases",
       "Paso 2: Verificar slots at phase 0 are placed horizontally outward",
       "Paso 3: Verificar slots at phase 1 are at the corner position",
       "Paso 4: Verificar slot calculations match the 5-phase algorithm"
@@ -2385,11 +2385,11 @@
   },
   {
     "category": "functional",
-    "description": "ConfirmMoving updates branch position (hor, ver, phase) after placement",
+    "description": "ConfirmMoving updates branch position (hor, ver, phase) después de placement",
     "steps": [
       "Paso 1: Inspeccionar ConfirmMoving implementation",
-      "Paso 2: Verificar it updates horizontal offset after placement",
-      "Paso 3: Verificar it updates vertical offset during corner phases",
+      "Paso 2: Verificar it updates horizontal offset después placement",
+      "Paso 3: Verificar it updates vertical offset durante corner phases",
       "Paso 4: Verificar it increments phase at appropriate boundaries"
     ],
     "passes": true,
@@ -2397,20 +2397,20 @@
   },
   {
     "category": "functional",
-    "description": "ConfirmOccupation updates branch end numbers after tile placement",
+    "description": "ConfirmOccupation updates branch end numbers después de tile placement",
     "steps": [
       "Paso 1: Inspeccionar ConfirmOccupation implementation",
       "Paso 2: Place a tile on the right branch",
-      "Paso 3: Verificar the open end pip value becomes the new rightBranchNum"
+      "Paso 3: Verificar que el open end pip value becomes the new rightBranchNum"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "TellBranchNums returns current open pip values for both branches",
+    "description": "TellBranchNums returns current open pip values para both branches",
     "steps": [
-      "Paso 1: Start a game and place the first tile",
+      "Paso 1: Start a game and place the primero tile",
       "Paso 2: Call TellBranchNums or equivalent",
       "Paso 3: Verificar it returns the correct open end values for both branches"
     ],
@@ -2419,19 +2419,19 @@
   },
   {
     "category": "functional",
-    "description": "CheckStanding correctly identifies doubles vs non-doubles for orientation",
+    "description": "CheckStanding correctly identifies doubles vs non-doubles para orientation",
     "steps": [
       "Paso 1: Inspeccionar CheckStanding implementation",
       "Paso 2: Verificar it returns true (standing) for double tiles in horizontal phases",
       "Paso 3: Verificar it returns false (lying) for non-double tiles in horizontal phases",
-      "Paso 4: Verificar correct behavior during vertical phases"
+      "Paso 4: Verificar correct behavior durante vertical phases"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "functional",
-    "description": "GetMatchingTiles returns all valid tiles for both branches",
+    "description": "GetMatchingTiles returns all valid tiles para both branches",
     "steps": [
       "Paso 1: Set up a game state with known hand and branch numbers",
       "Paso 2: Call GetMatchingTiles",
@@ -2443,7 +2443,7 @@
   },
   {
     "category": "functional",
-    "description": "SeparateTiles classifies tiles as good or bad relative to target player",
+    "description": "SeparateTiles classifies tiles as good or bad relative a target player",
     "steps": [
       "Paso 1: Set up a game state with known hands",
       "Paso 2: Call SeparateTiles for a specific target player",
@@ -2457,9 +2457,9 @@
     "category": "style",
     "description": "MenuScene background uses theme's menuBackground image",
     "steps": [
-      "Paso 1: Navegar a MenuScene",
+      "Paso 1: Navigate to MenuScene",
       "Paso 2: Tomar captura de pantalla",
-      "Paso 3: Verificar the background matches the theme's menu-bg.png image"
+      "Paso 3: Verificar que el background matches the theme's menu-bg.png image"
     ],
     "passes": true,
     "screenshots": [
@@ -2468,13 +2468,13 @@
   },
   {
     "category": "style",
-    "description": "Game title text uses Georgia font, 48px, bold, with drop shadow",
+    "description": "Game title text uses Georgia font, 48px, bold, con drop shadow",
     "steps": [
-      "Paso 1: Navegar a MenuScene",
-      "Paso 2: Verificar title text 'Quarzen's Domino' is rendered",
+      "Paso 1: Navigate to MenuScene",
+      "Paso 2: Verificar texto del título 'Quarzen's Domino' is renderizada",
       "Paso 3: Verificar font is Georgia, approximately 48px, bold",
-      "Paso 4: Verificar a 2px drop shadow offset es visible",
-      "Paso 5: Tomar captura de pantalla of title text"
+      "Paso 4: Verificar que un 2px drop shadow offset es visible",
+      "Paso 5: Tomar captura de pantalla of texto del título"
     ],
     "passes": true,
     "screenshots": [
@@ -2483,14 +2483,14 @@
   },
   {
     "category": "style",
-    "description": "Difficulty buttons are 200x60px with rounded corners and dark brown background",
+    "description": "Difficulty botones are 200x60px con rounded corners y dark brown background",
     "steps": [
-      "Paso 1: Navegar a MenuScene",
+      "Paso 1: Navigate to MenuScene",
       "Paso 2: Verificar button dimensions are approximately 200x60px",
       "Paso 3: Verificar buttons have rounded corners (12px radius)",
       "Paso 4: Verificar button background color is dark brown (#4E342E)",
       "Paso 5: Verificar button text is white (#FFFFFF)",
-      "Paso 6: Tomar captura de pantalla of difficulty buttons"
+      "Paso 6: Tomar captura de pantalla of botones de dificultad"
     ],
     "passes": true,
     "screenshots": [
@@ -2499,9 +2499,9 @@
   },
   {
     "category": "style",
-    "description": "Pass button is 120x50px with red background and white text",
+    "description": "Pass botón is 120x50px con red background y white text",
     "steps": [
-      "Paso 1: Play until the Pass button appears",
+      "Paso 1: Play hasta que the Pass button appears",
       "Paso 2: Verificar button dimensions are approximately 120x50px",
       "Paso 3: Verificar red background color (#D32F2F)",
       "Paso 4: Verificar white text 'Pass'",
@@ -2517,8 +2517,8 @@
     "description": "Table background creates authentic dark green felt aesthetic",
     "steps": [
       "Paso 1: Start a game",
-      "Paso 2: Verificar el juego background uses the theme's game-bg.png",
-      "Paso 3: Verificar the overall aesthetic is dark green felt (#1B5E20)",
+      "Paso 2: Verificar que el game background uses the theme's game-bg.png",
+      "Paso 3: Verificar que el overall aesthetic is dark green felt (#1B5E20)",
       "Paso 4: Tomar captura de pantalla of game board area"
     ],
     "passes": true,
@@ -2528,12 +2528,12 @@
   },
   {
     "category": "style",
-    "description": "Tile sprites are crisp and legible at full scale (1.0x)",
+    "description": "Tile sprites are crisp y legible en full scale (1.0x)",
     "steps": [
-      "Paso 1: Start a game and observe player's tiles",
+      "Paso 1: Start a game y observar player's tiles",
       "Paso 2: Verificar tile face images are crisp and clear",
       "Paso 3: Verificar pip/dot patterns are easily distinguishable",
-      "Paso 4: Tomar captura de pantalla showing player tiles at full scale"
+      "Paso 4: Tomar captura de pantalla mostrando player tiles at full scale"
     ],
     "passes": true,
     "screenshots": [
@@ -2542,11 +2542,11 @@
   },
   {
     "category": "style",
-    "description": "Tile sprites are legible at half scale (0.5x) for AI hands",
+    "description": "Tile sprites are legible en half scale (0.5x) para AI hands",
     "steps": [
-      "Paso 1: Start a game and observe AI tiles",
+      "Paso 1: Start a game y observar AI tiles",
       "Paso 2: Verificar AI tile backs are clear even at 0.5x scale",
-      "Paso 3: Tomar captura de pantalla showing AI tiles at half scale"
+      "Paso 3: Tomar captura de pantalla mostrando AI tiles at half scale"
     ],
     "passes": true,
     "screenshots": [
@@ -2555,7 +2555,7 @@
   },
   {
     "category": "style",
-    "description": "Tile dimensions are 60x120px at base scale",
+    "description": "Tile dimensions are 60x120px en base scale",
     "steps": [
       "Paso 1: Start a game",
       "Paso 2: Verificar tile sprite size is approximately 60x120px",
@@ -2568,10 +2568,10 @@
   },
   {
     "category": "style",
-    "description": "Score display: gold text on semi-transparent dark rounded rectangle",
+    "description": "Score display: gold text en semi-transparent dark rounded rectangle",
     "steps": [
-      "Paso 1: Start a game and wait for distribution to complete",
-      "Paso 2: Verificar all four score displays show 'Score: 0' initially",
+      "Paso 1: Start a game y esperar for distribution to complete",
+      "Paso 2: Verificar que unll four score displays show 'Score: 0' initially",
       "Paso 3: Verificar score text color is gold (#FFD700)",
       "Paso 4: Verificar score text uses approximately 18px regular Arial font",
       "Paso 5: Verificar each score sits on a semi-transparent dark rounded rectangle background",
@@ -2579,9 +2579,9 @@
       "Paso 7: Verificar Left AI score is near the left hand area",
       "Paso 8: Verificar Top AI score is near the top hand area",
       "Paso 9: Verificar Right AI score is near the right hand area",
-      "Paso 10: Play until a pass occurs and verify the score updates with pulse animation (0.3s scale to 1.2x)",
-      "Paso 11: Verificar score format changes to 'Score: 1' after the pass",
-      "Paso 12: Tomar captura de pantalla of score displays showing updated values"
+      "Paso 10: Play hasta que a pass occurs and verify the score updates with pulse animation (0.3s scale to 1.2x)",
+      "Paso 11: Verificar score format changes to 'Score: 1' después the pass",
+      "Paso 12: Tomar captura de pantalla of score displays mostrando updated values"
     ],
     "passes": true,
     "screenshots": [
@@ -2590,7 +2590,7 @@
   },
   {
     "category": "style",
-    "description": "Turn indicator text: 28px, bold, Arial, centered near top of screen",
+    "description": "Turn indicator text: 28px, bold, Arial, centered near top de screen",
     "steps": [
       "Paso 1: Start a game",
       "Paso 2: Verificar turn indicator text es visible near the top",
@@ -2607,9 +2607,9 @@
     "category": "style",
     "description": "Button text uses 24px bold Arial",
     "steps": [
-      "Paso 1: Navegar a MenuScene",
+      "Paso 1: Navigate to MenuScene",
       "Paso 2: Inspeccionar button text styling",
-      "Paso 3: Verificar approximately 24px font size, bold, Arial",
+      "Paso 3: Verificar que unpproximately 24px font size, bold, Arial",
       "Paso 4: Tomar captura de pantalla of button text"
     ],
     "passes": true,
@@ -2628,9 +2628,9 @@
   },
   {
     "category": "style",
-    "description": "Game over text: 36px bold Georgia with outer glow effect",
+    "description": "Game over text: 36px bold Georgia con outer glow effect",
     "steps": [
-      "Paso 1: Reach a game over condition",
+      "Paso 1: Alcanzar un game over condition",
       "Paso 2: Verificar game over text is approximately 36px bold Georgia",
       "Paso 3: Verificar outer glow effect on the text",
       "Paso 4: Tomar captura de pantalla of game over text"
@@ -2640,7 +2640,7 @@
   },
   {
     "category": "style",
-    "description": "Rules modal text: 16px regular Arial with 1.5 line height",
+    "description": "Rules modal text: 16px regular Arial con 1.5 line height",
     "steps": [
       "Paso 1: Abrir el Rules modal",
       "Paso 2: Verificar text is approximately 16px regular Arial",
@@ -2655,19 +2655,19 @@
   },
   {
     "category": "style",
-    "description": "Valid slot ghost rendering: semi-transparent with gold tint at alpha 0.3-0.5",
+    "description": "Valid slot ghost rendering: semi-transparent con gold tint en alpha 0.3-0.5",
     "steps": [
-      "Paso 1: Start a game and wait for player's turn",
+      "Paso 1: Start a game y esperar for player's turn",
       "Paso 2: Identify a valid tile that matches both branch ends",
       "Paso 3: Begin dragging the tile toward the board",
       "Paso 4: Verificar ghost slot sprites appear at valid placement positions",
-      "Paso 5: Verificar each ghost slot is semi-transparent (alpha between 0.3 and 0.5)",
+      "Paso 5: Verificar each ghost slot is semi-transparent (alpha entre 0.3 and 0.5)",
       "Paso 6: Verificar each ghost slot has a gold tint (#FFD700 from validSlotColor)",
       "Paso 7: Verificar ghost slot orientation matches expected tile placement (standing for doubles, lying for non-doubles)",
       "Paso 8: Verificar ghost slot size matches the tile dimensions at 1.0x scale (60x120px base)",
       "Paso 9: Release the tile to cancel the drag and verify ghost slots disappear",
-      "Paso 10: Drag the tile again and place it successfully, verify ghost slots disappear after placement",
-      "Paso 11: Tomar captura de pantalla showing ghost slots during an active drag"
+      "Paso 10: Drag the tile again and place it successfully, verify ghost slots disappear después placement",
+      "Paso 11: Tomar captura de pantalla mostrando ghost slots durante an active drag"
     ],
     "passes": true,
     "screenshots": [
@@ -2678,7 +2678,7 @@
     "category": "style",
     "description": "Tile face background is ivory white (#FFFFF0)",
     "steps": [
-      "Paso 1: Start a game and observe player tiles",
+      "Paso 1: Start a game y observar player tiles",
       "Paso 2: Verificar tile face background color is ivory white",
       "Paso 3: Tomar captura de pantalla of tile faces"
     ],
@@ -2691,9 +2691,9 @@
     "category": "style",
     "description": "Tile pips/dots are near black (#1A1A1A)",
     "steps": [
-      "Paso 1: Start a game and observe tile pip/dot markings",
+      "Paso 1: Start a game y observar tile pip/dot markings",
       "Paso 2: Verificar pip color is near black (#1A1A1A)",
-      "Paso 3: Tomar captura de pantalla showing tile pips"
+      "Paso 3: Tomar captura de pantalla mostrando tile pips"
     ],
     "passes": true,
     "screenshots": [
@@ -2702,9 +2702,9 @@
   },
   {
     "category": "style",
-    "description": "Tile back is saddle brown (#8B4513) with decorative pattern",
+    "description": "Tile back is saddle brown (#8B4513) con decorative pattern",
     "steps": [
-      "Paso 1: Start a game and observe AI tiles (face down)",
+      "Paso 1: Start a game y observar AI tiles (face down)",
       "Paso 2: Verificar tile back appearance matches saddle brown aesthetic",
       "Paso 3: Tomar captura de pantalla of tile backs"
     ],
@@ -2718,9 +2718,9 @@
     "description": "Active tile glow color is light blue (#4FC3F7)",
     "steps": [
       "Paso 1: Esperar player's turn",
-      "Paso 2: Observe the glow effect on valid tiles",
+      "Paso 2: Observar the glow effect on valid tiles",
       "Paso 3: Verificar glow color is light blue (#4FC3F7)",
-      "Paso 4: Tomar captura de pantalla showing active tile glow"
+      "Paso 4: Tomar captura de pantalla mostrando active tile glow"
     ],
     "passes": true,
     "screenshots": null
@@ -2729,7 +2729,7 @@
     "category": "style",
     "description": "Text primary color is white (#FFFFFF)",
     "steps": [
-      "Paso 1: Start el juego and observe text elements",
+      "Paso 1: Iniciar el juego y observar text elements",
       "Paso 2: Verificar primary text (turn indicators, messages) is white",
       "Paso 3: Tomar captura de pantalla of text elements"
     ],
@@ -2740,7 +2740,7 @@
     "category": "style",
     "description": "Text score color is gold (#FFD700)",
     "steps": [
-      "Paso 1: Start a game and observe score displays",
+      "Paso 1: Start a game y observar score displays",
       "Paso 2: Verificar score text color is gold (#FFD700)",
       "Paso 3: Tomar captura de pantalla of score text"
     ],
@@ -2751,7 +2751,7 @@
     "category": "style",
     "description": "Button background is dark brown (#4E342E), hover is lighter brown (#6D4C41)",
     "steps": [
-      "Paso 1: Navegar a MenuScene",
+      "Paso 1: Navigate to MenuScene",
       "Paso 2: Verificar button background is dark brown (#4E342E)",
       "Paso 3: Hover over button and verify color shifts to lighter brown (#6D4C41)",
       "Paso 4: Tomar captura de pantalla of button states"
@@ -2761,11 +2761,11 @@
   },
   {
     "category": "style",
-    "description": "Popup overlay is black at 70% opacity",
+    "description": "Popup overlay is black en 70% opacity",
     "steps": [
-      "Paso 1: Abrir el pause menu during gameplay",
-      "Paso 2: Verificar the overlay background is black at 70% opacity",
-      "Paso 3: Verificar el juego es visible but dimmed behind the overlay",
+      "Paso 1: Abrir el pause menu durante gameplay",
+      "Paso 2: Verificar que el overlay background is black at 70% opacity",
+      "Paso 3: Verificar que el game es visible but dimmed behind the overlay",
       "Paso 4: Tomar captura de pantalla of pause overlay"
     ],
     "passes": true,
@@ -2773,7 +2773,7 @@
   },
   {
     "category": "style",
-    "description": "Popup panel background is dark brown (#3E2723) with medium brown border (#5D4037)",
+    "description": "Popup panel background is dark brown (#3E2723) con medium brown border (#5D4037)",
     "steps": [
       "Paso 1: Abrir el pause menu",
       "Paso 2: Verificar popup panel background color is dark brown (#3E2723)",
@@ -2787,8 +2787,8 @@
     "category": "style",
     "description": "Menu background color is darker green (#0D2818)",
     "steps": [
-      "Paso 1: Navegar a MenuScene",
-      "Paso 2: Verificar the overall menu background aesthetic uses darker green",
+      "Paso 1: Navigate to MenuScene",
+      "Paso 2: Verificar que el overall menu background aesthetic uses darker green",
       "Paso 3: Tomar captura de pantalla of menu background"
     ],
     "passes": true,
@@ -2796,12 +2796,12 @@
   },
   {
     "category": "style",
-    "description": "High contrast between tile faces and table background for readability",
+    "description": "High contrast between tile faces y table background para readability",
     "steps": [
       "Paso 1: Start a game with tiles on the board",
-      "Paso 2: Verificar there is clear contrast between ivory tiles and dark green table",
+      "Paso 2: Verificar que elre is clear contrast entre ivory tiles and dark green table",
       "Paso 3: Verificar tiles are easily distinguishable from the background",
-      "Paso 4: Tomar captura de pantalla showing contrast"
+      "Paso 4: Tomar captura de pantalla mostrando contrast"
     ],
     "passes": true,
     "screenshots": [
@@ -2810,37 +2810,37 @@
   },
   {
     "category": "style",
-    "description": "Minimum font size is 16px equivalent at base resolution",
+    "description": "Minimum font size is 16px equivalent en base resolution",
     "steps": [
-      "Paso 1: Start el juego and inspect all text elements",
-      "Paso 2: Verificar no text is smaller than approximately 16px at base resolution",
-      "Paso 3: Verificar all text is readable"
+      "Paso 1: Iniciar el juego and inspect all text elements",
+      "Paso 2: Verificar no text is smaller than approximately 16px at base resolución",
+      "Paso 3: Verificar que unll text is readable"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "style",
-    "description": "Color is never the sole indicator of state (dual indicators used)",
+    "description": "Color is never el sole indicator de state (dual indicators used)",
     "steps": [
-      "Paso 1: Observe locked tiles during player's turn",
+      "Paso 1: Observar locked tiles durante player's turn",
       "Paso 2: Verificar locked tiles have both reduced opacity AND a darkening overlay",
-      "Paso 3: Observe valid tiles",
+      "Paso 3: Observar valid tiles",
       "Paso 4: Verificar valid tiles have both a glow AND are the only interactive elements",
-      "Paso 5: Verificar accessibility is maintained"
+      "Paso 5: Verificar que unccessibility is maintained"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "style",
-    "description": "Turn indicator and score are clearly visible against all theme backgrounds",
+    "description": "Turn indicator y score are clearly visible against all theme backgrounds",
     "steps": [
       "Paso 1: Start a game",
       "Paso 2: Verificar turn indicator text is clearly readable",
       "Paso 3: Verificar score displays are clearly readable",
       "Paso 4: Verificar both maintain contrast against el juego background",
-      "Paso 5: Tomar captura de pantalla showing visibility"
+      "Paso 5: Tomar captura de pantalla mostrando visibility"
     ],
     "passes": true,
     "screenshots": [
@@ -2849,12 +2849,12 @@
   },
   {
     "category": "style",
-    "description": "Player hand positioned at bottom center of screen",
+    "description": "Player hand positioned en bottom center de screen",
     "steps": [
       "Paso 1: Start a game",
       "Paso 2: Verificar player tiles are positioned at the bottom center",
       "Paso 3: Verificar horizontal centering",
-      "Paso 4: Tomar captura de pantalla showing player hand position"
+      "Paso 4: Tomar captura de pantalla mostrando player hand position"
     ],
     "passes": true,
     "screenshots": [
@@ -2863,11 +2863,11 @@
   },
   {
     "category": "style",
-    "description": "Left AI hand positioned on left side of screen",
+    "description": "Left AI hand positioned en left side de screen",
     "steps": [
       "Paso 1: Start a game",
       "Paso 2: Verificar Left AI tiles are on the left side",
-      "Paso 3: Tomar captura de pantalla showing Left AI hand position"
+      "Paso 3: Tomar captura de pantalla mostrando Left AI hand position"
     ],
     "passes": true,
     "screenshots": [
@@ -2876,11 +2876,11 @@
   },
   {
     "category": "style",
-    "description": "Top AI hand positioned at top center of screen",
+    "description": "Top AI hand positioned en top center de screen",
     "steps": [
       "Paso 1: Start a game",
       "Paso 2: Verificar Top AI tiles are at the top center",
-      "Paso 3: Tomar captura de pantalla showing Top AI hand position"
+      "Paso 3: Tomar captura de pantalla mostrando Top AI hand position"
     ],
     "passes": true,
     "screenshots": [
@@ -2889,11 +2889,11 @@
   },
   {
     "category": "style",
-    "description": "Right AI hand positioned on right side of screen",
+    "description": "Right AI hand positioned en right side de screen",
     "steps": [
       "Paso 1: Start a game",
       "Paso 2: Verificar Right AI tiles are on the right side",
-      "Paso 3: Tomar captura de pantalla showing Right AI hand position"
+      "Paso 3: Tomar captura de pantalla mostrando Right AI hand position"
     ],
     "passes": true,
     "screenshots": [
@@ -2902,12 +2902,12 @@
   },
   {
     "category": "style",
-    "description": "Game board area is approximately 700x400px centered on screen",
+    "description": "Game board area is approximately 700x400px centered en screen",
     "steps": [
       "Paso 1: Start a game",
-      "Paso 2: Verificar el juego board placement area is approximately 700x400px",
+      "Paso 2: Verificar que el game board placement area is approximately 700x400px",
       "Paso 3: Verificar it is centered within el canvas",
-      "Paso 4: Tomar captura de pantalla showing board area"
+      "Paso 4: Tomar captura de pantalla mostrando board area"
     ],
     "passes": true,
     "screenshots": [
@@ -2916,10 +2916,10 @@
   },
   {
     "category": "style",
-    "description": "Hamburger menu icon is three horizontal lines, 50x50px",
+    "description": "Hamburger menu ícono is three horizontal lines, 50x50px",
     "steps": [
       "Paso 1: Start a game",
-      "Paso 2: Verificar the menu icon shows three horizontal lines",
+      "Paso 2: Verificar que el menu icon shows three horizontal lines",
       "Paso 3: Verificar it is approximately 50x50px in the top-right corner",
       "Paso 4: Tomar captura de pantalla of menu icon"
     ],
@@ -2928,9 +2928,9 @@
   },
   {
     "category": "style",
-    "description": "Pass button positioned in bottom-right area near player's hand",
+    "description": "Pass botón positioned en bottom-right area near player's hand",
     "steps": [
-      "Paso 1: Play until Pass button appears",
+      "Paso 1: Play hasta que Pass button appears",
       "Paso 2: Verificar it is positioned in the bottom-right area",
       "Paso 3: Verificar it is near the player's hand",
       "Paso 4: Tomar captura de pantalla of pass button position"
@@ -2957,8 +2957,8 @@
     "description": "Dragged tile has subtle drop shadow effect",
     "steps": [
       "Paso 1: Start dragging a tile",
-      "Paso 2: Verificar a subtle drop shadow appears on the dragged tile",
-      "Paso 3: Tomar captura de pantalla showing shadow effect"
+      "Paso 2: Verificar que un subtle drop shadow appears on the dragged tile",
+      "Paso 3: Tomar captura de pantalla mostrando shadow effect"
     ],
     "passes": true,
     "screenshots": [
@@ -2967,7 +2967,7 @@
   },
   {
     "category": "style",
-    "description": "Pause menu buttons (Resume, Restart, Main Menu) are properly styled",
+    "description": "Pause menu botones (Resume, Restart, Main Menu) are properly styled",
     "steps": [
       "Paso 1: Abrir el pause menu",
       "Paso 2: Verificar Resume, Restart, Main Menu buttons match el juego design system",
@@ -2981,12 +2981,12 @@
   },
   {
     "category": "style",
-    "description": "Rules modal styled consistently with game design system",
+    "description": "Rules modal styled consistently con game design system",
     "steps": [
       "Paso 1: Open Rules modal",
       "Paso 2: Verificar dark panel background",
       "Paso 3: Verificar white text",
-      "Paso 4: Verificar theme-matching brown accent colors",
+      "Paso 4: Verificar que elme-matching brown accent colors",
       "Paso 5: Tomar captura de pantalla of rules modal styling"
     ],
     "passes": true,
@@ -2996,12 +2996,12 @@
   },
   {
     "category": "style",
-    "description": "Title text centered at top third of MenuScene screen",
+    "description": "Title text centered en top third de MenuScene screen",
     "steps": [
-      "Paso 1: Navegar a MenuScene",
-      "Paso 2: Verificar title is positioned in the top third of the screen",
+      "Paso 1: Navigate to MenuScene",
+      "Paso 2: Verificar title is positioned in the top tercero of the screen",
       "Paso 3: Verificar title is horizontally centered",
-      "Paso 4: Tomar captura de pantalla confirming title position"
+      "Paso 4: Tomar captura de pantalla confirmando title position"
     ],
     "passes": true,
     "screenshots": [
@@ -3010,11 +3010,11 @@
   },
   {
     "category": "style",
-    "description": "Mute toggle icon positioned in top-right corner of MenuScene",
+    "description": "Mute toggle ícono positioned en top-right corner de MenuScene",
     "steps": [
-      "Paso 1: Navegar a MenuScene",
+      "Paso 1: Navigate to MenuScene",
       "Paso 2: Verificar mute icon is in the top-right corner",
-      "Paso 3: Tomar captura de pantalla showing mute icon position"
+      "Paso 3: Tomar captura de pantalla mostrando mute icon position"
     ],
     "passes": true,
     "screenshots": [
@@ -3028,7 +3028,7 @@
       "Paso 1: During player's turn, observe non-matching tiles",
       "Paso 2: Verificar reduced opacity (alpha ~0.4)",
       "Paso 3: Verificar dark overlay is applied on top",
-      "Paso 4: Tomar captura de pantalla showing locked tile appearance"
+      "Paso 4: Tomar captura de pantalla mostrando locked tile appearance"
     ],
     "passes": true,
     "screenshots": null
@@ -3042,7 +3042,7 @@
       "Paso 3: Verificar AI tiles are smaller (0.5x scale)",
       "Paso 4: Verificar AI tiles show backs",
       "Paso 5: Verificar AI tiles are on sides and top",
-      "Paso 6: Tomar captura de pantalla showing all four hands"
+      "Paso 6: Tomar captura de pantalla mostrando all four hands"
     ],
     "passes": true,
     "screenshots": [
@@ -3051,10 +3051,10 @@
   },
   {
     "category": "style",
-    "description": "Game over message has dramatic entrance with bounce animation",
+    "description": "Game over message has dramatic entrance con bounce animation",
     "steps": [
-      "Paso 1: Reach a game over condition",
-      "Paso 2: Observe el juego over message entrance",
+      "Paso 1: Alcanzar un game over condition",
+      "Paso 2: Observar el juego over message entrance",
       "Paso 3: Verificar it has a dramatic scale animation (0 to 1, 1.0s)",
       "Paso 4: Verificar bounce easing effect",
       "Paso 5: Tomar captura de pantalla of game over message"
@@ -3064,20 +3064,20 @@
   },
   {
     "category": "style",
-    "description": "Overall MenuScene layout is visually appealing and properly arranged",
+    "description": "Overall MenuScene layout is visually appealing y properly arranged",
     "steps": [
-      "Paso 1: Navegar a MenuScene",
-      "Paso 2: Verificar the background image renders correctly (theme's menu-bg.png)",
-      "Paso 3: Verificar the title 'Quarzen's Domino' is displayed in the top third, centered horizontally",
-      "Paso 4: Verificar the title uses Georgia font, approximately 48px, bold, with drop shadow",
-      "Paso 5: Verificar the Easy, Random, Hard botones están vertically stacked at center",
+      "Paso 1: Navigate to MenuScene",
+      "Paso 2: Verificar que el background image renders correctly (theme's menu-bg.png)",
+      "Paso 3: Verificar que el title 'Quarzen's Domino' is displayed in the top tercero, centered horizontally",
+      "Paso 4: Verificar que el title uses Georgia font, approximately 48px, bold, with drop shadow",
+      "Paso 5: Verificar que el Easy, Random, Hard buttons are vertically stacked at center",
       "Paso 6: Verificar button dimensions are approximately 200x60px with rounded corners",
-      "Paso 7: Verificar the Rules button es visible below the difficulty buttons",
-      "Paso 8: Verificar the mute toggle icon is in the top-right corner",
-      "Paso 9: Verificar visual hierarchy: title is largest, botones están secondary, mute is tertiary",
+      "Paso 7: Verificar que el Rules button es visible below the botones de dificultad",
+      "Paso 8: Verificar que el mute toggle icon is in the top-right corner",
+      "Paso 9: Verificar visual hierarchy: title is largest, buttons are segundoary, mute is tertiary",
       "Paso 10: Verificar no elements overlap or clip el canvas edges",
-      "Paso 11: Verificar spacing between elements is consistent and professional",
-      "Paso 12: Take a full screenshot confirming the complete MenuScene layout"
+      "Paso 11: Verificar spacing entre elements is consistent and professional",
+      "Paso 12: Take a full screenshot confirmando the complete MenuScene layout"
     ],
     "passes": true,
     "screenshots": [
@@ -3086,21 +3086,21 @@
   },
   {
     "category": "style",
-    "description": "Overall GameScene layout is visually appealing during gameplay",
+    "description": "Overall GameScene layout is visually appealing durante gameplay",
     "steps": [
-      "Paso 1: Start a game and wait for tile distribution to complete",
-      "Paso 2: Verificar el juego background renders correctly (theme's game-bg.png)",
-      "Paso 3: Verificar the board area is centered, approximately 700x400px",
+      "Paso 1: Start a game y esperar for tile distribution to complete",
+      "Paso 2: Verificar que el game background renders correctly (theme's game-bg.png)",
+      "Paso 3: Verificar que el board area is centered, approximately 700x400px",
       "Paso 4: Verificar player hand is at bottom center with 7 face-up tiles at full scale",
       "Paso 5: Verificar Left AI hand is on the left side with face-down tiles at 0.5x scale",
       "Paso 6: Verificar Top AI hand is at the top center with face-down tiles at 0.5x scale",
       "Paso 7: Verificar Right AI hand is on the right side with face-down tiles at 0.5x scale",
-      "Paso 8: Verificar all four score displays show 'Score: 0' near their respective hand areas",
-      "Paso 9: Verificar the turn indicator text es visible near the top, centered",
-      "Paso 10: Verificar the hamburger menu button is in the top-right corner",
+      "Paso 8: Verificar que unll four score displays show 'Score: 0' near their respective hand areas",
+      "Paso 9: Verificar que el turn indicator text es visible near the top, centered",
+      "Paso 10: Verificar que el hamburger menu button is in the top-right corner",
       "Paso 11: Play a few turns and verify no elements overlap or misalign as tiles are placed",
-      "Paso 12: Verificar the overall aesthetic is cohesive and professional",
-      "Paso 13: Take a full screenshot confirming the complete GameScene layout"
+      "Paso 12: Verificar que el overall aesthetic is cohesive and professional",
+      "Paso 13: Take a full screenshot confirmando the complete GameScene layout"
     ],
     "passes": true,
     "screenshots": [
@@ -3109,13 +3109,13 @@
   },
   {
     "category": "style",
-    "description": "Smooth 60fps animations during tile movements and UI transitions",
+    "description": "Smooth 60fps animations durante tile movements y UI transitions",
     "steps": [
-      "Paso 1: Start a game and observe all animations",
+      "Paso 1: Start a game y observar all animations",
       "Paso 2: Verificar tile dealing animation is smooth",
       "Paso 3: Verificar tile placement animation is smooth",
       "Paso 4: Verificar no frame drops or stuttering visible",
-      "Paso 5: Verificar animations feel fluid and responsive"
+      "Paso 5: Verificar que unnimations feel fluid and responsive"
     ],
     "passes": true,
     "screenshots": [
@@ -3124,11 +3124,11 @@
   },
   {
     "category": "style",
-    "description": "Drag-and-drop feels responsive with no perceptible input lag",
+    "description": "Drag-and-drop feels responsive con no perceptible input lag",
     "steps": [
       "Paso 1: Start a game and drag tiles",
       "Paso 2: Verificar tile follows pointer/finger with no lag",
-      "Paso 3: Verificar the interaction feels responsive and immediate"
+      "Paso 3: Verificar que el interaction feels responsive and immediate"
     ],
     "passes": true,
     "screenshots": [
@@ -3139,9 +3139,9 @@
     "category": "style",
     "description": "AI thinking indicator: subtle animated dots near active AI name",
     "steps": [
-      "Paso 1: Start a game and observe AI turns",
-      "Paso 2: Verificar animated dots appear near the AI's name during thinking",
-      "Paso 3: Verificar the animation is subtle and not distracting",
+      "Paso 1: Start a game y observar AI turns",
+      "Paso 2: Verificar que unnimated dots appear near the AI's name durante thinking",
+      "Paso 3: Verificar que el animation is subtle and not distracting",
       "Paso 4: Tomar captura de pantalla of AI thinking indicator"
     ],
     "passes": true,
@@ -3151,12 +3151,12 @@
   },
   {
     "category": "style",
-    "description": "Letterboxing (black bars) appears correctly when aspect ratio differs",
+    "description": "Letterboxing (black bars) aparece correctly cuando aspect ratio differs",
     "steps": [
-      "Paso 1: Resize browser to a non-16:10 aspect ratio",
-      "Paso 2: Verificar el juego canvas is centered",
+      "Paso 1: Resize browser to a non-16:10 relación de aspecto",
+      "Paso 2: Verificar que el game canvas is centered",
       "Paso 3: Verificar black bars (letterboxing) fill remaining space",
-      "Paso 4: Tomar captura de pantalla showing letterboxing"
+      "Paso 4: Tomar captura de pantalla mostrando letterboxing"
     ],
     "passes": true,
     "screenshots": [
@@ -3165,7 +3165,7 @@
   },
   {
     "category": "style",
-    "description": "Installed PWA has no browser chrome and uses landscape orientation",
+    "description": "Installed PWA has no browser chrome y uses landscape orientation",
     "steps": [
       "Paso 1: Install el juego as a PWA",
       "Paso 2: Launch from home screen",
@@ -3178,7 +3178,7 @@
   },
   {
     "category": "style",
-    "description": "PWA icons display correctly at 192x192 and 512x512 sizes",
+    "description": "PWA icons display correctly en 192x192 y 512x512 sizes",
     "steps": [
       "Paso 1: Check manifest.json icons configuration",
       "Paso 2: Verificar 192x192 icon file exists and displays correctly",
@@ -3189,7 +3189,7 @@
   },
   {
     "category": "style",
-    "description": "Menu navigation is intuitive: max 2 taps from launch to gameplay",
+    "description": "Menu navigation is intuitive: max 2 taps from launch a gameplay",
     "steps": [
       "Paso 1: Launch the application",
       "Paso 2: Count taps needed to start a game: 1 tap on difficulty button",
@@ -3200,12 +3200,12 @@
   },
   {
     "category": "style",
-    "description": "Rotate your device message has rotation icon and covers full screen",
+    "description": "Rotate your device message has rotation ícono y covers full screen",
     "steps": [
       "Paso 1: Open game in portrait orientation",
-      "Paso 2: Verificar a rotation icon is displayed",
-      "Paso 3: Verificar the message covers the full screen",
-      "Paso 4: Verificar el juego is hidden behind the message",
+      "Paso 2: Verificar que un rotation icon is displayed",
+      "Paso 3: Verificar que el message covers the full screen",
+      "Paso 4: Verificar que el game is hidden behind the message",
       "Paso 5: Tomar captura de pantalla of rotation message"
     ],
     "passes": true,
@@ -3213,7 +3213,7 @@
   },
   {
     "category": "style",
-    "description": "Board tiles display at correct size and orientation on the board",
+    "description": "Board tiles display en correct size y orientation en el board",
     "steps": [
       "Paso 1: Start a game and place several tiles",
       "Paso 2: Verificar placed tiles are at full scale (1.0x) on the board",
@@ -3228,19 +3228,19 @@
   },
   {
     "category": "style",
-    "description": "Game state is always clear: player never has to guess what to do",
+    "description": "Game state is always clear: player never has a guess what a do",
     "steps": [
-      "Paso 1: Start a game and wait for distribution to complete",
+      "Paso 1: Start a game y esperar for distribution to complete",
       "Paso 2: Verificar 'Game Started' message appears, clearly indicating el juego has begun",
       "Paso 3: Verificar turn indicator clearly shows whose turn it is (Your Turn / AI Name's Turn)",
       "Paso 4: During player's turn, verify valid tiles glow and invalid tiles are dimmed",
       "Paso 5: During AI turns, verify all player tiles are locked and AI thinking dots son visibles",
-      "Paso 6: Play until the player must pass and verify the Pass button appears prominently",
-      "Paso 7: Hacer clic en Pass and verify a 'Pass' message appears for 1 second",
+      "Paso 6: Play hasta que the player must pass and verify the Pass button appears prominently",
+      "Paso 7: Hacer clic en Pass and verify a 'Pass' message appears for 1 segundo",
       "Paso 8: Continue playing and verify score updates son visibles with pulse animation",
-      "Paso 9: Play until game over and verify el juego over message clearly states the result",
-      "Paso 10: Verificar el juego over message persists (does not auto-dismiss)",
-      "Paso 11: Verificar the hamburger menu remains accessible in game over state",
+      "Paso 9: Play hasta que game over and verify el juego over message clearly states the result",
+      "Paso 10: Verificar que el game over message persists (does not auto-dismiss)",
+      "Paso 11: Verificar que el hamburger menu remains accessible in game over state",
       "Paso 12: Tomar captura de pantallas at each distinct game state (start, player turn, AI turn, pass, game over)"
     ],
     "passes": true,
@@ -3252,22 +3252,22 @@
     "category": "style",
     "description": "Tile distribution order visual: Player first, then Left, Top, Right",
     "steps": [
-      "Paso 1: Iniciar un nuevo juego and observe dealing animation",
-      "Paso 2: Verificar first 7 tiles go to Player (bottom)",
+      "Paso 1: Iniciar un nuevo juego y observar dealing animation",
+      "Paso 2: Verificar primero 7 fichas go to Player (bottom)",
       "Paso 3: Verificar next 7 go to Left AI",
       "Paso 4: Verificar next 7 go to Top AI",
       "Paso 5: Verificar last 7 go to Right AI",
-      "Paso 6: Tomar captura de pantalla during dealing showing animation direction"
+      "Paso 6: Tomar captura de pantalla durante dealing mostrando animation direction"
     ],
     "passes": true,
     "screenshots": null
   },
   {
     "category": "style",
-    "description": "Corner turns in board layout are visually clean and properly aligned",
+    "description": "Corner turns en board layout are visually clean y properly aligned",
     "steps": [
-      "Paso 1: Play a game until tiles reach a corner turn (phase 1+)",
-      "Paso 2: Verificar the corner transition looks clean",
+      "Paso 1: Jugar un juego hasta que tiles reach a corner turn (phase 1+)",
+      "Paso 2: Verificar que el corner transition looks clean",
       "Paso 3: Verificar tiles at the corner are properly positioned and rotated",
       "Paso 4: Verificar no gaps or overlaps at corner transitions",
       "Paso 5: Tomar captura de pantalla of corner layout"
@@ -3279,9 +3279,9 @@
   },
   {
     "category": "style",
-    "description": "Difficulty buttons have hover effect (scale 1.05x, color shift)",
+    "description": "Difficulty botones have hover effect (scale 1.05x, color shift)",
     "steps": [
-      "Paso 1: Navegar a MenuScene",
+      "Paso 1: Navigate to MenuScene",
       "Paso 2: Hover over each difficulty button",
       "Paso 3: Verificar scale increases to 1.05x on hover",
       "Paso 4: Verificar color shifts to buttonHoverColor (#6D4C41)",
