@@ -132,3 +132,36 @@ COMPLETED:
 6. Feature list: 241/241 tests passing (100%)
 
 ALL SESSION GOALS MET - Project feature-complete.
+
+Session 4 - Fix tile flip orientation (BUG-002)
+=================================================
+Date: 2026-02-07
+
+COMPLETED:
+1. Fixed BUG-002: Non-double tiles not flipping to orient matching pip toward connection
+   - Root cause: Phaser rotation of 90 degrees (CW) puts topIndex on the RIGHT side,
+     but the code logic in confirmOccupation assumed topIndex goes LEFT at rotation 90.
+     This caused all non-double tiles to display backwards.
+   - Fix part 1: Changed base rotation for lying tiles from 90 to -90 (CCW) in
+     SlotHelper.getSlotPosition(). At -90 CCW, topIndex goes LEFT, matching the
+     code's assumption in confirmOccupation (leftBranchNum = topIndex).
+   - Fix part 2: Added computeFlip() method to SlotHelper that determines when a
+     tile needs an extra 180-degree rotation so the matching pip faces the connection
+     point. Logic accounts for branch direction (left/right) and phase (normal vs
+     reversed growth direction).
+   - Fix part 3: Added 'flipped' field to SlotPosition interface. GameScene.placeTile()
+     and finalizePlacement() now apply the extra 180 degrees when flipped=true.
+   - Verified with 12-tile chain: all adjacent pips match correctly
+     Chain: 0-3|3-2|2-4|4-3|3-1|1-1|1-6|6-2|2-0|0-1|1-4|4-6
+   - Zero console errors
+
+2. Updated bug_list.json: BUG-002 status -> verified
+3. Updated feature_list.json: test #38 marked as passing
+4. Feature list: 241/241 tests passing (100%)
+
+FILES MODIFIED:
+- src/managers/SlotHelper.ts: Changed rotations from 90 to -90, added computeFlip(),
+  added 'flipped' to SlotPosition interface
+- src/scenes/GameScene.ts: Apply flip rotation in placeTile() and finalizePlacement()
+- bug_list.json: BUG-002 verified
+- feature_list.json: test #38 passing

@@ -27,6 +27,16 @@ const AI_SCALE = 0.5;
 const BOARD_CENTER_X = 480;
 const BOARD_CENTER_Y = 260;
 
+// Visible board area where placed tiles should fit (avoids overlapping hands/UI)
+const BOARD_AREA_LEFT = 90;
+const BOARD_AREA_TOP = 80;
+const BOARD_AREA_WIDTH = 780;
+const BOARD_AREA_HEIGHT = 360;
+const BOARD_AREA_CENTER_X = BOARD_AREA_LEFT + BOARD_AREA_WIDTH / 2;
+const BOARD_AREA_CENTER_Y = BOARD_AREA_TOP + BOARD_AREA_HEIGHT / 2;
+const BOARD_ZOOM_MIN = 0.35;
+const BOARD_ZOOM_PADDING = 40;
+
 export class GameScene extends Phaser.Scene {
   private gameState!: GameState;
   private deckManager!: DeckManager;
@@ -756,19 +766,29 @@ export class GameScene extends Phaser.Scene {
     const color = Phaser.Display.Color.HexStringToColor(colors.validSlotColor).color;
 
     const branches: ('left' | 'right')[] = ['left', 'right'];
+    const scale = this.boardContainer.scaleX;
+    const offX = this.boardContainer.x;
+    const offY = this.boardContainer.y;
 
     for (const branch of branches) {
       if (!board.started || board.canPlaceOnBranch(domino, branch)) {
         const slotPos = this.slotHelper.getSlotPosition(board, domino, branch, BOARD_CENTER_X, BOARD_CENTER_Y);
+
+        // Transform slot position from board-local to world coordinates
+        const worldX = offX + slotPos.x * scale;
+        const worldY = offY + slotPos.y * scale;
+
         const gfx = this.add.graphics();
         gfx.fillStyle(color, 0.4);
 
-        const w = slotPos.standing ? TILE_WIDTH : TILE_HEIGHT;
-        const h = slotPos.standing ? TILE_HEIGHT : TILE_WIDTH;
-        gfx.fillRoundedRect(slotPos.x - w / 2, slotPos.y - h / 2, w, h, 4);
+        const w = (slotPos.standing ? TILE_WIDTH : TILE_HEIGHT) * scale;
+        const h = (slotPos.standing ? TILE_HEIGHT : TILE_WIDTH) * scale;
+        gfx.fillRoundedRect(worldX - w / 2, worldY - h / 2, w, h, 4 * scale);
         gfx.setDepth(5);
 
         gfx.setData('slotPosition', slotPos);
+        gfx.setData('worldX', worldX);
+        gfx.setData('worldY', worldY);
         this.ghostSlots.push(gfx);
       }
     }
@@ -787,8 +807,11 @@ export class GameScene extends Phaser.Scene {
 
     for (const gfx of this.ghostSlots) {
       const slotPos = gfx.getData('slotPosition') as SlotPosition;
-      const dx = tileSprite.container.x - slotPos.x;
-      const dy = tileSprite.container.y - slotPos.y;
+      // Compare in world coordinates (ghost slots store world position)
+      const worldX = gfx.getData('worldX') as number;
+      const worldY = gfx.getData('worldY') as number;
+      const dx = tileSprite.container.x - worldX;
+      const dy = tileSprite.container.y - worldY;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
       if (dist < minDist) {
@@ -805,14 +828,22 @@ export class GameScene extends Phaser.Scene {
   private placeTile(tileSprite: TileSprite, slot: SlotPosition): void {
     audioManager.playSound('tilePlace');
 
-    // Animate to slot
+    // Transform slot position to world coordinates for animation
+    const scale = this.boardContainer.scaleX;
+    const worldX = this.boardContainer.x + slot.x * scale;
+    const worldY = this.boardContainer.y + slot.y * scale;
+
+    // Add 180 degrees if tile needs flipping so matching pip faces the connection
+    const finalRotation = slot.rotation + (slot.flipped ? 180 : 0);
+
+    // Animate to slot (in world coordinates since tile is not yet in boardContainer)
     this.tweens.add({
       targets: tileSprite.container,
-      x: slot.x,
-      y: slot.y,
-      rotation: slot.rotation * (Math.PI / 180),
-      scaleX: 1,
-      scaleY: 1,
+      x: worldX,
+      y: worldY,
+      rotation: finalRotation * (Math.PI / 180),
+      scaleX: scale,
+      scaleY: scale,
       duration: 500,
       ease: 'Power2',
       onComplete: () => {
@@ -822,13 +853,19 @@ export class GameScene extends Phaser.Scene {
   }
 
   private finalizePlacement(tileSprite: TileSprite, slot: SlotPosition): void {
+    // Set container-local coordinates before adding to boardContainer
+    const finalRotation = slot.rotation + (slot.flipped ? 180 : 0);
+    tileSprite.container.x = slot.x;
+    tileSprite.container.y = slot.y;
+    tileSprite.container.rotation = finalRotation * (Math.PI / 180);
+    tileSprite.container.setScale(1);
     tileSprite.container.setDepth(8);
     this.boardContainer.add(tileSprite.container);
 
     // Update board state
     this.slotHelper.confirmOccupation(this.gameState.board, tileSprite.domino, slot.branch);
     this.slotHelper.confirmMoving(this.gameState.board, tileSprite.domino, slot.branch);
-    this.gameState.board.addPlacedTile(tileSprite.domino, slot.x, slot.y, slot.rotation, slot.branch);
+    this.gameState.board.addPlacedTile(tileSprite.domino, slot.x, slot.y, finalRotation, slot.branch);
 
     // Remove from player hand
     const playerIndex = this.gameState.currentTurn;
@@ -850,6 +887,9 @@ export class GameScene extends Phaser.Scene {
 
     // Re-center remaining hand tiles
     this.repositionHand(playerIndex);
+
+    // Auto-zoom board to keep all tiles visible
+    this.updateBoardZoom();
 
     // Emit event
     this.eventBus.emit('tilePlace', tileSprite.domino, slot.branch);
@@ -890,6 +930,51 @@ export class GameScene extends Phaser.Scene {
         ease: 'Power2',
       });
     }
+  }
+
+  // --- Board zoom ---
+
+  private updateBoardZoom(): void {
+    const children = this.boardContainer.getAll() as Phaser.GameObjects.Container[];
+    if (children.length === 0) return;
+
+    // Calculate bounding box of all placed tiles in container-local coordinates
+    let minX = Infinity, maxX = -Infinity;
+    let minY = Infinity, maxY = -Infinity;
+
+    for (const child of children) {
+      const halfW = TILE_HEIGHT / 2; // use larger dimension as conservative bound
+      const halfH = TILE_HEIGHT / 2;
+      minX = Math.min(minX, child.x - halfW);
+      maxX = Math.max(maxX, child.x + halfW);
+      minY = Math.min(minY, child.y - halfH);
+      maxY = Math.max(maxY, child.y + halfH);
+    }
+
+    const boundsW = maxX - minX + BOARD_ZOOM_PADDING * 2;
+    const boundsH = maxY - minY + BOARD_ZOOM_PADDING * 2;
+    const boundsCenterX = (minX + maxX) / 2;
+    const boundsCenterY = (minY + maxY) / 2;
+
+    // Scale to fit visible board area
+    const scaleX = BOARD_AREA_WIDTH / boundsW;
+    const scaleY = BOARD_AREA_HEIGHT / boundsH;
+    const targetScale = Math.max(BOARD_ZOOM_MIN, Math.min(scaleX, scaleY, 1.0));
+
+    // Position container so bounds center aligns with board area center
+    const targetX = BOARD_AREA_CENTER_X - boundsCenterX * targetScale;
+    const targetY = BOARD_AREA_CENTER_Y - boundsCenterY * targetScale;
+
+    // Tween to the new scale/position
+    this.tweens.add({
+      targets: this.boardContainer,
+      scaleX: targetScale,
+      scaleY: targetScale,
+      x: targetX,
+      y: targetY,
+      duration: 400,
+      ease: 'Power2',
+    });
   }
 
   // --- Pass handling ---

@@ -7,6 +7,7 @@ export interface SlotPosition {
   rotation: number;
   standing: boolean;
   branch: 'left' | 'right';
+  flipped: boolean;
 }
 
 export interface MatchResult {
@@ -60,45 +61,71 @@ export class SlotHelper {
       if (domino.isDouble) {
         rotation = 0; // Standing vertical
       } else {
-        rotation = 90; // Lying horizontal
+        rotation = -90; // Lying horizontal (CCW so topIndex is on the left)
         x += this.lyingOffset * 0.5;
       }
-      return { x, y, rotation, standing, branch };
+      return { x, y, rotation, standing, branch, flipped: false };
     }
 
     switch (phase) {
       case 0: // Horizontal expansion
         x = centerX + (hor + (standing ? 1 : 2)) * this.tileOffset * direction;
         y = centerY + ver * this.tileOffset;
-        rotation = standing ? 0 : 90;
+        rotation = standing ? 0 : -90;
         break;
 
       case 1: // First corner (turn down for right, up for left)
         x = centerX + hor * this.tileOffset * direction;
         y = centerY + (ver + this.cornerShift) * this.tileOffset * (branch === 'right' ? 1 : -1);
-        rotation = standing ? 90 : 0;
+        rotation = standing ? -90 : 0;
         break;
 
       case 2: // Cross-direction
         x = centerX + (hor - (standing ? 1 : 2)) * this.tileOffset * direction;
         y = centerY + ver * this.tileOffset * (branch === 'right' ? 1 : -1);
-        rotation = standing ? 0 : 90;
+        rotation = standing ? 0 : -90;
         break;
 
       case 3: // End corner
         x = centerX + hor * this.tileOffset * direction;
         y = centerY + (ver + this.cornerShift) * this.tileOffset * (branch === 'right' ? 1 : -1);
-        rotation = standing ? 90 : 0;
+        rotation = standing ? -90 : 0;
         break;
 
       default: // Phase 4+: Reversed horizontal
         x = centerX + (hor + (standing ? 1 : 2)) * this.tileOffset * direction * -1;
         y = centerY + ver * this.tileOffset * (branch === 'right' ? 1 : -1);
-        rotation = standing ? 0 : 90;
+        rotation = standing ? 0 : -90;
         break;
     }
 
-    return { x, y, rotation, standing, branch };
+    const branchNum = branch === 'right' ? board.rightBranchNum : board.leftBranchNum;
+    const flipped = this.computeFlip(domino, branchNum, branch, phase);
+
+    return { x, y, rotation, standing, branch, flipped };
+  }
+
+  private computeFlip(domino: Domino, branchNum: number, branch: 'left' | 'right', phase: number): boolean {
+    // Doubles are symmetric - never need flipping
+    if (domino.isDouble) return false;
+    // If branchNum is -1 (first tile), no flip needed
+    if (branchNum < 0) return false;
+
+    // Determine if the growth direction is "normal" (outward from center) or "reversed"
+    // Normal: phases 0, 1, 3 | Reversed: phases 2, 4+
+    const reversed = phase === 2 || phase >= 4;
+
+    // For right+normal or left+reversed: topIndex should face the connection
+    //   → flip needed when bottomIndex matches branchNum
+    // For right+reversed or left+normal: bottomIndex should face the connection
+    //   → flip needed when topIndex matches branchNum
+    const topShouldMatch = (branch === 'right') !== reversed;
+
+    if (topShouldMatch) {
+      return domino.bottomIndex === branchNum && domino.topIndex !== branchNum;
+    } else {
+      return domino.topIndex === branchNum && domino.bottomIndex !== branchNum;
+    }
   }
 
   confirmMoving(board: BoardState, domino: Domino, branch: 'left' | 'right'): void {

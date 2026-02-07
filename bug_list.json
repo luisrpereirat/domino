@@ -1,1 +1,37 @@
-[]
+[
+  {
+    "id": "BUG-001",
+    "status": "verified",
+    "feature_index": 133,
+    "description": "Tiles placed on the board extend beyond the visible screen on both left and right sides as the chain grows, making them impossible to see. The board/camera should automatically zoom out as tiles are placed so that all laid-down tiles remain visible at all times. Players need to see all tiles to count points.",
+    "evidence": [
+      "docs/screenshots/bug-001-tiles-overflow-screen.png"
+    ],
+    "steps_to_reproduce": [
+      "Step 1: Start a new game on any difficulty",
+      "Step 2: Play through several rounds until many tiles have been placed on the board",
+      "Step 3: Observe that the tile chain extends beyond the left and right edges of the visible canvas",
+      "Step 4: Tiles near the edges are cut off and not visible to the player"
+    ],
+    "reported_session": "Manual testing",
+    "resolved_session": "BUG-001 fix: auto-zoom boardContainer"
+  },
+  {
+    "id": "BUG-002",
+    "status": "verified",
+    "feature_index": 38,
+    "description": "Non-double tiles are placed on the board without being flipped so the matching pip faces the connecting tile. For example, a 1-6 tile connecting to a 6-end should display as 6-1 (matching number adjacent), but it renders as 1-6 with the non-matching end facing the connection. This affects all non-double tiles for all players (human and AI) on both branches.",
+    "evidence": [
+      "docs/screenshots/bug-002-tiles-flipped-wrong.png",
+      "docs/screenshots/flip-fix-test4.png"
+    ],
+    "steps_to_reproduce": [
+      "Step 1: Start a new game on any difficulty",
+      "Step 2: Play until several non-double tiles have been placed on the board",
+      "Step 3: Observe that non-double tiles do not have their matching pip oriented toward the adjacent connecting tile",
+      "Step 4: For example, tile 0-6 connects to the chain but shows 1-6 instead of 6-1 facing the connection point"
+    ],
+    "reported_session": "Manual testing",
+    "resolved_session": "Session 4: fixed rotation from CW to CCW and added flip logic"
+  }
+]

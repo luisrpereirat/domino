@@ -575,7 +575,7 @@
       "Step 4: Verify the open end becomes the new branch number"
     ],
     "passes": true,
-    "screenshots": null
+    "screenshots": ["docs/screenshots/flip-fix-test4.png"]
   },
   {
     "category": "functional",
@@ -1856,7 +1856,9 @@
       "Step 4: Verify the board remains centered"
     ],
     "passes": true,
-    "screenshots": null
+    "screenshots": [
+      "docs/screenshots/bug001-autozoom-13tiles.png"
+    ]
   },
   {
     "category": "functional",
