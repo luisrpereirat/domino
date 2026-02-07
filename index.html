@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Quarzen's Domino</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html, body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: #000;
+      }
+      #game-container {
+        width: 100%;
+        height: 100%;
+      }
+      #rotate-message {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #0D2818;
+        color: #fff;
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 2rem;
+      }
+      #rotate-message .icon {
+        font-size: 64px;
+        margin-bottom: 1rem;
+        animation: rotate-anim 2s ease-in-out infinite;
+      }
+      #rotate-message p {
+        font-size: 18px;
+        max-width: 300px;
+      }
+      @keyframes rotate-anim {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(90deg); }
+        75% { transform: rotate(90deg); }
+      }
+      @media (orientation: portrait) and (max-width: 768px) {
+        #rotate-message {
+          display: flex;
+        }
+        #game-container {
+          display: none;
+        }
+      }
+
+      /* Rules Modal */
+      #rules-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+      #rules-overlay.visible {
+        display: flex;
+      }
+      #rules-modal {
+        background-color: #3E2723;
+        border: 3px solid #5D4037;
+        border-radius: 12px;
+        color: #fff;
+        max-width: 600px;
+        max-height: 80vh;
+        width: 90%;
+        padding: 24px;
+        overflow-y: auto;
+        position: relative;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      #rules-modal h2 {
+        font-family: Georgia, serif;
+        font-size: 28px;
+        margin-bottom: 16px;
+        color: #FFD700;
+      }
+      #rules-modal h3 {
+        font-family: Georgia, serif;
+        font-size: 20px;
+        margin-top: 16px;
+        margin-bottom: 8px;
+        color: #FFD700;
+      }
+      #rules-modal p {
+        margin-bottom: 12px;
+      }
+      #rules-close-btn {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 24px;
+        cursor: pointer;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: background-color 0.2s;
+      }
+      #rules-close-btn:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="game-container"></div>
+
+    <div id="rotate-message">
+      <div class="icon">&#x1F4F1;</div>
+      <p>Please rotate your device to landscape mode for the best experience.</p>
+    </div>
+
+    <div id="rules-overlay">
+      <div id="rules-modal">
+        <button id="rules-close-btn" aria-label="Close rules">&times;</button>
+        <h2>Rules of Dominoes</h2>
+
+        <h3>Tiles</h3>
+        <p>The game uses a standard double-six domino set of 28 tiles. Each tile has two halves showing pip values from 0 to 6. Tiles where both halves show the same number (e.g., 3-3) are called "doubles."</p>
+
+        <h3>Gameplay</h3>
+        <p>Each player receives 7 tiles at the start. A random player goes first and places any tile at the center of the board. After that, players take turns placing tiles that match the open end of either branch on the board. The matching pip value must connect to the branch end.</p>
+
+        <h3>Passing</h3>
+        <p>If you have no tiles that match either open end, you must pass your turn. When a player passes, the last player who successfully placed a tile earns 1 point.</p>
+
+        <h3>Scoring</h3>
+        <p>Points are awarded when opponents pass. Each time any player passes, the player who most recently placed a tile on the board earns 1 point.</p>
+
+        <h3>Winning</h3>
+        <p>The first player to place all their tiles wins the game. If all players must pass in sequence (no one can play), the game ends in a "Fish" (blocked game).</p>
+
+        <h3>AI Difficulty</h3>
+        <p><strong>Easy:</strong> The AI tries to help you by playing tiles that leave matching numbers for your hand. It avoids moves that would force you to pass.</p>
+        <p><strong>Random:</strong> The AI picks any valid tile at random with no strategy. This is the baseline difficulty.</p>
+        <p><strong>Hard:</strong> The AI plays strategically, analyzing hands to block you and help itself. It tries to leave numbers you can't match.</p>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,3107 @@
+[
+  {
+    "category": "functional",
+    "description": "Application loads and Phaser game canvas renders in the browser",
+    "steps": [
+      "Step 1: Navigate to localhost:5173",
+      "Step 2: Verify the page loads without errors",
+      "Step 3: Verify a Phaser canvas element exists in the DOM",
+      "Step 4: Verify the canvas has a visible rendered game scene"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Phaser canvas uses 960x600 base resolution with FIT scaling",
+    "steps": [
+      "Step 1: Navigate to the game",
+      "Step 2: Verify the Phaser config uses 960x600 resolution",
+      "Step 3: Resize the browser window",
+      "Step 4: Verify the canvas scales to fit while maintaining aspect ratio",
+      "Step 5: Verify letterboxing (black bars) appears if aspect ratio differs"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "MenuScene loads as the initial scene with game title displayed",
+    "steps": [
+      "Step 1: Navigate to the game",
+      "Step 2: Verify the MenuScene is the active scene",
+      "Step 3: Verify 'Quarzen's Domino' title text is visible",
+      "Step 4: Take screenshot to confirm title rendering"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "MenuScene displays three difficulty buttons: Easy, Random, Hard",
+    "steps": [
+      "Step 1: Navigate to the game MenuScene",
+      "Step 2: Verify 'Easy' button is visible",
+      "Step 3: Verify 'Random' button is visible",
+      "Step 4: Verify 'Hard' button is visible",
+      "Step 5: Verify buttons are vertically stacked at center"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Clicking Easy button starts a new game with difficulty 0",
+    "steps": [
+      "Step 1: Navigate to the game MenuScene",
+      "Step 2: Click the 'Easy' button",
+      "Step 3: Verify scene transitions to GameScene",
+      "Step 4: Verify the game state has difficulty set to 0"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Clicking Random button starts a new game with difficulty 1",
+    "steps": [
+      "Step 1: Navigate to the game MenuScene",
+      "Step 2: Click the 'Random' button",
+      "Step 3: Verify scene transitions to GameScene",
+      "Step 4: Verify the game state has difficulty set to 1"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Clicking Hard button starts a new game with difficulty 2",
+    "steps": [
+      "Step 1: Navigate to the game MenuScene",
+      "Step 2: Click the 'Hard' button",
+      "Step 3: Verify scene transitions to GameScene",
+      "Step 4: Verify the game state has difficulty set to 2"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Scene transition from MenuScene to GameScene uses 0.5s fade to black",
+    "steps": [
+      "Step 1: Navigate to the game MenuScene",
+      "Step 2: Click any difficulty button",
+      "Step 3: Verify the screen fades to black over approximately 0.5 seconds",
+      "Step 4: Verify the GameScene appears after the fade"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Rules button is visible on the MenuScene below difficulty buttons",
+    "steps": [
+      "Step 1: Navigate to the game MenuScene",
+      "Step 2: Verify a 'Rules' button is visible",
+      "Step 3: Verify it is positioned below the difficulty buttons"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Rules modal opens when Rules button is clicked and displays game rules",
+    "steps": [
+      "Step 1: Navigate to the game MenuScene",
+      "Step 2: Click the 'Rules' button",
+      "Step 3: Verify a modal overlay appears with a dark semi-transparent backdrop",
+      "Step 4: Verify the modal contains a title/heading about domino rules",
+      "Step 5: Verify the Tiles section explains the double-six set with 28 tiles",
+      "Step 6: Verify the Gameplay section explains turn order and tile matching",
+      "Step 7: Verify the Passing section explains pass mechanics and scoring penalty",
+      "Step 8: Verify the Scoring section explains point system",
+      "Step 9: Verify the Winning section explains win and fish conditions",
+      "Step 10: Verify the AI Difficulty section explains Easy, Random, and Hard modes",
+      "Step 11: Verify the modal has a close button (X) in the top-right corner",
+      "Step 12: Verify the modal text is readable with proper font size and line spacing",
+      "Step 13: Take screenshot of rules modal"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Rules modal closes when X button is clicked",
+    "steps": [
+      "Step 1: Open the Rules modal from MenuScene",
+      "Step 2: Click the X close button",
+      "Step 3: Verify the modal closes",
+      "Step 4: Verify the MenuScene is fully visible again"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Rules modal closes when clicking outside the modal",
+    "steps": [
+      "Step 1: Open the Rules modal from MenuScene",
+      "Step 2: Click outside the modal area",
+      "Step 3: Verify the modal closes",
+      "Step 4: Verify the MenuScene is fully visible again"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Rules modal content is scrollable if it extends beyond visible area",
+    "steps": [
+      "Step 1: Open the Rules modal from MenuScene",
+      "Step 2: Verify the modal content is scrollable",
+      "Step 3: Scroll down to verify more content is accessible"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Mute toggle icon is visible in top-right corner of MenuScene",
+    "steps": [
+      "Step 1: Navigate to the game MenuScene",
+      "Step 2: Verify a mute/unmute icon is visible in the top-right corner",
+      "Step 3: Click the mute icon to toggle mute state",
+      "Step 4: Verify the icon changes to reflect the new state"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Mute preference persists across page reloads via localStorage",
+    "steps": [
+      "Step 1: Navigate to the game MenuScene",
+      "Step 2: Click the mute toggle to mute",
+      "Step 3: Reload the page",
+      "Step 4: Verify the mute state is still muted",
+      "Step 5: Click to unmute, reload, verify unmuted"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Tile generation produces 28 tiles for double-six set (maxPip=6)",
+    "steps": [
+      "Step 1: Start a new game",
+      "Step 2: Verify 28 tiles are created total",
+      "Step 3: Verify all tiles have valid topIndex and bottomIndex (0-6)",
+      "Step 4: Verify doubles exist (0-0, 1-1, 2-2, 3-3, 4-4, 5-5, 6-6)"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Tile generation is parameterized by maxPip, not hardcoded to 28",
+    "steps": [
+      "Step 1: Inspect tile generation code",
+      "Step 2: Verify a maxPip parameter controls tile set size",
+      "Step 3: Verify no hardcoded references to 28 tiles or IDs 0-27 as constants"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Each tile has correct topIndex and bottomIndex values following the ID mapping",
+    "steps": [
+      "Step 1: Start a new game",
+      "Step 2: Verify tile IDs 0-6 have topIndex=0 and bottomIndex values 0,1,2,3,4,5,6 respectively",
+      "Step 3: Verify tile IDs 7-12 have topIndex=1 and bottomIndex values 1,2,3,4,5,6 respectively",
+      "Step 4: Verify tile IDs 13-17 have topIndex=2 and bottomIndex values 2,3,4,5,6 respectively",
+      "Step 5: Verify tile IDs 18-21 have topIndex=3 and bottomIndex values 3,4,5,6 respectively",
+      "Step 6: Verify tile IDs 22-24 have topIndex=4 and bottomIndex values 4,5,6 respectively",
+      "Step 7: Verify tile IDs 25-26 have topIndex=5 and bottomIndex values 5,6 respectively",
+      "Step 8: Verify tile ID 27 is 6-6 (topIndex=6, bottomIndex=6)",
+      "Step 9: Verify no duplicate tile IDs exist in the full set of 28 tiles",
+      "Step 10: Verify every combination of (topIndex, bottomIndex) where topIndex <= bottomIndex appears exactly once"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "All 28 tiles appear stacked at the center deck position at game start",
+    "steps": [
+      "Step 1: Start a new game",
+      "Step 2: Verify tiles appear at the center of the board before distribution",
+      "Step 3: Take screenshot showing tiles at deck position"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Animated tile distribution deals 7 tiles to each of 4 players",
+    "steps": [
+      "Step 1: Start a new game",
+      "Step 2: Wait for tile distribution animation to begin (after 1s pause)",
+      "Step 3: Verify tiles animate from deck center to hand positions",
+      "Step 4: Verify Player (bottom) receives 7 tiles",
+      "Step 5: Verify Left AI receives 7 tiles",
+      "Step 6: Verify Top AI receives 7 tiles",
+      "Step 7: Verify Right AI receives 7 tiles",
+      "Step 8: Verify distribution order: Player first, then Left, Top, Right",
+      "Step 9: Verify deal animation timing (~1.0s per tile, 0.2s stagger)",
+      "Step 10: Take screenshot after distribution completes"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Player tiles flip from back to face after arriving in hand",
+    "steps": [
+      "Step 1: Start a new game and watch tile distribution",
+      "Step 2: Verify player tiles show backs during distribution",
+      "Step 3: Verify player tiles flip to show faces after arriving in hand",
+      "Step 4: Take screenshot showing player tiles face-up"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "AI tiles remain face-down (showing backs) after distribution",
+    "steps": [
+      "Step 1: Start a new game and wait for distribution to complete",
+      "Step 2: Verify Left AI tiles show backs (face-down)",
+      "Step 3: Verify Top AI tiles show backs (face-down)",
+      "Step 4: Verify Right AI tiles show backs (face-down)",
+      "Step 5: Take screenshot confirming AI tiles are face-down"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game Started message appears for 1 second after distribution completes",
+    "steps": [
+      "Step 1: Start a new game",
+      "Step 2: Wait for tile distribution to complete",
+      "Step 3: Verify 'Game Started' message appears on screen",
+      "Step 4: Verify the message disappears after approximately 1 second"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "A random starting player is selected with equal 1-in-4 probability",
+    "steps": [
+      "Step 1: Start multiple new games",
+      "Step 2: Record which player starts first each time",
+      "Step 3: Verify that all 4 players can be selected as the starter",
+      "Step 4: Verify the selection appears random"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Turn indicator displays whose turn it is (Your Turn / AI Name's Turn)",
+    "steps": [
+      "Step 1: Start a new game and wait for distribution",
+      "Step 2: Verify turn indicator text shows whose turn it is",
+      "Step 3: Verify 'Your Turn' shows when it's the player's turn",
+      "Step 4: Verify '{AI Name}'s Turn' shows during AI turns"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Turn order follows Player -> Left AI -> Top AI -> Right AI cycle",
+    "steps": [
+      "Step 1: Start a new game where Player goes first",
+      "Step 2: Verify turn indicator shows 'Your Turn'",
+      "Step 3: Player places a tile, verify turn indicator changes to 'Left AI's Turn'",
+      "Step 4: Left AI plays, verify turn indicator changes to 'Top AI's Turn'",
+      "Step 5: Top AI plays, verify turn indicator changes to 'Right AI's Turn'",
+      "Step 6: Right AI plays, verify turn indicator returns to 'Your Turn'",
+      "Step 7: Complete a second full cycle to confirm turn order is stable",
+      "Step 8: Verify player tiles are locked during all three AI turns",
+      "Step 9: Verify player tiles become interactive only during 'Your Turn'",
+      "Step 10: Verify AI thinking indicators appear for each AI during their respective turns"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Valid tiles glow with pulsing highlight during player's turn",
+    "steps": [
+      "Step 1: Start a new game and wait for player's turn",
+      "Step 2: Verify tiles that match open branch numbers have a pulsing glow effect",
+      "Step 3: Verify the glow uses the theme's highlightColor",
+      "Step 4: Verify the pulse cycle is approximately 0.5 seconds"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Invalid/locked tiles appear dimmed with reduced opacity during player's turn",
+    "steps": [
+      "Step 1: Start a new game and wait for player's turn (after first tile placed)",
+      "Step 2: Verify tiles that don't match any branch number are dimmed",
+      "Step 3: Verify dimmed tiles have alpha reduced to approximately 0.4",
+      "Step 4: Verify dimmed tiles are non-interactive (cannot be dragged)"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "All tiles are locked during AI turns",
+    "steps": [
+      "Step 1: Start a new game",
+      "Step 2: During an AI's turn, verify all player tiles are locked/dimmed",
+      "Step 3: Verify no player tiles can be dragged during AI turns"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Player can drag a valid tile from hand toward the board",
+    "steps": [
+      "Step 1: Start a new game and wait for player's turn",
+      "Step 2: Identify a valid (glowing) tile in the player's hand",
+      "Step 3: Press and hold the tile to initiate drag",
+      "Step 4: Verify the tile follows the pointer/mouse position as it is dragged upward",
+      "Step 5: Verify the tile scales to 1.1x while being dragged",
+      "Step 6: Verify the dragged tile renders at the highest depth (above all other game objects)",
+      "Step 7: Verify a subtle drop shadow effect appears on the dragged tile",
+      "Step 8: Verify ghost placement slot(s) appear on the board while dragging",
+      "Step 9: Verify the tile pickup sound plays at drag start (if sound unmuted)",
+      "Step 10: Verify haptic feedback fires on mobile (navigator.vibrate(20))",
+      "Step 11: Take screenshot showing tile mid-drag with ghost slots visible"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Ghost placement slots appear on the board when dragging a valid tile",
+    "steps": [
+      "Step 1: Start a new game and wait for player's turn",
+      "Step 2: Begin dragging a valid tile that matches both branch ends",
+      "Step 3: Verify ghost slot(s) appear on the board at valid placement positions",
+      "Step 4: Verify slots are semi-transparent with gold tint (validSlotColor #FFD700)",
+      "Step 5: Verify slot alpha is between 0.3 and 0.5",
+      "Step 6: Verify up to 2 slots appear (one per branch end) when tile matches both branches",
+      "Step 7: Verify only 1 slot appears when tile matches a single branch",
+      "Step 8: Verify ghost slot orientation matches expected placement (standing for doubles, lying for non-doubles)",
+      "Step 9: Verify ghost slots are positioned correctly according to the 5-phase board algorithm",
+      "Step 10: Release the tile and verify ghost slots disappear immediately",
+      "Step 11: Take screenshot showing ghost slots during drag"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Tile snaps to nearest valid slot when dropped above 1/3 screen height threshold",
+    "steps": [
+      "Step 1: Start a new game and wait for player's turn",
+      "Step 2: Drag a valid tile above the 1/3 screen height threshold",
+      "Step 3: Release the tile near the closest ghost slot",
+      "Step 4: Verify the tile animates (0.5s tween with Power2 easing) to the nearest slot position",
+      "Step 5: Verify the tile rotates to correct orientation (standing for double, lying for non-double)",
+      "Step 6: Verify the tile flips if needed so the matching pip connects to the branch",
+      "Step 7: Verify the tile is now part of the board and no longer interactive",
+      "Step 8: Verify the tile is reparented to the board container at 1.0x scale",
+      "Step 9: Verify the branch number updates to reflect the new open end",
+      "Step 10: Verify the player's hand re-centers with adjusted spacing (now has one fewer tile)",
+      "Step 11: Verify the tile placement sound plays",
+      "Step 12: Take screenshot showing tile snapped to board position"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Tile returns to hand when dropped below 1/3 screen height threshold",
+    "steps": [
+      "Step 1: Start a new game and wait for player's turn",
+      "Step 2: Drag a valid tile but keep it below the 1/3 screen height threshold",
+      "Step 3: Release the tile",
+      "Step 4: Verify the tile animates (0.5s tween) back to its original hand position",
+      "Step 5: Verify the tile remains in the player's hand"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "First tile placement goes to the center of the board",
+    "steps": [
+      "Step 1: Start a new game and wait for first player's turn",
+      "Step 2: Place the first tile (by player or observe AI)",
+      "Step 3: Verify the tile is placed at the center of the board (0,0)",
+      "Step 4: Take screenshot showing first tile at center"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Subsequent tiles must match an open end number to be placed",
+    "steps": [
+      "Step 1: Start a game and place the first tile",
+      "Step 2: Verify the board shows two open branch numbers",
+      "Step 3: Verify only tiles matching those numbers can be placed",
+      "Step 4: Attempt to drag a non-matching tile and verify it cannot be placed"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Two-branch system: tiles grow outward from center in right and left branches",
+    "steps": [
+      "Step 1: Start a game and place the first tile",
+      "Step 2: Place a second tile that matches the right branch",
+      "Step 3: Verify it is placed to the right of center",
+      "Step 4: Place a tile that matches the left branch",
+      "Step 5: Verify it is placed to the left of center"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Double tiles display standing (vertical) during horizontal phases",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Place a double tile (e.g., 3-3) during phase 0",
+      "Step 3: Verify the double tile is rendered in standing/vertical orientation",
+      "Step 4: Take screenshot showing standing double tile"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Non-double tiles display lying (horizontal) during horizontal phases",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Place a non-double tile (e.g., 3-4) during phase 0",
+      "Step 3: Verify the tile is rendered in lying/horizontal orientation (rotated 90 degrees)",
+      "Step 4: Take screenshot showing lying tile"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Tile flips 180 degrees when matching pip is on the wrong half for branch connection",
+    "steps": [
+      "Step 1: Start a game and observe tile placement",
+      "Step 2: Place a tile where the matching pip value is on the bottom half",
+      "Step 3: Verify the tile automatically flips/rotates so the matching end connects to the branch",
+      "Step 4: Verify the open end becomes the new branch number"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Phase 0: Horizontal expansion outward from center for both branches",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Place several tiles on the right branch",
+      "Step 3: Verify they expand horizontally to the right",
+      "Step 4: Place tiles on the left branch",
+      "Step 5: Verify they expand horizontally to the left"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Phase 1: Corner turn at board edge (side limit = 13 tile units)",
+    "steps": [
+      "Step 1: Start a game and place tiles on one branch until reaching the side limit",
+      "Step 2: Verify the branch turns downward/upward at the edge",
+      "Step 3: Verify vertical shift of 1.5 tile units at the corner",
+      "Step 4: Take screenshot showing corner turn"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Phase 2-4: Cross-direction turn and reversed horizontal expansion",
+    "steps": [
+      "Step 1: Continue placing tiles past phase 1 corner",
+      "Step 2: Verify phase 2 cross-direction turn occurs",
+      "Step 3: Verify phase 3 end corner",
+      "Step 4: Verify phase 4+ reversed horizontal expansion",
+      "Step 5: Take screenshot showing multi-phase board layout"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Standing tiles offset by 1 tile unit, lying tiles offset by 2 tile units",
+    "steps": [
+      "Step 1: Place a double (standing) tile and measure offset",
+      "Step 2: Verify standing tile offset is 1 tile unit (60px)",
+      "Step 3: Place a non-double (lying) tile and measure offset",
+      "Step 4: Verify lying tile offset is 2 tile units"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Board state correctly tracks rightBranchNum and leftBranchNum",
+    "steps": [
+      "Step 1: Start a game and place the first tile",
+      "Step 2: Verify rightBranchNum and leftBranchNum are set correctly",
+      "Step 3: Place another tile on the right branch",
+      "Step 4: Verify rightBranchNum updates to the new open end",
+      "Step 5: Place a tile on the left branch",
+      "Step 6: Verify leftBranchNum updates correctly"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "After tile placement, tile is removed from player hand and hand re-centers",
+    "steps": [
+      "Step 1: Start a game and count player's tiles (should be 7)",
+      "Step 2: Place a tile on the board",
+      "Step 3: Verify player now has 6 tiles",
+      "Step 4: Verify remaining tiles re-center with adjusted spacing",
+      "Step 5: Take screenshot showing re-centered hand"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Pass button appears when player has no valid moves",
+    "steps": [
+      "Step 1: Play until the player has no tiles matching any branch number",
+      "Step 2: Verify the Pass button appears and is enabled",
+      "Step 3: Verify the button text says 'Pass'",
+      "Step 4: Verify all player tiles are dimmed/locked"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Pass button is hidden/disabled when player has valid moves",
+    "steps": [
+      "Step 1: Start a new game where player has valid moves",
+      "Step 2: Verify the Pass button is not visible or is disabled",
+      "Step 3: Verify valid tiles can be dragged"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Clicking Pass button awards 1 point to lastActivePlayer",
+    "steps": [
+      "Step 1: Play until the player must pass",
+      "Step 2: Note the lastActivePlayer and their score",
+      "Step 3: Click the Pass button",
+      "Step 4: Verify lastActivePlayer's score increases by 1",
+      "Step 5: Verify score display updates with pulse animation"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Pass message appears for 1 second when any player passes",
+    "steps": [
+      "Step 1: Play until a pass occurs (player or AI)",
+      "Step 2: Verify a 'Pass' message appears on screen",
+      "Step 3: Verify the message disappears after approximately 1 second"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "AI automatically passes when it has no valid moves",
+    "steps": [
+      "Step 1: Play a game until an AI has no matching tiles",
+      "Step 2: Verify the AI automatically passes (no user action needed)",
+      "Step 3: Verify pass sound plays and pass message appears",
+      "Step 4: Verify lastActivePlayer score increases by 1"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Fish/blocked game ends when all players pass back to lastActivePlayer",
+    "steps": [
+      "Step 1: Play a game until all players begin passing consecutively",
+      "Step 2: Observe the pass count building as each player passes in succession",
+      "Step 3: Verify each pass awards 1 point to the lastActivePlayer",
+      "Step 4: Verify the fish condition triggers when all 4 players pass back to the lastActivePlayer",
+      "Step 5: Verify 'Fish - Game Over' message appears with bounce animation",
+      "Step 6: Verify all player tiles are locked and non-interactive",
+      "Step 7: Verify the Pass button is disabled or hidden",
+      "Step 8: Verify the game over message persists permanently on screen",
+      "Step 9: Verify the hamburger menu button remains accessible",
+      "Step 10: Verify scores reflect all pass penalties accumulated during the game"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game ends when a player places their last tile (win condition)",
+    "steps": [
+      "Step 1: Play a game until a player has only 1 tile remaining",
+      "Step 2: The player places their last tile on the board",
+      "Step 3: Verify game over check triggers immediately after the placement",
+      "Step 4: Verify 'You win!' message appears if human wins, or '{AI Name} wins!' if AI wins",
+      "Step 5: Verify game over message has dramatic bounce entrance animation (1.0s scale from 0 to 1)",
+      "Step 6: Verify the game over sound plays (win sound for human, lose sound for AI win)",
+      "Step 7: Verify all remaining tiles across all hands are locked and non-interactive",
+      "Step 8: Verify no further moves can be made (turn cycle stops)",
+      "Step 9: Verify the game over message persists permanently on screen",
+      "Step 10: Verify the hamburger menu remains accessible in the game over state"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game over message persists permanently on screen",
+    "steps": [
+      "Step 1: Reach a game over condition (win or fish)",
+      "Step 2: Verify the game over message stays on screen",
+      "Step 3: Wait several seconds, verify message does not auto-dismiss"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "AI Random strategy picks any valid matching tile randomly",
+    "steps": [
+      "Step 1: Start a game on Random difficulty and wait for an AI turn",
+      "Step 2: Observe the AI's tile selection on the first AI turn",
+      "Step 3: Verify the AI picks a valid tile that matches a branch number",
+      "Step 4: Verify the AI thinking delay is between 0.5-3.0 seconds before placing",
+      "Step 5: Verify the tile flip animation plays before placement",
+      "Step 6: Continue observing AI tile selections for multiple turns",
+      "Step 7: Restart the game and observe whether AIs pick different tiles (non-deterministic)",
+      "Step 8: Start a third game on Random difficulty and continue observing",
+      "Step 9: Verify no consistent strategic pattern across multiple games (selections vary)",
+      "Step 10: Verify all three AIs follow the same random strategy (no preferential behavior)"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "AI Hard strategy classifies tiles as good/bad relative to next player",
+    "steps": [
+      "Step 1: Start a game on Hard difficulty",
+      "Step 2: Observe Right AI behavior (the AI directly before the human player)",
+      "Step 3: Verify Right AI tends to play tiles that leave branch numbers NOT matching the human's hand",
+      "Step 4: Observe Left AI and Top AI behavior (not directly before human)",
+      "Step 5: Verify Left AI and Top AI tend to play tiles that help the next player in cycle",
+      "Step 6: Play through several turns and track which branch numbers are left open",
+      "Step 7: Verify Hard AI with only one valid tile plays it regardless of good/bad classification",
+      "Step 8: Restart the game on Hard and continue observing the blocking pattern",
+      "Step 9: Verify the strategic pattern is consistent across multiple games on Hard difficulty",
+      "Step 10: Take screenshot of board state showing evidence of strategic AI placement"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "AI Easy strategy helps the human player by preferring good tiles",
+    "steps": [
+      "Step 1: Start a game on Easy difficulty",
+      "Step 2: Observe AI behavior on the first round of turns",
+      "Step 3: Verify AIs tend to play tiles that leave branch numbers matching the human's hand",
+      "Step 4: Verify AIs avoid moves that would force the human to pass",
+      "Step 5: Verify Easy AIs prefer non-double good tiles over double good tiles",
+      "Step 6: Play multiple turns and track whether the human has valid moves after each AI turn",
+      "Step 7: Verify the human rarely needs to pass when AIs have strategic choices available",
+      "Step 8: Restart the game on Easy and continue observing helpful behavior",
+      "Step 9: Verify Easy AI sometimes passes voluntarily if all moves would block the human",
+      "Step 10: Compare ease of gameplay on Easy vs Hard to confirm Easy is noticeably more forgiving"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "AI thinking delay is random 0.5-3.0 seconds before making a move",
+    "steps": [
+      "Step 1: Start a game and observe AI turns",
+      "Step 2: Measure the delay between turn start and AI move",
+      "Step 3: Verify delay varies between approximately 0.5 and 3.0 seconds",
+      "Step 4: Verify delay feels natural and not instant"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "AI thinking indicator shows animated dots during AI thinking delay",
+    "steps": [
+      "Step 1: Start a game and wait for an AI turn",
+      "Step 2: Verify animated dots (...) appear near the AI's name",
+      "Step 3: Verify the indicator disappears after the AI makes its move"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "AI tile flips from back to face before placement animation",
+    "steps": [
+      "Step 1: Start a game and watch an AI turn",
+      "Step 2: Verify the AI's selected tile flips from back to face (0.4s flip animation)",
+      "Step 3: Verify the tile then animates from AI hand to board slot"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Hamburger menu button visible in top-right corner during gameplay",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Verify a hamburger menu icon (three horizontal lines) is visible in the top-right",
+      "Step 3: Verify it has at least 50x50px touch target"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Clicking hamburger menu opens pause menu overlay",
+    "steps": [
+      "Step 1: Start a game and wait for distribution to complete",
+      "Step 2: Click the hamburger menu button in the top-right corner",
+      "Step 3: Verify a dark semi-transparent overlay appears (black at 70% opacity)",
+      "Step 4: Verify the overlay covers the entire scene",
+      "Step 5: Verify a centered popup panel appears with dark brown background (#3E2723)",
+      "Step 6: Verify the popup panel has a medium brown border (#5D4037)",
+      "Step 7: Verify the 'Resume' button is visible with correct styling",
+      "Step 8: Verify the 'Restart' button is visible with correct styling",
+      "Step 9: Verify the 'Main Menu' button is visible with correct styling",
+      "Step 10: Verify the game is visible but dimmed behind the overlay",
+      "Step 11: Take screenshot of the pause menu overlay"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game logic pauses while pause menu overlay is visible",
+    "steps": [
+      "Step 1: Start a game during an AI's turn",
+      "Step 2: Open the pause menu",
+      "Step 3: Wait several seconds",
+      "Step 4: Verify no AI moves occur while paused",
+      "Step 5: Resume and verify AI continues its turn"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Resume button closes pause overlay and resumes game exactly where paused",
+    "steps": [
+      "Step 1: Start a game and open the pause menu",
+      "Step 2: Click the 'Resume' button",
+      "Step 3: Verify the overlay closes",
+      "Step 4: Verify the game continues from exactly where it was paused"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Clicking outside pause popup panel acts as Resume",
+    "steps": [
+      "Step 1: Start a game and open the pause menu",
+      "Step 2: Click outside the popup panel area",
+      "Step 3: Verify the overlay closes (same as Resume)",
+      "Step 4: Verify the game continues"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Restart button destroys game and starts new game with same difficulty",
+    "steps": [
+      "Step 1: Start a game on Hard difficulty",
+      "Step 2: Play for several turns to place tiles, accumulate scores, and modify game state",
+      "Step 3: Open pause menu by clicking the hamburger menu button",
+      "Step 4: Verify Resume, Restart, Main Menu buttons are visible",
+      "Step 5: Click the 'Restart' button",
+      "Step 6: Verify the game restarts with a fresh tile distribution animation",
+      "Step 7: Verify all scores reset to 0",
+      "Step 8: Verify the board is empty with no placed tiles from the previous game",
+      "Step 9: Verify the difficulty remains Hard (AI behavior consistent with Hard mode)",
+      "Step 10: Verify 'Game Started' message appears after distribution completes"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Main Menu button returns to MenuScene from pause menu",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Open pause menu and click 'Main Menu'",
+      "Step 3: Verify scene transitions back to MenuScene",
+      "Step 4: Verify game state is fully destroyed",
+      "Step 5: Verify MenuScene displays correctly"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Score display shows 'Score: 0' for all players at game start",
+    "steps": [
+      "Step 1: Start a new game",
+      "Step 2: After distribution completes, verify all 4 score displays show 'Score: 0'",
+      "Step 3: Verify score displays are positioned near each player's hand"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Score updates immediately on pass with brief pulse animation",
+    "steps": [
+      "Step 1: Play until a pass occurs",
+      "Step 2: Verify the scoring player's score increments by 1",
+      "Step 3: Verify a scale-pulse animation plays on the score display (0.3s, 1.2x scale)"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Theme system loads all assets from theme.json configuration",
+    "steps": [
+      "Step 1: Start the game",
+      "Step 2: Verify tile sprites load from the theme's tile images",
+      "Step 3: Verify background images load from theme paths",
+      "Step 4: Verify colors match theme.json color definitions",
+      "Step 5: Verify no hardcoded asset paths in code"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "ThemeManager provides all asset paths - no hardcoded image/sound paths",
+    "steps": [
+      "Step 1: Search codebase for hardcoded asset path strings",
+      "Step 2: Verify all asset references go through ThemeManager",
+      "Step 3: Verify changing theme.json paths would change loaded assets"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Tile placement sound plays when a tile snaps to a valid board slot",
+    "steps": [
+      "Step 1: Start a game with sound unmuted",
+      "Step 2: Place a tile on the board",
+      "Step 3: Verify a placement sound plays (wood clack)",
+      "Step 4: Verify the sound comes from the theme's tilePlace sound file"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Pass sound plays when any player passes",
+    "steps": [
+      "Step 1: Play until a pass occurs with sound unmuted",
+      "Step 2: Verify a pass sound plays",
+      "Step 3: Verify the sound comes from the theme's pass sound file"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Button click sound plays on any menu or UI button press",
+    "steps": [
+      "Step 1: Navigate to MenuScene with sound unmuted",
+      "Step 2: Click a difficulty button",
+      "Step 3: Verify a button click sound plays"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Audio handles missing sound files gracefully without errors",
+    "steps": [
+      "Step 1: Remove or rename a sound file from the theme folder",
+      "Step 2: Start the game",
+      "Step 3: Trigger the action that would play the missing sound",
+      "Step 4: Verify no error occurs - the action plays silently",
+      "Step 5: Verify the game continues to function normally"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Audio context initializes on first user interaction (autoplay policy)",
+    "steps": [
+      "Step 1: Navigate to the game (fresh load)",
+      "Step 2: Verify no audio plays before user interaction",
+      "Step 3: Click on any game element",
+      "Step 4: Verify audio context is initialized and sounds can play"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "GameState class is serializable to JSON and reconstructable",
+    "steps": [
+      "Step 1: Start a game and play several turns",
+      "Step 2: Serialize the game state to JSON using toJSON()",
+      "Step 3: Reconstruct the state using fromJSON()",
+      "Step 4: Verify the reconstructed state matches the original"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "EventBus emits game events (turnStart, turnEnd, tilePlace, pass, gameOver)",
+    "steps": [
+      "Step 1: Start a game and subscribe to EventBus events",
+      "Step 2: Play through several turns",
+      "Step 3: Verify turnStart events fire at the beginning of each turn",
+      "Step 4: Verify tilePlace events fire on tile placement",
+      "Step 5: Verify pass events fire when players pass",
+      "Step 6: Verify gameOver event fires at game end"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Player hand layout auto-adjusts spacing based on remaining tile count",
+    "steps": [
+      "Step 1: Start a game with 7 tiles in hand",
+      "Step 2: Note the tile spacing",
+      "Step 3: Place 2-3 tiles",
+      "Step 4: Verify remaining tiles re-center with adjusted spacing",
+      "Step 5: Place more tiles and verify continued adjustment"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Nearest slot detection uses Euclidean distance calculation",
+    "steps": [
+      "Step 1: Ensure board has tiles on both branches (two valid slots)",
+      "Step 2: Drag a valid tile closer to one slot than the other",
+      "Step 3: Release the tile above the threshold",
+      "Step 4: Verify the tile snaps to the nearest slot (by distance)"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Ghost slots disappear when drag ends (whether placed or returned)",
+    "steps": [
+      "Step 1: Start dragging a valid tile to show ghost slots",
+      "Step 2: Drop the tile below threshold (cancel drag)",
+      "Step 3: Verify ghost slots disappear",
+      "Step 4: Drag again and place successfully",
+      "Step 5: Verify ghost slots disappear after placement"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Left AI hand renders as vertical column on left side, 0.5x scale, face down",
+    "steps": [
+      "Step 1: Start a new game and wait for distribution",
+      "Step 2: Verify Left AI tiles are positioned on the left side of the screen",
+      "Step 3: Verify tiles are in a vertical column layout",
+      "Step 4: Verify tiles are at 0.5x scale",
+      "Step 5: Verify tiles show backs (face down)",
+      "Step 6: Verify tiles are rotated 90 degrees (lying)"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Top AI hand renders as horizontal row at top center, 0.5x scale, face down",
+    "steps": [
+      "Step 1: Start a new game and wait for distribution",
+      "Step 2: Verify Top AI tiles are positioned at the top center of the screen",
+      "Step 3: Verify tiles are in a horizontal row layout",
+      "Step 4: Verify tiles are at 0.5x scale",
+      "Step 5: Verify tiles show backs (face down)",
+      "Step 6: Verify tiles are standing (0 degree rotation)"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Right AI hand renders as vertical column on right side, 0.5x scale, face down",
+    "steps": [
+      "Step 1: Start a new game and wait for distribution",
+      "Step 2: Verify Right AI tiles are positioned on the right side of the screen",
+      "Step 3: Verify tiles are in a vertical column layout",
+      "Step 4: Verify tiles are at 0.5x scale",
+      "Step 5: Verify tiles show backs (face down)",
+      "Step 6: Verify tiles are rotated 90 degrees (lying)"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Player hand renders at bottom center, full scale, face up, standing",
+    "steps": [
+      "Step 1: Start a new game and wait for distribution",
+      "Step 2: Verify player tiles are at the bottom center of the screen",
+      "Step 3: Verify tiles are in a horizontal row layout",
+      "Step 4: Verify tiles are at 1.0x (full) scale",
+      "Step 5: Verify tiles show faces (face up)",
+      "Step 6: Verify tiles are standing (vertical orientation)"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Successful tile placement emits tilePlace event through EventBus",
+    "steps": [
+      "Step 1: Start a game and set up EventBus listener",
+      "Step 2: Place a tile on the board",
+      "Step 3: Verify tilePlace event was emitted",
+      "Step 4: Verify event includes tile data and placement info"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game over check runs after each tile placement",
+    "steps": [
+      "Step 1: Play a game until a player has 1 tile remaining",
+      "Step 2: Place that last tile",
+      "Step 3: Verify game over detection triggers immediately",
+      "Step 4: Verify game over message appears"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "End-to-end: full game from menu to win with Easy AI",
+    "steps": [
+      "Step 1: Navigate to game URL",
+      "Step 2: Verify MenuScene loads with title and buttons",
+      "Step 3: Click 'Easy' difficulty button",
+      "Step 4: Verify scene transitions to GameScene",
+      "Step 5: Wait for tile distribution animation to complete",
+      "Step 6: Verify 'Game Started' message appears",
+      "Step 7: Play through the game, placing tiles when valid",
+      "Step 8: Click Pass when no valid moves available",
+      "Step 9: Observe AI turns with thinking delay and animations",
+      "Step 10: Continue until game ends (win, AI win, or Fish)",
+      "Step 11: Verify game over message displays correctly",
+      "Step 12: Open pause menu and click Restart",
+      "Step 13: Verify new game starts fresh with same difficulty"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "End-to-end: full game from menu to Fish condition",
+    "steps": [
+      "Step 1: Navigate to game URL and verify MenuScene loads",
+      "Step 2: Click a difficulty button to start a game",
+      "Step 3: Wait for tile distribution to complete and 'Game Started' message to appear",
+      "Step 4: Play through the game, placing tiles or passing as needed",
+      "Step 5: Observe consecutive passes building up toward a fish condition",
+      "Step 6: Verify 'Fish - Game Over' message appears with bounce animation when all players pass back to lastActivePlayer",
+      "Step 7: Verify all tiles are locked and no further moves can be made",
+      "Step 8: Verify the Pass button is disabled in the game over state",
+      "Step 9: Verify score displays reflect all pass penalties accumulated during the game",
+      "Step 10: Open pause menu and verify Resume, Restart, Main Menu buttons are accessible",
+      "Step 11: Click 'Main Menu' to return to MenuScene",
+      "Step 12: Verify MenuScene loads with clean state (title, buttons visible)",
+      "Step 13: Start a new game and verify fresh tile distribution with reset scores"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "End-to-end: complete game restart cycle with different difficulties",
+    "steps": [
+      "Step 1: Start a game on Easy, play a few turns",
+      "Step 2: Pause and restart - verify same difficulty",
+      "Step 3: Pause and go to Main Menu",
+      "Step 4: Start a game on Random, verify difficulty change",
+      "Step 5: Pause and restart - verify Random difficulty maintained",
+      "Step 6: Pause and go to Main Menu",
+      "Step 7: Start a game on Hard, verify difficulty change",
+      "Step 8: Play through to game end",
+      "Step 9: Verify game over handling",
+      "Step 10: Restart and verify fresh Hard game"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game state is fully destroyed on restart (no stale state)",
+    "steps": [
+      "Step 1: Start a game and play several turns to modify board state and scores",
+      "Step 2: Note which tiles are on the board, current scores, and hand contents",
+      "Step 3: Open pause menu and click 'Restart'",
+      "Step 4: Verify all four score displays reset to 'Score: 0'",
+      "Step 5: Verify new tiles are dealt via fresh distribution animation",
+      "Step 6: Verify the board is completely empty (no placed tiles from previous game)",
+      "Step 7: Verify each player receives 7 new tiles",
+      "Step 8: Verify 'Game Started' message appears after distribution",
+      "Step 9: Verify turn counter resets and a new random starting player is selected",
+      "Step 10: Verify the difficulty level is preserved from the previous game"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Tile dealing animation has 1 second delay before starting",
+    "steps": [
+      "Step 1: Start a new game from the menu",
+      "Step 2: After scene transition, verify there is approximately a 1 second pause",
+      "Step 3: Verify tile dealing animation begins after the pause"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Each deal animation takes 1.0s per tile with 0.2s stagger delay",
+    "steps": [
+      "Step 1: Start a new game and observe the dealing animation",
+      "Step 2: Verify each tile takes approximately 1.0 second to fly from deck to hand",
+      "Step 3: Verify there is approximately 0.2 second stagger between tile deals"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Tile placement animation uses 0.5s tween with Power2 easing",
+    "steps": [
+      "Step 1: Place a tile on the board",
+      "Step 2: Verify the animation takes approximately 0.5 seconds",
+      "Step 3: Verify smooth Power2 easing curve (accelerate then decelerate)"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Tile return to hand uses 0.5s tween when drag is cancelled",
+    "steps": [
+      "Step 1: Start dragging a tile but drop it below the threshold",
+      "Step 2: Verify the tile animates back to its hand position",
+      "Step 3: Verify the animation takes approximately 0.5 seconds"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Dragged tile renders above all other game objects (highest depth)",
+    "steps": [
+      "Step 1: Start dragging a tile",
+      "Step 2: Move it over other tiles and board elements",
+      "Step 3: Verify the dragged tile renders on top of everything else"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Easy AI CausePass analysis: avoids moves that force human to pass",
+    "steps": [
+      "Step 1: Start a game on Easy difficulty",
+      "Step 2: Play multiple games and observe AI behavior",
+      "Step 3: Verify Easy AI avoids leaving branch numbers that don't match any of the human's tiles",
+      "Step 4: Verify when all moves would force a pass, AI checks if passing itself is better",
+      "Step 5: Verify Easy AI sometimes passes voluntarily to avoid forcing human to pass"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Hard AI plays bad tiles when it's the player before the human",
+    "steps": [
+      "Step 1: Start a game on Hard difficulty",
+      "Step 2: Identify the AI that plays right before the human (Right AI)",
+      "Step 3: Observe Right AI's tile selections",
+      "Step 4: Verify Right AI tends to play tiles that block the human"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Hard AI plays good tiles when not directly before the human",
+    "steps": [
+      "Step 1: Start a game on Hard difficulty",
+      "Step 2: Observe Left AI and Top AI tile selections",
+      "Step 3: Verify they tend to play tiles that help the next player in order"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game over: You win! message when human places last tile",
+    "steps": [
+      "Step 1: Play on Easy difficulty until human places last tile",
+      "Step 2: Verify 'You win!' message appears",
+      "Step 3: Verify dramatic bounce entrance animation (1.0s)",
+      "Step 4: Take screenshot of win message"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game over: AI Name wins! message when AI places last tile",
+    "steps": [
+      "Step 1: Play on Hard difficulty until an AI places their last tile",
+      "Step 2: Verify '{AI Name} wins!' message appears",
+      "Step 3: Verify dramatic bounce entrance animation",
+      "Step 4: Take screenshot of AI win message"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Menu button remains active and accessible during game over state",
+    "steps": [
+      "Step 1: Reach a game over condition",
+      "Step 2: Verify the hamburger menu button is still clickable",
+      "Step 3: Click it and verify pause menu opens",
+      "Step 4: Verify Restart and Main Menu options work from game over state"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Non-first tile on board: lying tile initial position shifts by 0.5 units if non-double",
+    "steps": [
+      "Step 1: Start a game where the first tile is a non-double",
+      "Step 2: Verify the initial position shifts by 0.5 units to center visually",
+      "Step 3: Start another game where first tile is a double",
+      "Step 4: Verify no shift for doubles"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Haptic feedback fires on tile placement on mobile (navigator.vibrate(20))",
+    "steps": [
+      "Step 1: Open game on a mobile device or emulator that supports vibration API",
+      "Step 2: Start a game and drag a tile to place it",
+      "Step 3: Verify brief haptic feedback (20ms vibration) fires on drag start"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Touch and mouse input both work via Phaser unified input system",
+    "steps": [
+      "Step 1: Test tile dragging with mouse input",
+      "Step 2: Verify drag-and-drop works with mouse",
+      "Step 3: Simulate touch input (touch events)",
+      "Step 4: Verify drag-and-drop works with touch",
+      "Step 5: Verify no separate touch vs mouse code paths"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Player identity abstracted via Player interface (human/ai/remote types)",
+    "steps": [
+      "Step 1: Inspect the player model code",
+      "Step 2: Verify a Player interface or abstract class exists",
+      "Step 3: Verify playerType field supports 'human', 'ai', and 'remote' values",
+      "Step 4: Verify game logic uses the interface, not concrete types"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "ScoreManager class handles scoring with extensible design",
+    "steps": [
+      "Step 1: Inspect scoring code",
+      "Step 2: Verify a ScoreManager or equivalent class exists",
+      "Step 3: Verify scoring logic is separated from game flow",
+      "Step 4: Verify the design allows alternative scoring rules in future"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "AI strategy logic is separated from AI controller for testability",
+    "steps": [
+      "Step 1: Inspect AI code structure",
+      "Step 2: Verify strategy classes are separate from the controller",
+      "Step 3: Verify strategies receive game state and return tile choice without side effects",
+      "Step 4: Verify strategies can be tested independently"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game emits turnStart and turnEnd events through EventBus",
+    "steps": [
+      "Step 1: Start a game and subscribe to event bus",
+      "Step 2: Play through several turns",
+      "Step 3: Verify turnStart fires at the beginning of each turn",
+      "Step 4: Verify turnEnd fires after each turn completes"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "BoardConfig extracts side limit and offset values as configurable constants",
+    "steps": [
+      "Step 1: Inspect board placement code",
+      "Step 2: Verify side limit (13) is a named constant, not a magic number",
+      "Step 3: Verify tile offsets are configurable values",
+      "Step 4: Verify these could be adjusted for future larger tile sets"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game over sound plays: win sound for human win, lose sound for AI win",
+    "steps": [
+      "Step 1: Play a game where the human wins, verify win sound plays",
+      "Step 2: Play a game where the AI wins, verify lose sound plays",
+      "Step 3: Verify distinct sounds for win vs loss scenarios"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Tile pickup sound plays when player begins dragging a tile",
+    "steps": [
+      "Step 1: Start a game with sound unmuted",
+      "Step 2: Begin dragging a valid tile from hand",
+      "Step 3: Verify a pickup sound plays at drag start"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Tile dealing sound plays during distribution animation (one per tile)",
+    "steps": [
+      "Step 1: Start a new game with sound unmuted",
+      "Step 2: Listen during tile distribution animation",
+      "Step 3: Verify a dealing sound plays for each tile dealt"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game start sound plays after tile distribution completes",
+    "steps": [
+      "Step 1: Start a new game with sound unmuted",
+      "Step 2: Wait for tile distribution to complete",
+      "Step 3: Verify a game start sound plays"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "DeckManager creates 28 tiles and distributes 7 to each of 4 players",
+    "steps": [
+      "Step 1: Inspect DeckManager implementation",
+      "Step 2: Verify it creates 28 tiles for maxPip=6",
+      "Step 3: Verify it distributes 7 tiles to each of 4 player hands",
+      "Step 4: Verify distribution is random (different each game)"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Domino data class has isDouble getter",
+    "steps": [
+      "Step 1: Inspect Domino class/interface",
+      "Step 2: Verify isDouble getter returns true when topIndex === bottomIndex",
+      "Step 3: Verify it returns false for non-doubles"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Placed tiles array in BoardState records all placed tiles with position data",
+    "steps": [
+      "Step 1: Start a game and place several tiles",
+      "Step 2: Inspect BoardState.placedTiles array",
+      "Step 3: Verify each entry has domino, x, y, rotation, and branch data",
+      "Step 4: Verify entries match actual on-screen tile positions"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Message banner: fade in 0.3s, hold for configured duration, fade out 0.3s",
+    "steps": [
+      "Step 1: Trigger a message banner (e.g., Game Started, Pass)",
+      "Step 2: Verify the message fades in over approximately 0.3 seconds",
+      "Step 3: Verify it holds for the configured duration",
+      "Step 4: Verify it fades out over approximately 0.3 seconds"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game over text entrance animation: 1.0s scale from 0 to 1 with Bounce easing",
+    "steps": [
+      "Step 1: Reach a game over condition",
+      "Step 2: Verify the game over message has a dramatic entrance animation",
+      "Step 3: Verify it scales from 0 to 1 over approximately 1.0 second",
+      "Step 4: Verify bounce easing is used"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Valid tile highlight pulses with 0.5s cycle between alpha 0.3 and 0.8",
+    "steps": [
+      "Step 1: Wait for player's turn",
+      "Step 2: Observe valid tiles",
+      "Step 3: Verify a pulsing glow effect with approximately 0.5s cycle",
+      "Step 4: Verify alpha oscillates between approximately 0.3 and 0.8"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "AI tile flip animation: 0.2s scale to 0 (back), swap texture, 0.2s scale to 1 (face)",
+    "steps": [
+      "Step 1: Start a game and observe an AI turn",
+      "Step 2: Verify the selected AI tile flips: horizontal scale to 0 (0.2s)",
+      "Step 3: Verify texture swaps from back to face at midpoint",
+      "Step 4: Verify horizontal scale animates back to 1 (0.2s)"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Scene transition: 0.5s fade to black between MenuScene and GameScene",
+    "steps": [
+      "Step 1: From MenuScene, click a difficulty button",
+      "Step 2: Verify scene fades to black over 0.5 seconds",
+      "Step 3: Verify GameScene appears after fade",
+      "Step 4: From GameScene, go to Main Menu via pause",
+      "Step 5: Verify scene fades to black over 0.5 seconds",
+      "Step 6: Verify MenuScene appears after fade"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Button hover animation: 0.15s scale tween to 1.05x",
+    "steps": [
+      "Step 1: Navigate to MenuScene",
+      "Step 2: Hover over a button with the mouse",
+      "Step 3: Verify the button scales to 1.05x with 0.15s tween",
+      "Step 4: Move mouse away and verify button returns to 1.0x scale"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Button press animation: 0.1s scale to 0.95x, then release to 1.0x",
+    "steps": [
+      "Step 1: Navigate to MenuScene",
+      "Step 2: Click/press a button",
+      "Step 3: Verify the button scales to 0.95x on press",
+      "Step 4: Verify it releases back to 1.0x after release"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Score pulse animation: 0.3s scale to 1.2x then back to 1.0x on score change",
+    "steps": [
+      "Step 1: Play until a pass occurs and a score changes",
+      "Step 2: Verify the score display pulses",
+      "Step 3: Verify it scales to 1.2x then back to 1.0x over 0.3 seconds"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Phaser scene cleanup prevents memory leaks on game restart/transition",
+    "steps": [
+      "Step 1: Open DevTools Performance/Memory tab and take initial heap snapshot",
+      "Step 2: Start a game on any difficulty and play for several turns",
+      "Step 3: Open pause menu and click Restart to restart the game",
+      "Step 4: Play a few turns in the restarted game",
+      "Step 5: Restart again via pause menu (second restart)",
+      "Step 6: Go to Main Menu via pause menu",
+      "Step 7: Start a new game from the menu",
+      "Step 8: Take a second heap snapshot and compare to initial",
+      "Step 9: Verify no significant increase in memory usage (no growing leak)",
+      "Step 10: Verify no orphaned game objects, event listeners, or tweens in the Phaser scene"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Zero console errors during normal gameplay",
+    "steps": [
+      "Step 1: Open browser DevTools console",
+      "Step 2: Play through a complete game from menu to game over",
+      "Step 3: Verify zero console errors appear",
+      "Step 4: Verify zero console warnings appear (or only expected ones)"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "TypeScript strict mode with zero type errors",
+    "steps": [
+      "Step 1: Run TypeScript compiler with strict mode",
+      "Step 2: Verify zero type errors",
+      "Step 3: Verify strict mode is enabled in tsconfig.json"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Vite production build succeeds with tree-shaking and minification",
+    "steps": [
+      "Step 1: Run npm run build",
+      "Step 2: Verify build completes without errors",
+      "Step 3: Verify output is in dist/ directory",
+      "Step 4: Verify bundle is minified and tree-shaken"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "PWA manifest.json has correct app name, icons, display, and orientation",
+    "steps": [
+      "Step 1: Check manifest.json exists in the public directory or project root",
+      "Step 2: Verify app name is 'Quarzen's Domino'",
+      "Step 3: Verify short name is 'Domino'",
+      "Step 4: Verify display mode is 'standalone'",
+      "Step 5: Verify orientation is 'landscape'",
+      "Step 6: Verify icons array contains entry for 192x192 with correct src and type",
+      "Step 7: Verify icons array contains entry for 512x512 with correct src and type",
+      "Step 8: Verify start URL is '/'",
+      "Step 9: Verify theme_color is set to a valid color value",
+      "Step 10: Verify background_color is set to a valid color value",
+      "Step 11: Verify the HTML file includes a link tag referencing manifest.json",
+      "Step 12: Verify the manifest is parseable JSON with no syntax errors"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Service worker registers and precaches game assets for offline use",
+    "steps": [
+      "Step 1: Build the production version with npm run build",
+      "Step 2: Serve the production build from dist/ directory",
+      "Step 3: Open the game in the browser and verify it loads",
+      "Step 4: Open DevTools Application tab and verify service worker is registered",
+      "Step 5: Verify service worker status shows 'activated and running'",
+      "Step 6: Check Cache Storage in DevTools and verify game assets are precached",
+      "Step 7: Verify tile images, background images, and JS bundles are in the cache",
+      "Step 8: Go offline (disconnect network or toggle DevTools offline mode)",
+      "Step 9: Reload the page and verify the game still loads from cache",
+      "Step 10: Start a game and verify it is fully playable offline (menu, gameplay, pause)",
+      "Step 11: Go back online and verify the service worker does not interfere with normal operation"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "PWA install prompt appears after engagement (beforeinstallprompt event)",
+    "steps": [
+      "Step 1: Visit the game URL in a supported browser",
+      "Step 2: Interact with the game for the configured engagement time",
+      "Step 3: Verify install prompt appears (Add to Home Screen)",
+      "Step 4: Verify prompt is dismissible",
+      "Step 5: Verify dismissed prompt respects 7-day cooldown"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Cached PWA bundle size is under 20MB",
+    "steps": [
+      "Step 1: Build the production version",
+      "Step 2: Calculate total size of cached assets",
+      "Step 3: Verify total is under 20MB"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Portrait orientation shows Rotate your device message",
+    "steps": [
+      "Step 1: Open the game in a portrait-oriented viewport (e.g., 400x700)",
+      "Step 2: Verify a 'Rotate your device' message appears covering the full screen",
+      "Step 3: Verify a rotation icon is displayed alongside the message",
+      "Step 4: Verify the game canvas is hidden or obscured behind the message",
+      "Step 5: Take screenshot of the portrait orientation message",
+      "Step 6: Rotate to landscape orientation (e.g., resize to 700x400)",
+      "Step 7: Verify the rotation message disappears",
+      "Step 8: Verify the game canvas is now fully visible and functional",
+      "Step 9: Rotate back to portrait and verify the message reappears",
+      "Step 10: Rotate to landscape again and verify the game resumes its previous state"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game board auto-centers within available canvas space",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Verify the game board area is centered in the canvas",
+      "Step 3: Resize the browser window",
+      "Step 4: Verify the board remains centered"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Theme selector visible in menu if multiple themes exist",
+    "steps": [
+      "Step 1: Create a second theme folder in assets/themes/",
+      "Step 2: Navigate to MenuScene",
+      "Step 3: Verify theme selector UI element is visible",
+      "Step 4: Verify it lists available themes"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Theme hot-swap reloads assets without full page refresh",
+    "steps": [
+      "Step 1: Ensure a second theme folder exists in public/assets/themes/ with different assets",
+      "Step 2: Navigate to MenuScene and verify theme selector is visible",
+      "Step 3: Take screenshot of current theme appearance (background, colors)",
+      "Step 4: Select the second theme from the theme selector",
+      "Step 5: Verify the menu background changes to the new theme's menu-bg image",
+      "Step 6: Verify no full page refresh occurs (URL does not reload)",
+      "Step 7: Start a game and verify the game background uses the new theme's game-bg image",
+      "Step 8: Verify tile sprites load from the new theme's tile images",
+      "Step 9: Verify color values (tableColor, highlightColor, validSlotColor) match the new theme.json",
+      "Step 10: Return to menu and switch back to the original theme",
+      "Step 11: Verify original theme assets reload correctly without page refresh",
+      "Step 12: Take screenshot confirming theme swap back to original"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Theme is self-contained: copy classic folder, rename, edit theme.json works",
+    "steps": [
+      "Step 1: Copy the classic theme folder",
+      "Step 2: Rename it to a new theme name",
+      "Step 3: Edit theme.json with different colors",
+      "Step 4: Load the game and select the new theme",
+      "Step 5: Verify the game uses the new theme's colors and assets"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game start sound plays when distribution completes",
+    "steps": [
+      "Step 1: Start a new game with sound enabled",
+      "Step 2: Wait for tile distribution to complete",
+      "Step 3: Verify game start sound plays"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Multiple concurrent games don't share state (restart isolation)",
+    "steps": [
+      "Step 1: Start a game and play several turns",
+      "Step 2: Restart via pause menu",
+      "Step 3: Verify brand new game with no shared state from previous game",
+      "Step 4: Verify scores, hands, and board are all fresh"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Disabled button state shows 50% opacity and no hover effect",
+    "steps": [
+      "Step 1: Navigate to a state where a button is disabled (e.g., Pass button when player has valid moves)",
+      "Step 2: Verify the button has 50% opacity",
+      "Step 3: Hover over it and verify no hover effect occurs",
+      "Step 4: Click it and verify no action triggers"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Tiles are contained in Phaser Container for clean grouping",
+    "steps": [
+      "Step 1: Inspect tile rendering code",
+      "Step 2: Verify DominoSprite extends Phaser.GameObjects.Container",
+      "Step 3: Verify container includes face sprite, back sprite, lock overlay, glow effect"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "After successful placement tile is reparented to board container",
+    "steps": [
+      "Step 1: Start a game and place a tile",
+      "Step 2: Verify the placed tile moves from the hand container to the board container",
+      "Step 3: Verify it scales to 1.0x on the board",
+      "Step 4: Verify it is no longer interactive"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Phaser uses AUTO renderer (WebGL with Canvas fallback)",
+    "steps": [
+      "Step 1: Inspect Phaser game configuration",
+      "Step 2: Verify renderer type is Phaser.AUTO",
+      "Step 3: Verify game works in WebGL mode",
+      "Step 4: Verify fallback to Canvas works in environments without WebGL"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Workbox service worker uses cache-first for static assets",
+    "steps": [
+      "Step 1: Build and serve the production version",
+      "Step 2: Load the game to cache assets",
+      "Step 3: Verify subsequent loads use cached versions (cache-first strategy)",
+      "Step 4: Verify static assets (JS, CSS, sprites) come from cache"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Workbox service worker uses network-first for theme.json",
+    "steps": [
+      "Step 1: Build and serve the production version",
+      "Step 2: Load the game to cache theme.json",
+      "Step 3: Modify theme.json on the server",
+      "Step 4: Reload the game while online",
+      "Step 5: Verify the updated theme.json is used (network-first)"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game fully playable offline after first load",
+    "steps": [
+      "Step 1: Build the production version with npm run build and serve it",
+      "Step 2: Load the game online and play briefly to ensure all assets are cached",
+      "Step 3: Go offline (disconnect network or toggle DevTools offline mode)",
+      "Step 4: Reload the page and verify the game loads from cache without errors",
+      "Step 5: Verify the MenuScene renders correctly offline (title, buttons, background)",
+      "Step 6: Start a game by clicking a difficulty button",
+      "Step 7: Verify tile distribution animation plays offline",
+      "Step 8: Play several turns, placing tiles and observing AI turns",
+      "Step 9: Open pause menu and verify Resume, Restart, Main Menu buttons work",
+      "Step 10: Click Restart and verify a fresh game starts offline",
+      "Step 11: Return to Main Menu and start a game with a different difficulty",
+      "Step 12: Verify all features work offline: sounds (if cached), animations, scoring, game over"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Tile placement triggers board state update: branch numbers, phase, offsets",
+    "steps": [
+      "Step 1: Start a game and observe initial board state",
+      "Step 2: Place a tile on the right branch",
+      "Step 3: Verify rightBranchNum updates",
+      "Step 4: Verify rightPhase and position offsets update if needed",
+      "Step 5: Verify board state is consistent with placed tile position"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Ghost slots show correct orientations based on board phase and tile type",
+    "steps": [
+      "Step 1: Start a game and observe slot positions in different phases",
+      "Step 2: Drag a double tile and verify standing slot orientation",
+      "Step 3: Drag a non-double tile and verify lying slot orientation",
+      "Step 4: Verify slot rotation matches expected placement for current board phase"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "AI hand tiles count decreases as AI places tiles",
+    "steps": [
+      "Step 1: Start a game and count AI tiles (7 each)",
+      "Step 2: Wait for an AI to place a tile",
+      "Step 3: Verify that AI now shows 6 tiles in their hand area",
+      "Step 4: Continue and verify count decreases with each placement"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Locked tile overlay renders black at 50% opacity on tile sprite",
+    "steps": [
+      "Step 1: During player's turn, observe invalid tiles",
+      "Step 2: Verify locked tiles have a dark overlay",
+      "Step 3: Verify the overlay is approximately 50% opacity black"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game state toJSON/fromJSON round-trip preserves all data",
+    "steps": [
+      "Step 1: Create a game state with various data",
+      "Step 2: Call toJSON() to serialize",
+      "Step 3: Call fromJSON() to deserialize",
+      "Step 4: Verify all fields match: currentTurn, lastActivePlayer, scores, gameOver, difficulty",
+      "Step 5: Verify board state, player hands, and tile data are preserved"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Domino toJSON/fromJSON serialization works correctly",
+    "steps": [
+      "Step 1: Create a Domino instance",
+      "Step 2: Serialize with toJSON()",
+      "Step 3: Deserialize with fromJSON()",
+      "Step 4: Verify id, topIndex, bottomIndex, and available match"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "BoardState toJSON/fromJSON serialization works correctly",
+    "steps": [
+      "Step 1: Create a BoardState with placed tiles",
+      "Step 2: Serialize with toJSON()",
+      "Step 3: Deserialize with fromJSON()",
+      "Step 4: Verify branch numbers, phases, offsets, and placedTiles match"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "PlayerHand tracks tiles, score, playerType, position, and name",
+    "steps": [
+      "Step 1: Inspect PlayerHand implementation",
+      "Step 2: Verify tiles array management",
+      "Step 3: Verify score tracking",
+      "Step 4: Verify playerType is 'human' for player and 'ai' for AIs",
+      "Step 5: Verify position is 'bottom', 'left', 'top', or 'right'",
+      "Step 6: Verify name field exists for each player"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game produces valid production build via npm run build",
+    "steps": [
+      "Step 1: Run npm run build",
+      "Step 2: Verify dist/ directory is created",
+      "Step 3: Serve the dist/ directory",
+      "Step 4: Verify the game loads and plays correctly from production build"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Theme colors are applied correctly from theme.json",
+    "steps": [
+      "Step 1: Read the classic theme's theme.json file and note all color values",
+      "Step 2: Start a game and verify tableColor (#1B5E20) is used for the board/table background",
+      "Step 3: Wait for player's turn and verify highlightColor (#4FC3F7) is used for valid tile glow",
+      "Step 4: Drag a valid tile and verify validSlotColor (#FFD700) is used for ghost slot tint",
+      "Step 5: Verify textColor (#FFFFFF) is used for turn indicator and message text",
+      "Step 6: Verify scoreColor (#FFD700) is used for score display text",
+      "Step 7: Verify buttonColor (#4E342E) is used for button backgrounds",
+      "Step 8: Verify buttonHoverColor (#6D4C41) is used on button hover",
+      "Step 9: Open pause menu and verify popup colors match theme (overlayColor, panelColor)",
+      "Step 10: Verify no hardcoded color values exist in rendering code (all sourced from theme)"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Pause menu dark overlay is black at 70% opacity",
+    "steps": [
+      "Step 1: Start a game and open pause menu",
+      "Step 2: Verify dark overlay covers entire scene",
+      "Step 3: Verify overlay is approximately 70% opacity black"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Pause menu popup panel has dark brown background with lighter brown border",
+    "steps": [
+      "Step 1: Open pause menu during a game",
+      "Step 2: Verify popup panel background is dark brown (#3E2723)",
+      "Step 3: Verify popup panel border is medium brown (#5D4037)"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Pass button has red background (#D32F2F) and white text",
+    "steps": [
+      "Step 1: Play until player must pass",
+      "Step 2: Verify Pass button has red background",
+      "Step 3: Verify button text is white 'Pass'"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Center message area displays timed notifications correctly",
+    "steps": [
+      "Step 1: Start a game and observe center messages",
+      "Step 2: Verify 'Game Started' message appears centered",
+      "Step 3: Verify 'Pass' messages appear centered",
+      "Step 4: Verify turn announcements appear",
+      "Step 5: Verify game over messages appear centered and persist"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Easy AI prefers non-double good tiles",
+    "steps": [
+      "Step 1: Start a game on Easy difficulty",
+      "Step 2: Observe AI tile selections over multiple turns",
+      "Step 3: Verify AI tends to prefer non-double tiles that are classified as good",
+      "Step 4: Verify this behavior helps the human player"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Hard AI falls back to random when no strategic choice available",
+    "steps": [
+      "Step 1: Start a game on Hard difficulty",
+      "Step 2: Play until AI has only one valid tile",
+      "Step 3: Verify AI plays the only available tile regardless of good/bad classification"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game handles the case where first player is an AI correctly",
+    "steps": [
+      "Step 1: Start multiple games until an AI gets first turn",
+      "Step 2: Verify the AI places the first tile at center",
+      "Step 3: Verify turn indicator shows AI name",
+      "Step 4: Verify player tiles are locked during AI first turn"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "DominoSprite has showFace, showBack, setLocked, setGlow, setDraggable methods",
+    "steps": [
+      "Step 1: Inspect DominoSprite class and verify it extends Phaser.GameObjects.Container",
+      "Step 2: Verify showFace() method exists and makes the face sprite visible while hiding the back",
+      "Step 3: Verify showBack() method exists and makes the back sprite visible while hiding the face",
+      "Step 4: Verify setLocked(true) applies a black 50% opacity overlay and disables interaction",
+      "Step 5: Verify setLocked(false) removes the lock overlay and restores interaction",
+      "Step 6: Verify setGlow(true) enables a pulsing glow effect with theme highlightColor",
+      "Step 7: Verify setGlow(false) disables the glow effect",
+      "Step 8: Verify setDraggable(true) enables drag interaction on the tile",
+      "Step 9: Verify setDraggable(false) disables drag interaction on the tile",
+      "Step 10: Verify the container includes all required sub-objects: face sprite, back sprite, lock overlay, glow effect"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "All interactive elements meet minimum 44x44px touch target size",
+    "steps": [
+      "Step 1: Inspect all interactive elements (buttons, tiles, menu items)",
+      "Step 2: Verify each has at least 44x44px touch target area",
+      "Step 3: Verify buttons are large enough for comfortable touch interaction"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "UI text scales proportionally with the canvas",
+    "steps": [
+      "Step 1: Start the game at default resolution",
+      "Step 2: Resize the browser window to various sizes",
+      "Step 3: Verify all text scales proportionally with the canvas",
+      "Step 4: Verify text remains readable at all sizes"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game works in Chrome browser",
+    "steps": [
+      "Step 1: Open the game in Google Chrome",
+      "Step 2: Play through a complete game",
+      "Step 3: Verify all features work correctly"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game works in Firefox browser",
+    "steps": [
+      "Step 1: Open the game in Mozilla Firefox",
+      "Step 2: Play through a complete game",
+      "Step 3: Verify all features work correctly"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Game works in Safari browser",
+    "steps": [
+      "Step 1: Open the game in Safari",
+      "Step 2: Play through a complete game",
+      "Step 3: Verify all features work correctly"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Tile images 0-27 load correctly from theme tiles folder",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Verify all 28 tile face images load without errors",
+      "Step 3: Verify each tile displays the correct face image matching its ID"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Tile back image loads correctly from theme",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Verify tile back image loads for AI tiles",
+      "Step 3: Verify tile back appears correctly on face-down tiles"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Background images load from theme (menu-bg, game-bg, table-bg)",
+    "steps": [
+      "Step 1: Verify menu background loads on MenuScene",
+      "Step 2: Start a game and verify game background loads on GameScene",
+      "Step 3: Verify table background renders in the game board area"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Audio system is extensible: new sound events work by adding keys to theme.json",
+    "steps": [
+      "Step 1: Add a new sound key to theme.json with a valid audio file",
+      "Step 2: Call playSound() with the new key from code",
+      "Step 3: Verify the new sound plays correctly",
+      "Step 4: Verify no code changes were needed beyond the theme.json edit and the playSound call"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "TileConfig allows different maxPip values (architecture test)",
+    "steps": [
+      "Step 1: Inspect TileConfig interface",
+      "Step 2: Verify it accepts maxPip as a parameter",
+      "Step 3: Verify tile generation with maxPip=9 produces 55 tiles (conceptually)",
+      "Step 4: Verify the factory formula: tiles = (maxPip+1) * (maxPip+2) / 2"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "Slot positions correctly calculated by SetSlotPosition based on board state",
+    "steps": [
+      "Step 1: Start a game and observe slot positions at various phases",
+      "Step 2: Verify slots at phase 0 are placed horizontally outward",
+      "Step 3: Verify slots at phase 1 are at the corner position",
+      "Step 4: Verify slot calculations match the 5-phase algorithm"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "ConfirmMoving updates branch position (hor, ver, phase) after placement",
+    "steps": [
+      "Step 1: Inspect ConfirmMoving implementation",
+      "Step 2: Verify it updates horizontal offset after placement",
+      "Step 3: Verify it updates vertical offset during corner phases",
+      "Step 4: Verify it increments phase at appropriate boundaries"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "ConfirmOccupation updates branch end numbers after tile placement",
+    "steps": [
+      "Step 1: Inspect ConfirmOccupation implementation",
+      "Step 2: Place a tile on the right branch",
+      "Step 3: Verify the open end pip value becomes the new rightBranchNum"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "TellBranchNums returns current open pip values for both branches",
+    "steps": [
+      "Step 1: Start a game and place the first tile",
+      "Step 2: Call TellBranchNums or equivalent",
+      "Step 3: Verify it returns the correct open end values for both branches"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "CheckStanding correctly identifies doubles vs non-doubles for orientation",
+    "steps": [
+      "Step 1: Inspect CheckStanding implementation",
+      "Step 2: Verify it returns true (standing) for double tiles in horizontal phases",
+      "Step 3: Verify it returns false (lying) for non-double tiles in horizontal phases",
+      "Step 4: Verify correct behavior during vertical phases"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "GetMatchingTiles returns all valid tiles for both branches",
+    "steps": [
+      "Step 1: Set up a game state with known hand and branch numbers",
+      "Step 2: Call GetMatchingTiles",
+      "Step 3: Verify it returns all tiles that match either branch number",
+      "Step 4: Verify returned data includes both tile and matchingBranch info"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "functional",
+    "description": "SeparateTiles classifies tiles as good or bad relative to target player",
+    "steps": [
+      "Step 1: Set up a game state with known hands",
+      "Step 2: Call SeparateTiles for a specific target player",
+      "Step 3: Verify good tiles leave branch numbers matching target's hand",
+      "Step 4: Verify bad tiles leave branch numbers not matching target's hand"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "MenuScene background uses theme's menuBackground image",
+    "steps": [
+      "Step 1: Navigate to MenuScene",
+      "Step 2: Take screenshot",
+      "Step 3: Verify the background matches the theme's menu-bg.png image"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Game title text uses Georgia font, 48px, bold, with drop shadow",
+    "steps": [
+      "Step 1: Navigate to MenuScene",
+      "Step 2: Verify title text 'Quarzen's Domino' is rendered",
+      "Step 3: Verify font is Georgia, approximately 48px, bold",
+      "Step 4: Verify a 2px drop shadow offset is visible",
+      "Step 5: Take screenshot of title text"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Difficulty buttons are 200x60px with rounded corners and dark brown background",
+    "steps": [
+      "Step 1: Navigate to MenuScene",
+      "Step 2: Verify button dimensions are approximately 200x60px",
+      "Step 3: Verify buttons have rounded corners (12px radius)",
+      "Step 4: Verify button background color is dark brown (#4E342E)",
+      "Step 5: Verify button text is white (#FFFFFF)",
+      "Step 6: Take screenshot of difficulty buttons"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Pass button is 120x50px with red background and white text",
+    "steps": [
+      "Step 1: Play until the Pass button appears",
+      "Step 2: Verify button dimensions are approximately 120x50px",
+      "Step 3: Verify red background color (#D32F2F)",
+      "Step 4: Verify white text 'Pass'",
+      "Step 5: Take screenshot of Pass button"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Table background creates authentic dark green felt aesthetic",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Verify the game background uses the theme's game-bg.png",
+      "Step 3: Verify the overall aesthetic is dark green felt (#1B5E20)",
+      "Step 4: Take screenshot of game board area"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Tile sprites are crisp and legible at full scale (1.0x)",
+    "steps": [
+      "Step 1: Start a game and observe player's tiles",
+      "Step 2: Verify tile face images are crisp and clear",
+      "Step 3: Verify pip/dot patterns are easily distinguishable",
+      "Step 4: Take screenshot showing player tiles at full scale"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Tile sprites are legible at half scale (0.5x) for AI hands",
+    "steps": [
+      "Step 1: Start a game and observe AI tiles",
+      "Step 2: Verify AI tile backs are clear even at 0.5x scale",
+      "Step 3: Take screenshot showing AI tiles at half scale"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Tile dimensions are 60x120px at base scale",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Verify tile sprite size is approximately 60x120px",
+      "Step 3: Verify this is the base rendering size for player tiles"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Score display: gold text on semi-transparent dark rounded rectangle",
+    "steps": [
+      "Step 1: Start a game and wait for distribution to complete",
+      "Step 2: Verify all four score displays show 'Score: 0' initially",
+      "Step 3: Verify score text color is gold (#FFD700)",
+      "Step 4: Verify score text uses approximately 18px regular Arial font",
+      "Step 5: Verify each score sits on a semi-transparent dark rounded rectangle background",
+      "Step 6: Verify Player score is near the bottom hand area",
+      "Step 7: Verify Left AI score is near the left hand area",
+      "Step 8: Verify Top AI score is near the top hand area",
+      "Step 9: Verify Right AI score is near the right hand area",
+      "Step 10: Play until a pass occurs and verify the score updates with pulse animation (0.3s scale to 1.2x)",
+      "Step 11: Verify score format changes to 'Score: 1' after the pass",
+      "Step 12: Take screenshot of score displays showing updated values"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Turn indicator text: 28px, bold, Arial, centered near top of screen",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Verify turn indicator text is visible near the top",
+      "Step 3: Verify it uses approximately 28px font size, bold",
+      "Step 4: Verify it is centered horizontally",
+      "Step 5: Take screenshot of turn indicator"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Button text uses 24px bold Arial",
+    "steps": [
+      "Step 1: Navigate to MenuScene",
+      "Step 2: Inspect button text styling",
+      "Step 3: Verify approximately 24px font size, bold, Arial",
+      "Step 4: Take screenshot of button text"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Score text uses 18px regular Arial",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Verify score text is approximately 18px regular Arial",
+      "Step 3: Take screenshot of score text"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Game over text: 36px bold Georgia with outer glow effect",
+    "steps": [
+      "Step 1: Reach a game over condition",
+      "Step 2: Verify game over text is approximately 36px bold Georgia",
+      "Step 3: Verify outer glow effect on the text",
+      "Step 4: Take screenshot of game over text"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Rules modal text: 16px regular Arial with 1.5 line height",
+    "steps": [
+      "Step 1: Open the Rules modal",
+      "Step 2: Verify text is approximately 16px regular Arial",
+      "Step 3: Verify 1.5 line height for readability",
+      "Step 4: Verify dark background with white text",
+      "Step 5: Take screenshot of rules modal text"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Valid slot ghost rendering: semi-transparent with gold tint at alpha 0.3-0.5",
+    "steps": [
+      "Step 1: Start a game and wait for player's turn",
+      "Step 2: Identify a valid tile that matches both branch ends",
+      "Step 3: Begin dragging the tile toward the board",
+      "Step 4: Verify ghost slot sprites appear at valid placement positions",
+      "Step 5: Verify each ghost slot is semi-transparent (alpha between 0.3 and 0.5)",
+      "Step 6: Verify each ghost slot has a gold tint (#FFD700 from validSlotColor)",
+      "Step 7: Verify ghost slot orientation matches expected tile placement (standing for doubles, lying for non-doubles)",
+      "Step 8: Verify ghost slot size matches the tile dimensions at 1.0x scale (60x120px base)",
+      "Step 9: Release the tile to cancel the drag and verify ghost slots disappear",
+      "Step 10: Drag the tile again and place it successfully, verify ghost slots disappear after placement",
+      "Step 11: Take screenshot showing ghost slots during an active drag"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Tile face background is ivory white (#FFFFF0)",
+    "steps": [
+      "Step 1: Start a game and observe player tiles",
+      "Step 2: Verify tile face background color is ivory white",
+      "Step 3: Take screenshot of tile faces"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Tile pips/dots are near black (#1A1A1A)",
+    "steps": [
+      "Step 1: Start a game and observe tile pip/dot markings",
+      "Step 2: Verify pip color is near black (#1A1A1A)",
+      "Step 3: Take screenshot showing tile pips"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Tile back is saddle brown (#8B4513) with decorative pattern",
+    "steps": [
+      "Step 1: Start a game and observe AI tiles (face down)",
+      "Step 2: Verify tile back appearance matches saddle brown aesthetic",
+      "Step 3: Take screenshot of tile backs"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Active tile glow color is light blue (#4FC3F7)",
+    "steps": [
+      "Step 1: Wait for player's turn",
+      "Step 2: Observe the glow effect on valid tiles",
+      "Step 3: Verify glow color is light blue (#4FC3F7)",
+      "Step 4: Take screenshot showing active tile glow"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Text primary color is white (#FFFFFF)",
+    "steps": [
+      "Step 1: Start the game and observe text elements",
+      "Step 2: Verify primary text (turn indicators, messages) is white",
+      "Step 3: Take screenshot of text elements"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Text score color is gold (#FFD700)",
+    "steps": [
+      "Step 1: Start a game and observe score displays",
+      "Step 2: Verify score text color is gold (#FFD700)",
+      "Step 3: Take screenshot of score text"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Button background is dark brown (#4E342E), hover is lighter brown (#6D4C41)",
+    "steps": [
+      "Step 1: Navigate to MenuScene",
+      "Step 2: Verify button background is dark brown (#4E342E)",
+      "Step 3: Hover over button and verify color shifts to lighter brown (#6D4C41)",
+      "Step 4: Take screenshot of button states"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Popup overlay is black at 70% opacity",
+    "steps": [
+      "Step 1: Open the pause menu during gameplay",
+      "Step 2: Verify the overlay background is black at 70% opacity",
+      "Step 3: Verify the game is visible but dimmed behind the overlay",
+      "Step 4: Take screenshot of pause overlay"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Popup panel background is dark brown (#3E2723) with medium brown border (#5D4037)",
+    "steps": [
+      "Step 1: Open the pause menu",
+      "Step 2: Verify popup panel background color is dark brown (#3E2723)",
+      "Step 3: Verify popup panel border color is medium brown (#5D4037)",
+      "Step 4: Take screenshot of popup panel"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Menu background color is darker green (#0D2818)",
+    "steps": [
+      "Step 1: Navigate to MenuScene",
+      "Step 2: Verify the overall menu background aesthetic uses darker green",
+      "Step 3: Take screenshot of menu background"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "High contrast between tile faces and table background for readability",
+    "steps": [
+      "Step 1: Start a game with tiles on the board",
+      "Step 2: Verify there is clear contrast between ivory tiles and dark green table",
+      "Step 3: Verify tiles are easily distinguishable from the background",
+      "Step 4: Take screenshot showing contrast"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Minimum font size is 16px equivalent at base resolution",
+    "steps": [
+      "Step 1: Start the game and inspect all text elements",
+      "Step 2: Verify no text is smaller than approximately 16px at base resolution",
+      "Step 3: Verify all text is readable"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Color is never the sole indicator of state (dual indicators used)",
+    "steps": [
+      "Step 1: Observe locked tiles during player's turn",
+      "Step 2: Verify locked tiles have both reduced opacity AND a darkening overlay",
+      "Step 3: Observe valid tiles",
+      "Step 4: Verify valid tiles have both a glow AND are the only interactive elements",
+      "Step 5: Verify accessibility is maintained"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Turn indicator and score are clearly visible against all theme backgrounds",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Verify turn indicator text is clearly readable",
+      "Step 3: Verify score displays are clearly readable",
+      "Step 4: Verify both maintain contrast against the game background",
+      "Step 5: Take screenshot showing visibility"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Player hand positioned at bottom center of screen",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Verify player tiles are positioned at the bottom center",
+      "Step 3: Verify horizontal centering",
+      "Step 4: Take screenshot showing player hand position"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Left AI hand positioned on left side of screen",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Verify Left AI tiles are on the left side",
+      "Step 3: Take screenshot showing Left AI hand position"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Top AI hand positioned at top center of screen",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Verify Top AI tiles are at the top center",
+      "Step 3: Take screenshot showing Top AI hand position"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Right AI hand positioned on right side of screen",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Verify Right AI tiles are on the right side",
+      "Step 3: Take screenshot showing Right AI hand position"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Game board area is approximately 700x400px centered on screen",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Verify the game board placement area is approximately 700x400px",
+      "Step 3: Verify it is centered within the canvas",
+      "Step 4: Take screenshot showing board area"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Hamburger menu icon is three horizontal lines, 50x50px",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Verify the menu icon shows three horizontal lines",
+      "Step 3: Verify it is approximately 50x50px in the top-right corner",
+      "Step 4: Take screenshot of menu icon"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Pass button positioned in bottom-right area near player's hand",
+    "steps": [
+      "Step 1: Play until Pass button appears",
+      "Step 2: Verify it is positioned in the bottom-right area",
+      "Step 3: Verify it is near the player's hand",
+      "Step 4: Take screenshot of pass button position"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Scores positioned near each player's hand area",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Verify Player score is near the bottom hand area",
+      "Step 3: Verify Left AI score is near the left hand area",
+      "Step 4: Verify Top AI score is near the top hand area",
+      "Step 5: Verify Right AI score is near the right hand area",
+      "Step 6: Take screenshot of score positions"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Dragged tile has subtle drop shadow effect",
+    "steps": [
+      "Step 1: Start dragging a tile",
+      "Step 2: Verify a subtle drop shadow appears on the dragged tile",
+      "Step 3: Take screenshot showing shadow effect"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Pause menu buttons (Resume, Restart, Main Menu) are properly styled",
+    "steps": [
+      "Step 1: Open the pause menu",
+      "Step 2: Verify Resume, Restart, Main Menu buttons match the game design system",
+      "Step 3: Verify consistent button styling (dark brown, white text, rounded corners)",
+      "Step 4: Take screenshot of pause menu buttons"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Rules modal styled consistently with game design system",
+    "steps": [
+      "Step 1: Open Rules modal",
+      "Step 2: Verify dark panel background",
+      "Step 3: Verify white text",
+      "Step 4: Verify theme-matching brown accent colors",
+      "Step 5: Take screenshot of rules modal styling"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Title text centered at top third of MenuScene screen",
+    "steps": [
+      "Step 1: Navigate to MenuScene",
+      "Step 2: Verify title is positioned in the top third of the screen",
+      "Step 3: Verify title is horizontally centered",
+      "Step 4: Take screenshot confirming title position"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Mute toggle icon positioned in top-right corner of MenuScene",
+    "steps": [
+      "Step 1: Navigate to MenuScene",
+      "Step 2: Verify mute icon is in the top-right corner",
+      "Step 3: Take screenshot showing mute icon position"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Locked/invalid tiles have both reduced opacity AND darkening overlay (dual indicators)",
+    "steps": [
+      "Step 1: During player's turn, observe non-matching tiles",
+      "Step 2: Verify reduced opacity (alpha ~0.4)",
+      "Step 3: Verify dark overlay is applied on top",
+      "Step 4: Take screenshot showing locked tile appearance"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "AI hands are clearly distinguishable from player hand (smaller, face down, side positioned)",
+    "steps": [
+      "Step 1: Start a game",
+      "Step 2: Verify AI tiles are visually distinct from player tiles",
+      "Step 3: Verify AI tiles are smaller (0.5x scale)",
+      "Step 4: Verify AI tiles show backs",
+      "Step 5: Verify AI tiles are on sides and top",
+      "Step 6: Take screenshot showing all four hands"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Game over message has dramatic entrance with bounce animation",
+    "steps": [
+      "Step 1: Reach a game over condition",
+      "Step 2: Observe the game over message entrance",
+      "Step 3: Verify it has a dramatic scale animation (0 to 1, 1.0s)",
+      "Step 4: Verify bounce easing effect",
+      "Step 5: Take screenshot of game over message"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Overall MenuScene layout is visually appealing and properly arranged",
+    "steps": [
+      "Step 1: Navigate to MenuScene",
+      "Step 2: Verify the background image renders correctly (theme's menu-bg.png)",
+      "Step 3: Verify the title 'Quarzen's Domino' is displayed in the top third, centered horizontally",
+      "Step 4: Verify the title uses Georgia font, approximately 48px, bold, with drop shadow",
+      "Step 5: Verify the Easy, Random, Hard buttons are vertically stacked at center",
+      "Step 6: Verify button dimensions are approximately 200x60px with rounded corners",
+      "Step 7: Verify the Rules button is visible below the difficulty buttons",
+      "Step 8: Verify the mute toggle icon is in the top-right corner",
+      "Step 9: Verify visual hierarchy: title is largest, buttons are secondary, mute is tertiary",
+      "Step 10: Verify no elements overlap or clip the canvas edges",
+      "Step 11: Verify spacing between elements is consistent and professional",
+      "Step 12: Take a full screenshot confirming the complete MenuScene layout"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Overall GameScene layout is visually appealing during gameplay",
+    "steps": [
+      "Step 1: Start a game and wait for tile distribution to complete",
+      "Step 2: Verify the game background renders correctly (theme's game-bg.png)",
+      "Step 3: Verify the board area is centered, approximately 700x400px",
+      "Step 4: Verify player hand is at bottom center with 7 face-up tiles at full scale",
+      "Step 5: Verify Left AI hand is on the left side with face-down tiles at 0.5x scale",
+      "Step 6: Verify Top AI hand is at the top center with face-down tiles at 0.5x scale",
+      "Step 7: Verify Right AI hand is on the right side with face-down tiles at 0.5x scale",
+      "Step 8: Verify all four score displays show 'Score: 0' near their respective hand areas",
+      "Step 9: Verify the turn indicator text is visible near the top, centered",
+      "Step 10: Verify the hamburger menu button is in the top-right corner",
+      "Step 11: Play a few turns and verify no elements overlap or misalign as tiles are placed",
+      "Step 12: Verify the overall aesthetic is cohesive and professional",
+      "Step 13: Take a full screenshot confirming the complete GameScene layout"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Smooth 60fps animations during tile movements and UI transitions",
+    "steps": [
+      "Step 1: Start a game and observe all animations",
+      "Step 2: Verify tile dealing animation is smooth",
+      "Step 3: Verify tile placement animation is smooth",
+      "Step 4: Verify no frame drops or stuttering visible",
+      "Step 5: Verify animations feel fluid and responsive"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Drag-and-drop feels responsive with no perceptible input lag",
+    "steps": [
+      "Step 1: Start a game and drag tiles",
+      "Step 2: Verify tile follows pointer/finger with no lag",
+      "Step 3: Verify the interaction feels responsive and immediate"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "AI thinking indicator: subtle animated dots near active AI name",
+    "steps": [
+      "Step 1: Start a game and observe AI turns",
+      "Step 2: Verify animated dots appear near the AI's name during thinking",
+      "Step 3: Verify the animation is subtle and not distracting",
+      "Step 4: Take screenshot of AI thinking indicator"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Letterboxing (black bars) appears correctly when aspect ratio differs",
+    "steps": [
+      "Step 1: Resize browser to a non-16:10 aspect ratio",
+      "Step 2: Verify the game canvas is centered",
+      "Step 3: Verify black bars (letterboxing) fill remaining space",
+      "Step 4: Take screenshot showing letterboxing"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Installed PWA has no browser chrome and uses landscape orientation",
+    "steps": [
+      "Step 1: Install the game as a PWA",
+      "Step 2: Launch from home screen",
+      "Step 3: Verify no browser navigation bar or address bar",
+      "Step 4: Verify landscape orientation is enforced",
+      "Step 5: Take screenshot of standalone PWA mode"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "PWA icons display correctly at 192x192 and 512x512 sizes",
+    "steps": [
+      "Step 1: Check manifest.json icons configuration",
+      "Step 2: Verify 192x192 icon file exists and displays correctly",
+      "Step 3: Verify 512x512 icon file exists and displays correctly"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Menu navigation is intuitive: max 2 taps from launch to gameplay",
+    "steps": [
+      "Step 1: Launch the application",
+      "Step 2: Count taps needed to start a game: 1 tap on difficulty button",
+      "Step 3: Verify gameplay starts in 2 or fewer taps from launch"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Rotate your device message has rotation icon and covers full screen",
+    "steps": [
+      "Step 1: Open game in portrait orientation",
+      "Step 2: Verify a rotation icon is displayed",
+      "Step 3: Verify the message covers the full screen",
+      "Step 4: Verify the game is hidden behind the message",
+      "Step 5: Take screenshot of rotation message"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Board tiles display at correct size and orientation on the board",
+    "steps": [
+      "Step 1: Start a game and place several tiles",
+      "Step 2: Verify placed tiles are at full scale (1.0x) on the board",
+      "Step 3: Verify doubles are standing and non-doubles are lying",
+      "Step 4: Verify tiles are properly aligned and not overlapping",
+      "Step 5: Take screenshot of board with multiple tiles"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Game state is always clear: player never has to guess what to do",
+    "steps": [
+      "Step 1: Start a game and wait for distribution to complete",
+      "Step 2: Verify 'Game Started' message appears, clearly indicating the game has begun",
+      "Step 3: Verify turn indicator clearly shows whose turn it is (Your Turn / AI Name's Turn)",
+      "Step 4: During player's turn, verify valid tiles glow and invalid tiles are dimmed",
+      "Step 5: During AI turns, verify all player tiles are locked and AI thinking dots are visible",
+      "Step 6: Play until the player must pass and verify the Pass button appears prominently",
+      "Step 7: Click Pass and verify a 'Pass' message appears for 1 second",
+      "Step 8: Continue playing and verify score updates are visible with pulse animation",
+      "Step 9: Play until game over and verify the game over message clearly states the result",
+      "Step 10: Verify the game over message persists (does not auto-dismiss)",
+      "Step 11: Verify the hamburger menu remains accessible in game over state",
+      "Step 12: Take screenshots at each distinct game state (start, player turn, AI turn, pass, game over)"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Tile distribution order visual: Player first, then Left, Top, Right",
+    "steps": [
+      "Step 1: Start a new game and observe dealing animation",
+      "Step 2: Verify first 7 tiles go to Player (bottom)",
+      "Step 3: Verify next 7 go to Left AI",
+      "Step 4: Verify next 7 go to Top AI",
+      "Step 5: Verify last 7 go to Right AI",
+      "Step 6: Take screenshot during dealing showing animation direction"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Corner turns in board layout are visually clean and properly aligned",
+    "steps": [
+      "Step 1: Play a game until tiles reach a corner turn (phase 1+)",
+      "Step 2: Verify the corner transition looks clean",
+      "Step 3: Verify tiles at the corner are properly positioned and rotated",
+      "Step 4: Verify no gaps or overlaps at corner transitions",
+      "Step 5: Take screenshot of corner layout"
+    ],
+    "passes": false,
+    "screenshots": null
+  },
+  {
+    "category": "style",
+    "description": "Difficulty buttons have hover effect (scale 1.05x, color shift)",
+    "steps": [
+      "Step 1: Navigate to MenuScene",
+      "Step 2: Hover over each difficulty button",
+      "Step 3: Verify scale increases to 1.05x on hover",
+      "Step 4: Verify color shifts to buttonHoverColor (#6D4C41)",
+      "Step 5: Take screenshot of hover state"
+    ],
+    "passes": false,
+    "screenshots": null
+  }
+]
